@@ -24,7 +24,7 @@ public class BiddingPage {
 		driver.findElement(bid1).click();
 		
 	}
-	//test 33
+	//test 55
 	public void acceptBid1(){
 		driver.findElement(acceptBid1).click();
 	}
