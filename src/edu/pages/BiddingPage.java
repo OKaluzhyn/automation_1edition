@@ -15,7 +15,7 @@ public class BiddingPage {
 	}
 
 
-	//Get the Page name from biddingPage
+	//Get the Page name from biddingPage 12
 	public String getBiddingPageDashboardName(){
 		 return	driver.findElement(biddingPageName).getText();
 		}
