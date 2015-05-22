@@ -1,4 +1,4 @@
-package edu.example.tests;
+package edu.example.tests.Customer;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -7,19 +7,19 @@ import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import edu.pages.AuthPage;
-import edu.pages.BiddingPage;
-import edu.pages.MyOrdersCustomer;
-import edu.pages.OrderPayPage;
-import edu.pages.PayPalPage;
-import edu.pages.ThankYouPage;
+import edu.pages.CustomerPages.BiddingPage;
+import edu.pages.CustomerPages.MyOrdersCustomer;
+import edu.pages.CustomerPages.OrderPayPage;
+import edu.pages.CustomerPages.PayPalPage;
+import edu.pages.CustomerPages.ThankYouPage;
 
 public class PayOrder {
 	static FirefoxDriver driver;
-	static edu.pages.OrderPayPage objPayPage;
-	static edu.pages.PayPalPage objConfirmPay;
+	static edu.pages.CustomerPages.OrderPayPage objPayPage;
+	static edu.pages.CustomerPages.PayPalPage objConfirmPay;
 	static edu.pages.AuthPage objLogin;
-	static edu.pages.BiddingPage objBidding;
-	static edu.pages.MyOrdersCustomer objCustomerOrders;
+	static edu.pages.CustomerPages.BiddingPage objBidding;
+	static edu.pages.CustomerPages.MyOrdersCustomer objCustomerOrders;
 	static ThankYouPage objThankYouPage;
 	
 	
@@ -32,9 +32,9 @@ public class PayOrder {
 	
 		@Test
 		public void payOrder() throws Exception{
-			//использовать метод авторизация
+			//авторизация
 			objLogin = new AuthPage(driver);
-			objLogin.loginToAuthPage("Cust.23.02@i.ua", "5e2eee");
+			objLogin.loginAsCustomer1(null, null);
 			
 			//переходим к нужному заказу
 			driver.get("http://edusson.com/customer/orders");

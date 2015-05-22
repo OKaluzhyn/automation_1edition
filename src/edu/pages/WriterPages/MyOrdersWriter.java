@@ -1,4 +1,4 @@
-package edu.pages;
+package edu.pages.WriterPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;

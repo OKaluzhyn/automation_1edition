@@ -1,4 +1,4 @@
-package edu.example.tests;
+package edu.example.tests.Writer;
 
 
 	import java.util.concurrent.TimeUnit;
@@ -8,17 +8,17 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import edu.pages.AllOrders;
 import edu.pages.AuthPage;
-import edu.pages.CreateBidPage;
-import edu.pages.MyOrdersWriter;
+import edu.pages.WriterPages.AllOrders;
+import edu.pages.WriterPages.CreateBidPage;
+import edu.pages.WriterPages.MyOrdersWriter;
 
 	public class CreateBid {
 	static FirefoxDriver driver;
 	static edu.pages.AuthPage objLogin;
-	static edu.pages.MyOrdersWriter objMyOrdersWriter;
-	static edu.pages.CreateBidPage objCreateBid;
-	static edu.pages.AllOrders objChooseOrder;
+	static edu.pages.WriterPages.MyOrdersWriter objMyOrdersWriter;
+	static edu.pages.WriterPages.CreateBidPage objCreateBid;
+	static edu.pages.WriterPages.AllOrders objChooseOrder;
 	
 
 
@@ -37,7 +37,7 @@ import edu.pages.MyOrdersWriter;
 	public void createBid()throws Exception{
 		//использовать метод авторизация
 		objLogin = new AuthPage(driver);
-		objLogin.loginToAuthPage("Write.23.02@i.ua", "402438");
+		objLogin.loginAsWriter1(null, null);
 		objMyOrdersWriter = new MyOrdersWriter (driver);
 		// открыть страницу доступных заказов
 		driver.get("http://edusson.com/writer/orders/available");

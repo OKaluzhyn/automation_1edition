@@ -8,15 +8,15 @@ import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import edu.pages.AuthPage;
-import edu.pages.MyOrdersWriter;
-import edu.pages.OrderPage;
+import edu.pages.CustomerPages.OrderPage;
+import edu.pages.WriterPages.MyOrdersWriter;
 
 
 	public class Autorization {
 		FirefoxDriver driver;
 		edu.pages.AuthPage objLogin;
-		edu.pages.OrderPage objOrderPage;
-		edu.pages.MyOrdersWriter objMyOrdersWriter;
+		edu.pages.CustomerPages.OrderPage objOrderPage;
+		edu.pages.WriterPages.MyOrdersWriter objMyOrdersWriter;
 		
 		
 		
@@ -30,24 +30,33 @@ import edu.pages.OrderPage;
 	  @Test
 	  public void customerAuthorization() throws Exception{
 		  objLogin = new AuthPage(driver);
-		  objLogin.loginToAuthPage("Cust.23.02@i.ua","5e2eee");
+		  objLogin.loginAsCustomer1(null, null);
 		  objOrderPage = new OrderPage(driver); 
 	
 		 				
 	}
 	  @Test
-	  public void customerAuthorizationError () throws Exception{
+	  public void userAuthorizationError1 () throws Exception{
 		  objLogin = new AuthPage(driver);
-		  objLogin.loginToAuthPage(null,null);
+		  objLogin.loginWithWrongUserName(null, null);
 		  objLogin = new AuthPage(driver);
 		  objLogin.isErrorMessagePresent();
 		 
 	  }
 	  
+	  @Test
+	  public void userAuthorizationError2 () throws Exception{
+		  objLogin = new AuthPage(driver);
+		  objLogin.loginWithWrongPass(null, null);
+		  objLogin = new AuthPage(driver);
+		  objLogin.isErrorMessagePresent();
+	  }
+	  
+	  
 	  @Test 
 	  public void writerAuthorization1() throws Exception{
 		  objLogin = new AuthPage(driver);
-		  objLogin.loginToAuthPage("Write.23.02@i.ua", "402438");
+		  objLogin.loginAsWriter1(null,null);
 		  objMyOrdersWriter = new MyOrdersWriter (driver);
 	  }
 

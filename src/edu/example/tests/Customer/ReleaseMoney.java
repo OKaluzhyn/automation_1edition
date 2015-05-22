@@ -1,4 +1,4 @@
-package edu.example.tests;
+package edu.example.tests.Customer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,9 +8,9 @@ import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import edu.pages.AuthPage;
-import edu.pages.InProgressCustPage;
-import edu.pages.MyOrdersCustomer;
-import edu.pages.OrderFinishedCustPage;
+import edu.pages.CustomerPages.InProgressCustPage;
+import edu.pages.CustomerPages.MyOrdersCustomer;
+import edu.pages.CustomerPages.OrderFinishedCustPage;
 
 public class ReleaseMoney {
 static FirefoxDriver driver;
@@ -34,7 +34,7 @@ public void setUp() throws Exception {
 public void releaseMoney()throws Exception{
 	//использовать метод авторизация
 	objLogin = new AuthPage(driver);
-	objLogin.loginToAuthPage("Cust.23.02@i.ua", "5e2eee");
+	objLogin.loginAsCustomer1(null, null);
 	// choose order
 	driver.get("http://edusson.com/customer/orders");
 	objCustomerOrders = new MyOrdersCustomer(driver);

@@ -1,4 +1,4 @@
-package edu.example.tests;
+package edu.example.tests.Customer;
 
 import java.util.concurrent.TimeUnit;
 
@@ -8,15 +8,16 @@ import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import edu.pages.AuthPage;
-import edu.pages.BiddingPage;
-import edu.pages.OrderPage;
+import edu.pages.CustomerPages.BiddingPage;
+import edu.pages.CustomerPages.OrderPage;
 
 
 public class CreateOrder  {
 static FirefoxDriver driver;
 static edu.pages.AuthPage objLogin;
-static edu.pages.OrderPage objOrderPage;
-static edu.pages.BiddingPage objBidding;
+static edu.pages.CustomerPages.OrderPage objOrderPage;
+static edu.pages.CustomerPages.BiddingPage objBidding;
+
 
 
 
@@ -26,15 +27,14 @@ public void setUp() throws Exception {
   driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
   driver.get("http://edusson.com");
 }
-  
 
 
 @Test
 
 public void createOrder()throws Exception{
-	//использовать метод авторизация
+	// авторизация
 	objLogin = new AuthPage(driver);
-	objLogin.loginToAuthPage("Cust.23.02@i.ua","5e2eee");
+	objLogin.loginAsCustomer1(null, null);
 	// create order
 	objOrderPage = new OrderPage(driver);
 	objOrderPage.createOrder("test for webdriver","test");

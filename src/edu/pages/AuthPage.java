@@ -38,17 +38,103 @@ public class AuthPage {
 		public void clickLoginButton(){
 				driver.findElement(loginButton).click();
 		}
-		public void loginToAuthPage(String strUserName,String strPasword){
+		
+		
+		// Customer 1
+		public void loginAsCustomer1(String strUserName,String strPasword){
 			//open pop-up
 			this.clickLogin(); 
 			//Fill user name
-			this.setUserName(strUserName);
+			this.setUserName("Cust.23.02@i.ua");
 			//Fill password
-			this.setPassword(strPasword);
+			this.setPassword("test11");
 			//Click Login button
 			this.clickLoginButton();				
+		
+				}
+		
+		
+		
+		//Customer 2
+		public void loginAsCustomer2(String strUserName,String strPasword){
+			//open pop-up
+			this.clickLogin(); 
+			//Fill user name
+			this.setUserName("Cust.23.02@i.ua");
+			//Fill password
+			this.setPassword("5e2eee");
+			//Click Login button
+			this.clickLoginButton();		
+		
 		}
-				
+		
+		
+		public void loginAsWriter1(String strUserName,String strPasword){
+			//open pop-up
+			this.clickLogin(); 
+			//Fill user name
+			this.setUserName("Write.23.02@i.ua");
+			//Fill password
+			this.setPassword("test11");
+			//Click Login button
+			this.clickLoginButton();	
+		}
+		
+		public void loginAsWriter2(String strUserName,String strPasword){
+			//open pop-up
+			this.clickLogin(); 
+			//Fill user name
+			this.setUserName("Cust.23.02@i.ua");
+			//Fill password
+			this.setPassword("5e2eee");
+			//Click Login button
+			this.clickLoginButton();		
+		}
+		
+		public void loginAsWriter3(String strUserName,String strPasword){
+			//open pop-up
+			this.clickLogin(); 
+			//Fill user name
+			this.setUserName("Cust.23.02@i.ua");
+			//Fill password
+			this.setPassword("5e2eee");
+			//Click Login button
+			this.clickLoginButton();		
+		}
+		
+		
+		public void loginAsDeactivatedUser(String strUserName,String strPasword){
+			//open pop-up
+			this.clickLogin(); 
+			//Fill user name
+			this.setUserName("svetwrite@i.ua");
+			//Fill password
+			this.setPassword("a505e6");
+			//Click Login button
+			this.clickLoginButton();		
+		}
+		
+		public void loginWithWrongPass(String strUserName,String strPasword){
+			//open pop-up
+			this.clickLogin(); 
+			//Fill user name
+			this.setUserName("Cust.23.02@i.ua");
+			//Fill password
+			this.setPassword("0000");
+			//Click Login button
+			this.clickLoginButton();		
+		}
+		
+		public void loginWithWrongUserName(String strUserName,String strPasword){
+			//open pop-up
+			this.clickLogin(); 
+			//Fill user name
+			this.setUserName("xxx@i.ua");
+			//Fill password
+			this.setPassword("5e2eee");
+			//Click Login button
+			this.clickLoginButton();		
+		}
 			public boolean isErrorMessagePresent() {
 								try{
 

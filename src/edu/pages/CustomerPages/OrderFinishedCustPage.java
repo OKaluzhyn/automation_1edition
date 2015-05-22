@@ -1,4 +1,4 @@
-package edu.pages;
+package edu.pages.CustomerPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;

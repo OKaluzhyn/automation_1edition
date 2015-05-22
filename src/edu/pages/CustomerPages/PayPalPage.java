@@ -1,4 +1,4 @@
-package edu.pages;
+package edu.pages.CustomerPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -39,8 +39,8 @@ public class PayPalPage {
 		
 		
 		public void confirmPayPal(String strUserEmail, String strPassword){
-			this.setUserEmail(strUserEmail);
-			this.setPassword(strPassword);
+			this.setUserEmail("edussonpay2@ukr.net");
+			this.setPassword("ghbdtndctv12");
 			this.clickLogBut();
 			this.clickConfirm();
 			
