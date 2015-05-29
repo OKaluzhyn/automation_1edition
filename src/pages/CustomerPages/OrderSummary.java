@@ -12,7 +12,12 @@ public OrderSummary(FirefoxDriver driver) {
 
 By discard = By.xpath(".//*[@id='order']/div[2]/div[2]/button[1]");
 By save = By.xpath(".//*[@id='order']/div[2]/div[2]/button[2]");
+By cancelLink = By.xpath(".//*[@id='order']/div[2]/div[1]/span/a");
 
+
+public void openCancelPopUp(){
+	driver.findElement(cancelLink).click();
+}
 
 @Override
 public void selectType(){

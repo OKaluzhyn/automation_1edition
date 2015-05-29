@@ -4,7 +4,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class MyOrdersCustomer {
 
 	FirefoxDriver driver;
-	By orderName = By.xpath("html/body/div[6]/div/table/tbody/tr[1]/td[1]/a");
+	By orderName = By.linkText("test for webdriver");
 	
 	public MyOrdersCustomer(FirefoxDriver driver){
 		this.driver = driver;

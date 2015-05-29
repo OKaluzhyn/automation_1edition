@@ -6,8 +6,8 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 public class BiddingPage {
 	FirefoxDriver driver;
 	By biddingPageName = By.partialLinkText("http://edusson.com/order#redirect_url=/order/view/");
-	By bid1 = By.xpath("//*[@id='js_user_card_18413']/a/div[2]/h3");
-	By acceptBid1 = By.xpath("//*[@id='js_user_card_18413']/div/div[2]/button");
+	By bid1 = By.className("user-card-row");
+	By acceptBid1 = By.className("button-accept");
 	By confirm = By.xpath("html/body/div[9]/div/div/div[3]/div[2]/button");
 	By editButton = By.xpath("html/body/div[6]/div/div[1]/div/div/div/table/tbody/tr/td[1]/button");
 	By bid = By.className("search-results");
