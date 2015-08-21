@@ -11,11 +11,11 @@ public class UserAuthorizationPage extends BasePage {
 		this.driver = driver;
 	}
 	
-	By login = By.className("login-link");
+	By login = By.xpath("//a[@class='login-link']");
 	// форма авторизации
-	By userName = By.id("_username");
-	By password = By.id("_password");
-	By loginButton = By.name("login");
+	By userName = By.xpath("//input[@class='primary-input'and @type='email']");
+	By password = By.xpath("//input[@class='primary-input'and @type='password']");
+	By loginButton = By.xpath("//button[@class='btn btn-primary' and text()='Log in']");
 	By errorMessage = By.className("errorText");
 	By messageForDeactivateUser = By.className("errorText");
 	By forgotPass = By.xpath(".//*[@id='js_hide_popup_login']");
@@ -28,6 +28,12 @@ public class UserAuthorizationPage extends BasePage {
 	// логин юзера полностью
 	public void logIn(String strUserName, String strPassword) {
 		this.clickLogin();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setUserName(strUserName);
 		this.setPassword(strPassword);
 		this.clickLoginButton();

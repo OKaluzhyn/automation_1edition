@@ -17,6 +17,7 @@ public class PayPalPage extends BasePage {
 	By confirmButton = By.xpath("//*[@id='continue']");
 
 	public void setUserEmail(String strUserEmail) {
+		driver.findElement(email).clear();
 		driver.findElement(email).sendKeys(strUserEmail);
 
 	}

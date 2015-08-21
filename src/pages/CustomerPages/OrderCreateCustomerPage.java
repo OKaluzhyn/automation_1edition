@@ -16,8 +16,7 @@ public class OrderCreateCustomerPage extends BasePage {
 		this.driver = driver;
 	}
 	// инициализация элементов страницы
-	By orderPageName = By
-			.xpath("//html/body/div[6]/span/span/div/div[1]/div/h1");
+	By orderPageName = By.xpath("//html/body/div[6]/span/span/div/div[1]/div/h1");
 	By typeOfPaper = By.xpath(".//*[@id='order_product_type']");
 	By topic = By.id("order_name");
 	By subject = By.id("order_product_subject");
@@ -32,7 +31,7 @@ public class OrderCreateCustomerPage extends BasePage {
 	By paperInstruction = By.id("order_description");
 	By uploadFiles = By.xpath("//*[@id='dropzone']/div/span[2]/a");
 	By input = By.id("order_additional_materials___name__");
-	By nextButton3 = By.xpath(".//*[@id='step-3']/div/div[3]/button");
+	By nextButton3 = By.xpath("//div[contains (@id, 'step-3')]//button");
 	By biddingButton = By.xpath("//*[@id='step-3']/div/div[4]/button");
 
 	// заполняем обязательные поля ордер формы
@@ -122,7 +121,8 @@ public class OrderCreateCustomerPage extends BasePage {
 		this.selectformatOfCitation();
 		this.clickNext2();
 		this.orderDescription(strDescription);
-		this.clicUpload();
+		Thread.sleep(1000);
+		//*upload file
 		this.clickNext3();
 		this.proceedToBidding();
 	}

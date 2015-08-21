@@ -9,7 +9,7 @@ public class OrderBiddingWriterPage extends BasePage {
 	public OrderBiddingWriterPage(FirefoxDriver driver) {
 		this.driver = driver;
 	}
-	By bidPrice = By.id("bidding_form_writer_value");
+	By bidPrice = By.xpath("//input[contains(@class, 'js_bidding_form_writer_value')]");
 	By applyButton = By.name("makebid");
 	By bidAmount = By.className("bid-amount");
 

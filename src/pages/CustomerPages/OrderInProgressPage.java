@@ -14,11 +14,12 @@ public class OrderInProgressPage extends BasePage {
 	By releaseButton = By.xpath("(//button[@type='button'])[5]");
 	By popUpButtonRelease = By.xpath("//div[@id='popup_compensate']/div[2]/div/div/button[2]");
 	
-	By payPercent = By.xpath("html/body/div[6]/div/div/div[2]/div[2]/div[1]/div[2]/div[2]/span[1]");//процент релизнутых денег
+	By payPercent = By.xpath("//p[text()='Paid']/..//span[@class='block-data-left']");//процент релизнутых денег
    
     //получаем занчение релизнутых денег %
   	public String checkReleasedMoney(){
-  		return driver.findElement(payPercent).getText();
+  		 driver.findElement(payPercent).getAttribute("value");
+  		return ("value");
   	}
 	
 	

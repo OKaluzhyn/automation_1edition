@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
@@ -9,6 +10,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import pages.CommonPages.HeaderMenu;
+import pages.CommonPages.OrderCancelPopUp;
+import pages.CommonPages.OrderCancelViewPage;
 import pages.CommonPages.UserAuthorizationPage;
 import pages.CustomerPages.AttentionBeforOrderEditingCustomerPopUp;
 import pages.CustomerPages.OrderBiddingCustomerPage;
@@ -16,7 +19,6 @@ import pages.CustomerPages.OrderCreateCustomerPage;
 import pages.CustomerPages.OrderSummaryCustomerPopUp;
 import pages.WriterPages.OrderBiddingWriterPage;
 import utils.Config;
-
 
 public class TestOrderCreateEditCancelStage1 {
 	public FirefoxDriver driver;
@@ -40,16 +42,25 @@ public class TestOrderCreateEditCancelStage1 {
 	@Test
 	public void test() throws Exception {
 		// инициализация страниц
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage(driver);
-		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage(driver);
-		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
-		AttentionBeforOrderEditingCustomerPopUp attentionBeforOrderEditingCustomerPopUp = new AttentionBeforOrderEditingCustomerPopUp(driver);
-		OrderSummaryCustomerPopUp orderSummaryCustomerPopUp = new OrderSummaryCustomerPopUp(driver);
+		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage(
+				driver);
+		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage(
+				driver);
+		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(
+				driver);
+		AttentionBeforOrderEditingCustomerPopUp attentionBeforOrderEditingCustomerPopUp = new AttentionBeforOrderEditingCustomerPopUp(
+				driver);
+		OrderSummaryCustomerPopUp orderSummaryCustomerPopUp = new OrderSummaryCustomerPopUp(
+				driver);
 		HeaderMenu headerMenu = new HeaderMenu(driver);
-		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
+		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(
+				driver);
+		OrderCancelPopUp orderCancelPopUp = new OrderCancelPopUp(driver);
+		OrderCancelViewPage orderCancelViewPage = new OrderCancelViewPage(
+				driver);
 
 		// логинимся клиентом
-		userAuthorizationPage.logIn(Config.customer1, Config.password);
+		userAuthorizationPage.logIn(Config.auto_customer_1, Config.password);
 		// create order
 		orderCreateCustomerPage.createOrder("test for webdriver", "test");
 		Thread.sleep(5000);
@@ -61,17 +72,18 @@ public class TestOrderCreateEditCancelStage1 {
 		// разлогиниваемся клиентом
 		headerMenu.userLogOut();
 		// логинимся писателем
-		userAuthorizationPage.logIn(Config.writer1, Config.password);
+		userAuthorizationPage.logIn(Config.auto_writer_1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
 		driver.get(orderUrlForEdition);
 		// создаем бид
-		orderBiddingWriterPage.createBid("6"); // редактируем бид - ассерт, удаляем бид -
-										// ассерт
+		orderBiddingWriterPage.createBid("6"); // редактируем бид - ассерт,
+												// удаляем бид -
+		// ассерт
 		// разлогиниваемся писателем
 		headerMenu.userLogOut();
 		// логинимся клиентом
 
-		userAuthorizationPage.logIn(Config.customer1, Config.password);
+		userAuthorizationPage.logIn(Config.auto_customer_1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
 		driver.get(orderUrlForEdition);
 		// проверяем наличие бида
@@ -81,16 +93,42 @@ public class TestOrderCreateEditCancelStage1 {
 		// apply pop-up info
 		attentionBeforOrderEditingCustomerPopUp.applyPopupBeforEditingOrder();
 		// переключаемся на фрейм
-		WebElement iframe = driver.findElement(orderSummaryCustomerPopUp.PopUpEditOrder);
+		WebElement iframe = driver
+				.findElement(orderSummaryCustomerPopUp.PopUpEditOrder);
 		driver.switchTo().frame(iframe);
 		// редактируем заказ
 		orderSummaryCustomerPopUp.editOrder(null, null);
-		// проверяем, что бид писателя перестал отображаться
+
+		// проверяем, что бид писателя перестал отображаться - тут допилить!!!!!
+		//orderBiddingCustomerPage.isBidPresent();
+		assertFalse(orderBiddingCustomerPage.isElementPresent());
+	
+		// разлогиниваемся клиентом
+		headerMenu.userLogOut();
+		// логинимся писателем
+		userAuthorizationPage.logIn(Config.auto_writer_1, Config.password);
+		// берем урл страницы заказа из переменной и переходим по нему
+		driver.get(orderUrlForEdition);
 		// проверяем писателем, что заказ больше ему недоступен
 
+		// cancel order
+		// логинимся клиентом
+		userAuthorizationPage.logIn(Config.auto_customer_1, Config.password);
+		// берем урл страницы заказа из переменной и переходим по нему
+		driver.get(orderUrlForEdition);
+		// кликаем кнопку редактирования заказа
+		orderBiddingCustomerPage.clickEdit();
+		// apply pop-up info
+		attentionBeforOrderEditingCustomerPopUp.applyPopupBeforEditingOrder();
+		// переключаемся на фрейм OrderSummary
+		driver.switchTo().frame(iframe);
+		// открываем форму Cancel Order
+		orderSummaryCustomerPopUp.openCancelPopUp();
+		// переключаемся на дефолтное окно
+		driver.switchTo().defaultContent();
+		// кенселим заказ
+		orderCancelPopUp.cancelOrder();
+		// проверяем наличие текста Order Cancel на странице заказа
+		orderCancelViewPage.isElementPresent();
 	}
-
-	// cancel order
-
 }
-

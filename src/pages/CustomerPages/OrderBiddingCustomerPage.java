@@ -1,5 +1,7 @@
 package pages.CustomerPages;
 
+import java.util.NoSuchElementException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -19,6 +21,18 @@ public class OrderBiddingCustomerPage extends BasePage {
 	public void isBidPresent() {
 		driver.findElement(bid).isDisplayed();
 	}
+	// проверяем, что бид писателя перестал отображаться - тут допилить!!!!!
+			//orderBiddingCustomerPage.isBidPresent();
+	
+	public boolean isElementPresent(){
+        try {
+        	driver.findElement(bid);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        } }
+
+	
 
 	public void chooseBid1() {
 		driver.findElement(bid1).click();

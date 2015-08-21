@@ -5,6 +5,9 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class OrderCancelPopUp {
 FirefoxDriver driver;
+public  OrderCancelPopUp(FirefoxDriver driver) {
+	this.driver = driver;
+}
 
 By popUp = By.className("modal-content");
 By reason = By.xpath(".//*[@id='cancel_order']/div[2]/ul/label[1]/button");
@@ -13,9 +16,7 @@ By textfield = By.className("cancel_comment");
 By apply = By.xpath(".//*[@id='cancel_order']/div[3]/span/input");
 By cancel = By.xpath(".//*[@id='cancel_order']/div[3]/span/input");
 
-public OrderCancelPopUp(FirefoxDriver driver){
-	this.driver = driver;
-}
+
 public void chooseReason(){
 	driver.findElement(reason).click();
 }
