@@ -2,12 +2,13 @@ package pages.WriterPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 
 import pages.BasePage;
 
-public class MyOrdersWriterPage extends BasePage {
-	public MyOrdersWriterPage(FirefoxDriver driver) {
+public class MyOrdersWriterPage  {
+	public MyOrdersWriterPage(WebDriver driver) {
 		this.driver = driver;
 	}
 

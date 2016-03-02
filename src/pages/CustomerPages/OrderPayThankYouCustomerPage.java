@@ -13,7 +13,7 @@ public class OrderPayThankYouCustomerPage extends BasePage {
 	By thankYouPageName = By
 			.partialLinkText("http://edusson.com/order/pay/thankyou");
 	By order = By
-			.xpath("html/body/div[6]/div/div/div[1]/table/tbody/tr[4]/td/div/a");
+			.xpath("//a[text()='order page']");
 
 	// Get the Page name
 	public String getThankYouPageDashboardName() {

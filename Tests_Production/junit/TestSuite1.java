@@ -21,14 +21,14 @@ import tests.Customer.LoadMoneyToBalance;
 	 
 	@RunWith(Suite.class)
 	@Suite.SuiteClasses({
-		TestUserAutorizationProduction.class,
-        TestUserForgotPassProduction.class,
+		TestUserAutorizationProduction.class})
+      /*  TestUserForgotPassProduction.class,
         TestStandartCheckProduction.class,
         //Customers tests
         CreateOrder.class,
         EditOrder.class,
         CancelOrder.class,
         LoadMoneyToBalance.class})
-	      	
+	  */    	
 public class TestSuite1 {
 }

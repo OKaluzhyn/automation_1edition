@@ -30,6 +30,8 @@ public class Config {
 	public static String auto_writer_2 = ("auto_write_edu_2@yopmail.com");
 	public static String auto_writer_3 = ("auto_write_edu_3@yopmail.com");
 	
+	// Edubirdie.com Production
+	public static String auto_birdie_customer = ("test.cust@yandex.ru");
 	
 	//PayPall account
 	public static String paypall_login = ("edussonpay2@ukr.net");
@@ -41,4 +43,7 @@ public class Config {
 	public static String cardNumber_VISA = ("4444444444444448");
 	public static String CVV = ("123");
 	
+	
+	//test2
+	public static String c = ("deposit_tester@yopmail.com");
 }

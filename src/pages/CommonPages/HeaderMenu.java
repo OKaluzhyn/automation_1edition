@@ -1,17 +1,15 @@
 package pages.CommonPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 
-import pages.BasePage;
+import utils.Helper;
 
-public class HeaderMenu extends BasePage {
-	public HeaderMenu(FirefoxDriver driver){
-		this.driver = driver;
-	}
-	By logOut = By.xpath("html/body/div[5]/div/div/ul/li[1]/a");
+public class HeaderMenu  {
+	
+	public static String logOut = "//li[@class='logout']/a";
 
 	public void userLogOut() {
-		driver.findElement(logOut).click();
+		WebElement log_out_button = Helper.cyclicElementSearchByXpath(logOut);
+		log_out_button.click();
 	}
 }

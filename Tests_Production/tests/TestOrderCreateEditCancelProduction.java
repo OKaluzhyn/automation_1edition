@@ -12,12 +12,14 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import pages.CommonPages.HeaderMenu;
 import pages.CommonPages.UserAuthorizationPage;
+import pages.CustomerPages.MyOrdersCustomerPage;
 import pages.CustomerPages.OrderBiddingCustomerPage;
 import pages.CustomerPages.OrderCreateCustomerPage;
 import pages.CustomerPages.OrderSummaryCustomerPopUp;
 import pages.CustomerPages.AttentionBeforOrderEditingCustomerPopUp;
 import pages.WriterPages.OrderBiddingWriterPage;
 import utils.Config;
+import utils.Helper;
 
 public class TestOrderCreateEditCancelProduction {
 	public FirefoxDriver driver;
@@ -25,32 +27,32 @@ public class TestOrderCreateEditCancelProduction {
 	public String orderUrlForEdition;
 
 	@Before
-	public void setUp() throws Exception {
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
-		driver.get("http://edusson.com");
+	public void setUp(){
+		Helper.driverSetUp();
 
 	}
 
 	@After
 	public void tearDown() {
-		driver.quit();
+		Helper.quit();
 	}
 
 	@Test
 	public void test() throws Exception {
 		// инициализация страниц
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage(driver);
-		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage(driver);
+		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
+		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
 		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
 		AttentionBeforOrderEditingCustomerPopUp attentionBeforOrderEditingCustomerPopUp = new AttentionBeforOrderEditingCustomerPopUp(driver);
 		OrderSummaryCustomerPopUp orderSummaryCustomerPopUp = new OrderSummaryCustomerPopUp(driver);
-		HeaderMenu headerMenu = new HeaderMenu(driver);
+		HeaderMenu headerMenu = new HeaderMenu();
 		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
 
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
+		//go to order form
+		myOrdersCustomerPage.makeNewOrder();
 		// create order
 		orderCreateCustomerPage.createOrder("test for webdriver", "test");
 		Thread.sleep(5000);

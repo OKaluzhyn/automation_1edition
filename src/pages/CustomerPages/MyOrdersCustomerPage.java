@@ -1,21 +1,26 @@
 package pages.CustomerPages;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import pages.BasePage;
-public class MyOrdersCustomerPage extends BasePage{
-	public MyOrdersCustomerPage(FirefoxDriver driver) {
-		this.driver = driver;
+import utils.Helper;
+public class MyOrdersCustomerPage {
+	
+	
+	//public static String orderName = By.linkText("test for webdriver");
+//	public static String editedOrder = By.linkText("Edited order");
+	public static String make_order_button = "//button[@class='uk-button btn-primary']";
+	
+	public void makeNewOrder(){
+		WebElement makeNewOrderButton = Helper.cyclicElementSearchByXpath(make_order_button);
+		Helper.sleep(1);
+		makeNewOrderButton.click();
 	}
-	
-	By orderName = By.linkText("test for webdriver");
-	By editedOrder = By.linkText("Edited order");
-	
-	
+	/*
 	public void goToOrder(){
 		driver.findElement(orderName).click();
 	}
 	
 	public void goToEditedOrder(){
-		driver.findElement(editedOrder).click();
-}}
+		driver.findElement(editedOrder).click(); */
+}

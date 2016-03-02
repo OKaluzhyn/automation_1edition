@@ -2,6 +2,9 @@ package pages.CustomerPages;
 
 import java.awt.AWTException;
 
+
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -9,36 +12,41 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import pages.BasePage;
+import utils.Helper;
 
-public class OrderCreateCustomerPage extends BasePage {
-	public  OrderCreateCustomerPage(FirefoxDriver driver) {
-		this.driver = driver;
-	}
+
+
+public class OrderCreateCustomerPage  {
+	
 	// инициализация элементов страницы
-	By orderPageName = By.xpath("//html/body/div[6]/span/span/div/div[1]/div/h1");
-	By typeOfPaper = By.xpath(".//*[@id='order_product_type']");
-	By topic = By.id("order_name");
-	By subject = By.id("order_product_subject");
-	By numberOfPages = By.id("order_product_pages");
-	By deadline = By.id("order_deadline");
-	By nextButton1 = By.xpath("//*[@id='step-1']/div/div[6]/button");
-	By typeOfService = By.xpath("//*[@id='step-2']/div/div[1]/label[1]/button");
-	By writerLevel = By.xpath("//*[@id='step-2']/div/div[2]/label[3]/span");
-	By numOfCitation = By.id("order_product_sources");
-	By formatOfCitation = By.id("order_product_style");
-	By nextButton2 = By.xpath("//*[@id='step-2']/div/div[5]/button");
-	By paperInstruction = By.id("order_description");
-	By uploadFiles = By.xpath("//*[@id='dropzone']/div/span[2]/a");
-	By input = By.id("order_additional_materials___name__");
-	By nextButton3 = By.xpath("//div[contains (@id, 'step-3')]//button");
-	By biddingButton = By.xpath("//*[@id='step-3']/div/div[4]/button");
+	
+	public static String orderPageName = "//html/body/div[6]/span/span/div/div[1]/div/h1";
+	public static String typeOfPaper = "//select[@id='order_product_type']";
+	public static String topic = "order_name";
+	public static String subject = "order_product_subject";
+	public static String numberOfPages = "order_product_pages";
+	public static String deadline = "order_deadline";
+	public static String nextButton1 = "//*[@id='step-1']/div/div[6]/button";
+	public static String typeOfService = "//*[@id='step-2']/div/div[1]/label[1]/button";
+	public static String writerLevel = "//*[@id='step-2']/div/div[2]/label[3]/span";
+	public static String numOfCitation = "order_product_sources";
+	public static String formatOfCitation = "order_product_style";
+	public static String nextButton2 = "//*[@id='step-2']/div/div[5]/button";
+	public static String paperInstruction = "order_description";
+	public static String uploadFiles = "//*[@id='dropzone']/div/span[2]/a";
+	public static String input = "order_additional_materials___name__";
+	public static String nextButton3 = "//div[contains (@id, 'step-3')]//button";
+	public static String biddingButton = "//*[@id='step-3']/div/div[4]/button";
 
 	// заполняем обязательные поля ордер формы
 	// select type
-	public void selectType() {
-		new Select(driver.findElement(typeOfPaper))
-				.selectByVisibleText("Essay (Any Type)");
+	/*public void selectType() {
+		new Select(Helper.cyclicElementSearchByXpath(typeOfPaper));
+		List <WebElement> options = select.getOptions();
+		int count = options.size();
+		int randomIndex = getRandom(1, count);
+		options.get(randomIndex-1).select();
+				//.selectByVisibleText("Essay (Any Type)");
 	}
 
 	// order topic
@@ -125,5 +133,5 @@ public class OrderCreateCustomerPage extends BasePage {
 		//*upload file
 		this.clickNext3();
 		this.proceedToBidding();
-	}
+	}*/
 }
