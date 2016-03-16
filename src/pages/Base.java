@@ -19,16 +19,27 @@ import utils.Helper;
 public class Base {
 	
 	
-	public static String login="//li[@class='login']//span[text()='Log in']";
+	public static String login="//a[@data-atest='atest_login_elem_popup_open']";
 	public static String typeOfPaper = "//div[@id='order_product_type-styler']";
 	public static String next_button = "//div[@id='step-1']//button";
 	public static String number = "//input[@id='order_product_sources']";
 	@Before
 	public void setUp() throws Exception {
-		Helper.driverSetUp();
+		Helper.driverSetUp("http://edusson.com.test18/");
 	}
-	
-	
+	@Test
+	public void auth(){
+		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+		userAuthorizationPage.logIn(Config.customer1, Config.password);
+		Helper.sleep(1);
+		if (Helper.driver.getTitle().equals("Edusson.com - My Orders")){
+		
+			System.out.println("Test passed");
+		}
+	else {
+		System.out.println("Title does not match");
+	}
+	}
 
 	@Test
 	public  void someVoid(){
