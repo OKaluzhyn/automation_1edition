@@ -15,7 +15,8 @@ import utils.Config;
 import utils.DriverFireFox;
 
 
-public class CreateOrder implements DriverFireFox, UserAuthorizationPage, OrderCreateCustomerPage, OrderBiddingCustomerPage, AttentionBeforOrderEditingCustomerPopUp,
+public class CreateOrder 
+UserAuthorizationPage, OrderCreateCustomerPage, OrderBiddingCustomerPage, AttentionBeforOrderEditingCustomerPopUp,
 OrderSummaryCustomerPopUp{
 
 public  String orderUrlForEdition;

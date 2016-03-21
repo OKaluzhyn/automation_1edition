@@ -1,4 +1,6 @@
 package utils;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -25,9 +27,10 @@ public static void quit(){
 	driver.quit();
 	}
 public static WebElement cyclicElementSearchByXpath(String target) {
-      for (int i = 0; i < 600; i++){
+      for (int i = 0; i < 60; i++){
             if (driver.findElements(By.xpath(target)).size() > 0) {
-               break;            }
+               break;   }
+              
             sleep(1);
         }
         return driver.findElement(By.xpath(target));
@@ -39,9 +42,20 @@ public static void sleep(long sec) {
         e.printStackTrace();
     }
 	
-	
+}
+	public static void randomChoiceFromDropdown(String arg, String xpath){
+		WebElement openDropdown = Helper.cyclicElementSearchByXpath(arg);
+		openDropdown.click();
+		List<WebElement> listOfElements =  Helper.driver.findElements(By.xpath(xpath));
+		// select a random one
+		Random random = new Random();
+		WebElement someRandomElement = listOfElements.get(random.nextInt(listOfElements.size()));
+		someRandomElement.click();
+		openDropdown.click();
+	}
+
 		
 		
 	}
-}
+
 

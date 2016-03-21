@@ -14,7 +14,7 @@ public class TestUserAutorizationProduction {
 
 	@Before
 	public void setUp(){
-		Helper.driverSetUp();
+		Helper.driverSetUp("http://edusson.com.test18/");
 
 	}
 

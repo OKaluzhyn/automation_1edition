@@ -20,9 +20,11 @@ public class Base {
 	
 	
 	public static String login="//a[@data-atest='atest_login_elem_popup_open']";
-	public static String typeOfPaper = "//div[@id='order_product_type-styler']";
-	public static String next_button = "//div[@id='step-1']//button";
+	public static String typeOfPaper = "//div[@data-atest='atest_order_create_form_type']";
+	public static String next_button = "//div[@id='step-1']//button[@data-atest='atest_order_create_elem_next_btn']";
+	public static String nextButton2 = "//div[@id='step-2']//button";
 	public static String number = "//input[@id='order_product_sources']";
+	public static String paperInstruction = "//input[@data-atest='atest_order_create_form_description']";
 	@Before
 	public void setUp() throws Exception {
 		Helper.driverSetUp("http://edusson.com.test18/");
@@ -45,7 +47,7 @@ public class Base {
 	public  void someVoid(){
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
-		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+	//	OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
 		// логинимся клиентом
 				userAuthorizationPage.logIn(Config.customer1, Config.password);
 				//go to order form
@@ -58,7 +60,7 @@ public class Base {
 				// get all links by xpath
 				WebElement buttonNext = Helper.cyclicElementSearchByXpath(next_button);
 				buttonNext.click();
-				//рандомно выбрать элемент из дропдауна - метод рабочий
+				/*рандомно выбрать элемент из дропдауна - метод рабочий
 				WebElement openDropdownTypes = Helper.cyclicElementSearchByXpath(typeOfPaper);
 				openDropdownTypes.click();
 				List<WebElement> types =  Helper.driver.findElements(By.xpath("//select[@id='order_product_type']/option[@value]"));
@@ -67,11 +69,30 @@ public class Base {
 				WebElement someType = types.get(random.nextInt(types.size()));
 				someType.click();
 				openDropdownTypes.click();
-				
+				*/
+				Helper.randomChoiceFromDropdown(typeOfPaper, "//select[@id='order_product_type']/option[@value]");
 				WebElement num = Helper.cyclicElementSearchByXpath(number);
 						num.sendKeys("5");
-Helper.sleep(5);
-				//link.select();
+						Helper.sleep(1);
+                WebElement button2 = Helper.cyclicElementSearchByXpath(nextButton2);
+                        button2.click();
+                       
+                       
+                        
+                             
+                             WebElement input = Helper.cyclicElementSearchByXpath(paperInstruction);
+                             input.click();//link.select();
+	}
+	
+	public void randomChoice(String arg, String xpath){
+		WebElement openDropdownTypes = Helper.cyclicElementSearchByXpath(arg);
+		openDropdownTypes.click();
+		List<WebElement> types =  Helper.driver.findElements(By.xpath(xpath));
+		// select a random one
+		Random random = new Random();
+		WebElement someType = types.get(random.nextInt(types.size()));
+		someType.click();
+		openDropdownTypes.click();
 	}
 	
 		@After

@@ -1,34 +1,23 @@
 package tests;
 
-import static org.junit.Assert.assertTrue;
-
-import java.util.concurrent.TimeUnit;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import pages.CommonPages.HeaderMenu;
 import pages.CommonPages.UserAuthorizationPage;
 import pages.CustomerPages.MyOrdersCustomerPage;
-import pages.CustomerPages.OrderBiddingCustomerPage;
 import pages.CustomerPages.OrderCreateCustomerPage;
-import pages.CustomerPages.OrderSummaryCustomerPopUp;
-import pages.CustomerPages.AttentionBeforOrderEditingCustomerPopUp;
-import pages.WriterPages.OrderBiddingWriterPage;
 import utils.Config;
 import utils.Helper;
 
 public class TestOrderCreateEditCancelProduction {
-	public FirefoxDriver driver;
+	
 
 	public String orderUrlForEdition;
 
 	@Before
 	public void setUp(){
-		Helper.driverSetUp();
+		Helper.driverSetUp("http://edusson.com.test18/");
 
 	}
 
@@ -43,20 +32,35 @@ public class TestOrderCreateEditCancelProduction {
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
 		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
-		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
-		AttentionBeforOrderEditingCustomerPopUp attentionBeforOrderEditingCustomerPopUp = new AttentionBeforOrderEditingCustomerPopUp(driver);
-		OrderSummaryCustomerPopUp orderSummaryCustomerPopUp = new OrderSummaryCustomerPopUp(driver);
-		HeaderMenu headerMenu = new HeaderMenu();
-		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
+		//OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
+		//AttentionBeforOrderEditingCustomerPopUp attentionBeforOrderEditingCustomerPopUp = new AttentionBeforOrderEditingCustomerPopUp(driver);
+		//OrderSummaryCustomerPopUp orderSummaryCustomerPopUp = new OrderSummaryCustomerPopUp(driver);
+		//HeaderMenu headerMenu = new HeaderMenu();
+		//OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
 
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		//go to order form
 		myOrdersCustomerPage.makeNewOrder();
 		// create order
-		orderCreateCustomerPage.createOrder("test for webdriver", "test");
+		//orderCreateCustomerPage.createOrder("test for webdriver", "test");
+		
+		orderCreateCustomerPage.selectTypeOfPaper();
+		orderCreateCustomerPage.setTopic("test");
+		orderCreateCustomerPage.selectSubject();
+		orderCreateCustomerPage.clickNext1();
+		orderCreateCustomerPage.setnumOfCitation();
+		orderCreateCustomerPage.selectformatOfCitation();
+		Helper.sleep(1);
+		orderCreateCustomerPage.clickNext2();
+		orderCreateCustomerPage.orderDescription("test for webdriver");
+		Helper.sleep(1);
+		orderCreateCustomerPage.proceedToBidding();
 		Thread.sleep(5000);
+		
+		
 		// assert bidding page
+		/*
 		assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
 		driver.navigate().refresh();
 		// сохраняем урл страницы текущего заказа в переменную
@@ -91,8 +95,8 @@ public class TestOrderCreateEditCancelProduction {
 		// проверяем, что бид писателя перестал отображаться
 		// проверяем писателем, что заказ больше ему недоступен
 
-	}
+	}*/
 
 	// cancel order
-
+	}
 }
