@@ -3,23 +3,24 @@ package pages.CommonPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class OrderCancelPopUp {
-FirefoxDriver driver;
-public  OrderCancelPopUp(FirefoxDriver driver) {
-	this.driver = driver;
-}
+import utils.Helper;
 
-By popUp = By.className("modal-content");
-By reason = By.xpath(".//*[@id='cancel_order']/div[2]/ul/label[1]/button");
-By otherReason = By.className("js_cancel_reason_other hidden");
-By textfield = By.className("cancel_comment");
-By apply = By.xpath(".//*[@id='cancel_order']/div[3]/span/input");
-By cancel = By.xpath(".//*[@id='cancel_order']/div[3]/span/input");
+public class OrderCancelPopUp {
+
+
+public static String popUp = "";
+public static String reason = "//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']";
+public static String otherReason = "";
+public static String textfield = "";
+public static String apply = "";
+public static String cancel = "";
 
 
 public void chooseReason(){
-	driver.findElement(reason).click();
-}
+	Helper.randomChoiceFromDropdown(reason, "//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']/label");
+		
+	}
+	
 public void inputYourReason(String strreason){
 	driver.findElement(otherReason).click();
 	driver.findElement(textfield).sendKeys(strreason);

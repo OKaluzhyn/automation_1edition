@@ -2,53 +2,50 @@ package pages.CustomerPages;
 
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 
-import pages.BasePage;
+import utils.Helper;
 
-public class OrderBiddingCustomerPage extends BasePage {
-	public OrderBiddingCustomerPage(FirefoxDriver driver){
-		this.driver = driver;
-	}
-	By bid1 = By.className("user-card-row");
-	By acceptBid1 = By.className("button-accept");
-	By confirm = By.xpath("html/body/div[9]/div/div/div[3]/div[2]/button");
-	By editButton = By
-			.xpath("html/body/div[6]/div/div[1]/div/div/div/table/tbody/tr/td[1]/button");
-	By bid = By.className("search-results");
+
+
+public class OrderBiddingCustomerPage {
+		
+	
+	public static String bid1 = "//div[@data-atest='atest_order_bid_elem_bid_open']";
+	public static String acceptBidButton ="//button[@data-atest='atest_order_bid_elem_accept_btn']";
+	public static String regectBidButton = "//button[@data-atest='atest_order_bid_elem_reject_btn']";
+	public static String confirmPopupButton = "//input[@data-atest='atest_order_popup_bid_elem_accept_ok_btn']";
+	public static String editOrderButton = "//button[@data-atest='atest_order_view_bidding_elem_edit_btn']";
+	public static String bid = "//div[@data-atest='atest_order_bid_elem_bid_open']";
 
 	public void isBidPresent() {
-		driver.findElement(bid).isDisplayed();
+		WebElement some_writer_bid = Helper.cyclicElementSearchByXpath(bid);
+		some_writer_bid.isDisplayed();
 	}
-	// проверяем, что бид писателя перестал отображаться - тут допилить!!!!!
-			//orderBiddingCustomerPage.isBidPresent();
 	
-	public boolean isElementPresent(){
-        try {
-        	driver.findElement(bid);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        } }
-
+	
+	
 	
 
 	public void chooseBid1() {
-		driver.findElement(bid1).click();
+		WebElement bid_1 = Helper.cyclicElementSearchByXpath(bid1);
+		bid_1.click();
 
 	}
 
 	public void acceptBid1() {
-		driver.findElement(acceptBid1).click();
+		WebElement accept_button = Helper.cyclicElementSearchByXpath(acceptBidButton);
+		accept_button.click();
 	}
 
 	public void confirmWriter1() {
-		driver.findElement(confirm).click();
-	}
+		WebElement confirm_popup_button = Helper.cyclicElementSearchByXpath(confirmPopupButton);
+		confirm_popup_button.click();
+			}
 
-	public void clickEdit() {
-		driver.findElement(editButton).click();
+	public void clickEditOrder() {
+		WebElement edit_order_button = Helper.cyclicElementSearchByXpath(editOrderButton);
+		edit_order_button.click();
 	}
 
 	// выбрать бид первого райтера

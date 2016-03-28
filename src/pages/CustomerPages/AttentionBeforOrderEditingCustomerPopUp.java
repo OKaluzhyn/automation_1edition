@@ -1,17 +1,16 @@
 package pages.CustomerPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 
-import pages.BasePage;
+import utils.Helper;
 
-public class AttentionBeforOrderEditingCustomerPopUp extends BasePage {
-	public AttentionBeforOrderEditingCustomerPopUp(FirefoxDriver driver){
-		this.driver = driver;
-	}
-	By applyButton = By.xpath("html/body/div[9]/div/div/div[3]/button[2]");
+public class AttentionBeforOrderEditingCustomerPopUp {
+	public static String applyButton = "//a[@data-atest='atest_order_popup_order_edit_ask_elem_cancel_btn']";
+	
+	
 
 	public void applyPopupBeforEditingOrder() {
-		driver.findElement(applyButton).click();
+		WebElement apply_button = Helper.cyclicElementSearchByXpath(applyButton);
+		apply_button.click();
 	}
 }

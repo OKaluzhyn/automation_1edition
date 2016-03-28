@@ -11,23 +11,26 @@ public class UserAuthorizationPage {
 	
 	
 	//XPath для эелементов страницы авторизации
-	public static String login_link = "//li[@class='login']//span[text()='Log in']";
-	public static String usre_Name_field = "//div[@class='uk-form']//input[@id='_pre_login_username']";
-	public static String continue_button = "//form[@class='login_form js_pre_login_form']//button[@type='submit']";
-	public static String user_Password_field = "//form[@class='login_form js_login_form']//input[@type='password']";
-	public static String login_button = "//button[text()='Log in']";
+	
+	public static String login_link = "//a[@data-atest='atest_login_elem_popup_open']";
+	public static String user_name_field = "//input[@data-atest='atest_login_form_email']";
+	public static String continue_button = "//button[@data-atest='atest_login_form_submit']";
+	public static String user_password_field = "//input[@data-atest='atest_login_form_password']";
+	public static String login_button = "//button[@data-atest='atest_login_form_submit']";
+	public static String login_button2 = "(//button[@data-atest='atest_login_form_submit'])[1]";
 	// форма восстановления пароля
-	public static String forgot_password_link = "//a[contains(@class,'js_login_open_forgot_popup')]";
-	public static String email_for_change_password_field = "//input[@class='js_forgot_password_email']";
-	public static String submit_button = "//span[@class='js_forgot_password_content_1']//button[@type='submit']";
+	public static String forgot_password_link = "//a[@data-atest='atest_forgot_pass_elem_popup_open']";
+	public static String email_for_change_password_field = "//input[@data-atest='atest_forgot_pass_form_email']";
+	public static String submit_button = "//button[@data-atest='atest_forgot_pass_form_submit']";
+	public static String change_user = "//a[@data-atest='atest_login_elem_change_user']";
+	//for editing
 	public static String success_pass_change = "//span[@class='js_forgot_password_content_2']";
 	public static String error_pass_change = "//div[@class='errorText js_forgot_pass_error']";
-	public static String errorMessage = "//div[@class='errorText']";
+	public static String submit_button_after_change_user = "//button[@data-atest='atest_login_form_submit' and text()='Continue']";
+	public static String error_message = "//div[@class='errorText']";
+	// нажать кнопку логин на главной - открывает форму авторизации
 	//public static String messageForDeactivateUser = "//div[@class='errorText']";
 	
-	
-	
-	// нажать кнопку логин на главной - открывает форму авторизации
 	public void LogClick(){
 		WebElement openAuthorizationPopUp = Helper.cyclicElementSearchByXpath(login_link);
 		openAuthorizationPopUp.click();
@@ -42,22 +45,34 @@ public class UserAuthorizationPage {
 		this.setPassword(strPassword);
 		this.clickLoginButton();
 	}
-
+	public void changeUser(String strUserName, String strPassword){
+		this.LogClick();
+		Helper.sleep(1);
+		this.changeUserClick();
+		
+		this.setUserName(strUserName);
+		
+		this.submitClickAfterChangeUser();
+		Helper.sleep(1);
+		this.setPassword(strPassword);
+		this.clickLoginButton2();
+	}
 	
 
 	// ввод логина в поле формы авторизации
 	public void setUserName(String strUserName) {
-		WebElement userEmail = Helper.cyclicElementSearchByXpath(usre_Name_field);
+		WebElement userEmail = Helper.cyclicElementSearchByXpath(user_name_field);
 		userEmail.click();
 		userEmail.sendKeys(strUserName);
 	}
-public void continueClick(){
+   public void continueClick(){
 	WebElement continueButton = Helper.cyclicElementSearchByXpath(continue_button);
 	continueButton.click();
 }
+
 	// ввод пароля в поле формы авторизации
 	public void setPassword(String strPassword) {
-		WebElement userPassword = Helper.cyclicElementSearchByXpath(user_Password_field);
+		WebElement userPassword = Helper.cyclicElementSearchByXpath(user_password_field);
 		userPassword.click();
 		userPassword.sendKeys(strPassword);
 	}
@@ -68,6 +83,23 @@ public void continueClick(){
 		submit.click();
 	}
 	
+	
+	//change user methods
+	public void changeUserClick(){
+		WebElement changeUserLink = Helper.cyclicElementSearchByXpath(change_user);
+		changeUserLink.click();
+	}
+	//login после смены юзера
+	public void clickLoginButton2() {
+		WebElement submit = Helper.cyclicElementSearchByXpath(login_button);
+		submit.click();
+	}
+	//сабмит после смены юзера
+	public void submitClickAfterChangeUser(){
+		WebElement submitButton2 = Helper.cyclicElementSearchByXpath(submit_button_after_change_user);
+		Helper.sleep(5);
+		submitButton2.click();
+	}
 	
 	
 	// Forgot Password methods
@@ -133,7 +165,7 @@ public void continueClick(){
 	public boolean checkErrorMessagePresent() {
 		
 		try {
-			Helper.cyclicElementSearchByXpath(errorMessage);
+			Helper.cyclicElementSearchByXpath(error_message);
 			return true;
 		} catch (ElementNotVisibleException ex) {
 			return false;

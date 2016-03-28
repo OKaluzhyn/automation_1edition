@@ -1,5 +1,6 @@
 package utils;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -16,6 +17,7 @@ public class Helper {
 public static void driverSetUp(String siteUrl){
 	System.setProperty("webdriver.chrome.driver","D:\\AUTO_TESTING\\downloads\\ChromeDriver\\chromedriver.exe");	
 	driver = new ChromeDriver();
+	driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 	driver.get(siteUrl);
@@ -27,7 +29,7 @@ public static void quit(){
 	driver.quit();
 	}
 public static WebElement cyclicElementSearchByXpath(String target) {
-      for (int i = 0; i < 60; i++){
+      for (int i = 0; i < 600; i++){
             if (driver.findElements(By.xpath(target)).size() > 0) {
                break;   }
               
@@ -53,8 +55,15 @@ public static void sleep(long sec) {
 		someRandomElement.click();
 		openDropdown.click();
 	}
-
-		
+	//public WebDriverWait wait = new WebDriverWait(driver, 5).withMessage("Element was not found");
+	//private final Wait <WebDriver> wait = new WebDriverWait(driver, 5).withMessage("Element was not found");
+	public static boolean isElementPresent(String xpath){
+        try {
+        	Helper.cyclicElementSearchByXpath(xpath);
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        } }
 		
 	}
 

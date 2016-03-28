@@ -1,5 +1,9 @@
 package tests;
 
+import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,19 +30,16 @@ public class TestUserAutorizationProduction {
 	@Test
 	// success customer authorization
 	public void customerAuthorization() throws Exception {
-		
+		Helper.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+		Helper.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);
-		if (Helper.driver.getTitle().equals("Edusson.com - My Orders")){
-		
-			System.out.println("Test passed");
-		}
-	else {
-		System.out.println("Title does not match");
-	}
+		assertEquals("Edusson.com - My Orders", Helper.driver.getTitle());
 		
 	}
+		
+	
 
 	@Test
 	// success writer authorization
@@ -48,17 +49,13 @@ public class TestUserAutorizationProduction {
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
 		// получаем title страницы, на которую перешли после авторизации
 		Helper.sleep(1);
-		if (Helper.driver.getTitle().equals("Edusson.com - My Orders. Current orders")){
+		assertEquals("Edusson.com - My Orders. Current orders", Helper.driver.getTitle());
 		
-			System.out.println("Test passed");
-		}
-	else {
-		System.out.println("Test failed");
 		// проверяем появление попапа для писателя
 		//MyOrdersWriterPage writerHomePage = new MyOrdersWriterPage();
 	//	writerHomePage.isWritersPopUpPresent();
 	}
-	}
+	
 	@Test
 	// login as deactivate User
 	public void loginAsDeactivateUser() throws Exception {

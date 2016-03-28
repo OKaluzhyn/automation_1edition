@@ -1,23 +1,33 @@
 package pages.WriterPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import java.util.NoSuchElementException;
+
+import org.openqa.selenium.WebElement;
+
+import utils.Helper;
 
 
-import pages.BasePage;
+
 
 public class MyOrdersWriterPage  {
-	public MyOrdersWriterPage(WebDriver driver) {
-		this.driver = driver;
+	
+
+	
+	public static String writerInformPopUp = "//div[@id = 'popup_writer_terms_of_use']";
+	public static String closePopUpButton = "//a[@aria-label='Close']";
+//close pop up
+	public void closePopup(){
+		WebElement close_popup_button = Helper.cyclicElementSearchByXpath(closePopUpButton);
+		close_popup_button.click();
 	}
-
-	public WebDriver driver;
-	By writerInformPopUp = By.id("popup_writer_terms_of_use");
-
 	// проверяем появление попапа для райтера
 	public boolean isWritersPopUpPresent() {
-		return driver.findElements(writerInformPopUp).size() > 0;
-
+		//WebElement writer_inform_popup = Helper.cyclicElementSearchByXpath(writerInformPopUp);
+		
+	        try {
+	        	Helper.cyclicElementSearchByXpath(writerInformPopUp);
+	            return true;
+	        } catch (NoSuchElementException e) {
+	            return false;
+	        } }
 	}
-}

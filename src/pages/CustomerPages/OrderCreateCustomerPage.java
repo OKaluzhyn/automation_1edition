@@ -1,6 +1,15 @@
 package pages.CustomerPages;
 
 import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
+
+import org.openqa.selenium.WebElement;
+
+
+
 
 import utils.Helper;
 
@@ -23,11 +32,16 @@ public class OrderCreateCustomerPage  {
 	public static String numOfCitation = "//input[@data-atest='atest_order_create_form_sources']";
 	public static String formatOfCitation = "//div[@data-atest='atest_order_create_form_style']";
 	public static String nextButton2 = "//div[@id='step-2']//button[@data-atest='atest_order_create_elem_next_btn']";
-	public static String paperInstruction = "//input[@data-atest='atest_order_create_form_description']";
+	public static String paperInstruction = "//textarea[@data-atest='atest_order_create_form_description']";
 	public static String uploadFiles = "//*[@id='dropzone']/div/span[2]/a";
 	
 	public static String vas1 = "//label[@data-atest='atest_order_create_elem_vas_1']";
 	public static String startBiddingButton = "//button[@data-atest='atest_order_create_form_submit']";
+	
+	//order edit
+	public static String saveChangesButton = "//button[@data-atest='atest_order_create_form_submit']";
+	public static String discardChangesButton = "//a[@data-atest='atest_order_edit_elem_discard_changes_btn']";
+	public static String cancelOrderButton = "//a[@data-popup-target='popup_customer_order_cancel']";
 
 	// заполн€ем об€зательные пол€ ордер формы
 	// select type
@@ -38,7 +52,8 @@ public class OrderCreateCustomerPage  {
 
 	// order topic
 	public void setTopic(String strTopic) {
-		Helper.cyclicElementSearchByXpath(topic).sendKeys(strTopic);
+		WebElement order_topic = Helper.cyclicElementSearchByXpath(topic);
+		order_topic.sendKeys(strTopic);
 	}
 
 	// select subject
@@ -49,12 +64,14 @@ public class OrderCreateCustomerPage  {
 
 	// click next button1
 	public void clickNext1() {
-		Helper.cyclicElementSearchByXpath(nextButton1).click();
+		WebElement next_button_1 = Helper.cyclicElementSearchByXpath(nextButton1);
+		next_button_1.click();
 	}
 
 	// number jf citation
 	public void setnumOfCitation() {
-		Helper.cyclicElementSearchByXpath(numOfCitation).sendKeys("5");
+		WebElement citation_number = Helper.cyclicElementSearchByXpath(numOfCitation);
+				citation_number.sendKeys("3");
 	}
 
 	// format of citation
@@ -65,52 +82,104 @@ public class OrderCreateCustomerPage  {
 
 	// click next button2
 	public void clickNext2() {
-		Helper.cyclicElementSearchByXpath(nextButton2).click();
+		WebElement next_button_2 = Helper.cyclicElementSearchByXpath(nextButton2);
+		next_button_2.click();
 	}
 
 	// set paper description
 	public void orderDescription(String strDescription) {
-		Helper.cyclicElementSearchByXpath(paperInstruction).sendKeys(strDescription);
+		WebElement paper_description = 	Helper.cyclicElementSearchByXpath(paperInstruction);
+		Helper.sleep(1);
+		
+				paper_description.sendKeys(strDescription);
 	}
 
-	/*// загрузка файлов
+	
+	
+	// загрузка файлов
+	  public  void setClipboardData(String path) {
+        StringSelection stringSelection = new StringSelection("C:\\Users\\s.mankut\\Google ƒиск\\files for download testing\\.....pdf");
+        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
+    }
 
-	// не работает попытка использовать js
-	public void upload() {
-		WebElement element = (WebElement) driver
-				.executeScript("getElementById('order_additional_materials').style.display = 'inline'");
-		element = driver.findElement(input);
-		element.sendKeys("D:\\AUTO_TESTING\\testFiles\\upload_to_webdriver.txt");
-	}
+    public void attachFile(String path) {
+        setClipboardData("path");
+        try {
+        	Robot robot = new Robot();
+    		robot.delay(1000);
+    		robot.keyPress(KeyEvent.VK_CONTROL);
+    		robot.delay(300);
+    		robot.keyPress(KeyEvent.VK_V);
+    		robot.delay(300);
+    		robot.keyRelease(KeyEvent.VK_V);
+    		robot.delay(300);
+    		robot.keyRelease(KeyEvent.VK_CONTROL);
+    		robot.delay(300);
+    		robot.keyPress(KeyEvent.VK_ENTER);
+    		robot.delay(300);
+    		robot.keyRelease(KeyEvent.VK_ENTER);
+    		robot.delay(300);
+        } catch (AWTException e) {
+            e.printStackTrace();
+        }
+    }
 
-	// end
-*/
-	// просто клик на загрузку без самой загрузки
+    
 
 	public void clicUpload() {
 		Helper.cyclicElementSearchByXpath(uploadFiles).click();
+		//this.setClipboardData("D:\\AUTO_TESTING\\testFiles\\upload_to_webdriver.txt");
+		this.attachFile("C:\\Users\\s.mankut\\Google ƒиск\\files for download testing\\.....pdf");
 	}
 
 	
 
 	// click start bidding button
 	public void proceedToBidding() {
-		Helper.cyclicElementSearchByXpath(startBiddingButton).click();
+		WebElement bidding_button = Helper.cyclicElementSearchByXpath(startBiddingButton);
+				bidding_button.click();
 	}
 
 	// создание заказа полностью
 	public void createOrder(String strTopic, String strDescription)
-			throws InterruptedException, AWTException {
+			 {
 		this.selectTypeOfPaper();
 		this.setTopic(strTopic);
 		this.selectSubject();
 		this.clickNext1();
 		this.setnumOfCitation();
 		this.selectformatOfCitation();
+		Helper.sleep(1);
 		this.clickNext2();
+		Helper.sleep(1);
 		this.orderDescription(strDescription);
-		Thread.sleep(1000);
-		//*upload file
+		Helper.sleep(1);
+		this.clicUpload();
+		Helper.sleep(7);
 		this.proceedToBidding();
 	}
+	public void saveChanges(){
+		WebElement save_changes_button = Helper.cyclicElementSearchByXpath(saveChangesButton);
+		save_changes_button.click();
+	}
+	
+	public void discardChanges(){
+		WebElement discard_changes_button = Helper.cyclicElementSearchByXpath(discardChangesButton);
+		discard_changes_button.click();
+	}
+	
+	public void clickCancelOrderButton(){
+		WebElement cancel_order_button = Helper.cyclicElementSearchByXpath(cancelOrderButton);
+		cancel_order_button.click();
+	}
+	
+	
+	public void editOrder (String strNewTopic){
+		this.setTopic(strNewTopic);
+		this.saveChanges();
+		
+	}
+	
+	
+	
 }
