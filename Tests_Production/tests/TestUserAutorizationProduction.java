@@ -8,6 +8,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import pages.CommonPages.OrderCancelPopUp;
 import pages.CommonPages.UserAuthorizationPage;
 import utils.Config;
 import utils.Helper;
@@ -18,7 +19,7 @@ public class TestUserAutorizationProduction {
 
 	@Before
 	public void setUp(){
-		Helper.driverSetUp("http://edusson.com.test18/");
+		Helper.driverSetUp("http://edusson.com");
 
 	}
 
@@ -48,7 +49,7 @@ public class TestUserAutorizationProduction {
 		// логинимя писателем
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
 		// получаем title страницы, на которую перешли после авторизации
-		Helper.sleep(1);
+		Helper.sleep(2);
 		assertEquals("Edusson.com - My Orders. Current orders", Helper.driver.getTitle());
 		
 		// проверяем появление попапа для писателя

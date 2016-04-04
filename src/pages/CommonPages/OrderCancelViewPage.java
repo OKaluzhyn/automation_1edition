@@ -2,22 +2,16 @@ package pages.CommonPages;
 
 import java.util.NoSuchElementException;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import utils.Helper;
 
 public class OrderCancelViewPage {
-FirefoxDriver driver;
-By cancelTxt = By.className("alert-content");
 
-
-public OrderCancelViewPage(FirefoxDriver driver){
-	this.driver = driver;
-}	
+	public static String cancelTxt = "//span[@data-atest='atest_order_view_canceled_elem_notify']";
 
 
 public boolean isElementPresent() {
 	  try {
-	    driver.findElement(cancelTxt);
+	    Helper.cyclicElementSearchByXpath(cancelTxt);
 	    return true;
 	  } catch (NoSuchElementException e) {
 	    return false;

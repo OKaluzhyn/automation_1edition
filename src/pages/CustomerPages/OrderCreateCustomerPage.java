@@ -41,7 +41,7 @@ public class OrderCreateCustomerPage  {
 	//order edit
 	public static String saveChangesButton = "//button[@data-atest='atest_order_create_form_submit']";
 	public static String discardChangesButton = "//a[@data-atest='atest_order_edit_elem_discard_changes_btn']";
-	public static String cancelOrderButton = "//a[@data-popup-target='popup_customer_order_cancel']";
+	public static String cancelOrderButton = "//a[@data-atest='atest_order_view_in_progress_elem_cancel_order']";
 
 	// заполняем обязательные поля ордер формы
 	// select type

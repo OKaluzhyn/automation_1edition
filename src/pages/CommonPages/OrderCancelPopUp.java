@@ -1,43 +1,46 @@
 package pages.CommonPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 
 import utils.Helper;
 
 public class OrderCancelPopUp {
 
 
-public static String popUp = "";
+public static String popUp = "//div[@id='popup_customer_order_cancel']";
 public static String reason = "//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']";
-public static String otherReason = "";
-public static String textfield = "";
-public static String apply = "";
-public static String cancel = "";
+public static String otherReason = "//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']/label[@for='cancel_order_reason_7']";
+public static String textfield = "//textarea[@data-atest='atest_order_popup_cancel_elem_reason_description']";
+public static String apply = "//button[@data-atest='atest_order_popup_cancel_elem_apply_btn']";
+public static String cancel = "//button[@data-atest='atest_order_popup_cancel_elem_cancel_btn']";
+
 
 
 public void chooseReason(){
-	Helper.randomChoiceFromDropdown(reason, "//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']/label");
+	Helper.randomChoiceFromDropdown(reason, "//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']/label[@for]");
 		
 	}
 	
-public void inputYourReason(String strreason){
-	driver.findElement(otherReason).click();
-	driver.findElement(textfield).sendKeys(strreason);
-	
-}
 public void clickApply(){
-	driver.findElement(apply).click();
+	WebElement apply_button = Helper.cyclicElementSearchByXpath(apply);
+			apply_button.click();
 }
 public void clickCancel(){
-	driver.findElement(cancel).click();
-	}
-public void cancelOrder(){
+	WebElement cancel_button = Helper.cyclicElementSearchByXpath(cancel);
+	cancel_button.click();
+}
+
+
+public void cancelOrder(String strreason){
 	this.chooseReason();
-	this.clickApply();
+	WebElement other_reason = Helper.cyclicElementSearchByXpath(otherReason);
+	if ( other_reason.isSelected()){
+		Helper.cyclicElementSearchByXpath(textfield).sendKeys(strreason);
+		this.clickApply();
+			}
+				else {
+this.clickApply();
 }
-public void cancelWithOtherReason(String strreason){
-	this.inputYourReason("test reason");
-	this.clickApply();
 }
 }
+

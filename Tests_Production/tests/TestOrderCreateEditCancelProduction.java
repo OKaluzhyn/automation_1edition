@@ -9,6 +9,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import pages.CommonPages.HeaderMenu;
+import pages.CommonPages.OrderCancelPopUp;
+import pages.CommonPages.OrderCancelViewPage;
 import pages.CommonPages.UserAuthorizationPage;
 import pages.CustomerPages.AttentionBeforOrderEditingCustomerPopUp;
 import pages.CustomerPages.MyOrdersCustomerPage;
@@ -32,22 +34,25 @@ public class TestOrderCreateEditCancelProduction {
 
 	@After
 	public void tearDown() {
+		
 		Helper.quit();
 	}
 
 	@Test
-	public void test() throws Exception {
+	public  void orderCreateEditCancel_bidCreateEditCancel() throws Exception {
 		Helper.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		Helper.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		// инициализация страниц
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
 		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+		OrderCancelPopUp orderCancelPopUp = new OrderCancelPopUp();
 		HeaderMenu headerMenu = new HeaderMenu();
 		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
 		MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
 		AttentionBeforOrderEditingCustomerPopUp attentionBeforOrderEditingCustomerPopUp = new AttentionBeforOrderEditingCustomerPopUp();
 		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
+		OrderCancelViewPage orderCancelViewPage = new OrderCancelViewPage();
 
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
@@ -57,7 +62,7 @@ public class TestOrderCreateEditCancelProduction {
 		// create order
 		orderCreateCustomerPage.createOrder("test for webdriver", "test");
 		// assert bidding page
-		assertEquals("Edusson.com - Place your Order", Helper.driver.getTitle());
+	    assertEquals("Edusson.com - Place your Order", Helper.driver.getTitle());
 		//assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
 		Helper.sleep(1);
 		//релодим страницу чтобы получить ссылку
@@ -91,6 +96,10 @@ public class TestOrderCreateEditCancelProduction {
 		// проверяем наличие бида
 		Helper.sleep(1);
 		assertTrue(Helper.isElementPresent("//div[@data-atest='atest_order_bid_elem_bid_open']"));
+		
+		
+		
+		
 		// кликаем кнопку редактирования заказа
 		orderBiddingCustomerPage.clickEditOrder();
 		 Helper.sleep(1);
@@ -98,21 +107,36 @@ public class TestOrderCreateEditCancelProduction {
 	    attentionBeforOrderEditingCustomerPopUp.applyPopupBeforEditingOrder();
 	    Helper.sleep(1);
 	    // редактируем заказ
-	    orderCreateCustomerPage.editOrder("edited order");
+	    orderCreateCustomerPage.editOrder(" edited order");
+	    
+	 
 	    // проверяем, что бид писателя перестал отображаться
-	    assertFalse(Helper.isElementPresent("//div[@data-atest='atest_order_bid_elem_bid_open']"));
+	    // assertFalse(Helper.isElementPresent("//div[@data-atest='atest_order_bid_elem_bid_open']"));
 	    //cancel order
 	    orderBiddingCustomerPage.clickEditOrder();
+	    Helper.sleep(1);
+	    // apply pop-up info
+	    attentionBeforOrderEditingCustomerPopUp.applyPopupBeforEditingOrder();
+	    Helper.sleep(1);
 	    orderCreateCustomerPage.clickCancelOrderButton();
+	    Helper.sleep(1);
+	    orderCancelPopUp.cancelOrder("");
 	    
-		
-		
-		
-		
-		
-		
+	    assertTrue(orderCancelViewPage.isElementPresent());
+			
 		// проверяем писателем, что заказ больше ему недоступен
-		
+	    // разлогиниваемся клиентом
+	 	headerMenu.userLogOut();
+	 	Helper.sleep(1);
+	 	// логинимся писателем
+	 	userAuthorizationPage.changeUser(Config.auto_writer_1, Config.password);
+	 	//закрываем райтерский попап
+	 	Helper.sleep(1);
+	 	myOrdersWriterPage.closePopup();
+	 	// берем урл страницы заказа из переменной и переходим по нему
+	 	Helper.driver.get(orderUrl);
+	 	Helper.sleep(1);
+	 	assertEquals("Edusson.com - Order is not available", Helper.driver.getTitle());
 	}
 
 	

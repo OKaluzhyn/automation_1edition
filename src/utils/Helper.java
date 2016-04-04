@@ -45,15 +45,18 @@ public static void sleep(long sec) {
     }
 	
 }
-	public static void randomChoiceFromDropdown(String arg, String xpath){
+	public static WebElement randomChoiceFromDropdown(String arg, String xpath){
 		WebElement openDropdown = Helper.cyclicElementSearchByXpath(arg);
 		openDropdown.click();
 		List<WebElement> listOfElements =  Helper.driver.findElements(By.xpath(xpath));
 		// select a random one
 		Random random = new Random();
 		WebElement someRandomElement = listOfElements.get(random.nextInt(listOfElements.size()));
+		
 		someRandomElement.click();
 		openDropdown.click();
+		return someRandomElement;
+		
 	}
 	//public WebDriverWait wait = new WebDriverWait(driver, 5).withMessage("Element was not found");
 	//private final Wait <WebDriver> wait = new WebDriverWait(driver, 5).withMessage("Element was not found");
