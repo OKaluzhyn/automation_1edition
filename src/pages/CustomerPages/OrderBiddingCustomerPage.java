@@ -1,7 +1,5 @@
 package pages.CustomerPages;
 
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.WebElement;
 
 import utils.Helper;
@@ -18,9 +16,9 @@ public class OrderBiddingCustomerPage {
 	public static String editOrderButton = "//button[@data-atest='atest_order_view_bidding_elem_edit_btn']";
 	public static String bid = "//div[@data-atest='atest_order_bid_elem_bid_open']";
 
-	public void isBidPresent() {
-		WebElement some_writer_bid = Helper.cyclicElementSearchByXpath(bid);
-		some_writer_bid.isDisplayed();
+	public boolean isBidPresent() {
+		return Helper.isElementPresent(bid);
+		
 	}
 	
 	

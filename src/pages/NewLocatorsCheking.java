@@ -1,8 +1,12 @@
 package pages;
 
+import java.util.NoSuchElementException;
+
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;
 
@@ -38,14 +42,33 @@ public class NewLocatorsCheking {
 		public void auth(){
 			this.logIn(Config.customer1, Config.password);
 			Helper.sleep(1);
-			if (Helper.driver.getTitle().equals("Edusson.com - My Orders")){
+			//Helper.isElementPresent("//div[@data-atest='atest_order_bid_elem_bid_open']");
+			/*if (Helper.driver.getTitle().equals("Edusson.com - My Orders")){
 			
 				System.out.println("Test passed");
 			}
 		else {
-			System.out.println("Title does not match");
+			System.out.println("Title does not match");}
+		*/
+			Assert.assertFalse(Helper.isElementPresent(login_button));
 		}
+		
+		
+		
+		/*public boolean is_ElementPresent(String xpath){ 
+		    if(Helper.cyclicElementSearchByXpath(xpath).getSize() > 0){ 
+		           return true; 
+		     }else{ 
+		           return false; 
+		     } 
+		
 		}
+		*/
+		   
+		
+		
+		
+		
 		// нажать кнопку логин на главной - открывает форму авторизации
 		public void LogClick(){
 			WebElement openAuthorizationPopUp = Helper.cyclicElementSearchByXpath(login_link);

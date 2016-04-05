@@ -58,15 +58,19 @@ public static void sleep(long sec) {
 		return someRandomElement;
 		
 	}
+	
+	 public static boolean isElementPresent(String xpath){
+	        try {
+	        	Helper.driver.findElement(By.xpath(xpath));
+	            return true;
+	        } catch (Exception e) {
+	            return false;
+	        } }
+	
+	
 	//public WebDriverWait wait = new WebDriverWait(driver, 5).withMessage("Element was not found");
 	//private final Wait <WebDriver> wait = new WebDriverWait(driver, 5).withMessage("Element was not found");
-	public static boolean isElementPresent(String xpath){
-        try {
-        	Helper.cyclicElementSearchByXpath(xpath);
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        } }
+	
 		
 	}
 

@@ -43,7 +43,6 @@ public class OrderBiddingWriterPage  {
 	WebElement change_button = Helper.cyclicElementSearchByXpath(changeButton);
 	change_button.click();
 }
-	//public void asseertBid() {
-	//	driver.findElement(bidAmount).isDisplayed();
-	//}
+	
+	
 }
