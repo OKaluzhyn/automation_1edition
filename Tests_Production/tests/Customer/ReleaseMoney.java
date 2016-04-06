@@ -8,8 +8,8 @@ import org.junit.Test;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import pages.CommonPages.OrderFinishedViewPage;
+import pages.CommonPages.OrderInProgressPage;
 import pages.CommonPages.UserAuthorizationPage;
-import pages.CustomerPages.OrderInProgressPage;
 import pages.CustomerPages.MyOrdersCustomerPage;
 import utils.Config;
 

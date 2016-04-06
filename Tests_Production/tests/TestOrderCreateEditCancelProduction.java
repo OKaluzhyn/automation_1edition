@@ -30,7 +30,7 @@ public class TestOrderCreateEditCancelProduction {
 
 	@Before
 	public void setUp(){
-		Helper.driverSetUp("http://edusson.com.test18/");
+		Helper.driverSetUp("http://edusson.com");
 
 	}
 

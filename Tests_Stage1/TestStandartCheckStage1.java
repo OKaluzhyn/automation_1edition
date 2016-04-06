@@ -12,12 +12,12 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import pages.CommonPages.HeaderMenu;
 import pages.CommonPages.OrderFinishedViewPage;
+import pages.CommonPages.OrderInProgressPage;
 import pages.CommonPages.UserAuthorizationPage;
 import pages.CustomerPages.CreditCardPayment;
 import pages.CustomerPages.MyBalanceCustomerPage;
 import pages.CustomerPages.OrderBiddingCustomerPage;
 import pages.CustomerPages.OrderCreateCustomerPage;
-import pages.CustomerPages.OrderInProgressPage;
 import pages.CustomerPages.OrderPayCustomerPage;
 import pages.CustomerPages.OrderPayThankYouCustomerPage;
 import pages.CustomerPages.PayPalPage;

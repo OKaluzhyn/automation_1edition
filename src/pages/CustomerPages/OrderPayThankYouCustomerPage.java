@@ -1,26 +1,17 @@
 package pages.CustomerPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
+import utils.Helper;
 
-import pages.BasePage;
+public class OrderPayThankYouCustomerPage  {
+		
 
-public class OrderPayThankYouCustomerPage extends BasePage {
-	public OrderPayThankYouCustomerPage(FirefoxDriver driver) {
-		this.driver = driver;
-	}
+	public static String orderLink = "";
+	
+	
 
-	By thankYouPageName = By
-			.partialLinkText("http://edusson.com/order/pay/thankyou");
-	By order = By
-			.xpath("//a[text()='order page']");
-
-	// Get the Page name
-	public String getThankYouPageDashboardName() {
-		return driver.findElement(thankYouPageName).getText();
-	}
-
-	public void returnOrderPage() {
-		driver.findElement(order).click();
+	public static void returnOrderPage() {
+		WebElement order_link = Helper.cyclicElementSearchByXpath(orderLink);
+		order_link.click();
 	}
 }

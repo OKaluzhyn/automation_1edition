@@ -1,29 +1,30 @@
 package pages.CustomerPages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
-import pages.BasePage;
+import utils.Helper;
 
-public class OrderPayCustomerPage extends BasePage {
-	public OrderPayCustomerPage(FirefoxDriver driver) {
-		this.driver = driver;
-	}
-	 public static void main(String[] args) {
-	 }
-	 By creditCard = By.xpath("//span[text()='Visa / Master Card']");
-	 By reserveMoneyButton = By.xpath("//div[contains(@class, 'reserve_money_butt_div')]/button");
-	 
-//WebElement creditCard = driver.findElement(By.xpath("//span[text()='Visa / Master Card']"));
-//WebElement reserveMoneyButton = driver.findElement(By.xpath("//div[contains(@class, 'reserve_money_butt_div')]"));
+
+
+public class OrderPayCustomerPage  {
 	
+	public static String payPalButton = "//label[@data-atest='atest_order_pay_elem_pay_pall']"; 
+	public static String creditCardButton = "//label[@data-atest='atest_order_pay_elem_credit_card']";
+	public static String makeDepositButton = "//button[text()='Make a deposit']";
+	 
 
+     public void choosePayPal(){
+    	 WebElement pay_pal_button = Helper.cyclicElementSearchByXpath(payPalButton);
+    	 pay_pal_button.click();
+	
+}
 	public void chooseCardPay(){
-		driver.findElement(creditCard).click();
+		WebElement credit_card_button = Helper.cyclicElementSearchByXpath(creditCardButton);
+		credit_card_button.click();
 	}
 	public void clickReserveButton() {
-		driver.findElement(reserveMoneyButton).click();
+		WebElement make_deposit_button = Helper.cyclicElementSearchByXpath(makeDepositButton);
+		make_deposit_button.click();
 
 	}
 }

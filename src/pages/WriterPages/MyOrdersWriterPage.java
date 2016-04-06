@@ -1,7 +1,5 @@
 package pages.WriterPages;
 
-import java.util.NoSuchElementException;
-
 import org.openqa.selenium.WebElement;
 
 import utils.Helper;
@@ -22,12 +20,7 @@ public class MyOrdersWriterPage  {
 	}
 	// проверяем появление попапа для райтера
 	public boolean isWritersPopUpPresent() {
-		//WebElement writer_inform_popup = Helper.cyclicElementSearchByXpath(writerInformPopUp);
-		
-	        try {
-	        	Helper.cyclicElementSearchByXpath(writerInformPopUp);
-	            return true;
-	        } catch (NoSuchElementException e) {
-	            return false;
-	        } }
+		    	return Helper.isElementPresent(writerInformPopUp);
+	           
 	}
+}

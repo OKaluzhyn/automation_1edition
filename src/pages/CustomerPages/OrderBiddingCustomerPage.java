@@ -50,6 +50,7 @@ public class OrderBiddingCustomerPage {
 	public void bid1() {
 		this.chooseBid1();
 		this.acceptBid1();
+		Helper.sleep(2);
 		this.confirmWriter1();
 	}
 

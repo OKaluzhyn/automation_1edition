@@ -11,19 +11,20 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import pages.CommonPages.HeaderMenu;
 import pages.CommonPages.OrderFinishedViewPage;
+import pages.CommonPages.OrderInProgressPage;
 import pages.CommonPages.UserAuthorizationPage;
 import pages.CustomerPages.CreditCardPayment;
 import pages.CustomerPages.OrderBiddingCustomerPage;
-import pages.CustomerPages.OrderInProgressPage;
 import pages.CustomerPages.OrderCreateCustomerPage;
 import pages.CustomerPages.OrderPayCustomerPage;
 import pages.CustomerPages.PayPalPage;
 import pages.CustomerPages.OrderPayThankYouCustomerPage;
 import pages.WriterPages.OrderBiddingWriterPage;
 import utils.Config;
+import utils.Helper;
 
 public class TestStandartCheckProduction {
-	public FirefoxDriver driver;
+	
 
 	public String orderUrl;
 	public String orderId;
@@ -33,16 +34,14 @@ public class TestStandartCheckProduction {
 
 	@Before
 	public void setUp() throws Exception {
-		driver = new FirefoxDriver();
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+		 Helper.driverSetUp("");
 		
 
 	}
 
 	@After
 	public void tearDown() {
-		driver.quit();
+		Helper.quit();
 	}
 
 	@Test
@@ -51,17 +50,17 @@ public class TestStandartCheckProduction {
 	
 	public void standartCheck_PAyPal_Production() throws Exception {
 		// инициализация страниц
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage(driver);
-		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage(driver);
-		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
-		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
-		OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage(driver);
-		PayPalPage payPalPage = new PayPalPage(driver);
-		OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage(driver);
-		OrderInProgressPage orderInProgressPage = new OrderInProgressPage(driver);
-		OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage(driver);
-		HeaderMenu headerMenu = new HeaderMenu(driver);
-		driver.get("http://edusson.com");
+		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
+		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
+		OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
+		PayPalPage payPalPage = new PayPalPage();
+		OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
+		OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
+		OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
+		HeaderMenu headerMenu = new HeaderMenu();
+		Helper.driver.get("http://edusson.com");
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		// создаем заказ
@@ -69,15 +68,15 @@ public class TestStandartCheckProduction {
 		// ждем полной загрузки биддинг-страницы
 		Thread.sleep(5000);
 		// обновляем страницу заказа, чтобы получить правильный урл
-		driver.navigate().refresh();
+		Helper.driver.navigate().refresh();
 		// сохраняем урл страницы текущего заказа в переменную
-		orderUrl = driver.getCurrentUrl();
+		orderUrl = Helper.driver.getCurrentUrl();
 		// разлогиниваемся клиентом
 		headerMenu.userLogOut();
 		// логинимся писателем
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		// создаем бид
 		orderBiddingWriterPage.createBid("8");
 		// разлогиниваемся писателем
@@ -85,15 +84,32 @@ public class TestStandartCheckProduction {
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		// выбираем бид первого писателя
 		orderBiddingCustomerPage.bid1();
 		// подтвержаем бид, переходим на страницу оплаты
+		orderPayCustomerPage.choosePayPal();
 		orderPayCustomerPage.clickReserveButton();
 		// оплачиваем заказа через PayPall
 		payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+		// разлогиниваемся клиентом
+				headerMenu.userLogOut();
+				// логинимся писателем
+				userAuthorizationPage.logIn(Config.writer1, Config.password);
+				// берем урл страницы заказа из переменной и переходим по нему
+				Helper.driver.get(orderUrl);
+		//загружаем ревизию
+				orderInProgressPage.uploadRevision();
+				Helper.sleep(2);
+				// разлогиниваемся писателем
+				headerMenu.userLogOut();
+				// логинимся клиентом
+				userAuthorizationPage.logIn(Config.customer1, Config.password);
+				// берем урл страницы заказа из переменной и переходим по нему
+				Helper.driver.get(orderUrl);
 		// возвращаемся на страницу заказа
-		orderPayThankYouCustomerPage.returnOrderPage();
+		//orderPayThankYouCustomerPage.returnOrderPage();
+		//Helper.driver.get(orderUrl);
 		// релизим писателю 10%
 		orderInProgressPage.releaseMoney("10");
 		// получаем занчение % релизнутых денег на странице клиента
@@ -103,7 +119,7 @@ public class TestStandartCheckProduction {
 		// логинимся писателем
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		Thread.sleep(5000);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -114,7 +130,7 @@ public class TestStandartCheckProduction {
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		// релизим писателю 90%
 		orderInProgressPage.releaseMoney("90");
 		// получаем занчение % релизнутых денег на странице клиента
@@ -126,7 +142,7 @@ public class TestStandartCheckProduction {
 		// логинимся писателем
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		Thread.sleep(5000);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -142,16 +158,16 @@ public class TestStandartCheckProduction {
 	// 50%+50%
 	public void standartCheck_CreditCard_Production() throws Exception {
 		// инициализация страниц
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage(driver);
-		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage(driver);
-		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
-		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
-		OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage(driver);
-		OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage(driver);
-		OrderInProgressPage orderInProgressPage = new OrderInProgressPage(driver);
-		OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage(driver);
-		HeaderMenu headerMenu = new HeaderMenu(driver);
-		CreditCardPayment сreditCardPayment = new CreditCardPayment(driver);
+		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
+		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
+		OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
+		OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
+		OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
+		OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
+		HeaderMenu headerMenu = new HeaderMenu();
+		CreditCardPayment сreditCardPayment = new CreditCardPayment();
 //for (int i=0; i<=10; i++){
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.auto_customer_1, Config.password);
@@ -160,15 +176,15 @@ public class TestStandartCheckProduction {
 		// ждем полной загрузки биддинг-страницы
 		Thread.sleep(5000);
 		// обновляем страницу заказа, чтобы получить правильный урл
-		driver.navigate().refresh();
+		Helper.driver.navigate().refresh();
 		// сохраняем урл страницы текущего заказа в переменную
-		orderUrl = driver.getCurrentUrl();
+		orderUrl = Helper.driver.getCurrentUrl();
 		// разлогиниваемся клиентом
 		headerMenu.userLogOut();
 		// логинимся писателем
 		userAuthorizationPage.logIn(Config.auto_writer_1, Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		// создаем бид
 		orderBiddingWriterPage.createBid("5");
 		// разлогиниваемся писателем
@@ -176,7 +192,7 @@ public class TestStandartCheckProduction {
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.auto_customer_1,Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		// accept бид первого писателя
 		orderBiddingCustomerPage.bid1();
 		// выбираем оплату с помощью карты
@@ -195,7 +211,7 @@ public class TestStandartCheckProduction {
 		// логинимся писателем
 		userAuthorizationPage.logIn(Config.auto_writer_1,Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		Thread.sleep(5000);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -206,7 +222,7 @@ public class TestStandartCheckProduction {
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.auto_customer_1,Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		// релизим писателю 90%
 		orderInProgressPage.releaseMoney("50");
 		// получаем занчение % релизнутых денег на странице клиента
@@ -218,7 +234,7 @@ public class TestStandartCheckProduction {
 		// логинимся писателем
 		userAuthorizationPage.logIn(Config.auto_writer_1,Config.password);
 		// берем урл страницы заказа из переменной и переходим по нему
-		driver.get(orderUrl);
+		Helper.driver.get(orderUrl);
 		Thread.sleep(5000);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -229,23 +245,24 @@ public class TestStandartCheckProduction {
 		// разлогиниваемся писателем
 		headerMenu.userLogOut();
 		System.out.println("TEST PASSED");
-	//}
 	}
+	}
+	/*
 @Test
 //добавить новые локаторы для берди!!!!
 public void standartCheck_Edubirdie_Production() throws Exception {
 	// инициализация страниц
-	UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage(driver);
-	OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage(driver);
-	OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
-	OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
-	OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage(driver);
-	PayPalPage payPalPage = new PayPalPage(driver);
-	OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage(driver);
-	OrderInProgressPage orderInProgressPage = new OrderInProgressPage(driver);
-	OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage(driver);
-	HeaderMenu headerMenu = new HeaderMenu(driver);
-	driver.get("http://edubirdie.com");
+	UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+	OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+	OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
+	OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
+	OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
+	PayPalPage payPalPage = new PayPalPage();
+	OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
+	OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
+	OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
+	HeaderMenu headerMenu = new HeaderMenu();
+	.get("http://edubirdie.com");
 	// логинимся клиентом
 	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
 	// создаем заказ
@@ -253,27 +270,27 @@ public void standartCheck_Edubirdie_Production() throws Exception {
 	// ждем полной загрузки биддинг-страницы
 	Thread.sleep(5000);
 	// обновляем страницу заказа, чтобы получить правильный урл
-	driver.navigate().refresh();
+	.navigate().refresh();
 	// сохраняем урл страницы текущего заказа в переменную
-	orderUrl = driver.getCurrentUrl();
+	orderUrl = .getCurrentUrl();
 	orderId = orderUrl.substring(25);
 	// разлогиниваемся клиентом
 	headerMenu.userLogOut();
-	driver.get("http://edusson.com");
+	.get("http://edusson.com");
 	// логинимся писателем
 	userAuthorizationPage.logIn(Config.writer1, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
 	writerUrl = "edusson.com/order/view"+orderId;
-	driver.get(writerUrl);
+	.get(writerUrl);
 	// создаем бид
 	orderBiddingWriterPage.createBid("8");
 	// разлогиниваемся писателем
 	headerMenu.userLogOut();
-	driver.get("http://edubirdie.com");
+	.get("http://edubirdie.com");
 	// логинимся клиентом
 	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(orderUrl);
+	.get(orderUrl);
 	// выбираем бид первого писателя
 	orderBiddingCustomerPage.bid1();
 	// подтвержаем бид, переходим на страницу оплаты
@@ -288,11 +305,11 @@ public void standartCheck_Edubirdie_Production() throws Exception {
 	customerReleasedPercent = orderInProgressPage.checkReleasedMoney();
 	// разлогиниваемся клиентом
 	headerMenu.userLogOut();
-	driver.get("http://edusson.com");
+	.get("http://edusson.com");
 	// логинимся писателем
 	userAuthorizationPage.logIn(Config.writer1, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(writerUrl);
+	.get(writerUrl);
 	Thread.sleep(5000);
 	// получаем занчение % релизнутых денег на странице писателя
 	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -300,11 +317,11 @@ public void standartCheck_Edubirdie_Production() throws Exception {
 	assertEquals(customerReleasedPercent, writerReleasedPercent);
 	// разлогиниваемся писателем
 	headerMenu.userLogOut();
-	driver.get("http://edubirdie.com");
+	.get("http://edubirdie.com");
 	// логинимся клиентом
 	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(orderUrl);
+	.get(orderUrl);
 	// релизим писателю 90%
 	orderInProgressPage.releaseMoney("90");
 	// получаем занчение % релизнутых денег на странице клиента
@@ -313,11 +330,11 @@ public void standartCheck_Edubirdie_Production() throws Exception {
 	orderFinishedViewPage.checkOrderFinished();
 	// разлогиниваемся клиентом
 	headerMenu.userLogOut();
-	driver.get("http://edusson.com");
+	.get("http://edusson.com");
 	// логинимся писателем
 	userAuthorizationPage.logIn(Config.writer1, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(writerUrl);
+	.get(writerUrl);
 	Thread.sleep(5000);
 	// получаем занчение % релизнутых денег на странице писателя
 	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -334,17 +351,17 @@ public void standartCheck_Edubirdie_Production() throws Exception {
 //добавить новые локаторы для StudyFaq!!!!
 public void standartCheck_StudyFaq_Production() throws Exception {
 	// инициализация страниц
-	UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage(driver);
-	OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage(driver);
-	OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage(driver);
-	OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage(driver);
-	OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage(driver);
-	PayPalPage payPalPage = new PayPalPage(driver);
-	OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage(driver);
-	OrderInProgressPage orderInProgressPage = new OrderInProgressPage(driver);
-	OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage(driver);
-	HeaderMenu headerMenu = new HeaderMenu(driver);
-	driver.get("http://studyfaq.com");
+	UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+	OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+	OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
+	OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
+	OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
+	PayPalPage payPalPage = new PayPalPage();
+	OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
+	OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
+	OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
+	HeaderMenu headerMenu = new HeaderMenu();
+	.get("http://studyfaq.com");
 	// логинимся клиентом
 	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
 	// создаем заказ
@@ -352,27 +369,27 @@ public void standartCheck_StudyFaq_Production() throws Exception {
 	// ждем полной загрузки биддинг-страницы
 	Thread.sleep(5000);
 	// обновляем страницу заказа, чтобы получить правильный урл
-	driver.navigate().refresh();
+	.navigate().refresh();
 	// сохраняем урл страницы текущего заказа в переменную
-	orderUrl = driver.getCurrentUrl();
+	orderUrl = .getCurrentUrl();
 	orderId = orderUrl.substring(25);
 	// разлогиниваемся клиентом
 	headerMenu.userLogOut();
-	driver.get("http://edusson.com");
+	.get("http://edusson.com");
 	// логинимся писателем
 	userAuthorizationPage.logIn(Config.writer1, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
 	writerUrl = "edusson.com/order/view"+orderId;
-	driver.get(writerUrl);
+	.get(writerUrl);
 	// создаем бид
 	orderBiddingWriterPage.createBid("8");
 	// разлогиниваемся писателем
 	headerMenu.userLogOut();
-	driver.get("http://studyfaq.com");
+	.get("http://studyfaq.com");
 	// логинимся клиентом
 	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(orderUrl);
+	.get(orderUrl);
 	// выбираем бид первого писателя
 	orderBiddingCustomerPage.bid1();
 	// подтвержаем бид, переходим на страницу оплаты
@@ -387,11 +404,11 @@ public void standartCheck_StudyFaq_Production() throws Exception {
 	customerReleasedPercent = orderInProgressPage.checkReleasedMoney();
 	// разлогиниваемся клиентом
 	headerMenu.userLogOut();
-	driver.get("http://edusson.com");
+	.get("http://edusson.com");
 	// логинимся писателем
 	userAuthorizationPage.logIn(Config.writer1, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(writerUrl);
+	.get(writerUrl);
 	Thread.sleep(5000);
 	// получаем занчение % релизнутых денег на странице писателя
 	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -399,11 +416,11 @@ public void standartCheck_StudyFaq_Production() throws Exception {
 	assertEquals(customerReleasedPercent, writerReleasedPercent);
 	// разлогиниваемся писателем
 	headerMenu.userLogOut();
-	driver.get("http://studyfaq.com");
+	.get("http://studyfaq.com");
 	// логинимся клиентом
 	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(orderUrl);
+	.get(orderUrl);
 	// релизим писателю 90%
 	orderInProgressPage.releaseMoney("90");
 	// получаем занчение % релизнутых денег на странице клиента
@@ -412,11 +429,11 @@ public void standartCheck_StudyFaq_Production() throws Exception {
 	orderFinishedViewPage.checkOrderFinished();
 	// разлогиниваемся клиентом
 	headerMenu.userLogOut();
-	driver.get("http://edusson.com");
+	.get("http://edusson.com");
 	// логинимся писателем
 	userAuthorizationPage.logIn(Config.writer1, Config.password);
 	// берем урл страницы заказа из переменной и переходим по нему
-	driver.get(writerUrl);
+	.get(writerUrl);
 	Thread.sleep(5000);
 	// получаем занчение % релизнутых денег на странице писателя
 	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
@@ -429,3 +446,4 @@ public void standartCheck_StudyFaq_Production() throws Exception {
 
 }
 }
+	*/
