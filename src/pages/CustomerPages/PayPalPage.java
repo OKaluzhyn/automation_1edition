@@ -1,7 +1,12 @@
 package pages.CustomerPages;
 
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import utils.Config;
 import utils.Helper;
 
 
@@ -13,7 +18,8 @@ public class PayPalPage  {
 	public static String pass = "//input[@id='password']";
 	public static String logInButton = "//button[@type='submit']";
 	// confirm pay - next page
-	public static String confirmButton = "//div[@id='continueButtonSection']//input[@type='submit']";
+	public static String continueButton = "//div[@id='main']//input[@id='confirmButtonTop']";
+	
 
 	public void setUserEmail(String strUserEmail) {
 		WebElement e_mail = Helper.cyclicElementSearchByXpath(email);
@@ -37,20 +43,43 @@ public class PayPalPage  {
 	login_button.click();
 
 	}
+	public void clickContinue() {
+		WebElement continue_button = Helper.cyclicElementSearchByXpath(continueButton);
+		continue_button.click();
+	}
+	@Before
+	public void setUp(){
+		Helper.driverSetUp("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-9UV03772AM347504S#/checkout/login");
 
-	public void clickConfirm() {
-		WebElement confirm_button = Helper.cyclicElementSearchByXpath(confirmButton);
-			confirm_button.click();
-		
-			
 	}
 
+	@After
+	public void tearDown() {
+		
+		Helper.quit();
+	}
+
+	
+@Test
+public void fhdfh(){
+	Helper.sleep(1);
+	Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
+      this.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+      
+      Helper.driver.switchTo().defaultContent();
+      this.clickContinue();
+      Helper.sleep(10);
+}
+
 	public void confirmPayPal(String strUserEmail, String strPassword) {
+		Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
 		this.setUserEmail(strUserEmail);
 		this.setUserPassword(strPassword);
 		this.clickLogBut();
+		Helper.driver.switchTo().defaultContent();
+		this.clickContinue();
 		Helper.sleep(10);
-		//this.clickConfirm();
+		
 		
 		//Helper.sleep(10);
 
@@ -60,6 +89,7 @@ public class PayPalPage  {
 	public static String email2 = "//input[@id='login_email']";
 	public static String pass2 = "//input[@id='login_password']";
 	public static String logInButton2 = "//input[@id='submitLogin']";
+	public static String confirmButton = "//div[@id='continueButtonSection']//input[@type='submit']";
 	
 	public void setUserEmail_2(String strUserEmail) {
 		WebElement e_mail = Helper.cyclicElementSearchByXpath(email2);
@@ -83,7 +113,12 @@ public class PayPalPage  {
 	login_button.click();
 
 	}
-
+	public void clickConfirm() {
+		WebElement confirm_button = Helper.cyclicElementSearchByXpath(confirmButton);
+			confirm_button.click();
+		
+			
+	}
 	
 	public void confirmPayPal_2(String strUserEmail, String strPassword) {
 		this.setUserEmail_2(strUserEmail);

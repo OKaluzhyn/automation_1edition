@@ -100,16 +100,18 @@ public  void orderCreate() throws Exception {
 			orderBiddingCustomerPage.bid1();
 			// подтвержаем бид, переходим на страницу оплаты
 			orderPayCustomerPage.choosePayPal();
+			Helper.sleep(2);
 			orderPayCustomerPage.clickReserveButton();
 			//переключаемся на frame на странице пейпала
 			Helper.sleep(1);
-			Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
-			Helper.sleep(1);
+		//	Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
+		//	Helper.sleep(1);
 			// логинимся в PayPall и подтвержаем оплату
 			payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+			//payPalPage.clickContinue();
 			// ждем возвращения на сайт
 			Helper.sleep(30);
-			payPalPage.confirmPayPal_2(Config.paypall_login, Config.paypall_pass);
+			//payPalPage.confirmPayPal_2(Config.paypall_login, Config.paypall_pass);
 		    Helper.sleep(2);
 	// разлогиниваемся клиентом
 	headerMenu.userLogOut();
@@ -154,6 +156,7 @@ public  void orderCreate() throws Exception {
 		//assertEquals(customerReleasedPercent, writerReleasedPercent);
 		// разлогиниваемся писателем
 		headerMenu.userLogOut();
+		Helper.sleep(2);
 		// логинимся клиентом
 		userAuthorizationPage.changeUser(Config.customer1, Config.password);
 		Helper.sleep(2);
@@ -168,22 +171,30 @@ public  void orderCreate() throws Exception {
 		assertTrue(orderFinishedViewPage.check());
 		Helper.sleep(2);
 		headerMenu.userLogOut();
-		// логинимся писателем
+	// логинимся писателем
 		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
 			Helper.sleep(2);
 			myOrdersWriterPage.closePopup();
 				// берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(orderUrl);
-				
+					Helper.driver.get(orderUrl);
+					/*userAuthorizationPage.logIn(Config.customer1, Config.password);
+			Helper.sleep(2);
+			Helper.driver.get("http://edusson.com/order/view/74593");
 				// получаем занчение % релизнутых денег на странице писателя
 			//	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
 				// сравниваем значения релизнутых денег у клиента и у писателя
 			//	assertEquals(customerReleasedPercent, writerReleasedPercent);
 				// проверяем наличие текста order finished 
-				assertTrue(orderFinishedViewPage.check());
+			*/	
+					System.out.println(Helper.driver.getTitle());
+					assertTrue(orderFinishedViewPage.check());
+					//orderFinishedViewPage.finished();
 				Helper.sleep(2);
+				
+				
 				headerMenu.userLogOut();
+				System.out.println(Helper.driver.getTitle());
 				System.out.println("TEST PASSED");
 
 }}

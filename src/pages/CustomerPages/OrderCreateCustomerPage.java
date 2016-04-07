@@ -33,7 +33,7 @@ public class OrderCreateCustomerPage  {
 	public static String formatOfCitation = "//div[@data-atest='atest_order_create_form_style']";
 	public static String nextButton2 = "//div[@id='step-2']//button[@data-atest='atest_order_create_elem_next_btn']";
 	public static String paperInstruction = "//textarea[@data-atest='atest_order_create_form_description']";
-	public static String uploadFiles = "//*[@id='dropzone']/div/span[2]/a";
+	public static String uploadFiles = "//a[@data-atest='atest_order_create_elem_file_download']";
 	
 	public static String vas1 = "//label[@data-atest='atest_order_create_elem_vas_1']";
 	public static String startBiddingButton = "//button[@data-atest='atest_order_create_form_submit']";
@@ -71,6 +71,7 @@ public class OrderCreateCustomerPage  {
 	// number jf citation
 	public void setnumOfCitation() {
 		WebElement citation_number = Helper.cyclicElementSearchByXpath(numOfCitation);
+		citation_number.clear();
 				citation_number.sendKeys("3");
 	}
 
@@ -136,6 +137,7 @@ public class OrderCreateCustomerPage  {
 
 	// click start bidding button
 	public void proceedToBidding() {
+		Helper.sleep(1);
 		WebElement bidding_button = Helper.cyclicElementSearchByXpath(startBiddingButton);
 				bidding_button.click();
 	}
