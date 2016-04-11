@@ -1,67 +1,73 @@
 package pages.CustomerPages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 
-import pages.BasePage;
 import utils.Config;
+import utils.Helper;
 
-public class CreditCardPayment extends BasePage {
-public CreditCardPayment (FirefoxDriver driver){
-this.driver = driver;
-}
-/*WebElement inputName = driver.findElement(By.xpath("//input[@id='payment_form_customer_first_last_name']"));
-WebElement inputEmail = driver.findElement(By.xpath("//input[@type='email']"));
-WebElement inputCountry = driver.findElement(By.xpath("//select[@id='payment_form_billing_address_country']"));
-WebElement inputState = driver.findElement(By.xpath("//select[@id='payment_form_billing_address_country_state']"));
-WebElement inputCity = driver.findElement(By.xpath("//input[@id='payment_form_billing_address_city']"));
-WebElement inputAdress = driver.findElement(By.xpath("//input[@id='payment_form_billing_address_address']"));
-WebElement inputZIP = driver.findElement(By.xpath("//input[@id='payment_form_billing_address_zip_code']"));
-WebElement inputPhone = driver.findElement(By.xpath("//input[@id='payment_form_billing_address_phone']"));
-WebElement inputCardNumber = driver.findElement(By.xpath("//input[@id='payment_form_credit_card_number']"));
-WebElement date = driver.findElement(By.xpath("//select[@id='payment_form_credit_card_expire_month']"));
-WebElement year = driver.findElement(By.xpath("//select[@id='payment_form_credit_card_expire_year']"));
-WebElement inputCVV = driver.findElement(By.xpath("//select[@id='payment_form_credit_card_cvv']"));
-WebElement inputNameOnCard = driver.findElement(By.xpath("//input[@id='payment_form_credit_card_card_printed_name']"));
-WebElement buttonPay = driver.findElement(By.xpath("//input[contains(@class,'js_submit_butt')]"));
-
-public void setAllFields(){
-	inputName.clear();
-	inputName.sendKeys("Name");
-	inputEmail.clear();
-	inputEmail.sendKeys("user@email.com");
-	new Select(inputCountry).selectByVisibleText("United States");
-	new Select(inputState).selectByValue("41");
-	inputAdress.sendKeys("My test adress");
-	inputZIP.sendKeys("0000");
-	inputPhone.sendKeys("1234567890");
-	inputCardNumber.sendKeys(Config.cardNumber_VISA);
-	new Select(date).selectByValue("10");
-	new Select(year).selectByValue("20");
-	inputCVV.sendKeys(Config.CVV);
-	inputNameOnCard.sendKeys("Name");
-	buttonPay.click();
+public class CreditCardPayment {
 	
-}*/
+	public static String inputFirstName = "//input[@id='payment_form_customer_first_name']";
+	public static String inputLastName = "//input[@id='payment_form_customer_last_name']";
+	public static String inputEmail = "//input[@id='payment_form_customer_email']";
+	public static String inputCountry = "//select[@id='payment_form_billing_address_country']";
+	public static String inputState = "//select[@id='payment_form_billing_address_country_state']";
+	public static String inputCity = "//input[@id='payment_form_billing_address_city']";
+	public static String inputAdress = "//input[@id='payment_form_billing_address_address']";
+	public static String inputZIP = "//input[@id='payment_form_billing_address_zip_code']";
+	public static String inputPhone = "//input[@id='payment_form_billing_address_phone']";
+	public static String inputCardNumber = "//input[@id='payment_form_credit_card_number']";
+	public static String date = "//select[@id='payment_form_credit_card_expire_month']";
+	public static String year = "//select[@id='payment_form_credit_card_expire_year']";
+	public static String inputCVV = "//input[@id='payment_form_credit_card_cvv']";
+	public static String inputNameOnCard = "//input[@id='payment_form_credit_card_card_printed_name']";
+	public static String buttonPay = "//input[@type = 'submit']";
+	
+	
+	
+	public void setAllFields(){
+WebElement input_First_Name = Helper.cyclicElementSearchByXpath(inputFirstName);
+WebElement input_Last_Name = Helper.cyclicElementSearchByXpath(inputLastName);
+WebElement input_Email = Helper.cyclicElementSearchByXpath(inputEmail);
+WebElement input_Country = Helper.cyclicElementSearchByXpath(inputCountry);
+WebElement input_State = Helper.cyclicElementSearchByXpath(inputState);
+WebElement input_City = Helper.cyclicElementSearchByXpath(inputCity);
+WebElement input_Adress = Helper.cyclicElementSearchByXpath(inputAdress);
+WebElement input_ZIP = Helper.cyclicElementSearchByXpath(inputZIP);
+WebElement input_Phone = Helper.cyclicElementSearchByXpath(inputPhone);
+WebElement input_CardNumber = Helper.cyclicElementSearchByXpath(inputCardNumber);
+WebElement input_date = Helper.cyclicElementSearchByXpath(date);
+WebElement input_year = Helper.cyclicElementSearchByXpath(year);
+WebElement input_CVV = Helper.cyclicElementSearchByXpath(inputCVV);
+WebElement input_NameOnCard = Helper.cyclicElementSearchByXpath(inputNameOnCard);
+WebElement button_Pay = Helper.cyclicElementSearchByXpath(buttonPay);
 
-By inputName = By.xpath("//input[@id='payment_form_customer_first_last_name']");
-By inputEmail = By.xpath("//input[@type='email']");
-By inputCountry = By.xpath("//select[@id='payment_form_billing_address_country']");
-By inputState = By.xpath("//select[@id='payment_form_billing_address_country_state']");
-By inputCity = By.xpath("//input[@id='payment_form_billing_address_city']");
-By inputAdress = By.xpath("//input[@id='payment_form_billing_address_address']");
-By inputZIP = By.xpath("//input[@id='payment_form_billing_address_zip_code']");
-By inputPhone = By.xpath("//input[@id='payment_form_billing_address_phone']");
-By inputCardNumber = By.xpath("//input[@id='payment_form_credit_card_number']");
-By date = By.xpath("//select[@id='payment_form_credit_card_expire_month']");
-By year = By.xpath("//select[@id='payment_form_credit_card_expire_year']");
-By inputCVV = By.xpath("//input[@id='payment_form_credit_card_cvv']");
-By inputNameOnCard = By.xpath("//input[@id='payment_form_credit_card_card_printed_name']");
-By buttonPay = By.xpath("//input[contains(@class,'js_submit_butt')]");
 
-public void setAllFields(){
+    input_First_Name.clear();
+    input_First_Name.sendKeys("Tester");
+    input_Last_Name.clear();
+    input_Last_Name.sendKeys("Tester");
+	input_Email.clear();
+	input_Email.sendKeys("user@email.com");
+	new Select(input_Country).selectByVisibleText("United States");
+	new Select(input_State).selectByValue("37");
+	input_City.sendKeys("New York");
+	input_Adress.sendKeys("100 5th AveNew York");
+	input_ZIP.sendKeys("0000");
+	input_Phone.sendKeys("1234567890");
+	input_CardNumber.sendKeys(Config.cardNumber_VISA);
+	new Select(input_date).selectByValue("10");
+	new Select(input_year).selectByValue("2020");
+	input_CVV.sendKeys(Config.CVV);
+	input_NameOnCard.sendKeys("Tester Tester");
+	button_Pay.click();
+	
+}
+
+
+
+/*public void setAllFields(){
 	driver.findElement(inputName).clear();
 	driver.findElement(inputName).sendKeys("Name");
 	driver.findElement(inputEmail).clear();
@@ -82,6 +88,5 @@ public void setAllFields(){
 	driver.findElement(inputCVV).sendKeys(Config.CVV);
 	driver.findElement(inputNameOnCard).sendKeys("Name");
 	driver.findElement(buttonPay).click();
-
-}
+*/
 }

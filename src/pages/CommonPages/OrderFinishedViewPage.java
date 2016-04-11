@@ -1,6 +1,5 @@
 package pages.CommonPages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import utils.Helper;
@@ -9,15 +8,27 @@ import utils.Helper;
 
 public class OrderFinishedViewPage  {
 	
-		public static String finishedText = "//span[@class='notify-text']";
+		public static String finishedTextWriterPage = "//span[@data-atest='atest_order_view_writer_finished_elem_notify']";
+		public static String finishedCustomerPage = "//span[@data-atest='atest_order_view_finished_elem_notify']";
 		public static String closeRateWriterPopup = "//a[@aria-label='Close']";
-public void finished(){
-	System.out.println(Helper.driver.findElement(By.xpath(finishedText)).getText());
-}
+
 		
-	public boolean check(){
+		
+		
+		
+		
+	public boolean checkWriterPageFinishedText(){
 		try {
-			Helper.cyclicElementSearchByXpath(finishedText).getText()
+			Helper.cyclicElementSearchByXpath(finishedTextWriterPage).getText()
+			.contains("The order has been finished");
+            return true;
+        } catch (Exception e) {
+            return false;
+        } }
+	
+	public boolean checkCustomerPageFinishedText(){
+		try {
+			Helper.cyclicElementSearchByXpath(finishedCustomerPage).getText()
 			.contains("The order has been finished");
             return true;
         } catch (Exception e) {

@@ -40,7 +40,7 @@ public class Config {
 	public static String deactivateUserStage1 =("auto_deactivate@yopmail.com");
 	
 	//Credit Card
-	public static String cardNumber_VISA = ("4444444444444448");
+	public static String cardNumber_VISA = ("4444555566661111");
 	public static String CVV = ("123");
 	
 	

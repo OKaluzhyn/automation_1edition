@@ -17,10 +17,12 @@ public class Helper {
 public static void driverSetUp(String siteUrl){
 	System.setProperty("webdriver.chrome.driver","D:\\AUTO_TESTING\\downloads\\ChromeDriver\\chromedriver.exe");	
 	driver = new ChromeDriver();
+	driver.manage().window().maximize();
 	driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
 	driver.get(siteUrl);
+	
 	
 }
 

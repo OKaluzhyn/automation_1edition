@@ -1,18 +1,17 @@
 package pages.WriterPages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 
-import pages.BasePage;
+import utils.Helper;
 
-public class AllAvaliableOrdersWriterPage extends BasePage {
-	public AllAvaliableOrdersWriterPage(FirefoxDriver driver) {
-		this.driver = driver;
-	}
 
-	By orderName = By.linkText("test for webdriver");
+
+public class AllAvaliableOrdersWriterPage  {
+	public static String orderName = "test for webdriver";
+
+	WebElement order_Name = Helper.cyclicElementSearchByXpath(orderName);
 
 	public void chooseOrder() {
-		driver.findElement(orderName).click();
+		order_Name.click();
 	}
 }

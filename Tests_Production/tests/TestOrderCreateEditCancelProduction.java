@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -42,8 +40,7 @@ public class TestOrderCreateEditCancelProduction {
 
 	@Test
 	public  void orderCreateEditCancel_bidCreateEditCancel() throws Exception {
-		Helper.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-		Helper.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		
 		// инициализация страниц
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();

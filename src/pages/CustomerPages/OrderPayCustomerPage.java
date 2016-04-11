@@ -10,7 +10,7 @@ public class OrderPayCustomerPage  {
 	
 	public static String payPalButton = "//label[@data-atest='atest_order_pay_elem_pay_pall']"; 
 	public static String creditCardButton = "//label[@data-atest='atest_order_pay_elem_credit_card']";
-	public static String makeDepositButton = "//button[text()='Make a deposit']";
+	public static String makeDepositButton = "//button[@data-atest='atest_order_pay_elem_make_deposit_btn']";
 	 
 
      public void choosePayPal(){

@@ -12,11 +12,12 @@ public class OrderInProgressPage  {
 	public static String releaseMoneyfield = "//input[@data-atest='atest_order_view_in_progress_elem_release_money_percent']";
 	public static String releaseButton = "//a[@data-atest='atest_order_view_in_progress_elem_release_money_btn']";
 	public static String popUpButtonRelease = "//button[@data-atest='atest_order_view_in_progress_elem_popup_release_confirm']";
-	public static String payPercent = "//span[@data-atest='atest_order_view_in_progress_elem_paid_progress']";//процент релизнутых денег
+	public static String payCustomerPercent = "//span[@data-atest='atest_order_view_in_progress_elem_paid_progress']";//процент релизнутых денег
 	
 	//for writer
-	public static String workResults = "//li[@href='#tab_work_results']";
-	public static String uploadLink = "//a[@class='trigger-dropzone dz-clickable']";
+	public static String workResults = "//li[@data-atest='atest_order_view_writer_in_progress_elem_tab_work_results']";
+	public static String uploadLink = "//a[@data-atest='atest_order_view_writer_in_progress_elem_upload_attached_files']";
+	public static String payWriterPercent = "//span[@data-atest='atest_order_view_writer_in_progress_elem_paid_progress']";//процент релизнутых денег
 	
 	public void uploadRevision(){
 		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
@@ -30,12 +31,18 @@ public class OrderInProgressPage  {
 	}
     
    //получаем занчение релизнутых денег %
-  	public String checkReleasedMoney(){
-  	Helper.cyclicElementSearchByXpath(payPercent)
+  	public String checkReleasedMoneyCustomerPage(){
+  	Helper.cyclicElementSearchByXpath(payCustomerPercent)
   		.getAttribute("value");
   		  		return ("value");
   	}
 	
+  //получаем занчение релизнутых денег %
+  	public String checkReleasedMoneyWriterPage(){
+  	Helper.cyclicElementSearchByXpath(payWriterPercent)
+  		.getAttribute("value");
+  		  		return ("value");
+  	}
 	
 	public void setCompensationPercent(String strPercent){
 		WebElement release_money_field = Helper.cyclicElementSearchByXpath(releaseMoneyfield);
