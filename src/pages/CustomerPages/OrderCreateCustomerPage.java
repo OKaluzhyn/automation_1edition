@@ -20,7 +20,7 @@ public class OrderCreateCustomerPage  {
 	// инициализация элементов страницы
 	
 	public static String orderPageName = "//html/body/div[6]/span/span/div/div[1]/div/h1";
-	public static String typeOfPaper = "//div[@data-atest='atest_order_create_form_type']";
+	public static String typeOfPaper = "//div//div[@data-atest='atest_order_create_form_type']";
 	public static String topic = "//input[@data-atest='atest_order_create_form_name']";
 	public static String subject = "//div[@data-atest='atest_order_create_form_subject']";
 	public static String numberOfPages = "//input[@data-atest='atest_order_create_form_pages']";

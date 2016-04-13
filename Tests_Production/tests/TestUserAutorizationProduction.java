@@ -8,7 +8,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import pages.CommonPages.OrderCancelPopUp;
 import pages.CommonPages.UserAuthorizationPage;
 import utils.Config;
 import utils.Helper;

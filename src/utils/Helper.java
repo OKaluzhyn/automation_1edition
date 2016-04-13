@@ -8,9 +8,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class Helper {
+	
 	public static WebDriver driver;
 	
 	
@@ -18,20 +20,24 @@ public static void driverSetUp(String siteUrl){
 	System.setProperty("webdriver.chrome.driver","D:\\AUTO_TESTING\\downloads\\ChromeDriver\\chromedriver.exe");	
 	driver = new ChromeDriver();
 	driver.manage().window().maximize();
-	driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-	driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
+	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+	driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
 	driver.get(siteUrl);
-	
+
 	
 }
+public static void goToEdusson(){
+	driver.get("http://edusson.com.test9/");
+}
 
-
+public static void goToEdubirdie(){
+	driver.get("http://edusson.com.test8/");
+}
 public static void quit(){
 	driver.quit();
 	}
 public static WebElement cyclicElementSearchByXpath(String target) {
-      for (int i = 0; i < 600; i++){
+      for (int i = 0; i < 1000; i++){
             if (driver.findElements(By.xpath(target)).size() > 0) {
                break;   }
               
@@ -39,6 +45,7 @@ public static WebElement cyclicElementSearchByXpath(String target) {
         }
         return driver.findElement(By.xpath(target));
    }
+
 public static void sleep(long sec) {
 	try {
         Thread.sleep(sec*1000);
@@ -68,6 +75,8 @@ public static void sleep(long sec) {
 	        } catch (Exception e) {
 	            return false;
 	        } }
+
+
 	
 	
 	//public WebDriverWait wait = new WebDriverWait(driver, 5).withMessage("Element was not found");

@@ -6,7 +6,7 @@ import utils.Helper;
 
 public class HeaderMenu  {
 	
-	public static String logOut = "//li[@class='logout']/a";
+	public static String logOut = "//a[@href='/logout']//span";
 
 	public void userLogOut() {
 		WebElement log_out_button = Helper.cyclicElementSearchByXpath(logOut);

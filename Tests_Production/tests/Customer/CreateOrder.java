@@ -33,7 +33,7 @@ public class CreateOrder {
 
 @Before
 public void setUp(){
-	Helper.driverSetUp("http://edusson.com");
+	Helper.driverSetUp("http://edubirdie.com");
 
 }
 
@@ -100,10 +100,11 @@ public  void orderCreate() throws Exception {
 	Helper.sleep(2);
 	// выбираем бид первого писателя
 	orderBiddingCustomerPage.bid1();
-	
+	Helper.sleep(2);
 	// выбираем оплату с помощью карты
 	orderPayCustomerPage.chooseCardPay();
 	orderPayCustomerPage.clickReserveButton();
+	Helper.sleep(2);
 	// заполняем и отправляем пеймент форму
 	creditCardPayment.setAllFields();
 	

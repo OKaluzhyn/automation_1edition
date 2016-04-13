@@ -22,7 +22,7 @@ import pages.WriterPages.OrderBiddingWriterPage;
 import utils.Config;
 import utils.Helper;
 
-public class TestStandartCheckProduction {
+public class TestStandartCheckEdussonProduction {
 	
 
 	public String orderUrl;
@@ -33,7 +33,8 @@ public class TestStandartCheckProduction {
 
 	@Before
 	public void setUp() throws Exception {
-		 Helper.driverSetUp("");
+		 Helper.driverSetUp("http://edusson.com/");
+		 
 		
 
 	}
@@ -47,7 +48,7 @@ public class TestStandartCheckProduction {
 	// у клиента на балансе 0, оплата заказа через PayPall, релиз пистаелю
 	// 10%+90%
 	
-	public void standartCheck_PAyPal_Production() throws Exception {
+	public void standartCheck_PAyPal_Production_Edusson() throws Exception {
 		// инициализация страниц
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
@@ -98,24 +99,24 @@ public class TestStandartCheckProduction {
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
 				
-		//Helper.sleep(2);
+		Helper.sleep(2);
 		// Helper.driver.get("http://edusson.com/order/view/74178"); //- для быстрого теста оплаты
-	    Helper.sleep(2);
+	   // Helper.sleep(2);
 		// выбираем бид первого писателя
 		orderBiddingCustomerPage.bid1();
 		// подтвержаем бид, переходим на страницу оплаты
-		orderPayCustomerPage.choosePayPal();
+		//orderPayCustomerPage.choosePayPal();
 		Helper.sleep(2);
 		orderPayCustomerPage.clickReserveButton();
 		//переключаемся на frame на странице пейпала
-		Helper.sleep(1);
+		//Helper.sleep(1);
 		//	Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
-		//	Helper.sleep(1);
+		Helper.sleep(1);
 		// логинимся в PayPall и подтвержаем оплату
 		payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
 		//payPalPage.clickContinue();
 		// ждем возвращения на сайт
-		Helper.sleep(30);
+		//Helper.sleep(30);
 		//payPalPage.confirmPayPal_2(Config.paypall_login, Config.paypall_pass);
 		Helper.sleep(2);
 		// разлогиниваемся клиентом
@@ -126,13 +127,16 @@ public class TestStandartCheckProduction {
 		//закрываем райтерский попап
 		Helper.sleep(2);
 		myOrdersWriterPage.closePopup();
-		// берем урл страницы заказа из переменной и переходим по нему
+		//берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
 	    //загружаем ревизию
+		
 		orderInProgressPage.uploadRevision();
 		Helper.sleep(2);
 		// разлогиниваемся писателем
+		Helper.sleep(2);
 		headerMenu.userLogOut();
+		Helper.sleep(2);
 		// логинимся клиентом
 		userAuthorizationPage.changeUser(Config.customer1, Config.password);
 		Helper.sleep(2);
@@ -144,6 +148,7 @@ public class TestStandartCheckProduction {
 	    customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
 	    //разлогиниваемся клиентом
 		headerMenu.userLogOut();
+		Helper.sleep(2);
 		// логинимся писателем
 		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
@@ -151,7 +156,7 @@ public class TestStandartCheckProduction {
 		myOrdersWriterPage.closePopup();
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
-		Thread.sleep(5000);
+		//Thread.sleep(5000);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
 		// сравниваем значения релизнутых денег у клиента и у писателя
@@ -173,6 +178,7 @@ public class TestStandartCheckProduction {
 		assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
 		Helper.sleep(2);
 		headerMenu.userLogOut();
+		Helper.sleep(2);
 		// логинимся писателем
 		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
@@ -195,7 +201,7 @@ public class TestStandartCheckProduction {
 	@Test
 	// у клиента на балансе 0, оплата заказа через CreditCard, релиз пистаелю
 	// 50%+50%
-	public void standartCheck_CreditCard_Production() throws Exception {
+	public void standartCheck_CreditCard_Production_Edusson() throws Exception {
 		// инициализация страниц
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
@@ -214,6 +220,7 @@ public class TestStandartCheckProduction {
 		Helper.sleep(1);
 		//go to order form
 	    myOrdersCustomerPage.makeNewOrder();
+	    Helper.sleep(2);
 		// create order
 		orderCreateCustomerPage.createOrder("test for webdriver", "test");
 		// assert bidding page
@@ -249,12 +256,15 @@ public class TestStandartCheckProduction {
 		Helper.sleep(2);
 		// выбираем бид первого писателя
 		orderBiddingCustomerPage.bid1();
-		
+		Helper.sleep(2);
 		// выбираем оплату с помощью карты
 		orderPayCustomerPage.chooseCardPay();
+		Helper.sleep(20);
 		orderPayCustomerPage.clickReserveButton();
+		Helper.sleep(2);
 		// заполняем и отправляем пеймент форму
 		сreditCardPayment.setAllFields();
+		Helper.sleep(60);
 		// разлогиниваемся клиентом
 		headerMenu.userLogOut();
 		Helper.sleep(1);
@@ -270,6 +280,7 @@ public class TestStandartCheckProduction {
 		Helper.sleep(2);
 		// разлогиниваемся писателем
 		headerMenu.userLogOut();
+		Helper.sleep(2);
 		// логинимся клиентом
 		userAuthorizationPage.changeUser(Config.customer1, Config.password);
 		Helper.sleep(2);
@@ -281,6 +292,7 @@ public class TestStandartCheckProduction {
 	    customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
 	    //разлогиниваемся клиентом
 		headerMenu.userLogOut();
+		Helper.sleep(2);
 		// логинимся писателем
 		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
@@ -288,7 +300,6 @@ public class TestStandartCheckProduction {
 		myOrdersWriterPage.closePopup();
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
-		Thread.sleep(5000);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
 		// сравниваем значения релизнутых денег у клиента и у писателя
@@ -310,6 +321,7 @@ public class TestStandartCheckProduction {
 		assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
 		Helper.sleep(2);
 		headerMenu.userLogOut();
+		Helper.sleep(2);
 		// логинимся писателем
 		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
@@ -329,203 +341,4 @@ public class TestStandartCheckProduction {
 
 	}}
 
-	/*
-@Test
-//добавить новые локаторы для берди!!!!
-public void standartCheck_Edubirdie_Production() throws Exception {
-	// инициализация страниц
-	UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-	OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
-	OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
-	OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
-	OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
-	PayPalPage payPalPage = new PayPalPage();
-	OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
-	OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
-	OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
-	HeaderMenu headerMenu = new HeaderMenu();
-	.get("http://edubirdie.com");
-	// логинимся клиентом
-	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
-	// создаем заказ
-	orderCreateCustomerPage.createOrder("test for webdriver", "test");
-	// ждем полной загрузки биддинг-страницы
-	Thread.sleep(5000);
-	// обновляем страницу заказа, чтобы получить правильный урл
-	.navigate().refresh();
-	// сохраняем урл страницы текущего заказа в переменную
-	orderUrl = .getCurrentUrl();
-	orderId = orderUrl.substring(25);
-	// разлогиниваемся клиентом
-	headerMenu.userLogOut();
-	.get("http://edusson.com");
-	// логинимся писателем
-	userAuthorizationPage.logIn(Config.writer1, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	writerUrl = "edusson.com/order/view"+orderId;
-	.get(writerUrl);
-	// создаем бид
-	orderBiddingWriterPage.createBid("8");
-	// разлогиниваемся писателем
-	headerMenu.userLogOut();
-	.get("http://edubirdie.com");
-	// логинимся клиентом
-	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(orderUrl);
-	// выбираем бид первого писателя
-	orderBiddingCustomerPage.bid1();
-	// подтвержаем бид, переходим на страницу оплаты
-	orderPayCustomerPage.clickReserveButton();
-	// оплачиваем заказа через PayPall
-	payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-	// возвращаемся на страницу заказа
-	orderPayThankYouCustomerPage.returnOrderPage();
-	// релизим писателю 10%
-	orderInProgressPage.releaseMoney("10");
-	// получаем занчение % релизнутых денег на странице клиента
-	customerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// разлогиниваемся клиентом
-	headerMenu.userLogOut();
-	.get("http://edusson.com");
-	// логинимся писателем
-	userAuthorizationPage.logIn(Config.writer1, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(writerUrl);
-	Thread.sleep(5000);
-	// получаем занчение % релизнутых денег на странице писателя
-	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// сравниваем значения релизнутых денег у клиента и у писателя
-	assertEquals(customerReleasedPercent, writerReleasedPercent);
-	// разлогиниваемся писателем
-	headerMenu.userLogOut();
-	.get("http://edubirdie.com");
-	// логинимся клиентом
-	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(orderUrl);
-	// релизим писателю 90%
-	orderInProgressPage.releaseMoney("90");
-	// получаем занчение % релизнутых денег на странице клиента
-	customerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// проверяем наличие текста order finished
-	orderFinishedViewPage.checkOrderFinished();
-	// разлогиниваемся клиентом
-	headerMenu.userLogOut();
-	.get("http://edusson.com");
-	// логинимся писателем
-	userAuthorizationPage.logIn(Config.writer1, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(writerUrl);
-	Thread.sleep(5000);
-	// получаем занчение % релизнутых денег на странице писателя
-	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// сравниваем значения релизнутых денег у клиента и у писателя
-	assertEquals(customerReleasedPercent, writerReleasedPercent);
-	// проверяем наличие текста order finished 
-	orderFinishedViewPage.checkOrderFinished();
-	headerMenu.userLogOut();
-	System.out.println("TEST PASSED");
-
-
-}
-@Test
-//добавить новые локаторы для StudyFaq!!!!
-public void standartCheck_StudyFaq_Production() throws Exception {
-	// инициализация страниц
-	UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-	OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
-	OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
-	OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
-	OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
-	PayPalPage payPalPage = new PayPalPage();
-	OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
-	OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
-	OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
-	HeaderMenu headerMenu = new HeaderMenu();
-	.get("http://studyfaq.com");
-	// логинимся клиентом
-	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
-	// создаем заказ
-	orderCreateCustomerPage.createOrder("test for webdriver", "test");
-	// ждем полной загрузки биддинг-страницы
-	Thread.sleep(5000);
-	// обновляем страницу заказа, чтобы получить правильный урл
-	.navigate().refresh();
-	// сохраняем урл страницы текущего заказа в переменную
-	orderUrl = .getCurrentUrl();
-	orderId = orderUrl.substring(25);
-	// разлогиниваемся клиентом
-	headerMenu.userLogOut();
-	.get("http://edusson.com");
-	// логинимся писателем
-	userAuthorizationPage.logIn(Config.writer1, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	writerUrl = "edusson.com/order/view"+orderId;
-	.get(writerUrl);
-	// создаем бид
-	orderBiddingWriterPage.createBid("8");
-	// разлогиниваемся писателем
-	headerMenu.userLogOut();
-	.get("http://studyfaq.com");
-	// логинимся клиентом
-	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(orderUrl);
-	// выбираем бид первого писателя
-	orderBiddingCustomerPage.bid1();
-	// подтвержаем бид, переходим на страницу оплаты
-	orderPayCustomerPage.clickReserveButton();
-	// оплачиваем заказа через PayPall
-	payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-	// возвращаемся на страницу заказа
-	orderPayThankYouCustomerPage.returnOrderPage();
-	// релизим писателю 10%
-	orderInProgressPage.releaseMoney("10");
-	// получаем занчение % релизнутых денег на странице клиента
-	customerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// разлогиниваемся клиентом
-	headerMenu.userLogOut();
-	.get("http://edusson.com");
-	// логинимся писателем
-	userAuthorizationPage.logIn(Config.writer1, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(writerUrl);
-	Thread.sleep(5000);
-	// получаем занчение % релизнутых денег на странице писателя
-	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// сравниваем значения релизнутых денег у клиента и у писателя
-	assertEquals(customerReleasedPercent, writerReleasedPercent);
-	// разлогиниваемся писателем
-	headerMenu.userLogOut();
-	.get("http://studyfaq.com");
-	// логинимся клиентом
-	userAuthorizationPage.logIn(Config.auto_birdie_customer, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(orderUrl);
-	// релизим писателю 90%
-	orderInProgressPage.releaseMoney("90");
-	// получаем занчение % релизнутых денег на странице клиента
-	customerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// проверяем наличие текста order finished
-	orderFinishedViewPage.checkOrderFinished();
-	// разлогиниваемся клиентом
-	headerMenu.userLogOut();
-	.get("http://edusson.com");
-	// логинимся писателем
-	userAuthorizationPage.logIn(Config.writer1, Config.password);
-	// берем урл страницы заказа из переменной и переходим по нему
-	.get(writerUrl);
-	Thread.sleep(5000);
-	// получаем занчение % релизнутых денег на странице писателя
-	writerReleasedPercent = orderInProgressPage.checkReleasedMoney();
-	// сравниваем значения релизнутых денег у клиента и у писателя
-	assertEquals(customerReleasedPercent, writerReleasedPercent);
-	// проверяем наличие текста order finished 
-	orderFinishedViewPage.checkOrderFinished();
-	headerMenu.userLogOut();
-	System.out.println("TEST PASSED");
-
-}
-}
-	*/
+	

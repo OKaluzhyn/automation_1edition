@@ -8,7 +8,7 @@ import org.junit.runners.Suite;
 
 import tests.TestUserAutorizationProduction;
 import tests.TestUserForgotPassProduction;
-import tests.TestStandartCheckProduction;
+import tests.TestStandartCheckEdussonProduction;
 import tests.Customer.CancelOrder;
 import tests.Customer.CreateOrder;
 import tests.Customer.EditOrder;
@@ -21,14 +21,15 @@ import tests.Customer.LoadMoneyToBalance;
 	 
 	@RunWith(Suite.class)
 	@Suite.SuiteClasses({
-		TestUserAutorizationProduction.class})
-      /*  TestUserForgotPassProduction.class,
-        TestStandartCheckProduction.class,
-        //Customers tests
-        CreateOrder.class,
-        EditOrder.class,
-        CancelOrder.class,
-        LoadMoneyToBalance.class})
-	  */    	
+		 TestUserAutorizationProduction.class,
+         TestUserForgotPassProduction.class,
+         TestStandartCheckEdussonProduction.class,
+         //Customers tests
+        // CreateOrder.class,
+        // EditOrder.class,
+        // CancelOrder.class,
+       //  LoadMoneyToBalance.class
+         })
+	    	
 public class TestSuite1 {
 }

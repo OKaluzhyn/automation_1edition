@@ -1,7 +1,5 @@
 package pages.CustomerPages;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import utils.Helper;
 public class MyOrdersCustomerPage {
