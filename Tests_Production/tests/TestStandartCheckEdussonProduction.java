@@ -30,6 +30,20 @@ public class TestStandartCheckEdussonProduction {
 	public String customerReleasedPercent;
 	public String writerReleasedPercent;
 	public String writerUrl;
+	
+	// инициализация страниц
+			UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+			MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
+			OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+			OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
+			OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
+			HeaderMenu headerMenu = new HeaderMenu();
+			MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
+			OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
+			PayPalPage payPalPage = new PayPalPage();
+			//OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
+			OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
+			OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
 
 	@Before
 	public void setUp() throws Exception {
@@ -49,19 +63,6 @@ public class TestStandartCheckEdussonProduction {
 	// 10%+90%
 	
 	public void standartCheck_PAyPal_Production_Edusson() throws Exception {
-		// инициализация страниц
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
-		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
-		OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
-		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
-		HeaderMenu headerMenu = new HeaderMenu();
-		MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
-		OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
-		PayPalPage payPalPage = new PayPalPage();
-		//OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
-		OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
-		OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
 		
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
