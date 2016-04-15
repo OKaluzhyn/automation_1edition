@@ -47,12 +47,13 @@ public class Base {
 		Helper.driverSetUp("http://edusson.com.test8/");
 	}
 	
-	@Test
+	/*@Test
 	public void urlTest2(){
 		Helper.goToEdubirdie();
 		System.out.println(Helper.driver.getCurrentUrl());
 		Helper.goToEdusson();
 		System.out.println(Helper.driver.getCurrentUrl());
+		
 	}
 	
 	@Test
@@ -61,34 +62,35 @@ public class Base {
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
 		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
 		MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
-		userAuthorizationPage.logIn(Config.customer1, Config.password);
-		Helper.sleep(1);
+		//userAuthorizationPage.logIn(Config.customer1, Config.password);
+		//Helper.sleep(1);
 		//go to order form
-	    myOrdersCustomerPage.makeNewOrder();
+	  //  myOrdersCustomerPage.makeNewOrder();
 		// create order
-		orderCreateCustomerPage.createOrder("test for webdriver", "test");
+	//	orderCreateCustomerPage.createOrder("test for webdriver", "test");
 		// assert bidding page
 		//assertEquals("Edusson.com - Place your Order", Helper.driver.getTitle());
 		//assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
-		Helper.sleep(1);
+	//	Helper.sleep(1);
 		//релодим страницу чтобы получить ссылку
-		Helper.driver.navigate().refresh();
+	//	Helper.driver.navigate().refresh();
 		// сохраняем урл страницы текущего заказа в переменную
-	    orderUrl = Helper.driver.getCurrentUrl();
-	   	orderId = orderUrl.substring(35);
+	    orderUrl = "http://edusson.com.test8/order/view/8376";
+	    orderId = orderUrl.substring(36);
 	   	System.out.println(orderId);
-	   	Helper.goToEdusson();
-		Helper.sleep(1);
+	   //	Helper.goToEdusson();
+		//Helper.sleep(1);
 		// логинимся писателем
 		userAuthorizationPage.logIn(Config.auto_writer_1, Config.password);
 		//закрываем райтерский попап
-		Helper.sleep(2);
+		Helper.sleep(5);
 		myOrdersWriterPage.closePopup();
-		writerUrl = "http://edusson.com.test9/order/view"+orderId;
+		writerUrl = "http://edusson.com.test9/order/view/"+orderId;
 		System.out.println(writerUrl);
 		Helper.driver.get(writerUrl);
+		Helper.sleep(5);
 	}
-	@Test
+	*/@Test
 	
 	// у клиента на балансе 0, оплата заказа через PayPall, релиз пистаелю
 	// 10%+90%
@@ -114,6 +116,7 @@ public class Base {
 		//go to order form
 	    myOrdersCustomerPage.makeNewOrder();
 		// create order
+	    Helper.sleep(1);
 		orderCreateCustomerPage.createOrder("test for webdriver", "test");
 		// assert bidding page
 		//assertEquals("Edusson.com - Place your Order", Helper.driver.getTitle());
@@ -123,8 +126,9 @@ public class Base {
 		Helper.driver.navigate().refresh();
 		// сохраняем урл страницы текущего заказа в переменную
 	    orderUrl = Helper.driver.getCurrentUrl();
-	    orderId = orderUrl.substring(35);
-	    writerUrl = "http://edusson.com.test9/order/view"+orderId;
+	    orderId = orderUrl.substring(36);
+	    System.out.println(orderId);
+	    writerUrl = "http://edusson.com.test9/order/view/"+orderId;
 		// разлогиниваемся клиентом
 		//headerMenu.userLogOut();
 	    Helper.sleep(1);
@@ -138,10 +142,13 @@ public class Base {
 		Helper.sleep(2);
 		myOrdersWriterPage.closePopup();
 		// берем урл страницы заказа из переменной и переходим по нему
-		writerUrl = "http://edusson.com.test9/order/view"+orderId;
+		//writerUrl = "http://edusson.com.test9/order/view/"+orderId;
 		Helper.driver.get(writerUrl);
+		Helper.sleep(2);
+		System.out.println(Helper.driver.getCurrentUrl());
 		// создаем бид
 		orderBiddingWriterPage.createBid("6"); 
+		Helper.sleep(2);
 		// разлогиниваемся писателем
 	//	headerMenu.userLogOut();
 		Helper.goToEdubirdie();
@@ -229,7 +236,7 @@ public class Base {
 		// релизим писателю 90%
 		orderInProgressPage.releaseMoney("90");
 		Helper.sleep(2);
-		orderFinishedViewPage.closePopup();
+		//orderFinishedViewPage.closePopup();
 		// получаем занчение % релизнутых денег на странице клиента
 		customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
 		assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());

@@ -6,13 +6,13 @@ package junit;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import tests.TestOrderCreateEditCancelProduction;
+import tests.TestStandartCheckEdubirdieProduction;
+import tests.TestStandartCheckStudyfaqProduction;
 import tests.TestUserAutorizationProduction;
 import tests.TestUserForgotPassProduction;
 import tests.TestStandartCheckEdussonProduction;
-import tests.Customer.CancelOrder;
-import tests.Customer.CreateOrder;
-import tests.Customer.EditOrder;
-import tests.Customer.LoadMoneyToBalance;
+
 	 
 	/*
 	* This is a test suite class that we will create to run all our tests
@@ -24,11 +24,9 @@ import tests.Customer.LoadMoneyToBalance;
 		 TestUserAutorizationProduction.class,
          TestUserForgotPassProduction.class,
          TestStandartCheckEdussonProduction.class,
-         //Customers tests
-        // CreateOrder.class,
-        // EditOrder.class,
-        // CancelOrder.class,
-       //  LoadMoneyToBalance.class
+         TestOrderCreateEditCancelProduction.class,
+         TestStandartCheckEdubirdieProduction.class,
+         TestStandartCheckStudyfaqProduction.class,
          })
 	    	
 public class TestSuite1 {

@@ -1,6 +1,5 @@
 package utils;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
@@ -8,7 +7,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class Helper {
@@ -27,12 +25,17 @@ public static void driverSetUp(String siteUrl){
 	
 }
 public static void goToEdusson(){
-	driver.get("http://edusson.com.test9/");
+	driver.get("http://edusson.com/");
 }
 
 public static void goToEdubirdie(){
-	driver.get("http://edusson.com.test8/");
+	driver.get("http://edubirdie.com");
+	}
+
+public static void goToStudyfaq(){
+	driver.get("http://studyfaq.com/");
 }
+
 public static void quit(){
 	driver.quit();
 	}
