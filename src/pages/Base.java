@@ -36,12 +36,7 @@ public class Base {
 	public String writerReleasedPercent;
 	
 	
-	public static String login="//a[@data-atest='atest_login_elem_popup_open']";
-	public static String typeOfPaper = "//div[@data-atest='atest_order_create_form_type']";
-	public static String next_button = "//div[@id='step-1']//button[@data-atest='atest_order_create_elem_next_btn']";
-	public static String nextButton2 = "//div[@id='step-2']//button";
-	public static String number = "//input[@id='order_product_sources']";
-	public static String paperInstruction = "//input[@data-atest='atest_order_create_form_description']";
+	
 	@Before
 	public void setUp() throws Exception {
 		Helper.driverSetUp("http://edusson.com.test8/");

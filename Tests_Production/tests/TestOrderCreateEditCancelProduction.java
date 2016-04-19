@@ -58,6 +58,7 @@ public class TestOrderCreateEditCancelProduction {
 		Helper.sleep(1);
 		//go to order form
 	    myOrdersCustomerPage.makeNewOrder();
+		Helper.sleep(1);
 		// create order
 		orderCreateCustomerPage.createOrder("test for webdriver", "test");
 		// assert bidding page
@@ -72,9 +73,9 @@ public class TestOrderCreateEditCancelProduction {
 		headerMenu.userLogOut();
 		Helper.sleep(1);
 		// логинимся писателем
-		userAuthorizationPage.changeUser(Config.auto_writer_1, Config.password);
+		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
-		Helper.sleep(1);
+		Helper.sleep(2);
 		myOrdersWriterPage.closePopup();
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
@@ -96,14 +97,15 @@ public class TestOrderCreateEditCancelProduction {
 		headerMenu.userLogOut();
 		Helper.sleep(1);
 		// логинимся писателем
-		userAuthorizationPage.changeUser(Config.auto_writer_1, Config.password);
+		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
-		Helper.sleep(1);
+		Helper.sleep(2);
 		myOrdersWriterPage.closePopup();
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
 		//редактируем бид
 		orderBiddingWriterPage.changeBid();
+		Helper.sleep(1);
 		orderBiddingWriterPage.createBid("8");
 		// разлогиниваемся писателем
 		headerMenu.userLogOut();
@@ -123,9 +125,9 @@ public class TestOrderCreateEditCancelProduction {
 		headerMenu.userLogOut();
 		Helper.sleep(1);
 		// логинимся писателем
-		userAuthorizationPage.changeUser(Config.auto_writer_1, Config.password);
+		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
-		Helper.sleep(1);
+		Helper.sleep(2);
 		myOrdersWriterPage.closePopup();
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
@@ -148,9 +150,9 @@ public class TestOrderCreateEditCancelProduction {
 		headerMenu.userLogOut();
 		Helper.sleep(1);
 		// логинимся писателем
-		userAuthorizationPage.changeUser(Config.auto_writer_1, Config.password);
+		userAuthorizationPage.changeUser(Config.writer1, Config.password);
 		//закрываем райтерский попап
-		Helper.sleep(1);
+		Helper.sleep(2);
 		myOrdersWriterPage.closePopup();
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
@@ -186,15 +188,16 @@ public class TestOrderCreateEditCancelProduction {
 	    Helper.sleep(1);
 	    orderCreateCustomerPage.clickCancelOrderButton();
 	    Helper.sleep(1);
-	    orderCancelPopUp.cancelOrder("");
+	    orderCancelPopUp.cancelOrder("testing");
+	    Helper.sleep(1);
 	    assertTrue(orderCancelViewPage.isCancelTextPresent());
 		// разлогиниваемся клиентом
 	 	headerMenu.userLogOut();
 	 	Helper.sleep(1);
 	 	// логинимся писателем
-	 	userAuthorizationPage.changeUser(Config.auto_writer_1, Config.password);
+	 	userAuthorizationPage.changeUser(Config.writer1, Config.password);
 	 	//закрываем райтерский попап
-	 	Helper.sleep(1);
+	 	Helper.sleep(2);
 	 	myOrdersWriterPage.closePopup();
 	 	// берем урл страницы заказа из переменной и переходим по нему
 	 	Helper.driver.get(orderUrl);

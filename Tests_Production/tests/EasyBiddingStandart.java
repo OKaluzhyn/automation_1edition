@@ -22,10 +22,14 @@ import pages.WriterPages.OrderBiddingWriterPage;
 import utils.Config;
 import utils.Helper;
 
-public class TestStandartCheckStudyfaqProduction {
+public class EasyBiddingStandart {
+	
 	public String orderUrl;
-	public String orderId;
-	public String writerUrl;
+	public String siteUrl = "http://paperial.com/";
+	public String orderId = orderUrl.substring(30);
+	public String writerUrl = "http://edusson.com/order/view/"+orderId;;
+	public String customerUrl = siteUrl+"order/view/"+orderId;
+	
 	
 	public String customerReleasedPercent;
 	public String writerReleasedPercent;
@@ -47,14 +51,14 @@ public class TestStandartCheckStudyfaqProduction {
 	
 	@Before
 	public void setUp() throws Exception {
-		Helper.driverSetUp("http://studyfaq.com/");
+		Helper.driverSetUp("http://paperial.com/");
 	}
 	
     @Test
 	// у клиента на балансе 0, оплата заказа через PayPall, релиз пистаелю
 	// 20%+80%
 	
-	public void standartCheck_PAyPal_Production_Studyfaq() throws Exception {
+	public void standartCheck_EasyBidding_Production_Edubirdie() throws Exception {
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);
@@ -62,17 +66,17 @@ public class TestStandartCheckStudyfaqProduction {
 	    myOrdersCustomerPage.makeNewOrder();
 		// create order
 	    Helper.sleep(1);
-		orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
-		Helper.sleep(1);
-		assertTrue(Helper.driver.getCurrentUrl().contains("order#redirect_url="));
+		orderCreateCustomerPage.createOrderForOtherSites("test for webdriver", "test");
+		Helper.sleep(2);
+		assertTrue(Helper.driver.getCurrentUrl().contains("/order/pay/"));
 		Helper.sleep(1);
 		//релодим страницу чтобы получить ссылку
-		Helper.driver.navigate().refresh();
+		//Helper.driver.navigate().refresh();
 		// сохраняем урл страницы текущего заказа в переменную
 	    orderUrl = Helper.driver.getCurrentUrl();
-	    orderId = orderUrl.substring(31);
+	    //orderId = orderUrl.substring(30);
 	    System.out.println(orderId);
-	    writerUrl = "http://edusson.com/order/view/"+orderId;
+	   // writerUrl = "http://edusson.com/order/view/"+orderId;
 		Helper.sleep(1);
 		Helper.goToEdusson();
 		Helper.sleep(1);
@@ -96,7 +100,7 @@ public class TestStandartCheckStudyfaqProduction {
 		// выбираем бид первого писателя
 		orderBiddingCustomerPage.bid1();
 		// подтвержаем бид, переходим на страницу оплаты
-		orderPayCustomerPage.chooseCardPay();
+		orderPayCustomerPage.choosePayPal();
 		Helper.sleep(2);
 		orderPayCustomerPage.clickReserveButton();
 		//переключаемся на frame на странице пейпала
@@ -166,104 +170,5 @@ public class TestStandartCheckStudyfaqProduction {
 			Helper.quit();
 				
 		}
-		 @Test
-			// у клиента на балансе 0, оплата заказа через PayPall, релиз пистаелю
-			// 20%+80%
-			
-			public void standartCheck_CreditCard_Production_Studyfaq() throws Exception {
-				// логинимся клиентом
-				userAuthorizationPage.logIn(Config.customer1, Config.password);
-				Helper.sleep(1);
-				//go to order form
-			    myOrdersCustomerPage.makeNewOrder();
-				// create order
-			    Helper.sleep(1);
-				orderCreateCustomerPage.createOrder("test for webdriver", "test");
-				assertTrue(Helper.driver.getCurrentUrl().contains("order#redirect_url="));
-				Helper.sleep(1);
-				//релодим страницу чтобы получить ссылку
-				Helper.driver.navigate().refresh();
-				// сохраняем урл страницы текущего заказа в переменную
-			    orderUrl = Helper.driver.getCurrentUrl();
-			    orderId = orderUrl.substring(31);
-			    System.out.println(orderId);
-			    writerUrl = "http://edusson.com/order/view/"+orderId;
-				Helper.sleep(1);
-				Helper.goToEdusson();
-				Helper.sleep(1);
-				// логинимся писателем
-				userAuthorizationPage.logIn(Config.writer1, Config.password);
-				//закрываем райтерский попап
-				Helper.sleep(2);
-				myOrdersWriterPage.closePopup();
-				// берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(writerUrl);
-				Helper.sleep(2);
-				System.out.println(Helper.driver.getCurrentUrl());
-				// создаем бид
-				orderBiddingWriterPage.createBid("6"); 
-				Helper.sleep(2);
-				Helper.goToStudyfaq();
-				Helper.sleep(1);
-				// берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(orderUrl);
-				Helper.sleep(2);
-				// выбираем бид первого писателя
-				orderBiddingCustomerPage.bid1();
-				// подтвержаем бид, переходим на страницу оплаты
-				orderPayCustomerPage.choosePayPal();
-				Helper.sleep(2);
-				orderPayCustomerPage.clickReserveButton();
-				creditCardPayment.setAllFields();
-				Helper.sleep(60);
-				Helper.goToEdusson();
-				Helper.sleep(1);
-				//берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(writerUrl);
-			    //загружаем ревизию
-				orderInProgressPage.uploadRevision();
-				Helper.sleep(2);
-				Helper.goToStudyfaq();
-				Helper.sleep(2);
-				// берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(orderUrl);
-			    // релизим писателю 10%
-			    orderInProgressPage.releaseMoney("20");
-			    // получаем занчение % релизнутых денег на странице клиента
-			    customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-			    Helper.goToEdusson();
-				Helper.sleep(2);
-				// берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(writerUrl);
-				// получаем занчение % релизнутых денег на странице писателя
-				writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-				// сравниваем значения релизнутых денег у клиента и у писателя
-				assertEquals(customerReleasedPercent, writerReleasedPercent);
-				Helper.goToStudyfaq();
-				Helper.sleep(2);
-				// берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(orderUrl);
-				// релизим писателю 90%
-				orderInProgressPage.releaseMoney("80");
-				Helper.sleep(2);
-				//orderFinishedViewPage.closePopup();
-				// получаем занчение % релизнутых денег на странице клиента
-				customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-				assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
-				Helper.sleep(2);
-				Helper.goToStudyfaq();
-				Helper.sleep(2);
-				// берем урл страницы заказа из переменной и переходим по нему
-				Helper.driver.get(writerUrl);
-				// получаем занчение % релизнутых денег на странице писателя
-				writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-				// сравниваем значения релизнутых денег у клиента и у писателя
-				assertEquals(customerReleasedPercent, writerReleasedPercent);
-				//проверяем наличие текста order finished 
-				assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
-				Helper.sleep(2);
-				//headerMenu.userLogOut();
-				System.out.println("TEST PASSED");
 
-			}
 }

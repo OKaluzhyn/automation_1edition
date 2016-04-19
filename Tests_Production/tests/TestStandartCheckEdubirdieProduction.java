@@ -64,7 +64,7 @@ public class TestStandartCheckEdubirdieProduction {
 		// create order
 	    Helper.sleep(1);
 		orderCreateCustomerPage.createOrder("test for webdriver", "test");
-		assertTrue(Helper.driver.getCurrentUrl().contains("order#redirect_url="));
+		//assertTrue(Helper.driver.getCurrentUrl().contains("order#redirect_url="));
 		Helper.sleep(1);
 		//релодим страницу чтобы получить ссылку
 		Helper.driver.navigate().refresh();
@@ -88,13 +88,14 @@ public class TestStandartCheckEdubirdieProduction {
 		// создаем бид
 		orderBiddingWriterPage.createBid("6"); 
 		Helper.sleep(2);
-		Helper.goToEdubirdie();
-		Helper.sleep(1);
+		//Helper.goToEdubirdie();
+		//Helper.sleep(1);
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
 		Helper.sleep(2);
 		// выбираем бид первого писателя
 		orderBiddingCustomerPage.bid1();
+		Helper.sleep(2);
 		// подтвержаем бид, переходим на страницу оплаты
 		orderPayCustomerPage.choosePayPal();
 		Helper.sleep(2);
@@ -110,31 +111,31 @@ public class TestStandartCheckEdubirdieProduction {
 		//Helper.sleep(30);
 		//payPalPage.confirmPayPal_2(Config.paypall_login, Config.paypall_pass);
 		Helper.sleep(2);
-		Helper.goToEdusson();
-		Helper.sleep(1);
+		//Helper.goToEdusson();
+		//Helper.sleep(1);
 		//берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(writerUrl);
 	    //загружаем ревизию
 		orderInProgressPage.uploadRevision();
 		Helper.sleep(2);
-		Helper.goToEdubirdie();
-		Helper.sleep(2);
+		//Helper.goToEdubirdie();
+		//Helper.sleep(2);
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
 	    // релизим писателю 10%
 	    orderInProgressPage.releaseMoney("20");
 	    // получаем занчение % релизнутых денег на странице клиента
 	    customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-	    Helper.goToEdusson();
-		Helper.sleep(2);
+	   // Helper.goToEdusson();
+		//Helper.sleep(2);
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(writerUrl);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
 		// сравниваем значения релизнутых денег у клиента и у писателя
 		assertEquals(customerReleasedPercent, writerReleasedPercent);
-		Helper.goToEdubirdie();
-		Helper.sleep(2);
+		//Helper.goToEdubirdie();
+		//Helper.sleep(2);
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(orderUrl);
 		// релизим писателю 90%
@@ -145,8 +146,8 @@ public class TestStandartCheckEdubirdieProduction {
 		customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
 		assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
 		Helper.sleep(2);
-		Helper.goToEdusson();
-		Helper.sleep(2);
+		//Helper.goToEdusson();
+		//Helper.sleep(2);
 		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(writerUrl);
 		// получаем занчение % релизнутых денег на странице писателя
@@ -179,7 +180,7 @@ public class TestStandartCheckEdubirdieProduction {
 				// create order
 			    Helper.sleep(1);
 				orderCreateCustomerPage.createOrder("test for webdriver", "test");
-				assertTrue(Helper.driver.getCurrentUrl().contains("order#redirect_url="));
+				//assertTrue(Helper.driver.getCurrentUrl().contains("order#redirect_url="));
 				Helper.sleep(1);
 				//релодим страницу чтобы получить ссылку
 				Helper.driver.navigate().refresh();
@@ -203,44 +204,45 @@ public class TestStandartCheckEdubirdieProduction {
 				// создаем бид
 				orderBiddingWriterPage.createBid("6"); 
 				Helper.sleep(2);
-				Helper.goToEdubirdie();
-				Helper.sleep(1);
+				//Helper.goToEdubirdie();
+				//Helper.sleep(1);
 				// берем урл страницы заказа из переменной и переходим по нему
 				Helper.driver.get(orderUrl);
 				Helper.sleep(2);
 				// выбираем бид первого писателя
 				orderBiddingCustomerPage.bid1();
+				Helper.sleep(2);
 				// подтвержаем бид, переходим на страницу оплаты
 				orderPayCustomerPage.chooseCardPay();
 				Helper.sleep(2);
 				orderPayCustomerPage.clickReserveButton();
 				creditCardPayment.setAllFields();
 				Helper.sleep(60);
-				Helper.goToEdusson();
-				Helper.sleep(1);
+				//Helper.goToEdusson();
+				//Helper.sleep(1);
 				//берем урл страницы заказа из переменной и переходим по нему
 				Helper.driver.get(writerUrl);
 			    //загружаем ревизию
 				orderInProgressPage.uploadRevision();
 				Helper.sleep(2);
-				Helper.goToEdubirdie();
-				Helper.sleep(2);
+				//Helper.goToEdubirdie();
+				//Helper.sleep(2);
 				// берем урл страницы заказа из переменной и переходим по нему
 				Helper.driver.get(orderUrl);
 			    // релизим писателю 10%
 			    orderInProgressPage.releaseMoney("20");
 			    // получаем занчение % релизнутых денег на странице клиента
 			    customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-			    Helper.goToEdusson();
-				Helper.sleep(2);
+			   // Helper.goToEdusson();
+				//Helper.sleep(2);
 				// берем урл страницы заказа из переменной и переходим по нему
 				Helper.driver.get(writerUrl);
 				// получаем занчение % релизнутых денег на странице писателя
 				writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
 				// сравниваем значения релизнутых денег у клиента и у писателя
 				assertEquals(customerReleasedPercent, writerReleasedPercent);
-				Helper.goToEdubirdie();
-				Helper.sleep(2);
+				//Helper.goToEdubirdie();
+				//Helper.sleep(2);
 				// берем урл страницы заказа из переменной и переходим по нему
 				Helper.driver.get(orderUrl);
 				// релизим писателю 90%
@@ -251,8 +253,8 @@ public class TestStandartCheckEdubirdieProduction {
 				customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
 				assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
 				Helper.sleep(2);
-				Helper.goToEdusson();
-				Helper.sleep(2);
+				//Helper.goToEdusson();
+				//Helper.sleep(2);
 				// берем урл страницы заказа из переменной и переходим по нему
 				Helper.driver.get(writerUrl);
 				// получаем занчение % релизнутых денег на странице писателя

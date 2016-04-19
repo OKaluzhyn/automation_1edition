@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 
 
 
+
 import utils.Helper;
 
 
@@ -34,6 +35,7 @@ public class OrderCreateCustomerPage  {
 	public static String nextButton2 = "//div[@id='step-2']//button[@data-atest='atest_order_create_elem_next_btn']";
 	public static String paperInstruction = "//textarea[@data-atest='atest_order_create_form_description']";
 	public static String uploadFiles = "//a[@data-atest='atest_order_create_elem_file_download']";
+	public static String nextButton3 = "//div[@id='step-3']//button[@data-atest='atest_order_create_elem_next_btn']";
 	
 	public static String vas1 = "//label[@data-atest='atest_order_create_elem_vas_1']";
 	public static String startBiddingButton = "//button[@data-atest='atest_order_create_form_submit']";
@@ -182,6 +184,37 @@ public class OrderCreateCustomerPage  {
 		
 	}
 	
-	
+	public void createOrderForStudyfaq(String strTopic, String strDescription){
+		this.selectTypeOfPaper();
+		this.setTopic(strTopic);
+		this.orderDescription(strDescription);
+		this.clicUpload();
+		Helper.sleep(7);
+		this.proceedToBidding();
+	}
+
+		public void createOrderForOtherSites(String strTopic, String strDescription){
+			this.selectTypeOfPaper();
+			this.setTopic(strTopic);
+			this.selectSubject();
+			this.clickNext1();
+			this.setnumOfCitation();
+			this.selectformatOfCitation();
+			Helper.sleep(1);
+			this.clickNext2();
+			Helper.sleep(1);
+			this.orderDescription(strDescription);
+			Helper.sleep(1);
+			this.clicUpload();
+			Helper.sleep(7);
+			this.clickNext3();
+			this.proceedToBidding();
+		}
+
+		private void clickNext3() {
+			WebElement next_button_3 = Helper.cyclicElementSearchByXpath(nextButton3);
+			next_button_3.click();
+			
+		}
 	
 }
