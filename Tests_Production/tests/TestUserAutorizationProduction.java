@@ -18,7 +18,7 @@ public class TestUserAutorizationProduction {
 
 	@Before
 	public void setUp(){
-		Helper.driverSetUp("http://edusson.com");
+		Helper.driverSetUp();
 
 	}
 
@@ -32,6 +32,7 @@ public class TestUserAutorizationProduction {
 	public void customerAuthorization() throws Exception {
 		Helper.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
 		Helper.driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		Helper.goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);
@@ -44,6 +45,7 @@ public class TestUserAutorizationProduction {
 	@Test
 	// success writer authorization
 	public void writerAuthorization() throws Exception {
+		Helper.goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		// логинимя писателем
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
@@ -59,6 +61,7 @@ public class TestUserAutorizationProduction {
 	@Test
 	// login as deactivate User
 	public void loginAsDeactivateUser() throws Exception {
+		Helper.goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		// логинимся деактивированным пользователем
 		userAuthorizationPage.LogClick();
@@ -73,6 +76,7 @@ public class TestUserAutorizationProduction {
 
 	@Test
 	public void loginWithWrongPassword() throws Exception {
+		Helper.goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		// логинимся с верным логином, неверным паролем
 		userAuthorizationPage.logIn(Config.customer1, Config.wrongPassword);
@@ -82,6 +86,7 @@ public class TestUserAutorizationProduction {
 
 	@Test
 	public void loginWithEmptyEmail() throws Exception {
+		Helper.goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		// нажимаем кнопку логин, не заполняя поля формы авторизации
 		userAuthorizationPage.LogClick();

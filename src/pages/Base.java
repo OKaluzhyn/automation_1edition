@@ -39,7 +39,7 @@ public class Base {
 	
 	@Before
 	public void setUp() throws Exception {
-		Helper.driverSetUp("http://edusson.com.test8/");
+		Helper.driverSetUp();
 	}
 	
 	/*@Test
@@ -91,6 +91,7 @@ public class Base {
 	// 10%+90%
 	
 	public void standartCheck_PAyPal_Production_Edusson() throws Exception {
+		Helper.goToEdusson();
 		// инициализация страниц
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();

@@ -13,7 +13,7 @@ public class TestUserForgotPassProduction {
 
 	@Before
 	public void setUp(){
-		Helper.driverSetUp("http://edusson.com");
+		Helper.driverSetUp();
 
 	}
 
@@ -25,6 +25,7 @@ public class TestUserForgotPassProduction {
 	@Test
 	// успешное восстановления пароля
 	public void forgotPass() {
+		Helper.goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		userAuthorizationPage.forgotPasswordSuccess(Config.emailForForgotPassword);
 		
@@ -33,6 +34,7 @@ public class TestUserForgotPassProduction {
 	@Test
 	// отправка формы с пустым полем Email
 	public void forgotPassWithoutEmail() {
+		Helper.goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		userAuthorizationPage.forgotPassNoEmail("");
 		

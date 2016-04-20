@@ -16,7 +16,7 @@ import utils.Helper;
 
 public class NewLocatorsCheking {
 	//XPath для эелементов страницы авторизации
-		public static String login_link = "//span[@data-atest='atest_login_elem_popup_open']";
+		public static String login_link = "//a[@data-atest='atest_login_elem_popup_open']";
 		public static String usre_Name_field = "//input[@data-atest='atest_login_form_email']";
 		public static String continue_button = "//button[@data-atest='atest_login_form_submit']";
 		public static String user_Password_field = "//input[@data-atest='atest_login_form_password']";
@@ -28,10 +28,13 @@ public class NewLocatorsCheking {
 		public static String success_pass_change = "f";
 		public static String error_pass_change = "//div[@class='errorText js_forgot_pass_error']";
 		public static String errorMessage = "//div[@class='errorText']";
-		
+		String siteUrl; 
+		public static void main(String[] args){
+			
+		}
 		@Before
 		public void setUp() throws Exception {
-			Helper.driverSetUp("http://edusson.com.test8/");
+			Helper.driverSetUp();
 		}
 		@After
 		public void theEnd(){
@@ -39,9 +42,18 @@ public class NewLocatorsCheking {
 					
 			}
 		@Test
+		
 		public void auth(){
+			String [] sites = {"http://paperial.com/", "http://paperdon.com/", "http://phdify.com/", "http://papersowl.com/"};
+	    	for (int i = 0; i<sites.length; i++){
+	    	   	
+	    	siteUrl = sites[i];
+	    //	System.out.println(siteUrl);
+	    	Helper.driver.get(siteUrl);
 			this.logIn(Config.customer1, Config.password);
 			Helper.sleep(1);
+			System.out.println(Helper.driver.getCurrentUrl());
+	    	}
 			//Helper.isElementPresent("//div[@data-atest='atest_order_bid_elem_bid_open']");
 			/*if (Helper.driver.getTitle().equals("Edusson.com - My Orders")){
 			

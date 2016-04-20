@@ -48,7 +48,7 @@ public class TestStandartCheckEdubirdieProduction {
 	
 	@Before
 	public void setUp() throws Exception {
-		Helper.driverSetUp("http://edubirdie.com/");
+		Helper.driverSetUp();
 	}
 	
     @Test
@@ -56,6 +56,7 @@ public class TestStandartCheckEdubirdieProduction {
 	// 20%+80%
 	
 	public void standartCheck_PAyPal_Production_Edubirdie() throws Exception {
+    	Helper.driver.get("http://edubirdie.com/");
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);
@@ -172,6 +173,7 @@ public class TestStandartCheckEdubirdieProduction {
 			// 20%+80%
 			
 			public void standartCheck_CreditCard_Production_Edubirdie() throws Exception {
+			    Helper.driver.get("http://edubirdie.com/");
 				// логинимся клиентом
 				userAuthorizationPage.logIn(Config.customer1, Config.password);
 				Helper.sleep(1);

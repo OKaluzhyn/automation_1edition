@@ -31,6 +31,18 @@ public class UserAuthorizationPage {
 	// нажать кнопку логин на главной - открывает форму авторизации
 	//public static String messageForDeactivateUser = "//div[@class='errorText']";
 	
+	private String login = "//a[@data-atest='atest_login_elem_popup_open']";
+	 public void setloginLink(String login)
+	    {
+	      this.login = login;
+	    }
+	    
+	    public String getloginLink()
+	    {
+	      return this.login;
+	    }
+	    
+	
 	public void LogClick(){
 		WebElement openAuthorizationPopUp = Helper.cyclicElementSearchByXpath(login_link);
 		openAuthorizationPopUp.click();
@@ -171,7 +183,7 @@ public class UserAuthorizationPage {
 			return false;
 		}
 	}
-
+	
 	
 
 	

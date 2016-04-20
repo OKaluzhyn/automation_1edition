@@ -17,6 +17,14 @@ public class OrderBiddingWriterPage  {
 	public static String changeButton = "//button[@data-atest='atest_order_view_writer_bidding_elem_change_btn']";
 	
 	//public static String bidAmount = "//input[@data-atest='atest_order_view_writer_bidding_form_bid_value']";
+	
+	//easy bidding
+	public static String easyBiddingapplyButton = "//input[@value='Apply for this order']";
+	
+	public void easyBiddingApplyprice(){
+		WebElement easy_bidding_apply_button = Helper.cyclicElementSearchByXpath(easyBiddingapplyButton);
+		easy_bidding_apply_button.click();
+	}
 
 	public void setPrice(String strBidPrice) {
 		WebElement bid_price = Helper.cyclicElementSearchByXpath(bidPrice);

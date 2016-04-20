@@ -6,6 +6,7 @@ package junit;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import tests.TestEasyBiddingStandart;
 import tests.TestOrderCreateEditCancelProduction;
 import tests.TestStandartCheckEdubirdieProduction;
 import tests.TestStandartCheckStudyfaqProduction;
@@ -27,6 +28,7 @@ import tests.TestStandartCheckEdussonProduction;
          TestOrderCreateEditCancelProduction.class,
          TestStandartCheckEdubirdieProduction.class,
          TestStandartCheckStudyfaqProduction.class,
+         TestEasyBiddingStandart.class
          })
 	    	
 public class TestSuite1 {

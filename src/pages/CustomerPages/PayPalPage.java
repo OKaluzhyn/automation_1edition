@@ -1,5 +1,7 @@
 package pages.CustomerPages;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,9 +19,12 @@ public class PayPalPage  {
 	public static String email = "//input[@id='email']";
 	public static String pass = "//input[@id='password']";
 	public static String logInButton = "//button[@type='submit']";
+	public static String frame = "//iframe[@name='injectedUl']";
 	// confirm pay - next page
 	public static String continueButton = "//div[@id='main']//input[@id='confirmButtonTop']";
 	
+	
+	public static String currentUrl;
 
 	public void setUserEmail(String strUserEmail) {
 		WebElement e_mail = Helper.cyclicElementSearchByXpath(email);
@@ -49,7 +54,7 @@ public class PayPalPage  {
 	}
 	@Before
 	public void setUp(){
-		Helper.driverSetUp("https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-9UV03772AM347504S#/checkout/login");
+		Helper.driverSetUp();
 
 	}
 
@@ -72,6 +77,10 @@ public void fhdfh(){
 }
 
 	public void confirmPayPal(String strUserEmail, String strPassword) {
+		//Helper.driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+		
+		if(Helper.isElementPresent(frame) == true)
+		{
 		Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
 		this.setUserEmail(strUserEmail);
 		this.setUserPassword(strPassword);
@@ -79,11 +88,12 @@ public void fhdfh(){
 		Helper.driver.switchTo().defaultContent();
 		this.clickContinue();
 		Helper.sleep(10);
-		
-		
-		//Helper.sleep(10);
-
-	}
+		}
+		else 
+		{this.clickContinue();
+		Helper.sleep(10);
+		}
+		}
 	
 	 //second log in
 	public static String email2 = "//input[@id='login_email']";

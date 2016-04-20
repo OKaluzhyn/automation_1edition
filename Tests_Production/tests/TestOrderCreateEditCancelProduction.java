@@ -28,7 +28,7 @@ public class TestOrderCreateEditCancelProduction {
 
 	@Before
 	public void setUp(){
-		Helper.driverSetUp("http://edusson.com");
+		Helper.driverSetUp();
 
 	}
 
@@ -52,7 +52,7 @@ public class TestOrderCreateEditCancelProduction {
 		AttentionBeforOrderEditingCustomerPopUp attentionBeforOrderEditingCustomerPopUp = new AttentionBeforOrderEditingCustomerPopUp();
 		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
 		OrderCancelViewPage orderCancelViewPage = new OrderCancelViewPage();
-
+		Helper.goToEdusson();
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);

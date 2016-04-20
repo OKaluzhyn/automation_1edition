@@ -3,6 +3,8 @@ package tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import javax.swing.Spring;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,17 +24,15 @@ import pages.WriterPages.OrderBiddingWriterPage;
 import utils.Config;
 import utils.Helper;
 
-public class EasyBiddingStandart {
+public class TestEasyBiddingStandart {
 	
-	public String orderUrl;
-	public String siteUrl = "http://paperial.com/";
-	public String orderId = orderUrl.substring(30);
-	public String writerUrl = "http://edusson.com/order/view/"+orderId;;
-	public String customerUrl = siteUrl+"order/view/"+orderId;
-	
-	
-	public String customerReleasedPercent;
-	public String writerReleasedPercent;
+	String orderUrl; //= Helper.driver.getCurrentUrl();
+	String siteUrl; //= "http://paperial.com/";
+	String orderId; //= Helper.driver.getCurrentUrl().substring(30);
+	String writerUrl; //= "http://edusson.com/order/view/"+orderId;
+    String customerUrl; //= siteUrl+"order/view/"+orderId;
+    String customerReleasedPercent;
+	String writerReleasedPercent;
 	// инициализация страниц
 			UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 			MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
@@ -47,18 +47,31 @@ public class EasyBiddingStandart {
 			OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
 			OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
 			CreditCardPayment creditCardPayment = new CreditCardPayment();
+			
 	
 	
 	@Before
 	public void setUp() throws Exception {
-		Helper.driverSetUp("http://paperial.com/");
+		Helper.driverSetUp();
 	}
 	
     @Test
 	// у клиента на балансе 0, оплата заказа через PayPall, релиз пистаелю
 	// 20%+80%
 	
-	public void standartCheck_EasyBidding_Production_Edubirdie() throws Exception {
+	public void standartCheck_EasyBidding_Production_All() throws Exception {
+    	
+    	String [] sites = {"http://paperial.com/", 
+    			"http://essayontime.com.au/", 
+    			"http://phdify.com/", 
+    			"http://customwriting.com/", 
+    			"http://typemyessays.com/"};
+    	for (int i = 0; i<sites.length; i++){
+    	    	
+    	siteUrl = sites[i];
+    	Helper.driver.get(siteUrl);
+    	
+    	
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);
@@ -70,88 +83,95 @@ public class EasyBiddingStandart {
 		Helper.sleep(2);
 		assertTrue(Helper.driver.getCurrentUrl().contains("/order/pay/"));
 		Helper.sleep(1);
-		//релодим страницу чтобы получить ссылку
-		//Helper.driver.navigate().refresh();
-		// сохраняем урл страницы текущего заказа в переменную
-	    orderUrl = Helper.driver.getCurrentUrl();
-	    //orderId = orderUrl.substring(30);
-	    System.out.println(orderId);
-	   // writerUrl = "http://edusson.com/order/view/"+orderId;
+		 if (siteUrl == "http://paperial.com/")
+		    {
+		    orderId = Helper.driver.getCurrentUrl().substring(30);
+		    System.out.println(orderId);
+		    }
+		    else if (siteUrl == "http://essayontime.com.au/")
+		    {
+		     	orderId = Helper.driver.getCurrentUrl().substring(36);
+			    System.out.println(orderId);
+		    }
+		    else if (siteUrl == "http://phdify.com/")
+		    {
+		     	orderId = Helper.driver.getCurrentUrl().substring(28);
+			    System.out.println(orderId);
+		    }
+		    else if (siteUrl == "http://customwriting.com/")
+		    {
+		     	orderId = Helper.driver.getCurrentUrl().substring(35);
+			    System.out.println(orderId);
+		    }
+		    else if (siteUrl == "http://typemyessays.com/")
+		    {
+		     	orderId = Helper.driver.getCurrentUrl().substring(34);
+			    System.out.println(orderId);
+		    }
+		    
+		    writerUrl = "http://edusson.com/order/view/"+orderId;
+		    customerUrl = siteUrl+"order/view/"+orderId;
+			Helper.sleep(1);
+			
+		//reserve money
+		orderPayCustomerPage.reserveMoney();
 		Helper.sleep(1);
+		// логинимся в PayPall и подтвержаем оплату
+		payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+		Helper.sleep(2);
+		//assert thankyou page
+		assertTrue(Helper.driver.getCurrentUrl().contains("thankyou"));
+		Helper.driver.get(customerUrl);
+		//assert true - text is present
+		assertTrue(Helper.isElementPresent("//*[text()='Your payment was successful, we are searching for the best writer now. Please wait a few minutes.']"));
+		
+		// логинимся писателем
 		Helper.goToEdusson();
 		Helper.sleep(1);
-		// логинимся писателем
+		if(Helper.isElementPresent(userAuthorizationPage.getloginLink()) == true)
+		{
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
 		//закрываем райтерский попап
 		Helper.sleep(2);
 		myOrdersWriterPage.closePopup();
-		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(writerUrl);
+		}
+		else
+		{
+			Helper.driver.get(writerUrl);
+		}
+		
+		// берем урл страницы заказа из переменной и переходим по нему
+		
 		Helper.sleep(2);
 		System.out.println(Helper.driver.getCurrentUrl());
 		// создаем бид
-		orderBiddingWriterPage.createBid("6"); 
+		orderBiddingWriterPage.easyBiddingApplyprice();
 		Helper.sleep(2);
-		Helper.goToStudyfaq();
-		Helper.sleep(1);
-		// берем урл страницы заказа из переменной и переходим по нему
-		Helper.driver.get(orderUrl);
-		Helper.sleep(2);
-		// выбираем бид первого писателя
-		orderBiddingCustomerPage.bid1();
-		// подтвержаем бид, переходим на страницу оплаты
-		orderPayCustomerPage.choosePayPal();
-		Helper.sleep(2);
-		orderPayCustomerPage.clickReserveButton();
-		//переключаемся на frame на странице пейпала
-		//Helper.sleep(1);
-		//Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
-		Helper.sleep(1);
-		// логинимся в PayPall и подтвержаем оплату
-		payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-		//payPalPage.clickContinue();
-		// ждем возвращения на сайт
-		//Helper.sleep(30);
-		//payPalPage.confirmPayPal_2(Config.paypall_login, Config.paypall_pass);
-		Helper.sleep(2);
-		Helper.goToEdusson();
-		Helper.sleep(1);
-		//берем урл страницы заказа из переменной и переходим по нему
-		Helper.driver.get(writerUrl);
-	    //загружаем ревизию
+		//загружаем ревизию
 		orderInProgressPage.uploadRevision();
 		Helper.sleep(2);
-		Helper.goToStudyfaq();
-		Helper.sleep(2);
-		// берем урл страницы заказа из переменной и переходим по нему
-		Helper.driver.get(orderUrl);
-	    // релизим писателю 10%
-	    orderInProgressPage.releaseMoney("20");
+		Helper.driver.get(customerUrl);
+	    // релизим писателю 30%
+	    orderInProgressPage.releaseMoney("30");
 	    // получаем занчение % релизнутых денег на странице клиента
 	    customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-	    Helper.goToEdusson();
-		Helper.sleep(2);
-		// берем урл страницы заказа из переменной и переходим по нему
+	   	Helper.sleep(2);
 		Helper.driver.get(writerUrl);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
 		// сравниваем значения релизнутых денег у клиента и у писателя
 		assertEquals(customerReleasedPercent, writerReleasedPercent);
-		Helper.goToStudyfaq();
 		Helper.sleep(2);
-		// берем урл страницы заказа из переменной и переходим по нему
-		Helper.driver.get(orderUrl);
-		// релизим писателю 90%
-		orderInProgressPage.releaseMoney("80");
+		Helper.driver.get(customerUrl);
+		// релизим писателю 70%
+		orderInProgressPage.releaseMoney("70");
 		Helper.sleep(2);
 		//orderFinishedViewPage.closePopup();
 		// получаем занчение % релизнутых денег на странице клиента
 		customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
 		assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
 		Helper.sleep(2);
-		Helper.goToStudyfaq();
-		Helper.sleep(2);
-		// берем урл страницы заказа из переменной и переходим по нему
 		Helper.driver.get(writerUrl);
 		// получаем занчение % релизнутых денег на странице писателя
 		writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
@@ -161,9 +181,11 @@ public class EasyBiddingStandart {
 		assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
 		Helper.sleep(2);
 		//headerMenu.userLogOut();
+		//Helper.sleep(2);
 		System.out.println("TEST PASSED");
-
+    	}
 	}
+    
 
 		@After
 	public void theEnd(){

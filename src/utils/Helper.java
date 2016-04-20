@@ -14,13 +14,13 @@ public class Helper {
 	public static WebDriver driver;
 	
 	
-public static void driverSetUp(String siteUrl){
+public static void driverSetUp(){
 	System.setProperty("webdriver.chrome.driver","D:\\AUTO_TESTING\\downloads\\ChromeDriver\\chromedriver.exe");	
 	driver = new ChromeDriver();
 	driver.manage().window().maximize();
 	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
 	driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
-	driver.get(siteUrl);
+	//driver.get(siteUrl);
 
 	
 }

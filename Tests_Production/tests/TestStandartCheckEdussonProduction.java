@@ -47,7 +47,7 @@ public class TestStandartCheckEdussonProduction {
 
 	@Before
 	public void setUp() throws Exception {
-		 Helper.driverSetUp("http://edusson.com/");
+		 Helper.driverSetUp();
 		 
 		
 
@@ -63,7 +63,7 @@ public class TestStandartCheckEdussonProduction {
 	// 10%+90%
 	
 	public void standartCheck_PAyPal_Production_Edusson() throws Exception {
-		
+		Helper.goToEdusson();
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);
@@ -216,6 +216,7 @@ public class TestStandartCheckEdussonProduction {
 		MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
 //for (int i=0; i<=10; i++){
+		Helper.goToEdusson();
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);

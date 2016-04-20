@@ -47,7 +47,7 @@ public class TestStandartCheckStudyfaqProduction {
 	
 	@Before
 	public void setUp() throws Exception {
-		Helper.driverSetUp("http://studyfaq.com/");
+		Helper.driverSetUp();
 	}
 	
     @Test
@@ -55,6 +55,7 @@ public class TestStandartCheckStudyfaqProduction {
 	// 20%+80%
 	
 	public void standartCheck_PAyPal_Production_Studyfaq() throws Exception {
+    	Helper.goToStudyfaq();;
 		// логинимся клиентом
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		Helper.sleep(1);
@@ -171,6 +172,7 @@ public class TestStandartCheckStudyfaqProduction {
 			// 20%+80%
 			
 			public void standartCheck_CreditCard_Production_Studyfaq() throws Exception {
+			    Helper.goToStudyfaq();;
 				// логинимся клиентом
 				userAuthorizationPage.logIn(Config.customer1, Config.password);
 				Helper.sleep(1);
