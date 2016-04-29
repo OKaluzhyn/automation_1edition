@@ -119,7 +119,7 @@ public class TestStandartCheckEdussonProduction {
 		// ждем возвращения на сайт
 		//Helper.sleep(30);
 		//payPalPage.confirmPayPal_2(Config.paypall_login, Config.paypall_pass);
-		Helper.sleep(2);
+		//Helper.sleep(2);
 		// разлогиниваемся клиентом
 		headerMenu.userLogOut();
 		Helper.sleep(1);

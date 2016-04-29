@@ -33,4 +33,14 @@ public class OrderPayCustomerPage  {
 		WebElement reserve_button = Helper.cyclicElementSearchByXpath(reserveMoney);
 		reserve_button.click();
 	}
+	
+	public void confirmPay()
+	{
+		if(Helper.isElementPresent(makeDepositButton)){
+			this.clickReserveButton();
+		}
+		else if (Helper.isElementPresent(reserveMoney)){
+			this.reserveMoney();
+		}
+	}
 }

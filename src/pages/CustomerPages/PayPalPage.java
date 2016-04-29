@@ -77,7 +77,7 @@ public void fhdfh(){
 }
 
 	public void confirmPayPal(String strUserEmail, String strPassword) {
-		//Helper.driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+		Helper.driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		
 		if(Helper.isElementPresent(frame) == true)
 		{
@@ -85,6 +85,7 @@ public void fhdfh(){
 		this.setUserEmail(strUserEmail);
 		this.setUserPassword(strPassword);
 		this.clickLogBut();
+		Helper.sleep(10);
 		Helper.driver.switchTo().defaultContent();
 		this.clickContinue();
 		Helper.sleep(10);
@@ -92,6 +93,12 @@ public void fhdfh(){
 		else 
 		{this.clickContinue();
 		Helper.sleep(10);
+		}
+		if(Helper.isElementPresent(email2) == true)
+		{this.confirmPayPal_2(strUserEmail, strPassword);
+		}
+		else if  (Helper.isElementPresent(confirmButton) == true)
+		{this.clickConfirm();
 		}
 		}
 	
