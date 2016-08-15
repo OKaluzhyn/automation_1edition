@@ -1,19 +1,8 @@
 package ua.qa.edusson.tests;
 
-import static org.junit.Assert.assertTrue;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import pages.CommonPages.UserAuthorizationPage;
-import pages.CustomerPages.OrderCreateCustomerPage;
-import pages.WriterPages.WriterProfile;
-import ua.qa.edusson.utils.Config;
-import ua.qa.edusson.utils.Helper;
 
 public class TestRequestWriter {
-	
+/*
 	public String writerProfileUrl = "";
 	
 	
@@ -51,5 +40,5 @@ public class TestRequestWriter {
 		Helper.isElementPresent(writerProfile.popUpHireWriter);
 		writerProfile.applyRequest();
 		
-	}
+	}*/
 }

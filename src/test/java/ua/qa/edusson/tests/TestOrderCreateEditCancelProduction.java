@@ -1,29 +1,8 @@
 package ua.qa.edusson.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import pages.CommonPages.HeaderMenu;
-import pages.CommonPages.OrderCancelPopUp;
-import pages.CommonPages.OrderCancelViewPage;
-import pages.CommonPages.UserAuthorizationPage;
-import pages.CustomerPages.AttentionBeforOrderEditingCustomerPopUp;
-import pages.CustomerPages.MyOrdersCustomerPage;
-import pages.CustomerPages.OrderBiddingCustomerPage;
-import pages.CustomerPages.OrderCreateCustomerPage;
-import pages.WriterPages.MyOrdersWriterPage;
-import pages.WriterPages.OrderBiddingWriterPage;
-import ua.qa.edusson.utils.Config;
-import ua.qa.edusson.utils.Helper;
-
 public class TestOrderCreateEditCancelProduction {
 	
-
+/*
 	public String orderUrlForEdition;
 
 	@Before
@@ -205,6 +184,6 @@ public class TestOrderCreateEditCancelProduction {
 	    // ��������� ���������, ��� ����� ������ ��� ����������
 	 	assertEquals("Edusson.com - Order is not available", Helper.driver.getTitle());
 	}
-
+*/
 	
 	}

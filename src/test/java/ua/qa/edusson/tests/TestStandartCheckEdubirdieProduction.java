@@ -1,28 +1,5 @@
 package ua.qa.edusson.tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import pages.CommonPages.HeaderMenu;
-import pages.CommonPages.OrderFinishedViewPage;
-import pages.CommonPages.OrderInProgressPage;
-import pages.CommonPages.UserAuthorizationPage;
-import pages.CustomerPages.CreditCardPayment;
-import pages.CustomerPages.MyOrdersCustomerPage;
-import pages.CustomerPages.OrderBiddingCustomerPage;
-import pages.CustomerPages.OrderCreateCustomerPage;
-import pages.CustomerPages.OrderPayCustomerPage;
-import pages.CustomerPages.PayPalPage;
-import pages.WriterPages.MyOrdersWriterPage;
-import pages.WriterPages.OrderBiddingWriterPage;
-import ua.qa.edusson.utils.Config;
-import ua.qa.edusson.utils.Helper;
-
-
 public class TestStandartCheckEdubirdieProduction {
 	public String orderUrl;
 	public String orderId;
@@ -30,7 +7,7 @@ public class TestStandartCheckEdubirdieProduction {
 	
 	public String customerReleasedPercent;
 	public String writerReleasedPercent;
-	// ������������� �������
+/*	// ������������� �������
 			UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 			MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
 			OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
@@ -269,6 +246,6 @@ public class TestStandartCheckEdubirdieProduction {
 				//headerMenu.userLogOut();
 				System.out.println("TEST PASSED");
 
-			}
+			}*/
 	}
 

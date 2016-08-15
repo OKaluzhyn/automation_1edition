@@ -1,15 +1,7 @@
 package ua.qa.edusson.tests;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
-
-import pages.CommonPages.UserAuthorizationPage;
-import ua.qa.edusson.utils.Config;
-import ua.qa.edusson.utils.Helper;
-
 public class TestUserForgotPassProduction {
-	
+	/*
 
 	@Before
 	public void setUp(){
@@ -39,5 +31,5 @@ public class TestUserForgotPassProduction {
 		userAuthorizationPage.forgotPassNoEmail("");
 		
 	}
-
+*/
 }
