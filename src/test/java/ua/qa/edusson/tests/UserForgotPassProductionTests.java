@@ -1,23 +1,17 @@
 package ua.qa.edusson.tests;
 
-public class TestUserForgotPassProduction {
-	/*
+import org.testng.annotations.Test;
+import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
+import ua.qa.edusson.utils.Config;
 
-	@Before
-	public void setUp(){
-		Helper.driverSetUp();
+public class UserForgotPassProductionTests extends TestBase {
 
-	}
 
-	@After
-	public void tearDown() {
-		Helper.quit();
-	}
 
 	@Test
 	// �������� �������������� ������
 	public void forgotPass() {
-		Helper.goToEdusson();
+		app.getHelper().goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		userAuthorizationPage.forgotPasswordSuccess(Config.emailForForgotPassword);
 		
@@ -26,10 +20,10 @@ public class TestUserForgotPassProduction {
 	@Test
 	// �������� ����� � ������ ����� Email
 	public void forgotPassWithoutEmail() {
-		Helper.goToEdusson();
+		app.getHelper().goToEdusson();
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		userAuthorizationPage.forgotPassNoEmail("");
 		
 	}
-*/
+
 }

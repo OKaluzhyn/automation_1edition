@@ -3,7 +3,7 @@
 <suite name="Suite1" verbose="1" >
     <test name="Edusson" >
         <classes>
-            <class name="ua.qa.edusson.tests.TestUserAutorizationProduction" />
+            <class name="ua.qa.edusson.tests.UserAutorizationProductionTests" />
         </classes>
     </test>
 

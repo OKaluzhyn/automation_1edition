@@ -15,7 +15,7 @@ import ua.qa.edusson.utils.Helper;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class TestEasyBiddingStandart extends TestBase {
+public class EasyBiddingStandartTests extends TestBase {
 
     String orderUrl; //= Helper.driver.getCurrentUrl();
     String siteUrl; //= "http://paperial.com/";

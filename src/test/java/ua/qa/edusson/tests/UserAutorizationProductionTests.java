@@ -7,7 +7,7 @@ import ua.qa.edusson.utils.Config;
 
 import static org.testng.Assert.assertEquals;
 
-public class TestUserAutorizationProduction extends TestBase{
+public class UserAutorizationProductionTests extends TestBase{
 	
 
 

@@ -1,7 +1,7 @@
 package ua.qa.edusson.tests;
 
 
-public class TestRequestWriter {
+public class RequestWriterTests {
 /*
 	public String writerProfileUrl = "";
 	
