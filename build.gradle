@@ -9,3 +9,9 @@ dependencies {
 compile 'org.testng:testng:6.9.10'
     compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
 }
+
+test {
+    useTestNG{
+        suites 'src/test/resources/testng.xml'
+    }
+}

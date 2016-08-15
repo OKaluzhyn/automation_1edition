@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ua.qa.edusson.pages.NewLocatorsCheking" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-08-15T13:22:38" hostname="WIN-JER1VU06OO2" time="43.689">
+  <properties/>
+  <testcase name="auth" classname="ua.qa.edusson.pages.NewLocatorsCheking" time="43.689"/>
+  <system-out><![CDATA[http://paperial.com/customer/orders
+http://paperdon.com/customer/orders
+http://phdify.com/customer/orders
+http://papersowl.com/customer/orders
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
