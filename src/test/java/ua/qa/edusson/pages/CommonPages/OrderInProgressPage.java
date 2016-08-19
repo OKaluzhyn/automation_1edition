@@ -26,7 +26,7 @@ public class OrderInProgressPage  {
 		work_results.click();
 		WebElement upload_link = app.getHelper().cyclicElementSearchByXpath(uploadLink);
 		upload_link.click();
-		orderCreateCustomerPage.attachFile("C:\\Users\\tester\\resources\\testFile.pdf");
+		app.getHelper().attachFile();
 		
 		
 	}

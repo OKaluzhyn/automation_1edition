@@ -17,7 +17,7 @@ public static String cancel = "//button[@data-atest='atest_order_popup_cancel_el
 
 
 public void chooseReason(){
-	app.getHelper().randomChoiceFromDropdown(reason, "//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']/label[@for]");
+	app.getHelper().randomChoiceFromDropdown("//ul[@data-atest='atest_order_popup_cancel_elem_reason_case']/label[@for]");
 		
 	}
 	

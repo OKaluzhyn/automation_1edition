@@ -34,7 +34,7 @@ public class Config {
 	public static String auto_birdie_customer = ("test.cust@yandex.ru");
 	
 	//PayPall account
-	public static String paypall_login = ("edussonpay3@ukr.net");
+	public static String paypall_login = ("edussonpay4@ukr.net");
 	public static String paypall_pass = ("ghbdtndctv12");
 	
 	public static String deactivateUserStage1 =("auto_deactivate@yopmail.com");

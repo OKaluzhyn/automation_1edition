@@ -3,16 +3,12 @@ package ua.qa.edusson.pages.CustomerPages;
 import org.openqa.selenium.WebElement;
 import ua.qa.edusson.utils.Helper;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
-
 import static ua.qa.edusson.tests.TestBase.app;
 
 
 public class OrderCreateCustomerPage  {
 	
-	// ������������� ��������� ��������
+
 	
 	public static String orderPageName = "//html/body/div[6]/span/span/div/div[1]/div/h1";
 	public static String typeOfPaper = "//div//div[@data-atest='atest_order_create_form_type']";
@@ -42,7 +38,7 @@ public class OrderCreateCustomerPage  {
 	// ��������� ������������ ���� ����� �����
 	// select type
 	public void selectTypeOfPaper() {
-		app.getHelper().randomChoiceFromDropdown(typeOfPaper, "//select[@data-atest='atest_order_create_form_type']/option[@value]");
+		app.getHelper().randomChoiceFromDropdown("//select[@data-atest='atest_order_create_form_type']/option[@value]");
 		
 	}
 
@@ -54,7 +50,7 @@ public class OrderCreateCustomerPage  {
 
 	// select subject
 	public void selectSubject() {
-		app.getHelper().randomChoiceFromDropdown(subject, "//select[@data-atest='atest_order_create_form_subject']/option[@value]");
+		app.getHelper().randomChoiceFromDropdown("//select[@data-atest='atest_order_create_form_subject']/option[@value]");
 		
 	}
 
@@ -73,7 +69,7 @@ public class OrderCreateCustomerPage  {
 
 	// format of citation
 	public void selectformatOfCitation() {
-		app.getHelper().randomChoiceFromDropdown(formatOfCitation, "//select[@data-atest='atest_order_create_form_style']/option[@value]");
+		app.getHelper().randomChoiceFromDropdown("//select[@data-atest='atest_order_create_form_style']/option[@value]");
 				
 	}
 
@@ -91,42 +87,9 @@ public class OrderCreateCustomerPage  {
 				paper_description.sendKeys(strDescription);
 	}
 
-	
-	
-	// �������� ������
-	  public  void setClipboardData(String path) {
-        StringSelection stringSelection = new StringSelection("C:\\Users\\tester\\resources\\testFile.pdf");
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-    }
-
-    public void attachFile(String path) {
-        setClipboardData("path");
-        try {
-        	Robot robot = new Robot();
-    		robot.delay(1000);
-    		robot.keyPress(KeyEvent.VK_CONTROL);
-    		robot.delay(300);
-    		robot.keyPress(KeyEvent.VK_V);
-    		robot.delay(300);
-    		robot.keyRelease(KeyEvent.VK_V);
-    		robot.delay(300);
-    		robot.keyRelease(KeyEvent.VK_CONTROL);
-    		robot.delay(300);
-    		robot.keyPress(KeyEvent.VK_ENTER);
-    		robot.delay(300);
-    		robot.keyRelease(KeyEvent.VK_ENTER);
-    		robot.delay(300);
-        } catch (AWTException e) {
-            e.printStackTrace();
-        }
-    }
-
-    
-
 	public void clicUpload() {
 		app.getHelper().cyclicElementSearchByXpath(uploadFiles).click();
-		//this.setClipboardData("D:\\AUTO_TESTING\\testFiles\\upload_to_webdriver.txt");
-		this.attachFile("C:\\Users\\tester\\resources\\testFile.pdf");
+		app.getHelper().attachFile();
 	}
 
 	
@@ -138,7 +101,7 @@ public class OrderCreateCustomerPage  {
 				bidding_button.click();
 	}
 
-	// �������� ������ ���������
+
 	public void createOrder(String strTopic, String strDescription)
 			 {
 		this.selectTypeOfPaper();
@@ -153,7 +116,7 @@ public class OrderCreateCustomerPage  {
 		this.orderDescription(strDescription);
 		Helper.sleep(1);
 		this.clicUpload();
-		Helper.sleep(7);
+		Helper.sleep(10);
 		this.proceedToBidding();
 	}
 	public void saveChanges(){
