@@ -73,9 +73,9 @@ public void fhdfh(){
             this.setUserEmail(strUserEmail);
             this.setUserPassword(strPassword);
             this.clickLogBut();
-            Helper.sleep(1);
+            Helper.sleep(2);
             app.driver.switchTo().defaultContent();
-            Helper.sleep(1);
+            Helper.sleep(2);
             this.clickContinue();
         }
 

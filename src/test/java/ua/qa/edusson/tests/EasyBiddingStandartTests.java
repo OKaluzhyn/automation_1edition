@@ -41,7 +41,6 @@ public class EasyBiddingStandartTests extends TestBase {
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
 
 
-
     @Test
     // PayPall
     // 20%+80%
@@ -49,7 +48,7 @@ public class EasyBiddingStandartTests extends TestBase {
     public void standartCheck_EasyBidding_Production_All() throws Exception {
 
         String[] sites = {
-            "http://paperial.com/",
+                "http://paperial.com/",
                 "http://essayontime.com.au/",
                 "http://phdify.com/",
                 //"http://customwriting.com/",
@@ -93,6 +92,7 @@ public class EasyBiddingStandartTests extends TestBase {
             orderPayCustomerPage.confirmPay();
             Helper.sleep(1);
             payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+            Helper.sleep(1);
             assertTrue(app.driver.getCurrentUrl().contains("thankyou"));
             app.getHelper().goToEdusson();
             if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink())) {
@@ -125,7 +125,7 @@ public class EasyBiddingStandartTests extends TestBase {
             assertEquals(customerReleasedPercent, writerReleasedPercent);
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             Helper.sleep(2);
-            System.out.println("TEST PASSED");
+            System.out.println("TEST PASSED" + " " + siteUrl);
         }
     }
 

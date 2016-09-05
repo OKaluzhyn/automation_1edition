@@ -7,7 +7,6 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tester on 12.08.2016.
@@ -30,8 +29,6 @@ public class ApplicationManager {
         } else if (Objects.equals(browser, BrowserType.IE)){
             driver = new InternetExplorerDriver();
         }
-
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         helper = new Helper(driver);
     }
