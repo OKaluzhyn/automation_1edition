@@ -35,7 +35,10 @@ public class OrderCreateCustomerPage  {
 	public static String discardChangesButton = "//a[@data-atest='atest_order_edit_elem_discard_changes_btn']";
 	public static String cancelOrderButton = "//a[@data-atest='atest_order_view_in_progress_elem_cancel_order']";
 
-	// ��������� ������������ ���� ����� �����
+	// requested writer
+	public static String writerName = "//p[@class='writer_name']";
+
+
 	// select type
 	public void selectTypeOfPaper() {
 		app.getHelper().randomChoiceFromDropdown("//select[@data-atest='atest_order_create_form_type']/option[@value]");
@@ -173,5 +176,10 @@ public class OrderCreateCustomerPage  {
 			next_button_3.click();
 			
 		}
-	
-}
+
+    public String requestedWriter() {
+		String w = app.getHelper().cyclicElementSearchByXpath(writerName).getAttribute("value");
+		return w;
+	}
+    }
+
