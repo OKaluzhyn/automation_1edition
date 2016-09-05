@@ -16,7 +16,7 @@ public class PayPalPage {
     public static String logInButton = "//button[@type='submit']";
     public static String frame = "//iframe[@name='injectedUl']";
     // confirm pay - next page
-    public static String continueButton = "//div[@id='main']//input[@id='confirmButtonTop']";
+    public static String continueButton = "//form[@name='confirm']//input[@id='confirmButtonTop']";
 
 
     public static String currentUrl;
@@ -66,29 +66,28 @@ public void fhdfh(){
 
 
     public void confirmPayPal(String strUserEmail, String strPassword) {
-        //app.driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
-
-        if (app.getHelper().isElementPresent(frame)) {
+       if (!app.getHelper().isElementPresent(frame)) {
+            this.clickContinue();
+        } else {
             app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
             this.setUserEmail(strUserEmail);
             this.setUserPassword(strPassword);
             this.clickLogBut();
-            	app.driver.switchTo().defaultContent();
-            Helper.sleep(2);
+            Helper.sleep(1);
+            app.driver.switchTo().defaultContent();
+            Helper.sleep(1);
             this.clickContinue();
-        } else {
-            this.clickContinue();
-
         }
-        if (app.getHelper().isElementPresent(email2)) {
+
+     /* if (app.getHelper().isElementPresent(email2)) {
             this.confirmPayPal_2(strUserEmail, strPassword);
            // this.clickConfirm();
         //} else {
             if (app.getHelper().isElementPresent(confirmButton)) {
                 this.clickConfirm();
-            }
-        }
+            }*/
     }
+
 
     //second log in
     public static String email2 = "//input[@id='login_email']";

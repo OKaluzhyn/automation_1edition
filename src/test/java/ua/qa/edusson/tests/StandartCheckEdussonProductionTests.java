@@ -60,6 +60,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         app.driver.navigate().refresh();
         String orderUrl = app.driver.getCurrentUrl();
         app.getHelper().sleep(1);
+        headerMenu.userLogOut();
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
