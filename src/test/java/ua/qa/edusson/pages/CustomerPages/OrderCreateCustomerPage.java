@@ -178,8 +178,8 @@ public class OrderCreateCustomerPage  {
 		}
 
     public String requestedWriter() {
-		String w = app.getHelper().cyclicElementSearchByXpath(writerName).getAttribute("value");
-		return w;
+		return app.getHelper().cyclicElementSearchByXpath(writerName).getText();
+
 	}
     }
 

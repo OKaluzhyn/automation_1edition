@@ -38,21 +38,32 @@ public class RequestWriterTests extends TestBase{
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
 
     @Test
+    public void test(){
+        app.driver.get(writerProfileUrl);
+        System.out.println(writerProfile.writerName());
+    }
+
+    @Test
 	public  void requestWriter(){
         app.getHelper().goToEdusson();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         app.driver.navigate().refresh();
         app.driver.get(writerProfileUrl);
+        String writer = writerProfile.writerName();
 		writerProfile.clickHireButton();
         //app.getHelper().isElementPresent(writerProfile.popUpRequest);
 		writerProfile.clickCreateOrder();
         assertEquals(app.driver.getCurrentUrl(), "http://edusson.com/order?requested_writer=1");
-        assertEquals(writerProfile.writerName(), orderCreateCustomerPage.requestedWriter());
+        assertEquals(writer, orderCreateCustomerPage.requestedWriter());
 		orderCreateCustomerPage.createOrder("test for webdriver - writer request", "test");
-		assertTrue(app.driver.getCurrentUrl().contains("order#redirect_url="));
-        app.driver.navigate().refresh();
+        app.getHelper().sleep(1);
+		app.driver.navigate().refresh();
         String orderUrl = app.driver.getCurrentUrl();
+        headerMenu.userLogOut();
 		userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        app.getHelper().sleep(1);
+        myOrdersWriterPage.closePopup();
+        //райтеру, котрый оффлайн попап не показывается. придумать, как проверить отображение попапа
         app.getHelper().isElementPresent(writerProfile.popUpRequest);
 		writerProfile.viewRequestingOrder();
         assertEquals(app.driver.getCurrentUrl(), orderUrl);

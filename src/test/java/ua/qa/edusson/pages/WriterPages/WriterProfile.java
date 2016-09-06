@@ -24,8 +24,8 @@ public class WriterProfile {
     }
 
     public String writerName(){
-        String w = app.getHelper().cyclicElementSearchByXpath(userName).getAttribute("value");
-        return w;
+        return app.getHelper().cyclicElementSearchByXpath(userName).getText();
+
     }
 
 }
