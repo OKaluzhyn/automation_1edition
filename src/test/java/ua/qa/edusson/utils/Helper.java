@@ -38,7 +38,7 @@ public class Helper {
 
     public WebElement cyclicElementSearchByXpath(String target) {
 
-        for (int i = 0; i < 1000; i++) {
+        for (int i = 0; i < 2000; i++) {
             if (driver.findElements(By.xpath(target)).size() > 0) {
                 break;
             }

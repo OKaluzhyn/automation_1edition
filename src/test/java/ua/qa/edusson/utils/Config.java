@@ -35,7 +35,7 @@ public class Config {
 	
 	//PayPall account
 	public static String paypall_login = ("edussonpay4@ukr.net");
-	public static String paypall_pass = ("ghbdtndctv12");
+	public static String paypall_pass = ("123456789");
 	
 	public static String deactivateUserStage1 =("auto_deactivate@yopmail.com");
 	

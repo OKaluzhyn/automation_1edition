@@ -66,27 +66,28 @@ public void fhdfh(){
 
 
     public void confirmPayPal(String strUserEmail, String strPassword) {
-       if (!app.getHelper().isElementPresent(frame)) {
+        if (!app.getHelper().isElementPresent(frame)) {
             this.clickContinue();
-        } else {
+        } else if(app.getHelper().isElementPresent(frame)){
             app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
             this.setUserEmail(strUserEmail);
             this.setUserPassword(strPassword);
             this.clickLogBut();
             Helper.sleep(2);
+        }
+             if(app.getHelper().isElementPresent(continueButton)){
             app.driver.switchTo().defaultContent();
-            Helper.sleep(2);
-            this.clickContinue();
+            Helper.sleep(3);
+            app.getHelper().cyclicElementSearchByXpath(continueButton).click();
         }
 
-     /* if (app.getHelper().isElementPresent(email2)) {
-            this.confirmPayPal_2(strUserEmail, strPassword);
-           // this.clickConfirm();
-        //} else {
-            if (app.getHelper().isElementPresent(confirmButton)) {
+        else if (app.getHelper().isElementPresent(email2)) {
+                 this.confirmPayPal_2(strUserEmail, strPassword);
+             }
+                     else  if (app.getHelper().isElementPresent(confirmButton)) {
                 this.clickConfirm();
-            }*/
-    }
+            }
+        }
 
 
     //second log in
