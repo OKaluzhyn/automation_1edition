@@ -66,29 +66,23 @@ public void fhdfh(){
 
 
     public void confirmPayPal(String strUserEmail, String strPassword) {
-        if (!app.getHelper().isElementPresent(frame)) {
-            this.clickContinue();
-        } else if(app.getHelper().isElementPresent(frame)){
-            app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
-            this.setUserEmail(strUserEmail);
-            this.setUserPassword(strPassword);
-            this.clickLogBut();
-            Helper.sleep(2);
-        }
-             if(app.getHelper().isElementPresent(continueButton)){
-            app.driver.switchTo().defaultContent();
-            Helper.sleep(3);
+        // if(app.getHelper().isElementPresent(frame)){
+        logInToPayPalMain(strUserEmail, strPassword);
+        app.driver.switchTo().defaultContent();
+        if (app.getHelper().isElementPresent(continueButton)) {
             app.getHelper().cyclicElementSearchByXpath(continueButton).click();
-        }
+        } else if (app.getHelper().isElementPresent(email2)) {
 
-        else if (app.getHelper().isElementPresent(email2)) {
-                 this.confirmPayPal_2(strUserEmail, strPassword);
-             }
-                     else  if (app.getHelper().isElementPresent(confirmButton)) {
-                this.clickConfirm();
-            }
         }
+    }
 
+    private void logInToPayPalMain(String strUserEmail, String strPassword) {
+        app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
+        this.setUserEmail(strUserEmail);
+        this.setUserPassword(strPassword);
+        this.clickLogBut();
+        Helper.sleep(2);
+    }
 
     //second log in
     public static String email2 = "//input[@id='login_email']";
@@ -127,9 +121,14 @@ public void fhdfh(){
     }
 
     public void confirmPayPal_2(String strUserEmail, String strPassword) {
-        this.setUserEmail_2(strUserEmail);
-        this.setUserPassword_2(strPassword);
-        this.clickLogBut_2();
+        if (app.getHelper().isElementPresent(confirmButton)) {
+            this.clickConfirm();
+        } else if (app.getHelper().isElementPresent(email2)) {
+                this.setUserEmail_2(strUserEmail);
+                this.setUserPassword_2(strPassword);
+                this.clickLogBut_2();
+                this.clickConfirm();
+            }
         this.clickConfirm();
+        }
     }
-}
