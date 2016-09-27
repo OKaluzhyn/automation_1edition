@@ -14,7 +14,8 @@ public class OrderInProgressPage  {
 	public static String releaseButton = "//a[@data-atest='atest_order_view_in_progress_elem_release_money_btn']";
 	public static String popUpButtonRelease = "//button[@data-atest='atest_order_view_in_progress_elem_popup_release_confirm']";
 	public static String payCustomerPercent = "//span[@data-atest='atest_order_view_in_progress_elem_paid_progress']";//������� ���������� �����
-	
+	public static String reassignButton = "//a[@data-atest='atest_order_view_in_progress_elem_request_another_writer']";
+
 	//for writer
 	public static String workResults = "//li[@data-atest='atest_order_view_writer_in_progress_elem_tab_work_results']";
 	public static String uploadLink = "//a[@data-atest='atest_order_view_writer_in_progress_elem_upload_attached_files']";
@@ -33,16 +34,16 @@ public class OrderInProgressPage  {
     
    //�������� �������� ���������� ����� %
   	public String checkReleasedMoneyCustomerPage(){
-		app.getHelper().cyclicElementSearchByXpath(payCustomerPercent)
+		return  app.getHelper().cyclicElementSearchByXpath(payCustomerPercent)
   		.getAttribute("value");
-  		  		return ("value");
+
   	}
 	
   //�������� �������� ���������� ����� %
   	public String checkReleasedMoneyWriterPage(){
-		app.getHelper().cyclicElementSearchByXpath(payWriterPercent)
+		return  app.getHelper().cyclicElementSearchByXpath(payWriterPercent)
   		.getAttribute("value");
-  		  		return ("value");
+
   	}
 	
 	public void setCompensationPercent(String strPercent){
@@ -67,5 +68,9 @@ public class OrderInProgressPage  {
 		this.setCompensationPercent(strPercent);
 		this.clickReleaseButton();
 		this.clickConfirmButton();
+	}
+
+	public void clickReassignButton() {
+		app.getHelper().cyclicElementSearchByXpath(reassignButton).click();
 	}
 }

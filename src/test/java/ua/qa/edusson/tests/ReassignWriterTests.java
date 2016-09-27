@@ -1,5 +1,6 @@
 package ua.qa.edusson.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
@@ -34,10 +35,11 @@ public class ReassignWriterTests extends TestBase {
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
+    RequestAnotherWriterPopUp requestAnotherWriterPopUp = new RequestAnotherWriterPopUp();
 
 
-@Test
-    public void standartCheck_PAyPal_Production_Edusson() throws Exception {
+    @Test
+    public void standartReassign_Production_Edusson() throws Exception {
         app.getHelper().goToEdusson();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         app.getHelper().sleep(1);
@@ -69,7 +71,28 @@ public class ReassignWriterTests extends TestBase {
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(orderUrl);
-    //check: is order InProgress state
-       // orderInProgressPage.
+        headerMenu.userLogOut();
+        //check: is order InProgress state
+        // orderInProgressPage.
+        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        app.getHelper().sleep(1);
+        app.driver.get(orderUrl);
+        System.out.println(orderInProgressPage.checkReleasedMoneyCustomerPage());
+        Assert.assertEquals(orderInProgressPage.checkReleasedMoneyCustomerPage(), null);
+        orderInProgressPage.clickReassignButton();
+        requestAnotherWriterPopUp.typeReason();
+        requestAnotherWriterPopUp.submitReassign();
+        String orderReassignUrl = app.driver.getCurrentUrl();
+        //assertEquals(edussonGetOrderId, edussonGetOrderId +1);
+        headerMenu.userLogOut();
+        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        app.getHelper().sleep(2);
+        myOrdersWriterPage.closePopup();
+        app.driver.get(orderUrl);
+        //assert order cancel
+        app.driver.get(orderReassignUrl);
+        //assert order is not available
+
     }
-}
+
+   }
