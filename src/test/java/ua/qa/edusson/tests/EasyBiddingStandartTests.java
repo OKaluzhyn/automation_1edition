@@ -52,7 +52,7 @@ public class EasyBiddingStandartTests extends TestBase {
                 "http://essayontime.com.au/",
                 "http://phdify.com/",
                 //"http://customwriting.com/",
-                "http://typemyessays.com/"
+                //"http://typemyessays.com/"
         };
         for (String site : sites) {
 

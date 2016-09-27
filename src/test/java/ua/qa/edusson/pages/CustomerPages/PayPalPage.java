@@ -16,7 +16,7 @@ public class PayPalPage {
     public static String logInButton = "//button[@type='submit']";
     public static String frame = "//iframe[@name='injectedUl']";
     // confirm pay - next page
-    public static String continueButton = "//form[@name='confirm']//input[@id='confirmButtonTop']";
+    public static String continueButton = "//form[@name='confirm']//input[@validate-submit='onPay()']";
 
 
     public static String currentUrl;
@@ -66,13 +66,14 @@ public void fhdfh(){
 
 
     public void confirmPayPal(String strUserEmail, String strPassword) {
-        // if(app.getHelper().isElementPresent(frame)){
-        logInToPayPalMain(strUserEmail, strPassword);
-        app.driver.switchTo().defaultContent();
-        if (app.getHelper().isElementPresent(continueButton)) {
-            app.getHelper().cyclicElementSearchByXpath(continueButton).click();
-        } else if (app.getHelper().isElementPresent(email2)) {
+        if(app.getHelper().isElementPresent(frame) == true) {
+            logInToPayPalMain(strUserEmail, strPassword);
+        } else if (app.getHelper().isElementPresent(continueButton) == true) {
+            this.clickContinue();
+            if (app.getHelper().isElementPresent(email2) == true) {
+                this.confirmPayPal_2(strUserEmail, strPassword);
 
+        }
         }
     }
 
@@ -81,7 +82,10 @@ public void fhdfh(){
         this.setUserEmail(strUserEmail);
         this.setUserPassword(strPassword);
         this.clickLogBut();
-        Helper.sleep(2);
+        Helper.sleep(10);
+        //app.driver.navigate().refresh();
+        app.driver.switchTo().defaultContent();
+        this.clickContinue();
     }
 
     //second log in
