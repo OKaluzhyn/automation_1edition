@@ -16,8 +16,8 @@ public class TestBase {
     @BeforeMethod
     public void setUp() throws Exception {
         app.init();
-        app.driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        app.driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        app.driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+        app.driver.manage().timeouts().implicitlyWait(1200, TimeUnit.SECONDS);
     }
 
     @AfterMethod
