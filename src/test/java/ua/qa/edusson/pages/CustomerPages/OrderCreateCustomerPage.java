@@ -99,7 +99,7 @@ public class OrderCreateCustomerPage  {
 
 	// click start bidding button
 	public void proceedToBidding() {
-		Helper.sleep(1);
+		Helper.sleep(10);
 		WebElement bidding_button = app.getHelper().cyclicElementSearchByXpath(startBiddingButton);
 				bidding_button.click();
 	}

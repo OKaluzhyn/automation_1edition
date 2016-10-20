@@ -46,6 +46,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     // 10%+90%
 
     public void standartCheck_PAyPal_Production_Edusson() throws Exception {
+
         app.getHelper().goToEdusson();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         app.getHelper().sleep(1);

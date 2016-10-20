@@ -3,12 +3,9 @@
 <suite name="Suite1" verbose="1" >
     <test name="Edusson" >
         <classes>
-            <class name="ua.qa.edusson.tests.UserAutorizationProductionTests" />
+
             <class name="ua.qa.edusson.tests.StandartCheckEdussonProductionTests" />
-            <class name="ua.qa.edusson.tests.StandartCheckStudyfaqProductionTests" />
-            <class name="ua.qa.edusson.tests.StandartCheckEdubirdieProductionTests" />
-            <class name="ua.qa.edusson.tests.EasyBiddingStandartTests" />
-            <class name="ua.qa.edusson.tests.StandartCheckOtherSitesTests" />
+
         </classes>
     </test>
 
