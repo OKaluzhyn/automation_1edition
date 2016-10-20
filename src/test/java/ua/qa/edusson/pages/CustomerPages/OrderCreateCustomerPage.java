@@ -119,7 +119,7 @@ public class OrderCreateCustomerPage  {
 		this.orderDescription(strDescription);
 		Helper.sleep(1);
 	//	this.clicUpload();
-		Helper.sleep(10);
+		Helper.sleep(1);
 		this.proceedToBidding();
 	}
 	public void saveChanges(){
