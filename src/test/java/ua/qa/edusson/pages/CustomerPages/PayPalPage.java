@@ -66,7 +66,9 @@ public void fhdfh(){
 
 
     public void confirmPayPal(String strUserEmail, String strPassword) {
-        if(app.getHelper().isElementPresent(frame) == true) {
+        if (app.getHelper().isElementPresent(continueButton) == true) {
+            this.clickContinue();
+        }else if(app.getHelper().isElementPresent(frame) == true) {
             logInToPayPalMain(strUserEmail, strPassword);
         } else if (app.getHelper().isElementPresent(continueButton) == true) {
             this.clickContinue();

@@ -21,8 +21,8 @@ public class UserAutorizationProductionTests extends TestBase{
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		userAuthorizationPage.logIn(Config.customer1, Config.password);
 		app.getHelper().sleep(1);
-		assertEquals("Edusson.com - My Orders", app.driver.getTitle());
-		
+		assertEquals("My Orders - Edusson.com", app.driver.getTitle());
+
 	}
 		
 	
@@ -36,7 +36,7 @@ public class UserAutorizationProductionTests extends TestBase{
 		userAuthorizationPage.logIn(Config.writer1, Config.password);
 		// �������� title ��������, �� ������� ������� ����� �����������
 		app.getHelper().sleep(2);
-		assertEquals("Edusson.com - My Orders. Current orders", app.driver.getTitle());
+		assertEquals("My Orders. Current orders - Edusson.com", app.driver.getTitle());
 		
 		// ��������� ��������� ������ ��� ��������
 		//MyOrdersWriterPage writerHomePage = new MyOrdersWriterPage();

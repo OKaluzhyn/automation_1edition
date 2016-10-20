@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ua.qa.edusson.tests.UserAutorizationProductionTests" tests="5" skipped="0" failures="0" errors="0" timestamp="2016-10-20T08:25:20" hostname="WIN-JER1VU06OO2" time="56.974">
+  <properties/>
+  <testcase name="customerAuthorization" classname="ua.qa.edusson.tests.UserAutorizationProductionTests" time="10.243"/>
+  <testcase name="loginAsDeactivateUser" classname="ua.qa.edusson.tests.UserAutorizationProductionTests" time="8.187"/>
+  <testcase name="loginWithEmptyEmail" classname="ua.qa.edusson.tests.UserAutorizationProductionTests" time="7.652"/>
+  <testcase name="loginWithWrongPassword" classname="ua.qa.edusson.tests.UserAutorizationProductionTests" time="8.728"/>
+  <testcase name="writerAuthorization" classname="ua.qa.edusson.tests.UserAutorizationProductionTests" time="11.766"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
