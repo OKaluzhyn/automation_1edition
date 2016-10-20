@@ -99,7 +99,7 @@ public class OrderCreateCustomerPage  {
 
 	// click start bidding button
 	public void proceedToBidding() {
-		Helper.sleep(10);
+		//Helper.sleep(10);
 		WebElement bidding_button = app.getHelper().cyclicElementSearchByXpath(startBiddingButton);
 				bidding_button.click();
 	}
@@ -118,7 +118,7 @@ public class OrderCreateCustomerPage  {
 		Helper.sleep(1);
 		this.orderDescription(strDescription);
 		Helper.sleep(1);
-		this.clicUpload();
+	//	this.clicUpload();
 		Helper.sleep(10);
 		this.proceedToBidding();
 	}
