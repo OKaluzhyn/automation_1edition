@@ -6,17 +6,29 @@ repositories {
 
 
 dependencies {
-compile 'org.testng:testng:6.9.10'
+    compile 'org.testng:testng:6.9.10'
     compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
 }
 
-task testStandartCheck (type: Test) {
-    useTestNG{
+task testStandartCheck(type: Test) {
+    useTestNG {
         suites 'src/test/resources/testng-standartChecks.xml'
     }
-}
-task testStandartCheck (type: Test) {
-    useTestNG{
-        suites 'src/test/resources/testng.xml'
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
     }
 }
+    task testAuthorization(type: Test) {
+        useTestNG {
+            suites 'src/test/resources/testng.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+    }

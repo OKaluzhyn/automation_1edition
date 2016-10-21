@@ -4,7 +4,7 @@
     <test name="EdussonTests" >
         <classes>
 
-            <class name="ua.qa.edusson.tests.UserAutorizationProductionTests" />
+            <class name="ua.qa.edusson.tests.StandartCheckEdussonProductionTests" />
 
         </classes>
     </test>
