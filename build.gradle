@@ -38,3 +38,17 @@ task testAuthorization(type: Test) {
         systemProperty 'platform', "${platform}"
     }
 }
+task testUpload(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+}
