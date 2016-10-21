@@ -7,6 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.io.File;
@@ -26,6 +27,12 @@ public class ApplicationManager {
     private final Properties properties;
     private String browser;
     private Helper helper;
+
+    public LocalFileDetector getFileDetector() {
+        return fileDetector;
+    }
+
+    private LocalFileDetector fileDetector;
 
     public ApplicationManager(String browser){
         this.browser = browser;
@@ -54,6 +61,9 @@ public class ApplicationManager {
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
+
+            ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+
         }
 
         driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
@@ -74,4 +84,9 @@ public class ApplicationManager {
     public void stop() {
         driver.quit();
     }
+
+    public void setFileDetector(LocalFileDetector fileDetector) {
+        this.fileDetector = fileDetector;
+    }
 }
+
