@@ -89,9 +89,10 @@ public class OrderCreateCustomerPage {
     }
 
     public void Upload() {
-        WebElement upload_Files = app.getHelper().cyclicElementSearchByXpath(uploadFiles);
-        upload_Files.click();
-        app.getHelper().attachFile();
+        //WebElement upload_Files = app.getHelper().cyclicElementSearchByXpath(uploadFiles);
+       // app.getHelper().cyclicElementSearchByXpath("//input[@id='attach_file]").sendKeys(app.getHelper().getRevision().getAbsolutePath());
+               // .click();
+      //app.getHelper().attachFile(app.driver, By.xpath("//input[@id='attach_file]"), app.getHelper().getRevision().getAbsolutePath() );
     }
 
 
@@ -116,7 +117,8 @@ public class OrderCreateCustomerPage {
         Helper.sleep(1);
         this.orderDescription(strDescription);
         Helper.sleep(1);
-        this.Upload();
+       // this.Upload();
+        app.getHelper().attachFile2();
         Helper.sleep(10);
         this.proceedToBidding();
     }
