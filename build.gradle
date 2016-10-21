@@ -40,7 +40,7 @@ task testAuthorization(type: Test) {
 }
 task testUpload(type: Test) {
     useTestNG {
-        suites 'src/test/resources/testng.xml'
+        suites 'src/test/resources/testng-exampleTests.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
