@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -14,10 +15,24 @@ import java.util.Random;
 public class Helper {
 
     protected WebDriver driver;
+   // public File revision;
 
     public Helper(WebDriver driver) {
         this.driver = driver;
     }
+
+
+
+    public File getRevision() {
+        return revision;
+    }
+
+    public void setRevision(File revision) {
+        this.revision = revision;
+    }
+
+    File revision = new File("src/test/resources/testFile.pdf");
+
 
 
     public void goToEdusson() {
@@ -83,7 +98,7 @@ public class Helper {
     }
 
     public void attachFile() {
-        setClipboardData("C:\\Users\\tester\\resources\\testFile.pdf");
+        setClipboardData(this.getRevision().getAbsolutePath());
         try {
             Robot robot = new Robot();
             robot.delay(1000);
@@ -104,7 +119,9 @@ public class Helper {
         }
     }
 
+       }
 
-}
+
+
 
 

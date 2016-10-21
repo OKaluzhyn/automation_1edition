@@ -20,15 +20,21 @@ task testStandartCheck(type: Test) {
     if (project.hasProperty('target')) {
         systemProperty 'target', "${target}"
     }
-}
-    task testAuthorization(type: Test) {
-        useTestNG {
-            suites 'src/test/resources/testng.xml'
-        }
-        if (project.hasProperty('browser')) {
-            systemProperty 'browser', "${browser}"
-        }
-        if (project.hasProperty('target')) {
-            systemProperty 'target', "${target}"
-        }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
     }
+}
+task testAuthorization(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+}
