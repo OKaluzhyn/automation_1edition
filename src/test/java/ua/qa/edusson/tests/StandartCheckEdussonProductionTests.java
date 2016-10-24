@@ -19,7 +19,7 @@ import static org.testng.Assert.assertTrue;
 public class StandartCheckEdussonProductionTests extends TestBase {
 
 
-    public String orderUrl;
+    public static String orderUrl;
     public String orderId;
     public String customerReleasedPercent;
     public String writerReleasedPercent;
@@ -41,7 +41,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     CreditCardPayment creditCardPayment = new CreditCardPayment();
 
 
-    @Test
+    @Test (enabled = false)
     // PayPall
     // 10%+90%
 
@@ -54,7 +54,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         myOrdersCustomerPage.makeNewOrder();
         // create order
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
-        app.getHelper().sleep(1);
+        app.getHelper().sleep(2);
         // assert bidding page
         //assertEquals("Edusson.com - Place your Order", app.driver.getTitle());
         //assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
@@ -129,12 +129,12 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     }
 
     @Test
-    //CreditCard
-    // 50%+50%
+    //CreditCard 100% release
+
     public void standartCheck_CreditCard_Production_Edusson() throws Exception {
 
 
-        app.getHelper().goToEdusson();
+       // app.getHelper().goToEdusson();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
      //   app.getHelper().sleep(1);
         //go to order form
@@ -145,20 +145,20 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         // assert bidding page
         //assertEquals("Edusson.com - Place your Order", app.driver.getTitle());
         //assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
-    //    app.getHelper().sleep(1);
+        app.getHelper().sleep(1);
         app.driver.navigate().refresh();
-        String orderUrl = app.driver.getCurrentUrl();
+        orderUrl = app.driver.getCurrentUrl();
         headerMenu.userLogOut();
       //  app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-      //  app.getHelper().sleep(2);
+        app.getHelper().sleep(1);
         myOrdersWriterPage.closePopup();
         app.driver.get(orderUrl);
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
      //   app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.customer1, Config.password);
-      //  app.getHelper().sleep(1);
+        app.getHelper().sleep(1);
         app.driver.get(orderUrl);
       //  app.getHelper().sleep(2);
         orderBiddingCustomerPage.bid1();
@@ -172,20 +172,20 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         headerMenu.userLogOut();
      //   app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-     //   app.getHelper().sleep(2);
+        app.getHelper().sleep(1);
         myOrdersWriterPage.closePopup();
         app.driver.get(orderUrl);
         orderInProgressPage.uploadRevision();
-      //  app.getHelper().sleep(2);
+        app.getHelper().sleep(1);
         headerMenu.userLogOut();
       //  app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.customer1, Config.password);
-     //   app.getHelper().sleep(2);
+        app.getHelper().sleep(1);
         app.driver.get(orderUrl);
-        orderInProgressPage.releaseMoney("50");
-        customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
+        orderInProgressPage.releaseMoney("100");
+      /*  customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         headerMenu.userLogOut();
-      //  app.getHelper().sleep(2);
+        app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
       //  app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
@@ -198,7 +198,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
       //  app.getHelper().sleep(2);
         app.driver.get(orderUrl);
         orderInProgressPage.releaseMoney("50");
-       // app.getHelper().sleep(2);
+       */app.getHelper().sleep(2);
         orderFinishedViewPage.closePopup();
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
