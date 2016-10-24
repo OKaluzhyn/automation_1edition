@@ -16,7 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.Properties;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Created by tester on 12.08.2016.
@@ -25,6 +24,7 @@ public class ApplicationManager {
     public  WebDriver driver;
 
     private final Properties properties;
+
     private String browser;
     private Helper helper;
 
@@ -35,6 +35,7 @@ public class ApplicationManager {
     private LocalFileDetector fileDetector;
 
     public ApplicationManager(String browser){
+
         this.browser = browser;
         properties = new Properties();
 
@@ -65,11 +66,13 @@ public class ApplicationManager {
 
         }
 
-        driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+       // driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+       // driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+       // driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(properties.getProperty("site"));
         helper = new Helper(driver);
+
     }
 
     public Helper getHelper() {

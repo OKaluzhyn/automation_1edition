@@ -10,7 +10,7 @@ import static ua.qa.edusson.tests.TestBase.app;
 public class UserAuthorizationPage {
 
 
-    //XPath ��� ���������� �������� �����������
+    //XPath
 
     public static String login_link = "//a[@data-atest='atest_login_elem_popup_open']";
     public static String user_name_field = "//input[@data-atest='atest_login_form_email']";
@@ -18,7 +18,7 @@ public class UserAuthorizationPage {
     public static String user_password_field = "//input[@data-atest='atest_login_form_password']";
     public static String login_button = "//button[@data-atest='atest_login_form_submit']";
     public static String login_button2 = "(//button[@data-atest='atest_login_form_submit'])[1]";
-    // ����� �������������� ������
+
     public static String forgot_password_link = "//a[@data-atest='atest_forgot_pass_elem_popup_open']";
     public static String email_for_change_password_field = "//input[@data-atest='atest_forgot_pass_form_email']";
     public static String submit_button = "//button[@data-atest='atest_forgot_pass_form_submit']";
@@ -28,7 +28,7 @@ public class UserAuthorizationPage {
     public static String error_pass_change = "//div[@class='errorText js_forgot_pass_error']";
     public static String submit_button_after_change_user = "//button[@data-atest='atest_login_form_submit' and text()='Continue']";
     public static String error_message = "//div[@class='errorText']";
-    // ������ ������ ����� �� ������� - ��������� ����� �����������
+
     //public static String messageForDeactivateUser = "//div[@class='errorText']";
 
     private String login = "//a[@data-atest='atest_login_elem_popup_open']";
@@ -47,11 +47,11 @@ public class UserAuthorizationPage {
         openAuthorizationPopUp.click();
     }
 
-    // ����� ����� ���������
+
     public void logIn(String strUserName, String strPassword) {
 
         this.LogClick();
-        //Helper.sleep(1);
+        app.getHelper().WaitElement(user_name_field);
         this.setUserName(strUserName);
         this.continueClick();
         this.setPassword(strPassword);
@@ -60,17 +60,17 @@ public class UserAuthorizationPage {
 
     public void changeUser(String strUserName, String strPassword) {
         this.LogClick();
-       // Helper.sleep(1);
+        app.getHelper().WaitElement(change_user);
         this.changeUserClick();
-
+        app.getHelper().WaitElement(user_name_field);
         this.setUserName(strUserName);
-
+        app.getHelper().WaitElement(submit_button_after_change_user);
         this.submitClickAfterChangeUser();
-        Helper.sleep(1);
+        app.getHelper().WaitElement(user_password_field);
         this.setPassword(strPassword);
+        app.getHelper().WaitElement(login_button2);
         this.clickLoginButton2();
     }
-
 
 
     public void setUserName(String strUserName) {
@@ -153,7 +153,6 @@ public class UserAuthorizationPage {
     }
 
 
-
     public void forgotPasswordSuccess(String strEmail) {
         this.LogClick();
         Helper.sleep(1);
@@ -172,7 +171,6 @@ public class UserAuthorizationPage {
         this.clickForgotPasswordSubmit();
         this.assertErrorForgotPassword();
     }
-
 
 
     public boolean checkErrorMessagePresent() {

@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.awt.datatransfer.StringSelection;
@@ -16,12 +19,12 @@ import java.util.Random;
 public class Helper {
 
     protected WebDriver driver;
-   // public File revision;
+
+    // public File revision;
 
     public Helper(WebDriver driver) {
         this.driver = driver;
     }
-
 
 
     public File getRevision() {
@@ -34,8 +37,9 @@ public class Helper {
 
     File revision = new File("src/test/resources/testFile.pdf");
 
-
-
+    public void goTo(String url){
+        driver.get(url);
+    }
     public void goToEdusson() {
         driver.get("http://edusson.com/");
     }
@@ -48,9 +52,8 @@ public class Helper {
         driver.get("http://studyfaq.com/");
     }
 
-    public void quit() {
-        driver.quit();
-    }
+
+
 
     public WebElement cyclicElementSearchByXpath(String target) {
 
@@ -58,10 +61,23 @@ public class Helper {
             if (driver.findElements(By.xpath(target)).size() > 0) {
                 break;
             }
-
             sleep(1);
+
         }
+
         return driver.findElement(By.xpath(target));
+    }
+
+
+    public void WaitElement(String locator) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
+
+    }
+    public void WaitLoading(String patrUrl) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, 60, 1000);
+        wait.until(ExpectedConditions.urlContains(patrUrl));
+
     }
 
     public static void sleep(long sec) {
@@ -93,7 +109,7 @@ public class Helper {
         }
     }
 
-    public  void setClipboardData(String path) {
+    public void setClipboardData(String path) {
         StringSelection stringSelection = new StringSelection(path);
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
     }
@@ -119,6 +135,7 @@ public class Helper {
             e.printStackTrace();
         }
     }
+
     public void unhide(WebElement element) {
         String script = "arguments[0].style.opacity=1;"
                 + "arguments[0].style['transform']='translate(0px, 0px) scale(1)';"
@@ -131,18 +148,14 @@ public class Helper {
         ((JavascriptExecutor) driver).executeScript(script, element);
     }
 
-    public void attachFile2 (By locator, String file) {
-            WebElement input = driver.findElement(locator);
-            unhide(input);
-            input.sendKeys(file);
+    public void attachFile2(By locator, String file) {
+        WebElement input = driver.findElement(locator);
+        unhide(input);
+        input.sendKeys(file);
     }
 
 
-
-
-
-
-       }
+}
 
 
 
