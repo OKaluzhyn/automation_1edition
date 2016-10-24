@@ -66,13 +66,13 @@ public class UserAuthorizationPage {
         this.setUserName(strUserName);
 
         this.submitClickAfterChangeUser();
-       // Helper.sleep(1);
+        Helper.sleep(1);
         this.setPassword(strPassword);
         this.clickLoginButton2();
     }
 
 
-    // ���� ������ � ���� ����� �����������
+
     public void setUserName(String strUserName) {
         WebElement userEmail = app.getHelper().cyclicElementSearchByXpath(user_name_field);
         userEmail.click();
@@ -113,7 +113,7 @@ public class UserAuthorizationPage {
 
     public void submitClickAfterChangeUser() {
         WebElement submitButton2 = app.getHelper().cyclicElementSearchByXpath(submit_button_after_change_user);
-        //Helper.sleep(5);
+
         submitButton2.click();
     }
 

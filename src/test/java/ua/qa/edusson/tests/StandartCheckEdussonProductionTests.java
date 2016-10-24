@@ -145,7 +145,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         // assert bidding page
         //assertEquals("Edusson.com - Place your Order", app.driver.getTitle());
         //assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
-        //app.getHelper().sleep(1);
+        app.getHelper().sleep(1);
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
         headerMenu.userLogOut();
