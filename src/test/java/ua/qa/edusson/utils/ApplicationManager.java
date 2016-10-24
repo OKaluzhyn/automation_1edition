@@ -65,8 +65,8 @@ public class ApplicationManager {
 
         }
 
-        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(properties.getProperty("site"));
         helper = new Helper(driver);
