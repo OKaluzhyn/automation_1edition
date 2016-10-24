@@ -70,7 +70,7 @@ public class Helper {
 
 
     public void WaitElement(String locator) {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 5, 1000);
+        Wait<WebDriver> wait = new WebDriverWait(driver, 30, 1000);
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
 
     }
