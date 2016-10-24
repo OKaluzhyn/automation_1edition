@@ -1,7 +1,7 @@
 package ua.qa.edusson.pages.CommonPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import ua.qa.edusson.pages.CustomerPages.OrderCreateCustomerPage;
 import ua.qa.edusson.utils.Helper;
 
 import static ua.qa.edusson.tests.TestBase.app;
@@ -18,28 +18,25 @@ public class OrderInProgressPage  {
 
 	//for writer
 	public static String workResults = "//li[@data-atest='atest_order_view_writer_in_progress_elem_tab_work_results']";
-	public static String uploadLink = "//a[@data-atest='atest_order_view_writer_in_progress_elem_upload_attached_files']";
+	public static String inputRevision = "//input[@type='file']";
 	public static String payWriterPercent = "//span[@data-atest='atest_order_view_writer_in_progress_elem_paid_progress']";//������� ���������� �����
 	
 	public void uploadRevision(){
-		OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
 		WebElement work_results = app.getHelper().cyclicElementSearchByXpath(workResults);
 		work_results.click();
-		WebElement upload_link = app.getHelper().cyclicElementSearchByXpath(uploadLink);
-		upload_link.click();
-		app.getHelper().attachFile();
+		app.getHelper().attachFile2(By.xpath(inputRevision), app.getHelper().getRevision().getAbsolutePath());
 		
 		
 	}
     
-   //�������� �������� ���������� ����� %
+
   	public String checkReleasedMoneyCustomerPage(){
 		return  app.getHelper().cyclicElementSearchByXpath(payCustomerPercent)
   		.getAttribute("value");
 
   	}
 	
-  //�������� �������� ���������� ����� %
+
   	public String checkReleasedMoneyWriterPage(){
 		return  app.getHelper().cyclicElementSearchByXpath(payWriterPercent)
   		.getAttribute("value");

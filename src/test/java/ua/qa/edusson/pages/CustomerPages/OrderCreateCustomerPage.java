@@ -88,14 +88,6 @@ public class OrderCreateCustomerPage {
         paper_description.sendKeys(strDescription);
     }
 
-    public void Upload() {
-        //WebElement upload_Files = app.getHelper().cyclicElementSearchByXpath(uploadFiles);
-       // app.getHelper().cyclicElementSearchByXpath("//input[@id='attach_file]").sendKeys(app.getHelper().getRevision().getAbsolutePath());
-               // .click();
-      //app.getHelper().attachFile(app.driver, By.xpath("//input[@id='attach_file]"), app.getHelper().getRevision().getAbsolutePath() );
-    }
-
-
 
     // click start bidding button
     public void proceedToBidding() {
@@ -117,9 +109,7 @@ public class OrderCreateCustomerPage {
         Helper.sleep(1);
         this.orderDescription(strDescription);
         Helper.sleep(1);
-       // this.Upload();
-        app.getHelper().attachFile2();
-        Helper.sleep(10);
+        //app.getHelper().attachFile2(By.xpath(uploadFiles), app.getHelper().getRevision().getAbsolutePath());
         this.proceedToBidding();
     }
 
@@ -149,8 +139,7 @@ public class OrderCreateCustomerPage {
         this.selectTypeOfPaper();
         this.setTopic(strTopic);
         this.orderDescription(strDescription);
-        this.Upload();
-        Helper.sleep(7);
+
         this.proceedToBidding();
     }
 
@@ -166,8 +155,6 @@ public class OrderCreateCustomerPage {
         Helper.sleep(1);
         this.orderDescription(strDescription);
         Helper.sleep(1);
-        this.Upload();
-        Helper.sleep(7);
         this.clickNext3();
         this.proceedToBidding();
     }

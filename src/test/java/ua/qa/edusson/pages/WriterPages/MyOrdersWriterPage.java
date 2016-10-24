@@ -16,7 +16,7 @@ public class MyOrdersWriterPage  {
 		WebElement close_popup_button = app.getHelper().cyclicElementSearchByXpath(closePopUpButton);
 		close_popup_button.click();
 	}
-	// ��������� ��������� ������ ��� �������
+
 	public boolean isWritersPopUpPresent() {
 		    	return app.getHelper().isElementPresent(writerInformPopUp);
 	           
