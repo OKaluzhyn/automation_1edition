@@ -38,7 +38,7 @@ public class Base extends TestBase{
 	}
 
 	
-	@Test
+	@Test (enabled = false)
 	public void uploadTest1() {
 
 		app.driver.get("http://blueimp.github.io/jQuery-File-Upload/basic.html");
@@ -52,7 +52,7 @@ public class Base extends TestBase{
 */
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void uploadTest2() {
 		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
 		MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
