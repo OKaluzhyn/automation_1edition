@@ -51,7 +51,7 @@ public class UserAuthorizationPage {
     public void logIn(String strUserName, String strPassword) {
 
         this.LogClick();
-        Helper.sleep(1);
+        //Helper.sleep(1);
         this.setUserName(strUserName);
         this.continueClick();
         this.setPassword(strPassword);
@@ -60,13 +60,13 @@ public class UserAuthorizationPage {
 
     public void changeUser(String strUserName, String strPassword) {
         this.LogClick();
-        Helper.sleep(1);
+       // Helper.sleep(1);
         this.changeUserClick();
 
         this.setUserName(strUserName);
 
         this.submitClickAfterChangeUser();
-        Helper.sleep(1);
+       // Helper.sleep(1);
         this.setPassword(strPassword);
         this.clickLoginButton2();
     }
@@ -84,14 +84,14 @@ public class UserAuthorizationPage {
         continueButton.click();
     }
 
-    // ���� ������ � ���� ����� �����������
+
     public void setPassword(String strPassword) {
         WebElement userPassword = app.getHelper().cyclicElementSearchByXpath(user_password_field);
         userPassword.click();
         userPassword.sendKeys(strPassword);
     }
 
-    // ������ ������ ����� � ����� �����������
+
     public void clickLoginButton() {
         WebElement submit = app.getHelper().cyclicElementSearchByXpath(login_button);
         submit.click();
@@ -104,22 +104,22 @@ public class UserAuthorizationPage {
         changeUserLink.click();
     }
 
-    //login ����� ����� �����
+    //login
     public void clickLoginButton2() {
         WebElement submit = app.getHelper().cyclicElementSearchByXpath(login_button);
         submit.click();
     }
 
-    //������ ����� ����� �����
+
     public void submitClickAfterChangeUser() {
         WebElement submitButton2 = app.getHelper().cyclicElementSearchByXpath(submit_button_after_change_user);
-        Helper.sleep(5);
+        //Helper.sleep(5);
         submitButton2.click();
     }
 
 
     // Forgot Password methods
-    // ������� �� ����� �������������� ������
+
     public void clickForgotPasswordlink() {
         WebElement forgotPassword = app.getHelper().cyclicElementSearchByXpath(forgot_password_link);
         forgotPassword.click();
@@ -132,20 +132,20 @@ public class UserAuthorizationPage {
 
     }
 
-    // �������� ����������� ��������� ��� ������ ���� �����
+
     public void assertErrorForgotPassword() {
         WebElement errorText = app.getHelper().cyclicElementSearchByXpath(error_pass_change);
         errorText.getText()
                 .contains("This is an obligatory field.");
     }
 
-    // ���� ������
+
     public void setEmail(String strEmail) {
         WebElement email = app.getHelper().cyclicElementSearchByXpath(email_for_change_password_field);
         email.sendKeys(strEmail);
     }
 
-    // �������� ��������� ��� �������� �������� ����� forgot password
+    // forgot password
     public void assertSuccessPasswordChange() {
         WebElement successMessage = app.getHelper().cyclicElementSearchByXpath(success_pass_change);
         successMessage.getText()
@@ -153,7 +153,7 @@ public class UserAuthorizationPage {
     }
 
 
-    // �������� �������������� ������
+
     public void forgotPasswordSuccess(String strEmail) {
         this.LogClick();
         Helper.sleep(1);
@@ -163,7 +163,7 @@ public class UserAuthorizationPage {
 
     }
 
-    // �������� ����� � ������ �����
+
     public void forgotPassNoEmail(String strEmail) {
         this.LogClick();
         Helper.sleep(1);
@@ -174,7 +174,7 @@ public class UserAuthorizationPage {
     }
 
 
-    // ����� ��������� �� ������ ��� ����� ���������� ������
+
     public boolean checkErrorMessagePresent() {
 
         try {
