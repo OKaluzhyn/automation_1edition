@@ -19,11 +19,9 @@ import static org.testng.Assert.assertTrue;
 public class StandartCheckEdussonProductionTests extends TestBase {
 
 
-    private static  String orderUrl;
-    public String orderId;
+    private static String orderUrl;
     public String customerReleasedPercent;
     public String writerReleasedPercent;
-    public String writerUrl;
 
 
     UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
@@ -41,7 +39,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     CreditCardPayment creditCardPayment = new CreditCardPayment();
 
 
-    @Test (enabled = false)
+    @Test//(enabled = false)
     // PayPall
     // 10%+90%
 
@@ -49,80 +47,57 @@ public class StandartCheckEdussonProductionTests extends TestBase {
 
         //app.getHelper().goToEdusson();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
-       // app.getHelper().sleep(1);
-        //go to order form
         myOrdersCustomerPage.makeNewOrder();
-        // create order
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
-        app.getHelper().sleep(2);
-        // assert bidding page
-        //assertEquals("Edusson.com - Place your Order", app.driver.getTitle());
-        //assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
-      //  app.getHelper().sleep(1);
+        app.getHelper().WaitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
-        String orderUrl = app.driver.getCurrentUrl();
-     //   app.getHelper().sleep(1);
+        orderUrl = app.driver.getCurrentUrl();
         headerMenu.userLogOut();
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-        app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().goTo(orderUrl);
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
-     //   app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.customer1, Config.password);
-     //   app.getHelper().sleep(1);
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().WaitLoading("orders");
+        app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
-     //   app.getHelper().sleep(2);
         orderPayCustomerPage.clickReserveButton();
-      //  app.getHelper().sleep(1);
+        app.getHelper().WaitLoading("sandbox");
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        app.getHelper().WaitLoading("thankyou");
         headerMenu.userLogOut();
-      //  app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-     //   app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().goTo(orderUrl);
         orderInProgressPage.uploadRevision();
-      //  app.getHelper().sleep(2);
-     //   app.getHelper().sleep(2);
         headerMenu.userLogOut();
-     //   app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.customer1, Config.password);
-      //  app.getHelper().sleep(2);
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().WaitLoading("orders");
+        app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("10");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         headerMenu.userLogOut();
-      //  app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-      //  app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().goTo(orderUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         headerMenu.userLogOut();
-      //  app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.customer1, Config.password);
-     //   app.getHelper().sleep(2);
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().WaitLoading("orders");
+        app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("90");
-      //  app.getHelper().sleep(2);
         orderFinishedViewPage.closePopup();
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
-    //    app.getHelper().sleep(2);
         headerMenu.userLogOut();
-     //   app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-      //  app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().goTo(orderUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
-     //   app.getHelper().sleep(2);
         headerMenu.userLogOut();
         System.out.println("TEST PASSED");
 
@@ -132,92 +107,47 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     //CreditCard 100% release
 
     public void standartCheck_CreditCard_Production_Edusson() throws Exception {
-
-
-       // app.getHelper().goToEdusson();
+        // app.getHelper().goToEdusson();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
-     //   app.getHelper().sleep(1);
-        //go to order form
         myOrdersCustomerPage.makeNewOrder();
-     //   app.getHelper().sleep(2);
-        // create order
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
-        // assert bidding page
-        //assertEquals("Edusson.com - Place your Order", app.driver.getTitle());
-        //assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
-       // app.getHelper().sleep(1);
-
         app.getHelper().WaitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
-
         headerMenu.userLogOut();
-      //  app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-       // app.getHelper().sleep(1);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
-     //   app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.customer1, Config.password);
-        app.getHelper().sleep(1);
-        app.getHelper().goTo(orderUrl);;
-      //  app.getHelper().sleep(2);
+        app.getHelper().WaitLoading("orders");
+        app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
-      //  app.getHelper().sleep(10);
         orderPayCustomerPage.chooseCardPay();
-      //  app.getHelper().sleep(2);
         orderPayCustomerPage.clickReserveButton();
-       // app.getHelper().sleep(2);
         creditCardPayment.setAllFields();
         app.getHelper().WaitLoading("thankyou");
-     //   app.getHelper().sleep(60);
         headerMenu.userLogOut();
-     //   app.getHelper().sleep(1);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-        //app.getHelper().sleep(1);
         myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().goTo(orderUrl);
         orderInProgressPage.uploadRevision();
-        //app.getHelper().sleep(1);
         headerMenu.userLogOut();
-      //  app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.customer1, Config.password);
-        //app.getHelper().sleep(1);
         app.getHelper().WaitLoading("orders");
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("100");
-      /*  customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-        headerMenu.userLogOut();
-        app.getHelper().sleep(2);
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
-      //  app.getHelper().sleep(2);
-        myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);;
-        writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-        assertEquals(customerReleasedPercent, writerReleasedPercent);
-        headerMenu.userLogOut();
-      //  app.getHelper().sleep(2);
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
-      //  app.getHelper().sleep(2);
-        app.getHelper().goTo(orderUrl);;
-        orderInProgressPage.releaseMoney("50");
-       *///app.getHelper().sleep(2);
         orderFinishedViewPage.closePopup();
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
-      //  app.getHelper().sleep(2);
         headerMenu.userLogOut();
-      //  app.getHelper().sleep(2);
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-      //  app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);;
+        app.getHelper().goTo(orderUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
-      //  app.getHelper().sleep(2);
         headerMenu.userLogOut();
         System.out.println("TEST PASSED");
 
