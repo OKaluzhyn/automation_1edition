@@ -47,13 +47,14 @@ public class StandartCheckEdussonProductionTests extends TestBase {
 
     public void standartCheck_PAyPal_Production_Edusson() throws Exception {
 
-        app.getHelper().goToEdusson();
+        //app.getHelper().goToEdusson();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
        // app.getHelper().sleep(1);
         //go to order form
         myOrdersCustomerPage.makeNewOrder();
         // create order
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        app.getHelper().sleep(1);
         // assert bidding page
         //assertEquals("Edusson.com - Place your Order", app.driver.getTitle());
         //assertTrue(driver.getCurrentUrl().contains("order#redirect_url="));
@@ -63,7 +64,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
      //   app.getHelper().sleep(1);
         headerMenu.userLogOut();
         userAuthorizationPage.changeUser(Config.writer1, Config.password);
-      //  app.getHelper().sleep(2);
+        app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(orderUrl);
         orderBiddingWriterPage.createBid("6");

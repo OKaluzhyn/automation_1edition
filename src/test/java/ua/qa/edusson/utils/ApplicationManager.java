@@ -61,13 +61,12 @@ public class ApplicationManager {
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
-
             ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
 
         }
 
-        driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
-        driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+        //driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         driver.get(properties.getProperty("site"));
         helper = new Helper(driver);
