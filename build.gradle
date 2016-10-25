@@ -23,6 +23,9 @@ task testStandartCheck(type: Test) {
     if (project.hasProperty('platform')) {
         systemProperty 'platform', "${platform}"
     }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
+    }
 }
 task testAuthorization(type: Test) {
     useTestNG {
@@ -36,6 +39,10 @@ task testAuthorization(type: Test) {
     }
     if (project.hasProperty('platform')) {
         systemProperty 'platform', "${platform}"
+
+    }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
     }
 }
 task testUpload(type: Test) {
@@ -50,5 +57,25 @@ task testUpload(type: Test) {
     }
     if (project.hasProperty('platform')) {
         systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
+    }
+}
+task standartCheck_PayPal_Production_Not_EasyBidding(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-standartChecksNotEasyBidding.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
     }
 }

@@ -18,7 +18,7 @@ public class PayPalPage {
     public static String continueButton = "//form[@name='confirm']//input[@validate-submit='onPay()']";
 
 
-   
+
 
     public void setUserEmail(String strUserEmail) {
         WebElement e_mail = app.getHelper().cyclicElementSearchByXpath(email);

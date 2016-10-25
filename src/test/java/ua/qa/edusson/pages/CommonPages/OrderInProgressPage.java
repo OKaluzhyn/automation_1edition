@@ -2,7 +2,6 @@ package ua.qa.edusson.pages.CommonPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import ua.qa.edusson.utils.Helper;
 
 import static ua.qa.edusson.tests.TestBase.app;
 
@@ -56,7 +55,7 @@ public class OrderInProgressPage  {
 	}
 	
 	public void clickConfirmButton(){
-		Helper.sleep(2);
+		app.getHelper().WaitElement(popUpButtonRelease);
 		WebElement popup_button_release = app.getHelper().cyclicElementSearchByXpath(popUpButtonRelease);
 		popup_button_release.click();
 			}

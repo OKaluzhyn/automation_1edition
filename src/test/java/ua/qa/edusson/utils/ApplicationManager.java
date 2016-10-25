@@ -61,6 +61,7 @@ public class ApplicationManager {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
+
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
             ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
 
@@ -70,7 +71,8 @@ public class ApplicationManager {
        // driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
        // driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-        driver.get(properties.getProperty("site"));
+
+        driver.get(properties.getProperty("site", "http://edusson.com/"));
         helper = new Helper(driver);
 
     }

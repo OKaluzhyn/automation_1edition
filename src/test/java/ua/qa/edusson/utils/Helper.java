@@ -19,14 +19,14 @@ import java.util.Random;
 public class Helper {
 
     protected WebDriver driver;
-    protected final Wait<WebDriver> wait;
+    public final Wait<WebDriver> wait;
 
 
     // public File revision;
 
     public Helper(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,120, 1000).withMessage("Element was not found during 120 Sec");
+        this.wait = new WebDriverWait(driver,120, 1000).withMessage("Element was not found during 120 Sec");
     }
 
 
