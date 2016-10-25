@@ -63,7 +63,6 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
         orderPayCustomerPage.clickReserveButton();
-        app.getHelper().WaitLoading("sandbox");
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
         app.getHelper().WaitLoading("thankyou");
         headerMenu.userLogOut();

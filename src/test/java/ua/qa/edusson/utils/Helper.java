@@ -19,11 +19,14 @@ import java.util.Random;
 public class Helper {
 
     protected WebDriver driver;
+    protected final Wait<WebDriver> wait;
+
 
     // public File revision;
 
     public Helper(WebDriver driver) {
         this.driver = driver;
+        wait = new WebDriverWait(driver,120, 1000).withMessage("Element was not found during 120 Sec");
     }
 
 
@@ -57,7 +60,7 @@ public class Helper {
 
     public WebElement cyclicElementSearchByXpath(String target) {
 
-        for (int i = 0; i < 2000; i++) {
+        for (int i = 0; i < 1000; i++) {
             if (driver.findElements(By.xpath(target)).size() > 0) {
                 break;
             }
@@ -70,12 +73,10 @@ public class Helper {
 
 
     public void WaitElement(String locator) {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 30, 1000);
-        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
+       wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
 
     }
     public void WaitLoading(String patrUrl) {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 60, 1000);
         wait.until(ExpectedConditions.urlContains(patrUrl));
 
     }

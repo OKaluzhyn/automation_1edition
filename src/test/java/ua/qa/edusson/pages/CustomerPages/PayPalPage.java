@@ -2,7 +2,6 @@ package ua.qa.edusson.pages.CustomerPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.Test;
 import ua.qa.edusson.utils.Helper;
 
 import static ua.qa.edusson.tests.TestBase.app;
@@ -11,15 +10,15 @@ import static ua.qa.edusson.tests.TestBase.app;
 public class PayPalPage {
 
     //first log in
-    public static String email = "//input[@id='email']";
-    public static String pass = "//input[@id='password']";
+    public static String email = "//div[@id='login_emaildiv']//input[@type='email']";
+    public static String pass = "//div[@id='login_passworddiv']//input[@id='password']";
     public static String logInButton = "//button[@type='submit']";
     public static String frame = "//iframe[@name='injectedUl']";
     // confirm pay - next page
     public static String continueButton = "//form[@name='confirm']//input[@validate-submit='onPay()']";
 
 
-    public static String currentUrl;
+   
 
     public void setUserEmail(String strUserEmail) {
         WebElement e_mail = app.getHelper().cyclicElementSearchByXpath(email);
@@ -50,43 +49,33 @@ public class PayPalPage {
     }
 
 
-    /*
-@Test
-public void fhdfh(){
-    Helper.sleep(1);
-    Helper.driver.switchTo().frame(Helper.driver.findElement(By.name("injectedUl")));
-      this.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-      
-      Helper.driver.switchTo().defaultContent();
-      this.clickContinue();
-      Helper.sleep(10);
-}
-*/
-    @Test
-
-
     public void confirmPayPal(String strUserEmail, String strPassword) {
-        if (app.getHelper().isElementPresent(continueButton) == true) {
-            this.clickContinue();
-        }else if(app.getHelper().isElementPresent(frame) == true) {
-            logInToPayPalMain(strUserEmail, strPassword);
-        } else if (app.getHelper().isElementPresent(continueButton) == true) {
-            this.clickContinue();
-            if (app.getHelper().isElementPresent(email2) == true) {
-                this.confirmPayPal_2(strUserEmail, strPassword);
+        app.getHelper().WaitElement("//div[@id='paypalLogo']");
 
-        }
+        if ((app.getHelper().isElementPresent(continueButton)) == (true)) {
+            this.clickContinue();
+        } else if ((app.getHelper().isElementPresent(frame)) == (true)) {
+            this.logInToPayPalMain(strUserEmail, strPassword);
+        } else if ((app.getHelper().isElementPresent(continueButton)) == (true)) {
+            this.clickContinue();
+        } else if ((app.getHelper().isElementPresent(email2)) == (true)) {
+            this.confirmPayPal_2(strUserEmail, strPassword);
+        } else {
+            this.logInToPayPalMain(strUserEmail, strPassword);
+            System.out.println("Error on PayPal page");
         }
     }
 
-    private void logInToPayPalMain(String strUserEmail, String strPassword) {
+
+    public void logInToPayPalMain(String strUserEmail, String strPassword) {
         app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
+        app.getHelper().WaitElement(email);
         this.setUserEmail(strUserEmail);
         this.setUserPassword(strPassword);
         this.clickLogBut();
-        Helper.sleep(10);
-        //app.driver.navigate().refresh();
         app.driver.switchTo().defaultContent();
+        app.getHelper().WaitLoading("/checkout/review");
+        app.getHelper().WaitElement(continueButton);
         this.clickContinue();
     }
 
@@ -127,14 +116,14 @@ public void fhdfh(){
     }
 
     public void confirmPayPal_2(String strUserEmail, String strPassword) {
-        if (app.getHelper().isElementPresent(confirmButton)) {
+        if (app.getHelper().isElementPresent(confirmButton) == true) {
             this.clickConfirm();
-        } else if (app.getHelper().isElementPresent(email2)) {
-                this.setUserEmail_2(strUserEmail);
-                this.setUserPassword_2(strPassword);
-                this.clickLogBut_2();
-                this.clickConfirm();
-            }
-        this.clickConfirm();
+        } else if (app.getHelper().isElementPresent(email2) == true) {
+            this.setUserEmail_2(strUserEmail);
+            this.setUserPassword_2(strPassword);
+            this.clickLogBut_2();
+            this.clickConfirm();
         }
+        this.clickConfirm();
     }
+}
