@@ -13,7 +13,7 @@ import ua.qa.edusson.utils.Config;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class StandartCheckOtherSitesTests extends TestBase {
+public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBase {
 
     String siteUrl;
     String orderId;
@@ -21,7 +21,6 @@ public class StandartCheckOtherSitesTests extends TestBase {
     String customerUrl;
     String customerReleasedPercent;
     String writerReleasedPercent;
-
 
 
     UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
@@ -32,82 +31,55 @@ public class StandartCheckOtherSitesTests extends TestBase {
     HeaderMenu headerMenu = new HeaderMenu();
     MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
     OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
-    PayPalPage payPalPage = new PayPalPage();
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
 
 
     @Test
-    // PayPall
+    //  Edusson Gateway
     // 20%+80%
 
 
-    public void standartCheck_PayPal_Production_Not_EasyBidding() throws Exception {
+    public void standartCheck_CreditCard_Production_Not_EasyBidding() throws Exception {
 
-       /* String[] sites = {
-                "http://eduzaurus.com/",
-                "http://paperdon.com/",
-                "http://papersowl.com/",
-                "http://studarea.com/",
-                "http://essaybison.com/",
-                "http://samedaypapers.com/",
-                "http://paperell.com/",
-                "http://essaystorm.com/",
-                "http://essayvikings.com/",
-                //"http://customwriting.com/",
-        };
-        for (int i = 0; i < sites.length; i++) {
-
-            siteUrl = sites[i];
-            app.driver.get(siteUrl);
-*/
-        //app.driver.get("http://papersowl.com/");
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrderForOtherSites("test for webdriver", "test");
+        if (siteUrl.equals("http://studyfaq.com/")) {
+            orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
+        } else {
+            orderCreateCustomerPage.createOrderForOtherSites("test for webdriver", "test");
+        }
         app.getHelper().WaitLoading("order#redirect_url=");
-        //assertTrue(app.driver.getCurrentUrl().contains("order#redirect_url="));
         app.driver.navigate().refresh();
         app.getHelper().sleep(5);
         customerUrl = app.driver.getCurrentUrl();
-        if (siteUrl.equals("http://eduzaurus.com/")) {
+        if (siteUrl.equals("http://papersowl.com/")) {
             orderId = app.driver.getCurrentUrl().substring(32);
             System.out.println(orderId);
-        } else if (siteUrl.equals("http://paperdon.com/")) {
+        } else if (siteUrl.equals("http://studyfaq.com/")) {
             orderId = app.driver.getCurrentUrl().substring(31);
             System.out.println(orderId);
-        } else if (siteUrl.equals("http://papersowl.com/")) {
+        } else if (siteUrl.equals("http://edubirdie.com/")) {
             orderId = app.driver.getCurrentUrl().substring(32);
             System.out.println(orderId);
-        } else if (siteUrl.equals("http://studarea.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("http://ca.edubirdie.com/")) {
+            orderId = app.driver.getCurrentUrl().substring(35);
             System.out.println(orderId);
-        } else if (siteUrl.equals("http://essaybison.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(33);
+        } else if (siteUrl.equals("http://au.edubirdie.com/")) {
+            orderId = app.driver.getCurrentUrl().substring(35);
             System.out.println(orderId);
-        } else if (siteUrl.equals("http://samedaypapers.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(36);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://paperell.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(31);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://essaystorm.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(33);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://essayvikings.com/")) {
+        } else if (siteUrl.equals("http://uk.edubirdie.com/")) {
             orderId = app.driver.getCurrentUrl().substring(35);
             System.out.println(orderId);
         }
-
 
         writerUrl = "http://edusson.com/order/view/" + orderId;
         app.getHelper().goToEdusson();
 
         if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink()) == true) {
             userAuthorizationPage.logIn(Config.writer1, Config.password);
-
             app.getHelper().sleep(2);
             myOrdersWriterPage.closePopup();
             app.driver.get(writerUrl);
@@ -119,8 +91,10 @@ public class StandartCheckOtherSitesTests extends TestBase {
         orderBiddingWriterPage.createBid("6");
         app.getHelper().goTo(customerUrl);
         orderBiddingCustomerPage.bid1();
+        orderPayCustomerPage.chooseCardPay();
+        orderPayCustomerPage.clickReserveButton();
+        creditCardPayment.setAllFields();
         orderPayCustomerPage.confirmPay();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
         app.getHelper().WaitLoading("thankyou");
         app.driver.get(writerUrl);
         orderInProgressPage.uploadRevision();

@@ -62,7 +62,7 @@ task testUpload(type: Test) {
         systemProperty 'site', "${site}"
     }
 }
-task testStandartCheck_PayPal_Production_Not_EasyBidding(type: Test) {
+task testStandartCheck_Production_Not_EasyBidding(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-standartChecksNotEasyBidding.xml'
     }
