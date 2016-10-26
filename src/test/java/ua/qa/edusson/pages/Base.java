@@ -86,7 +86,7 @@ public class Base extends TestBase {
         app.getHelper().sleep(10);
     }
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void payPal() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         PayPalPage payPalPage = new PayPalPage();
@@ -94,9 +94,9 @@ public class Base extends TestBase {
 
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
-        app.getHelper().goTo("http://edusson.com/order/pay/171507");
+        app.getHelper().goTo("http://edusson.com/order/pay/172203");
         orderPayCustomerPage.clickReserveButton();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        payPalPage.confirmPayPal("edussonpay4@ukr.net", "123456789");
         app.getHelper().WaitLoading("thankyou");
         Helper.sleep(10);
     }

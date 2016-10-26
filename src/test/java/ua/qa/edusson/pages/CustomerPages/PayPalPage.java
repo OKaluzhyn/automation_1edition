@@ -18,11 +18,8 @@ public class PayPalPage {
     public static String continueButton = "//form[@name='confirm']//input[@validate-submit='onPay()']";
 
 
-
-
     public void setUserEmail(String strUserEmail) {
         WebElement e_mail = app.getHelper().cyclicElementSearchByXpath(email);
-        Helper.sleep(1);
         e_mail.clear();
         e_mail.sendKeys(strUserEmail);
 
@@ -72,9 +69,11 @@ public class PayPalPage {
         app.getHelper().WaitElement(email);
         this.setUserEmail(strUserEmail);
         this.setUserPassword(strPassword);
+        Helper.sleep(1);
         this.clickLogBut();
         app.driver.switchTo().defaultContent();
         app.getHelper().WaitLoading("/checkout/review");
+        Helper.sleep(1);
         app.getHelper().WaitElement(continueButton);
         this.clickContinue();
     }
