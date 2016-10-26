@@ -6,15 +6,13 @@ import org.testng.annotations.BeforeMethod;
 import ua.qa.edusson.utils.ApplicationManager;
 
 
-
 /**
  * Created by tester on 12.08.2016.
  */
 public class TestBase {
 
-   public static final ApplicationManager app
-           = new ApplicationManager(System.getProperty("browser",BrowserType.CHROME));
-
+    public static final ApplicationManager app
+            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
 
     @BeforeMethod

@@ -48,7 +48,7 @@ public class Base extends TestBase {
         attachFile(app.driver, By.id("fileupload"), app.getHelper().getRevision().getAbsolutePath());
         app.getHelper().sleep(10);
         /*app.driver.get("http://imgup.net/");
-		attachFile(app.driver, By.id("image_image"), app.getHelper().getRevision().getAbsolutePath());
+        attachFile(app.driver, By.id("image_image"), app.getHelper().getRevision().getAbsolutePath());
 		app.getHelper().sleep(10);
 		app.driver.get("http://www.2imgs.com/");
 		attachFile(app.driver, By.id("f_file"), app.getHelper().getRevision().getAbsolutePath());
@@ -73,7 +73,7 @@ public class Base extends TestBase {
         //orderCreateCustomerPage.proceedToBidding();
     }
 
-    @Test
+    @Test(enabled = false)
     public void uploadTest3() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
@@ -86,7 +86,7 @@ public class Base extends TestBase {
         app.getHelper().sleep(10);
     }
 
-    @Test
+    @Test(enabled = false)
     public void payPal() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         PayPalPage payPalPage = new PayPalPage();
@@ -99,5 +99,13 @@ public class Base extends TestBase {
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
         app.getHelper().WaitLoading("thankyou");
         Helper.sleep(10);
+    }
+
+    @Test
+    public void login() {
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+
+        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        app.getHelper().WaitLoading("orders");
     }
 }

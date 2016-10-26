@@ -14,7 +14,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class StandartCheckOtherSitesTests extends TestBase {
-    String orderUrl;
+
     String siteUrl;
     String orderId;
     String writerUrl;
@@ -62,7 +62,7 @@ public class StandartCheckOtherSitesTests extends TestBase {
             siteUrl = sites[i];
             app.driver.get(siteUrl);
 */
-        app.driver.get("http://papersowl.com/");
+        //app.driver.get("http://papersowl.com/");
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();

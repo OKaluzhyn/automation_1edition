@@ -21,24 +21,17 @@ import java.util.Properties;
  * Created by tester on 12.08.2016.
  */
 public class ApplicationManager {
-    public  WebDriver driver;
+    public WebDriver driver;
 
     private final Properties properties;
-
     private String browser;
     private Helper helper;
-
-    public LocalFileDetector getFileDetector() {
-        return fileDetector;
-    }
-
     private LocalFileDetector fileDetector;
 
-    public ApplicationManager(String browser){
+    public ApplicationManager(String browser) {
 
         this.browser = browser;
         properties = new Properties();
-
     }
 
 
@@ -46,51 +39,57 @@ public class ApplicationManager {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
-        if ("".equals(properties.getProperty("selenium.server"))){
+        if ("".equals(properties.getProperty("selenium.server"))) {
 
-        if (Objects.equals(browser, BrowserType.FIREFOX)) {
-            driver = new FirefoxDriver();
-        } else if (Objects.equals(browser, BrowserType.CHROME)) {
-            driver = new ChromeDriver();
+            if (Objects.equals(browser, BrowserType.FIREFOX)) {
+                driver = new FirefoxDriver();
+            } else if (Objects.equals(browser, BrowserType.CHROME)) {
+                driver = new ChromeDriver();
 
-        } else if (Objects.equals(browser, BrowserType.IE)) {
-            driver = new InternetExplorerDriver();
-        }
+            } else if (Objects.equals(browser, BrowserType.IE)) {
+                driver = new InternetExplorerDriver();
+            }
 
         } else {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
+            //capabilities.setCapability(site.fromString(System.getProperty("site", "http://edusson.com/")));
 
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
             ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
-
         }
-
-       // driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
-       // driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-       // driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
+        // driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+        // driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+        // driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
 
-        driver.get(properties.getProperty("site", "http://edusson.com/"));
+        driver.get(System.getProperty("site", "http://edusson.com/"));
         helper = new Helper(driver);
-
-    }
-
-    public Helper getHelper() {
-        return helper;
-    }
-
-    public void setHelper(Helper helper) {
-        this.helper = helper;
     }
 
     public void stop() {
         driver.quit();
     }
 
+
+    public Helper getHelper() {
+
+        return helper;
+    }
+
+    public void setHelper(Helper helper) {
+
+        this.helper = helper;
+    }
+
     public void setFileDetector(LocalFileDetector fileDetector) {
         this.fileDetector = fileDetector;
     }
+
+    public LocalFileDetector getFileDetector() {
+        return fileDetector;
+    }
+
 }
 

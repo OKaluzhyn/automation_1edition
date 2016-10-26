@@ -62,9 +62,26 @@ task testUpload(type: Test) {
         systemProperty 'site', "${site}"
     }
 }
-task standartCheck_PayPal_Production_Not_EasyBidding(type: Test) {
+task testStandartCheck_PayPal_Production_Not_EasyBidding(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-standartChecksNotEasyBidding.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
+    }
+}
+task testLogin(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-exampleTests.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
