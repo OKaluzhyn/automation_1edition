@@ -7,79 +7,60 @@ import ua.qa.edusson.utils.Config;
 
 import static org.testng.Assert.assertEquals;
 
-public class UserAutorizationProductionTests extends TestBase{
-	
+public class UserAutorizationProductionTests extends TestBase {
 
 
+    @Test
+    // success customer authorization
+    public void customerAuthorization() throws Exception {
+
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        app.getHelper().sleep(1);
+        assertEquals("My Orders - Edusson.com", app.driver.getTitle());
+
+    }
 
 
-	@Test
-	// success customer authorization
-	public void customerAuthorization() throws Exception {
+    @Test
+    // success writer authorization
+    public void writerAuthorization() throws Exception {
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        app.getHelper().sleep(2);
+        assertEquals("My Orders. Current orders - Edusson.com", app.driver.getTitle());
 
-		app.getHelper().goToEdusson();
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-		userAuthorizationPage.logIn(Config.customer1, Config.password);
-		app.getHelper().sleep(1);
-		assertEquals("My Orders - Edusson.com", app.driver.getTitle());
+    }
 
-	}
-		
-	
+    @Test
+    // login as deactivate User
+    public void loginAsDeactivateUser() throws Exception {
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        userAuthorizationPage.LogClick();
+        app.getHelper().sleep(1);
+        userAuthorizationPage.setUserName(Config.deactivateUser);
+        userAuthorizationPage.continueClick();
+        userAuthorizationPage.checkErrorMessagePresent();
+    }
 
-	@Test
-	// success writer authorization
-	public void writerAuthorization() throws Exception {
-		app.getHelper().goToEdusson();
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-		// �������� ���������
-		userAuthorizationPage.logIn(Config.writer1, Config.password);
-		// �������� title ��������, �� ������� ������� ����� �����������
-		app.getHelper().sleep(2);
-		assertEquals("My Orders. Current orders - Edusson.com", app.driver.getTitle());
-		
-		// ��������� ��������� ������ ��� ��������
-		//MyOrdersWriterPage writerHomePage = new MyOrdersWriterPage();
-	//	writerHomePage.isWritersPopUpPresent();
-	}
-	
-	@Test
-	// login as deactivate User
-	public void loginAsDeactivateUser() throws Exception {
-		app.getHelper().goToEdusson();
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-		// ��������� ���������������� �������������
-		userAuthorizationPage.LogClick();
-		app.getHelper().sleep(1);
-		userAuthorizationPage.setUserName(Config.deactivateUser);
-		userAuthorizationPage.continueClick();
-		// ��������� ������� ���������
-		userAuthorizationPage.checkErrorMessagePresent();
-	}
 
-	
+    @Test
+    public void loginWithWrongPassword() throws Exception {
+        app.getHelper().goToEdusson();
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        userAuthorizationPage.logIn(Config.customer1, Config.wrongPassword);
+        userAuthorizationPage.checkErrorMessagePresent();
+    }
 
-	@Test
-	public void loginWithWrongPassword() throws Exception {
-		app.getHelper().goToEdusson();
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-		// ��������� � ������ �������, �������� �������
-		userAuthorizationPage.logIn(Config.customer1, Config.wrongPassword);
-		// ��������� ������� ��������� �� ������
-		userAuthorizationPage.checkErrorMessagePresent();
-	}
-
-	@Test
-	public void loginWithEmptyEmail() throws Exception {
-		app.getHelper().goToEdusson();
-		UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-		// �������� ������ �����, �� �������� ���� ����� �����������
-		userAuthorizationPage.LogClick();
-		app.getHelper().sleep(1);
-		userAuthorizationPage.continueClick();
-		// ��������� ������� ��������� �� ������
-		userAuthorizationPage.checkErrorMessagePresent();
-	}
+    @Test
+    public void loginWithEmptyEmail() throws Exception {
+        app.getHelper().goToEdusson();
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        userAuthorizationPage.LogClick();
+        app.getHelper().sleep(1);
+        userAuthorizationPage.continueClick();
+        userAuthorizationPage.checkErrorMessagePresent();
+    }
 }
 
 

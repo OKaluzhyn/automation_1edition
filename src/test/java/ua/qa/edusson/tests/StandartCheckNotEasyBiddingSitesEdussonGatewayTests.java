@@ -49,7 +49,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         if (siteUrl.equals("http://studyfaq.com/")) {
             orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
         } else {
-            orderCreateCustomerPage.createOrderForOtherSites("test for webdriver", "test");
+            orderCreateCustomerPage.createOrder("test for webdriver", "test");
         }
         app.getHelper().WaitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
@@ -78,14 +78,18 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         writerUrl = "http://edusson.com/order/view/" + orderId;
         app.getHelper().goToEdusson();
 
-        if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink()) == true) {
+      /*  if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink()) == true) {
             userAuthorizationPage.logIn(Config.writer1, Config.password);
             app.getHelper().sleep(2);
             myOrdersWriterPage.closePopup();
             app.driver.get(writerUrl);
         } else {
             app.driver.get(writerUrl);
-        }
+        }*/
+        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        app.getHelper().sleep(2);
+        myOrdersWriterPage.closePopup();
+        app.driver.get(writerUrl);
         app.getHelper().sleep(2);
         System.out.println(app.driver.getCurrentUrl());
         orderBiddingWriterPage.createBid("6");
@@ -97,6 +101,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         orderPayCustomerPage.confirmPay();
         app.getHelper().WaitLoading("thankyou");
         app.driver.get(writerUrl);
+        app.getHelper().sleep(2);
         orderInProgressPage.uploadRevision();
         app.getHelper().sleep(2);
         app.driver.get(customerUrl);

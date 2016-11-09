@@ -41,7 +41,7 @@ public class Base extends TestBase {
     }
 
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void uploadTest1() {
 
         app.driver.get("http://blueimp.github.io/jQuery-File-Upload/basic.html");
@@ -94,9 +94,10 @@ public class Base extends TestBase {
 
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
-        app.getHelper().goTo("http://edusson.com/order/pay/172203");
+        app.getHelper().goTo("http://edusson.com/order/pay/174899");
         orderPayCustomerPage.clickReserveButton();
         payPalPage.confirmPayPal("edussonpay4@ukr.net", "123456789");
+       // payPalPage.logInToPayPalMain("edussonpay4@ukr.net", "123456789");
         app.getHelper().WaitLoading("thankyou");
         Helper.sleep(10);
     }

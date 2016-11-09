@@ -12,7 +12,7 @@ public class UserAuthorizationPage {
 
     //XPath
 
-    public static String login_link = "//a[@data-atest='atest_login_elem_popup_open']";
+    public static String login_link = "//*[@data-atest='atest_login_elem_popup_open']";
     public static String user_name_field = "//input[@data-atest='atest_login_form_email']";
     public static String continue_button = "//button[@data-atest='atest_login_form_submit']";
     public static String user_password_field = "//input[@data-atest='atest_login_form_password']";
@@ -31,13 +31,10 @@ public class UserAuthorizationPage {
 
     //public static String messageForDeactivateUser = "//div[@class='errorText']";
 
-    private String login = "//a[@data-atest='atest_login_elem_popup_open']";
-
-    public void setloginLink(String login) {
-        this.login = login;
-    }
+    private String login = "//*[@data-atest='atest_login_elem_popup_open']";
 
     public String getloginLink() {
+
         return this.login;
     }
 

@@ -10,9 +10,45 @@ dependencies {
     compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
 }
 
-task testStandartCheck(type: Test) {
+task testStandartCheckEdusson(type: Test) {
     useTestNG {
-        suites 'src/test/resources/testng-standartChecks.xml'
+        suites 'src/test/resources/testng-standartChecksEdussonOnly.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
+    }
+}
+
+task testStandartCheckNotEasyBiddingSites(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-StandartCheckNotEasyBiddingSites.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
+    }
+}
+
+task testStandartCheckOnlyEasyBiddingSites(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-StandartCheckOnlyEasyBiddingSites.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
@@ -29,7 +65,7 @@ task testStandartCheck(type: Test) {
 }
 task testAuthorization(type: Test) {
     useTestNG {
-        suites 'src/test/resources/testng.xml'
+        suites 'src/test/resources/testng-UserAutorizationProduction.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
@@ -45,41 +81,7 @@ task testAuthorization(type: Test) {
         systemProperty 'site', "${site}"
     }
 }
-task testUpload(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-exampleTests.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
-task testStandartCheck_Production_Not_EasyBidding(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-standartChecksNotEasyBidding.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
-task testLogin(type: Test) {
+task testExample(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-exampleTests.xml'
     }

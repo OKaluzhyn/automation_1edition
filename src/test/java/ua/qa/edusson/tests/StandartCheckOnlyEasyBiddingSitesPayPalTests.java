@@ -20,12 +20,13 @@ import java.util.Objects;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class StandartCheckEasyBiddingSitesPayPalTests extends TestBase {
+public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
 
-    String siteUrl; //= "http://paperial.com/";
-    String orderId; //= Helper.driver.getCurrentUrl().substring(30);
-    String writerUrl; //= "http://edusson.com/order/view/"+orderId;
-    String customerUrl; //= siteUrl+"order/view/"+orderId;
+    String siteUrl;
+    String orderId;
+    String writerUrl;
+    String customerUrl;
+
     String customerReleasedPercent;
     String writerReleasedPercent;
 
@@ -45,7 +46,7 @@ public class StandartCheckEasyBiddingSitesPayPalTests extends TestBase {
     // PayPall
     // 20%+80%
 
-    public void standartCheck_EasyBidding_Production_All() throws Exception {
+    public void standartCheck_Only_EasyBidding_Production() throws Exception {
 
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.logIn(Config.customer1, Config.password);
@@ -53,11 +54,10 @@ public class StandartCheckEasyBiddingSitesPayPalTests extends TestBase {
         if (siteUrl.equals("http://studyfaq.com/")) {
             orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
         } else {
-            orderCreateCustomerPage.createOrderForOtherSites("test for webdriver", "test");
+            orderCreateCustomerPage.createOrder("test for webdriver", "test");
         }
+        app.getHelper().WaitLoading("/order/pay/");
 
-        assertTrue(app.driver.getCurrentUrl().contains("/order/pay/"));
-        Helper.sleep(1);
 
         if (Objects.equals(siteUrl, "http://paperial.com/")) {
             orderId = app.driver.getCurrentUrl().substring(30);
@@ -84,6 +84,8 @@ public class StandartCheckEasyBiddingSitesPayPalTests extends TestBase {
 
         writerUrl = "http://edusson.com/order/view/" + orderId;
         customerUrl = siteUrl + "order/view/" + orderId;
+        System.out.println( "writerUrl" + "-"+  writerUrl+";"+
+                "customerUrl" + "-"+  customerUrl);
         Helper.sleep(1);
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);

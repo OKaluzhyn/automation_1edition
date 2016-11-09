@@ -18,6 +18,12 @@ public class PayPalPage {
     public static String continueButton = "//form[@name='confirm']//input[@validate-submit='onPay()']";
 
 
+    //second log in
+    public static String email2 = "//input[@id='login_email']";
+    public static String pass2 = "//input[@id='login_password']";
+    public static String logInButton2 = "//input[@id='submitLogin']";
+    public static String confirmButton = "//div[@id='continueButtonSection']//input[@type='submit']";
+
     public void setUserEmail(String strUserEmail) {
         WebElement e_mail = app.getHelper().cyclicElementSearchByXpath(email);
         e_mail.clear();
@@ -49,22 +55,21 @@ public class PayPalPage {
     public void confirmPayPal(String strUserEmail, String strPassword) {
         app.getHelper().WaitElement("//div[@id='paypalLogo']");
 
-        if ((app.getHelper().isElementPresent(continueButton)) == (true)) {
+        if (app.getHelper().isElementPresent(continueButton)) {
             this.clickContinue();
-        } else if ((app.getHelper().isElementPresent(frame)) == (true)) {
+        } else if (app.getHelper().isElementPresent(frame)) {
             this.logInToPayPalMain(strUserEmail, strPassword);
-        } else if ((app.getHelper().isElementPresent(continueButton)) == (true)) {
-            this.clickContinue();
-        } else if ((app.getHelper().isElementPresent(email2)) == (true)) {
-            this.confirmPayPal_2(strUserEmail, strPassword);
-        } else {
-            this.logInToPayPalMain(strUserEmail, strPassword);
-            System.out.println("Error on PayPal page");
+            } else {
+                this.confirmPayPal_2(strUserEmail, strPassword);
+            }
         }
-    }
+
+
+
 
 
     public void logInToPayPalMain(String strUserEmail, String strPassword) {
+        app.getHelper().WaitElement("//div[@id='paypalLogo']");
         app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
         app.getHelper().WaitElement(email);
         this.setUserEmail(strUserEmail);
@@ -73,16 +78,14 @@ public class PayPalPage {
         this.clickLogBut();
         app.driver.switchTo().defaultContent();
         app.getHelper().WaitLoading("/checkout/review");
+        app.getHelper().WaitElement("//div[@id='paypalLogo']");
         Helper.sleep(1);
-        app.getHelper().WaitElement(continueButton);
-        this.clickContinue();
+        if (app.getHelper().isElementPresent(continueButton)) {
+
+            this.clickContinue();
+        }
     }
 
-    //second log in
-    public static String email2 = "//input[@id='login_email']";
-    public static String pass2 = "//input[@id='login_password']";
-    public static String logInButton2 = "//input[@id='submitLogin']";
-    public static String confirmButton = "//div[@id='continueButtonSection']//input[@type='submit']";
 
     public void setUserEmail_2(String strUserEmail) {
         WebElement e_mail = app.getHelper().cyclicElementSearchByXpath(email2);
@@ -115,9 +118,9 @@ public class PayPalPage {
     }
 
     public void confirmPayPal_2(String strUserEmail, String strPassword) {
-        if (app.getHelper().isElementPresent(confirmButton) == true) {
+        if (app.getHelper().isElementPresent(confirmButton)) {
             this.clickConfirm();
-        } else if (app.getHelper().isElementPresent(email2) == true) {
+        } else if (app.getHelper().isElementPresent(email2)) {
             this.setUserEmail_2(strUserEmail);
             this.setUserPassword_2(strPassword);
             this.clickLogBut_2();

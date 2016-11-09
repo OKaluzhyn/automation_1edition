@@ -6,7 +6,8 @@
 
             <class name="ua.qa.edusson.tests.StandartCheckEdussonProductionTests" />
 
-        </classes>
+
+            </classes>
     </test>
 
 

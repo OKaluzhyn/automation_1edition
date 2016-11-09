@@ -5,10 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.BrowserType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.LocalFileDetector;
-import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.remote.*;
 
 import java.io.File;
 import java.io.FileReader;
@@ -45,7 +42,6 @@ public class ApplicationManager {
                 driver = new FirefoxDriver();
             } else if (Objects.equals(browser, BrowserType.CHROME)) {
                 driver = new ChromeDriver();
-
             } else if (Objects.equals(browser, BrowserType.IE)) {
                 driver = new InternetExplorerDriver();
             }
@@ -54,16 +50,15 @@ public class ApplicationManager {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
-            //capabilities.setCapability(site.fromString(System.getProperty("site", "http://edusson.com/")));
-
+            capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
             ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
+
         }
         // driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
         // driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
         // driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
-
         driver.get(System.getProperty("site", "http://edusson.com/"));
         helper = new Helper(driver);
     }
