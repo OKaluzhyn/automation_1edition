@@ -75,7 +75,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
             orderId = app.driver.getCurrentUrl().substring(34);
             System.out.println(orderId);
         } else if (Objects.equals(siteUrl, "http://essays.studymoose.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(36);
+            orderId = app.driver.getCurrentUrl().substring(39);
             System.out.println(orderId);
         } else if (Objects.equals(siteUrl, "http://essays.blablawriting.com/")) {
             orderId = app.driver.getCurrentUrl().substring(36);
