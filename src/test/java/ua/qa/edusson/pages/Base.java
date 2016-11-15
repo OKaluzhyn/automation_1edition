@@ -109,4 +109,8 @@ public class Base extends TestBase {
         userAuthorizationPage.logIn(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
     }
+    public void popup(){
+        app.driver.switchTo().alert().getText();
+    }
+
 }

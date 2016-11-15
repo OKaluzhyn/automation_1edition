@@ -102,7 +102,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
 
     }
 
-    @Test
+    @Test (enabled = false)
     //CreditCard 100% release
 
     public void standartCheck_CreditCard_Production_Edusson() throws Exception {
