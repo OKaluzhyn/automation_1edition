@@ -39,7 +39,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
 
     @Test
     // PayPall
-    // 20%+80%
+    // 100%
 
 
     public void standartCheck_PayPal_Production_Not_EasyBidding() throws Exception {
@@ -141,13 +141,13 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
         orderInProgressPage.uploadRevision();
         app.getHelper().sleep(2);
         app.driver.get(customerUrl);
-        orderInProgressPage.releaseMoney("20");
+        orderInProgressPage.releaseMoney("100");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
 
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-        app.driver.get(customerUrl);
+       /* app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("80");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
 
@@ -157,7 +157,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
 
         assertEquals(customerReleasedPercent, writerReleasedPercent);
 
-        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+       */ assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
         System.out.println("TEST PASSED");
     }

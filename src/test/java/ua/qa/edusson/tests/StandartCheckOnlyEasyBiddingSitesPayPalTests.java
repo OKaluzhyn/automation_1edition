@@ -103,19 +103,19 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
         orderInProgressPage.uploadRevision();
         Helper.sleep(2);
         app.driver.get(customerUrl);
-        orderInProgressPage.releaseMoney("20");
+        orderInProgressPage.releaseMoney("100");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-        app.driver.get(customerUrl);
+       /* app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("80");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+       */ assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
         System.out.println("TEST PASSED" + " " + siteUrl);
     }
