@@ -34,7 +34,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		OrderCancelViewPage orderCancelViewPage = new OrderCancelViewPage();
 		app.getHelper().goToEdusson();
 		// ��������� ��������
-		userAuthorizationPage.logIn(Config.customer1, Config.password);
+		userAuthorizationPage.userLogin(Config.customer1, Config.password);
 		app.getHelper().sleep(1);
 		//go to order form
 	    myOrdersCustomerPage.makeNewOrder();
@@ -55,7 +55,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		app.getHelper().sleep(1);
 		// ��������� ���������
-		userAuthorizationPage.changeUser(Config.writer1, Config.password);
+		userAuthorizationPage.userLogin(Config.writer1, Config.password);
 		//��������� ���������� �����
 		app.getHelper().sleep(2);
 		myOrdersWriterPage.closePopup();
@@ -67,7 +67,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		// ��������� ��������
 		app.getHelper().sleep(1);
-		userAuthorizationPage.changeUser(Config.customer1, Config.password);
+		userAuthorizationPage.userLogin(Config.customer1, Config.password);
 		app.getHelper().sleep(1);
 		//app.driver.navigate().refresh();
 		// ����� ��� �������� ������ �� ���������� � ��������� �� ����
@@ -79,7 +79,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		app.getHelper().sleep(1);
 		// ��������� ���������
-		userAuthorizationPage.changeUser(Config.writer1, Config.password);
+		userAuthorizationPage.userLogin(Config.writer1, Config.password);
 		//��������� ���������� �����
 		app.getHelper().sleep(2);
 		myOrdersWriterPage.closePopup();
@@ -93,7 +93,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		// ��������� ��������
 		app.getHelper().sleep(1);
-		userAuthorizationPage.changeUser(Config.customer1, Config.password);
+		userAuthorizationPage.userLogin(Config.customer1, Config.password);
 		app.getHelper().sleep(1);
 		//app.driver.navigate().refresh();
 		// ����� ��� �������� ������ �� ���������� � ��������� �� ����
@@ -107,7 +107,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		app.getHelper().sleep(1);
 		// ��������� ���������
-		userAuthorizationPage.changeUser(Config.writer1, Config.password);
+		userAuthorizationPage.userLogin(Config.writer1, Config.password);
 		//��������� ���������� �����
 		app.getHelper().sleep(2);
 		myOrdersWriterPage.closePopup();
@@ -119,7 +119,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		// ��������� ��������
 		app.getHelper().sleep(1);
-		userAuthorizationPage.changeUser(Config.customer1, Config.password);
+		userAuthorizationPage.userLogin(Config.customer1, Config.password);
 		app.getHelper().sleep(1);
 		//app.driver.navigate().refresh();
 		// ����� ��� �������� ������ �� ���������� � ��������� �� ����
@@ -132,7 +132,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		app.getHelper().sleep(1);
 		// ��������� ���������
-		userAuthorizationPage.changeUser(Config.writer1, Config.password);
+		userAuthorizationPage.userLogin(Config.writer1, Config.password);
 		//��������� ���������� �����
 		app.getHelper().sleep(2);
 		myOrdersWriterPage.closePopup();
@@ -144,7 +144,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		headerMenu.userLogOut();
 		// ��������� ��������
 		app.getHelper().sleep(1);
-		userAuthorizationPage.changeUser(Config.customer1, Config.password);
+		userAuthorizationPage.userLogin(Config.customer1, Config.password);
 		app.getHelper().sleep(1);
 		//app.driver.navigate().refresh();
 		// ����� ��� �������� ������ �� ���������� � ��������� �� ����
@@ -177,7 +177,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 	 	headerMenu.userLogOut();
 	 	app.getHelper().sleep(1);
 	 	// ��������� ���������
-	 	userAuthorizationPage.changeUser(Config.writer1, Config.password);
+	 	userAuthorizationPage.userLogin(Config.writer1, Config.password);
 	 	//��������� ���������� �����
 	 	app.getHelper().sleep(2);
 	 	myOrdersWriterPage.closePopup();

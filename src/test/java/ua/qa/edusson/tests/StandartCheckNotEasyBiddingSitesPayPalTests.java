@@ -45,7 +45,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
     public void standartCheck_PayPal_Production_Not_EasyBidding() throws Exception {
 
         siteUrl = app.driver.getCurrentUrl();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         if (siteUrl.equals("http://studyfaq.com/")) {
             orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
@@ -116,7 +116,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
         writerUrl = "http://edusson.com/order/view/" + orderId;
 
        /* if (app.getHelper().isElementPresent("//a[@data-atest='atest_login_elem_popup_open']")) {
-            userAuthorizationPage.logIn(Config.writer1, Config.password);
+            userAuthorizationPage.userLogin(Config.writer1, Config.password);
             app.getHelper().sleep(2);
             myOrdersWriterPage.closePopup();
             app.driver.get(writerUrl);
@@ -124,7 +124,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
             app.driver.get(writerUrl);
         }*/
         app.getHelper().goToEdusson();
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);

@@ -2,6 +2,7 @@ package ua.qa.edusson.pages.CommonPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 import static ua.qa.edusson.tests.TestBase.app;
 
@@ -24,7 +25,10 @@ public class OrderInProgressPage  {
 		WebElement work_results = app.getHelper().cyclicElementSearchByXpath(workResults);
 		work_results.click();
 		app.getHelper().attachFile2(By.xpath(inputRevision), app.getHelper().getRevision().getAbsolutePath());
-		
+		app.getHelper().WaitElement("//a[@class='file-name-link']");
+		String fileName = app.getHelper().cyclicElementSearchByXpath("//a[@class='file-name-link']").getText();
+		System.out.println(fileName);
+		Assert.assertEquals(fileName, "testFile.pdf");
 		
 	}
     

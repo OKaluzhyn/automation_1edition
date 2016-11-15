@@ -41,7 +41,7 @@ public class StandartCheckEdubirdieProductionTests extends TestBase {
     public void standartCheck_PAyPal_Production_Edubirdie() throws Exception {
 
         app.driver.get("http://edubirdie.com/");
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         myOrdersCustomerPage.makeNewOrder();
         app.getHelper().sleep(1);
@@ -55,7 +55,7 @@ public class StandartCheckEdubirdieProductionTests extends TestBase {
         app.getHelper().sleep(1);
         app.getHelper().goToEdusson();
         app.getHelper().sleep(1);
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);
@@ -110,7 +110,7 @@ public class StandartCheckEdubirdieProductionTests extends TestBase {
 
     public void standartCheck_CreditCard_Production_Edubirdie() throws Exception {
         app.driver.get("http://edubirdie.com/");
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         myOrdersCustomerPage.makeNewOrder();
         app.getHelper().sleep(1);
@@ -123,7 +123,7 @@ public class StandartCheckEdubirdieProductionTests extends TestBase {
         app.getHelper().sleep(1);
         app.getHelper().goToEdusson();
         app.getHelper().sleep(1);
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);

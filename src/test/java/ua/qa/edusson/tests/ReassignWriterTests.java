@@ -41,7 +41,7 @@ public class ReassignWriterTests extends TestBase {
     @Test
     public void standartReassign_Production_Edusson() throws Exception {
         app.getHelper().goToEdusson();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test order for reassign", "test");
@@ -50,14 +50,14 @@ public class ReassignWriterTests extends TestBase {
         String orderUrl = app.driver.getCurrentUrl();
         app.getHelper().sleep(1);
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(orderUrl);
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
         app.getHelper().sleep(1);
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         app.driver.get(orderUrl);
         orderBiddingCustomerPage.bid1();
@@ -67,14 +67,14 @@ public class ReassignWriterTests extends TestBase {
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
         headerMenu.userLogOut();
         app.getHelper().sleep(1);
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(orderUrl);
         headerMenu.userLogOut();
         //check: is order InProgress state
         // orderInProgressPage.
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         app.driver.get(orderUrl);
         System.out.println(orderInProgressPage.checkReleasedMoneyCustomerPage());
@@ -85,7 +85,7 @@ public class ReassignWriterTests extends TestBase {
         String orderReassignUrl = app.driver.getCurrentUrl();
         //assertEquals(edussonGetOrderId, edussonGetOrderId +1);
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(orderUrl);

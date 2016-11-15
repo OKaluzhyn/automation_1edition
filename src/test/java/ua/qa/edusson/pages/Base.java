@@ -2,6 +2,7 @@ package ua.qa.edusson.pages;
 
 import org.openqa.selenium.*;
 import org.testng.annotations.Test;
+import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
 import ua.qa.edusson.pages.CustomerPages.MyOrdersCustomerPage;
 import ua.qa.edusson.pages.CustomerPages.OrderCreateCustomerPage;
@@ -61,7 +62,7 @@ public class Base extends TestBase {
         MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
         OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
 
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.clickNext1();
@@ -78,7 +79,7 @@ public class Base extends TestBase {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
 
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get("http://edusson.com/order/view/169636#order-tabs3");
@@ -92,7 +93,7 @@ public class Base extends TestBase {
         PayPalPage payPalPage = new PayPalPage();
         OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
 
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
         app.getHelper().goTo("http://edusson.com/order/pay/174899");
         orderPayCustomerPage.clickReserveButton();
@@ -105,8 +106,16 @@ public class Base extends TestBase {
     @Test
     public void login() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        HeaderMenu header = new HeaderMenu();
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        app.getHelper().WaitLoading("orders");
+        header.userLogOut();
+        userAuthorizationPage.userLogin(Config.customer2, Config.password);
+        header.userLogOut();
+        app.driver.get("http://edubirdie.com/");
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        app.driver.get("http://edusson.com/");
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
     }
     public void popup(){

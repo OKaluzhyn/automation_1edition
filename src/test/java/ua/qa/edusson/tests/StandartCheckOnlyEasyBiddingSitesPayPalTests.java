@@ -49,7 +49,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
     public void standartCheck_Only_EasyBidding_Production() throws Exception {
 
         siteUrl = app.driver.getCurrentUrl();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         if (siteUrl.equals("http://studyfaq.com/")) {
             orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
@@ -92,7 +92,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
         app.getHelper().WaitLoading("thankyou");
         app.getHelper().goToEdusson();
         if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink())) {
-            userAuthorizationPage.logIn(Config.writer1, Config.password);
+            userAuthorizationPage.userLogin(Config.writer1, Config.password);
             Helper.sleep(2);
             myOrdersWriterPage.closePopup();
         }

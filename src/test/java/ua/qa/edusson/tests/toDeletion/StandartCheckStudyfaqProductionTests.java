@@ -43,7 +43,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
 
     public void standartCheck_PAyPal_Production_Studyfaq() throws Exception {
         app.getHelper().goToStudyfaq();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         //go to order form
         myOrdersCustomerPage.makeNewOrder();
@@ -61,7 +61,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
         app.getHelper().sleep(1);
         app.getHelper().goToEdusson();
         app.getHelper().sleep(1);
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);
@@ -123,7 +123,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
     public void standartCheck_CreditCard_Production_Studyfaq() throws Exception {
         app.getHelper().goToStudyfaq();
 
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         //go to order form
         myOrdersCustomerPage.makeNewOrder();
@@ -140,7 +140,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
         app.getHelper().sleep(1);
         app.getHelper().goToEdusson();
         app.getHelper().sleep(1);
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);

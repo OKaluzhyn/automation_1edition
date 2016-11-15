@@ -15,7 +15,7 @@ public class UserAutorizationProductionTests extends TestBase {
     public void customerAuthorization() throws Exception {
 
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         assertEquals("My Orders - Edusson.com", app.driver.getTitle());
 
@@ -26,7 +26,7 @@ public class UserAutorizationProductionTests extends TestBase {
     // success writer authorization
     public void writerAuthorization() throws Exception {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         assertEquals("My Orders. Current orders - Edusson.com", app.driver.getTitle());
 
@@ -48,7 +48,7 @@ public class UserAutorizationProductionTests extends TestBase {
     public void loginWithWrongPassword() throws Exception {
         app.getHelper().goToEdusson();
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-        userAuthorizationPage.logIn(Config.customer1, Config.wrongPassword);
+        userAuthorizationPage.userLogin(Config.customer1, Config.wrongPassword);
         userAuthorizationPage.checkErrorMessagePresent();
     }
 

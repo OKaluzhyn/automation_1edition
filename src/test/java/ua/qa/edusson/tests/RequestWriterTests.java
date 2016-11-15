@@ -46,10 +46,10 @@ public class RequestWriterTests extends TestBase{
     @Test
 	public  void requestWriter(){
         app.getHelper().goToEdusson();
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(1);
         app.getHelper().goToEdubirdie();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.driver.navigate().refresh();
         app.driver.get(writerProfileUrl);
         String writer = writerProfile.writerName();
@@ -65,7 +65,7 @@ public class RequestWriterTests extends TestBase{
         String orderUrl = app.driver.getCurrentUrl();
         String custOrderId = orderUrl.substring(32);
        // headerMenu.userLogOut();
-		//userAuthorizationPage.changeUser(Config.writer1, Config.password);
+		//userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(1);
         app.getHelper().goToEdusson();
 
@@ -78,7 +78,7 @@ public class RequestWriterTests extends TestBase{
         orderBiddingWriterPage.createBid("6");
        // headerMenu.userLogOut();
        // app.getHelper().sleep(1);
-       // userAuthorizationPage.changeUser(Config.customer1, Config.password);
+       // userAuthorizationPage.userLogin(Config.customer1, Config.password);
        // app.getHelper().sleep(1);
         app.getHelper().goToEdubirdie();
         app.driver.get(orderUrl);
@@ -89,7 +89,7 @@ public class RequestWriterTests extends TestBase{
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
        // headerMenu.userLogOut();
         app.getHelper().sleep(1);
-        //userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        //userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
        // myOrdersWriterPage.closePopup();
        // app.driver.get(orderUrl);
@@ -100,7 +100,7 @@ public class RequestWriterTests extends TestBase{
         app.getHelper().sleep(2);
        // headerMenu.userLogOut();
        // app.getHelper().sleep(2);
-        //userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        //userAuthorizationPage.userLogin(Config.customer1, Config.password);
         //app.getHelper().sleep(2);
         app.driver.get(orderUrl);
         orderInProgressPage.releaseMoney("100");
@@ -111,7 +111,7 @@ public class RequestWriterTests extends TestBase{
         app.getHelper().sleep(2);
        // headerMenu.userLogOut();
         app.getHelper().sleep(2);
-      //  userAuthorizationPage.changeUser(Config.writer1, Config.password);
+      //  userAuthorizationPage.userLogin(Config.writer1, Config.password);
       //  app.getHelper().sleep(2);
       //  myOrdersWriterPage.closePopup();
       //  app.driver.get(orderUrl);

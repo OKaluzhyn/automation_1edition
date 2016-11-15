@@ -44,7 +44,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
     public void standartCheck_CreditCard_Production_Not_EasyBidding() throws Exception {
 
         siteUrl = app.driver.getCurrentUrl();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         if (siteUrl.equals("http://studyfaq.com/")) {
             orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
@@ -79,14 +79,14 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         app.getHelper().goToEdusson();
 
       /*  if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink()) == true) {
-            userAuthorizationPage.logIn(Config.writer1, Config.password);
+            userAuthorizationPage.userLogin(Config.writer1, Config.password);
             app.getHelper().sleep(2);
             myOrdersWriterPage.closePopup();
             app.driver.get(writerUrl);
         } else {
             app.driver.get(writerUrl);
         }*/
-        userAuthorizationPage.logIn(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);
@@ -105,19 +105,19 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         orderInProgressPage.uploadRevision();
         app.getHelper().sleep(2);
         app.driver.get(customerUrl);
-        orderInProgressPage.releaseMoney("50");
+        orderInProgressPage.releaseMoney("100");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-        app.driver.get(customerUrl);
+        /*app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("50");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+        */assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
         System.out.println("TEST PASSED");
     }

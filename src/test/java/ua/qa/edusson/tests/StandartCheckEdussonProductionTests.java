@@ -46,19 +46,19 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     public void standartCheck_PAyPal_Production_Edusson() throws Exception {
 
         //app.getHelper().goToEdusson();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
         app.getHelper().WaitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
@@ -66,24 +66,24 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
         app.getHelper().WaitLoading("thankyou");
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.uploadRevision();
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("10");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("90");
@@ -91,7 +91,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
@@ -107,19 +107,19 @@ public class StandartCheckEdussonProductionTests extends TestBase {
 
     public void standartCheck_CreditCard_Production_Edusson() throws Exception {
         // app.getHelper().goToEdusson();
-        userAuthorizationPage.logIn(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
         app.getHelper().WaitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
@@ -128,12 +128,12 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         creditCardPayment.setAllFields();
         app.getHelper().WaitLoading("thankyou");
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.uploadRevision();
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().WaitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("100");
@@ -141,7 +141,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
         headerMenu.userLogOut();
-        userAuthorizationPage.changeUser(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
         app.getHelper().goTo(orderUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
