@@ -26,7 +26,7 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     }
 
 
-   /* @Test
+    @Test
     public void postDeployStandartCheck1() throws Exception {
         edusson.standartCheck_CreditCard_Production_Edusson();
     }
@@ -44,7 +44,7 @@ public class PostDeployStandartChecksTop6 extends TestBase {
 
     }
 
- */   @Test
+    @Test
     public void postDeployStandartCheck4() {
         app.driver.get("http://essays.studymoose.com/");
 
