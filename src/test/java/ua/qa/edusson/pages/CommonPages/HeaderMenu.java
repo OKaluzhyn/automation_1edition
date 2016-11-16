@@ -9,10 +9,10 @@ public class HeaderMenu  {
 	public static String logOut = "//a[@href='/logout']//span";
 
 	public void userLogOut() {
-		app.getHelper().WaitElement(logOut);
+		app.getHelper().waitElement(logOut);
 
 		WebElement log_out_button = app.getHelper().cyclicElementSearchByXpath(logOut);
-		app.getHelper().WaitElement(logOut);
+		app.getHelper().waitElement(logOut);
 		log_out_button.click();
 	}
 }

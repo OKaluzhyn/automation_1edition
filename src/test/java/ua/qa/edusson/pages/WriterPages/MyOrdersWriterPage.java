@@ -13,7 +13,7 @@ public class MyOrdersWriterPage  {
 	public static String closePopUpButton = "//a[@aria-label='Close']";
 //close pop up
 	public void closePopup(){
-		app.getHelper().WaitElement(writerInformPopUp);
+		app.getHelper().waitElement(writerInformPopUp);
 		WebElement close_popup_button = app.getHelper().cyclicElementSearchByXpath(closePopUpButton);
 		close_popup_button.click();
 	}

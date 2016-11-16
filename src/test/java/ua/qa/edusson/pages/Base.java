@@ -9,6 +9,7 @@ import ua.qa.edusson.pages.CustomerPages.OrderCreateCustomerPage;
 import ua.qa.edusson.pages.CustomerPages.OrderPayCustomerPage;
 import ua.qa.edusson.pages.CustomerPages.PayPalPage;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
+import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.tests.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
@@ -94,12 +95,12 @@ public class Base extends TestBase {
         OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
 
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
         app.getHelper().goTo("http://edusson.com/order/pay/174899");
         orderPayCustomerPage.clickReserveButton();
         payPalPage.confirmPayPal("edussonpay4@ukr.net", "123456789");
        // payPalPage.logInToPayPalMain("edussonpay4@ukr.net", "123456789");
-        app.getHelper().WaitLoading("thankyou");
+        app.getHelper().waitLoading("thankyou");
         Helper.sleep(10);
     }
 
@@ -108,7 +109,7 @@ public class Base extends TestBase {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         HeaderMenu header = new HeaderMenu();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
         header.userLogOut();
         userAuthorizationPage.userLogin(Config.customer2, Config.password);
         header.userLogOut();
@@ -116,10 +117,34 @@ public class Base extends TestBase {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.driver.get("http://edusson.com/");
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
     }
-    public void popup(){
-        app.driver.switchTo().alert().getText();
+    @Test
+    public void paypal(){
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
+        OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+        OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
+        MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
+        OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
+        PayPalPage payPalPage = new PayPalPage();
+
+
+        app.driver.get("http://customwriting.com/");
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        myOrdersCustomerPage.makeNewOrder();
+        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        app.getHelper().waitLoading("/order/pay/");
+        orderPayCustomerPage.confirmPay();
+        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        app.getHelper().waitLoading("thankyou");
+        app.driver.get("http://customwriting.com/customer/orders");
+        myOrdersCustomerPage.makeNewOrder();
+        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        app.getHelper().waitLoading("/order/pay/");
+        orderPayCustomerPage.confirmPay();
+        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        app.getHelper().waitLoading("thankyou");
     }
 
 }

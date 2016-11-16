@@ -53,32 +53,35 @@ public class PayPalPage {
 
 
     public void confirmPayPal(String strUserEmail, String strPassword) {
-        app.getHelper().WaitElement("//div[@id='paypalLogo']");
 
-        if (app.getHelper().isElementPresent(continueButton)) {
+        app.getHelper().waitElement("//div[@id='paypalLogo']");
+        app.getHelper().waitForJSandJQueryToLoad();
+        app.getHelper().sleep(10);
+        String page = app.driver.getCurrentUrl().substring(95);
+        System.out.println(page);
+        if (page.equals("/checkout/review")) {
+            app.getHelper().waitElement(continueButton);
             this.clickContinue();
-        } else if (app.getHelper().isElementPresent(frame)) {
+        } else if (page.equals("/checkout/login")) {
             this.logInToPayPalMain(strUserEmail, strPassword);
-            } else {
-                this.confirmPayPal_2(strUserEmail, strPassword);
-            }
+        } else {
+            this.confirmPayPal_2(strUserEmail, strPassword);
         }
-
-
+    }
 
 
 
     public void logInToPayPalMain(String strUserEmail, String strPassword) {
-        app.getHelper().WaitElement("//div[@id='paypalLogo']");
+        app.getHelper().waitElement("//div[@id='paypalLogo']");
         app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
-        app.getHelper().WaitElement(email);
+        app.getHelper().waitElement(email);
         this.setUserEmail(strUserEmail);
         this.setUserPassword(strPassword);
         Helper.sleep(1);
         this.clickLogBut();
         app.driver.switchTo().defaultContent();
-        app.getHelper().WaitLoading("/checkout/review");
-        app.getHelper().WaitElement("//div[@id='paypalLogo']");
+        app.getHelper().waitLoading("/checkout/review");
+        app.getHelper().waitElement("//div[@id='paypalLogo']");
         Helper.sleep(1);
         if (app.getHelper().isElementPresent(continueButton)) {
 

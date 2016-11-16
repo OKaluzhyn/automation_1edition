@@ -40,7 +40,7 @@ public class UserAuthorizationPage {
 
 
     public void LogClick() {
-        app.getHelper().WaitElement(login_link);
+        app.getHelper().waitElement(login_link);
         WebElement openAuthorizationPopUp = app.getHelper().cyclicElementSearchByXpath(login_link);
         openAuthorizationPopUp.click();
     }
@@ -60,7 +60,7 @@ public class UserAuthorizationPage {
     public void logIn(String strUserName, String strPassword) {
 
         //this.LogClick();
-        app.getHelper().WaitElement(user_name_field);
+        app.getHelper().waitElement(user_name_field);
         this.setUserName(strUserName);
         this.continueClick();
         this.setPassword(strPassword);
@@ -69,15 +69,15 @@ public class UserAuthorizationPage {
 
     public void changeUser(String strUserName, String strPassword) {
        // this.LogClick();
-        app.getHelper().WaitElement(change_user);
+        app.getHelper().waitElement(change_user);
         this.changeUserClick();
-        app.getHelper().WaitElement(user_name_field);
+        app.getHelper().waitElement(user_name_field);
         this.setUserName(strUserName);
-        app.getHelper().WaitElement(submit_button_after_change_user);
+        app.getHelper().waitElement(submit_button_after_change_user);
         this.submitClickAfterChangeUser();
-        app.getHelper().WaitElement(user_password_field);
+        app.getHelper().waitElement(user_password_field);
         this.setPassword(strPassword);
-        app.getHelper().WaitElement(login_button2);
+        app.getHelper().waitElement(login_button2);
         this.clickLoginButton2();
     }
 

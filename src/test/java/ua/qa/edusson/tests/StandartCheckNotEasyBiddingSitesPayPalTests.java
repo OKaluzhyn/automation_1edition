@@ -42,7 +42,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
     // 100%
 
 
-    public void standartCheck_PayPal_Production_Not_EasyBidding() throws Exception {
+    public void standartCheck_PayPal_Production_Not_EasyBidding() {
 
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
@@ -52,7 +52,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
         } else {
             orderCreateCustomerPage.createOrder("test for webdriver", "test");
         }
-        app.getHelper().WaitLoading("order#redirect_url=");
+        app.getHelper().waitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         app.getHelper().sleep(5);
         customerUrl = app.driver.getCurrentUrl();
@@ -136,7 +136,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
         orderPayCustomerPage.choosePayPal();
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-        app.getHelper().WaitLoading("thankyou");
+        app.getHelper().waitLoading("thankyou");
         app.driver.get(writerUrl);
         orderInProgressPage.uploadRevision();
         app.getHelper().sleep(2);

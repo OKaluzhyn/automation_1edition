@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -23,8 +24,9 @@ public class Helper {
     protected WebDriver driver;
     public final Wait<WebDriver> wait;
 
-
-    // public File revision;
+    public WebDriver getDriver() {
+        return driver;
+    }
 
     public Helper(WebDriver driver) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -32,6 +34,32 @@ public class Helper {
         this.driver = driver;
         this.wait = new WebDriverWait(driver,120, 1000).withMessage("Element was not found during 120 Sec");
     }
+
+
+
+    public boolean waitForJSandJQueryToLoad() {
+
+        WebDriverWait wait = new WebDriverWait(driver, 30);
+
+        // wait for jQuery to load
+        ExpectedCondition<Boolean> jQueryLoad = driver -> {
+            try {
+                return ((Long)((JavascriptExecutor)getDriver()).executeScript("return jQuery.active") == 0);
+            }
+            catch (Exception e) {
+                // no jQuery present
+                return true;
+            }
+        };
+
+        // wait for Javascript to load
+        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor)getDriver()).executeScript("return document.readyState")
+                .toString().equals("complete");
+
+        return wait.until(jQueryLoad) && wait.until(jsLoad);
+    }
+
+
 
 
     public File getRevision() {
@@ -76,11 +104,11 @@ public class Helper {
     }
 
 
-    public void WaitElement(String locator) {
+    public void waitElement(String locator) {
        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
 
     }
-    public void WaitLoading(String patrUrl) {
+    public void waitLoading(String patrUrl) {
         wait.until(ExpectedConditions.urlContains(patrUrl));
 
     }
@@ -158,7 +186,7 @@ public class Helper {
         unhide(input);
         input.sendKeys(file);
     }
-
+//app.getHelper().wait.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\"; && jQuery.active == 0"));
 
 }
 

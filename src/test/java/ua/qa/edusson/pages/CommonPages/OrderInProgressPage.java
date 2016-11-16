@@ -25,7 +25,7 @@ public class OrderInProgressPage  {
 		WebElement work_results = app.getHelper().cyclicElementSearchByXpath(workResults);
 		work_results.click();
 		app.getHelper().attachFile2(By.xpath(inputRevision), app.getHelper().getRevision().getAbsolutePath());
-		app.getHelper().WaitElement("//a[@class='file-name-link']");
+		app.getHelper().waitElement("//a[@class='file-name-link']");
 		String fileName = app.getHelper().cyclicElementSearchByXpath("//a[@class='file-name-link']").getText();
 		System.out.println(fileName);
 		Assert.assertEquals(fileName, "testFile.pdf");
@@ -59,7 +59,7 @@ public class OrderInProgressPage  {
 	}
 	
 	public void clickConfirmButton(){
-		app.getHelper().WaitElement(popUpButtonRelease);
+		app.getHelper().waitElement(popUpButtonRelease);
 		WebElement popup_button_release = app.getHelper().cyclicElementSearchByXpath(popUpButtonRelease);
 		popup_button_release.click();
 			}

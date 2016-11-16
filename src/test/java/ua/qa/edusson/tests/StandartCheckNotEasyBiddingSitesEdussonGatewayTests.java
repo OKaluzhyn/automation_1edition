@@ -41,7 +41,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
     // 20%+80%
 
 
-    public void standartCheck_CreditCard_Production_Not_EasyBidding() throws Exception {
+    public void standartCheck_CreditCard_Production_Not_EasyBidding() {
 
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
@@ -51,7 +51,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         } else {
             orderCreateCustomerPage.createOrder("test for webdriver", "test");
         }
-        app.getHelper().WaitLoading("order#redirect_url=");
+        app.getHelper().waitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         app.getHelper().sleep(5);
         customerUrl = app.driver.getCurrentUrl();
@@ -99,7 +99,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         orderPayCustomerPage.clickReserveButton();
         creditCardPayment.setAllFields();
         orderPayCustomerPage.confirmPay();
-        app.getHelper().WaitLoading("thankyou");
+        app.getHelper().waitLoading("thankyou");
         app.driver.get(writerUrl);
         app.getHelper().sleep(2);
         orderInProgressPage.uploadRevision();

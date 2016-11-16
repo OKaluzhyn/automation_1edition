@@ -46,7 +46,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
     // PayPall
     // 20%+80%
 
-    public void standartCheck_Only_EasyBidding_Production() throws Exception {
+    public void standartCheck_Only_EasyBidding_Production()  {
 
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
@@ -56,7 +56,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
         } else {
             orderCreateCustomerPage.createOrder("test for webdriver", "test");
         }
-        app.getHelper().WaitLoading("/order/pay/");
+        app.getHelper().waitLoading("/order/pay/");
 
 
         if (Objects.equals(siteUrl, "http://paperial.com/")) {
@@ -89,7 +89,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
         Helper.sleep(1);
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-        app.getHelper().WaitLoading("thankyou");
+        app.getHelper().waitLoading("thankyou");
         app.getHelper().goToEdusson();
         if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink())) {
             userAuthorizationPage.userLogin(Config.writer1, Config.password);

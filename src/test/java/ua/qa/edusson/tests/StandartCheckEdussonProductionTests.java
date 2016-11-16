@@ -39,17 +39,17 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     CreditCardPayment creditCardPayment = new CreditCardPayment();
 
 
-    @Test//(enabled = false)
+    @Test (enabled = false)
     // PayPall
     // 10%+90%
 
-    public void standartCheck_PAyPal_Production_Edusson() throws Exception {
+    public void standartCheck_PAyPal_Production_Edusson() {
 
         //app.getHelper().goToEdusson();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
-        app.getHelper().WaitLoading("order#redirect_url=");
+        app.getHelper().waitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
         headerMenu.userLogOut();
@@ -59,12 +59,12 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
         orderPayCustomerPage.clickReserveButton();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-        app.getHelper().WaitLoading("thankyou");
+        app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
@@ -72,7 +72,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderInProgressPage.uploadRevision();
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("10");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
@@ -84,7 +84,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("90");
         orderFinishedViewPage.closePopup();
@@ -102,7 +102,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
 
     }
 
-    @Test (enabled = false)
+    @Test //(enabled = false)
     //CreditCard 100% release
 
     public void standartCheck_CreditCard_Production_Edusson() throws Exception {
@@ -110,7 +110,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
-        app.getHelper().WaitLoading("order#redirect_url=");
+        app.getHelper().waitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
         headerMenu.userLogOut();
@@ -120,13 +120,13 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderBiddingWriterPage.createBid("6");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
         orderPayCustomerPage.chooseCardPay();
         orderPayCustomerPage.clickReserveButton();
         creditCardPayment.setAllFields();
-        app.getHelper().WaitLoading("thankyou");
+        app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();
@@ -134,7 +134,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderInProgressPage.uploadRevision();
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().WaitLoading("orders");
+        app.getHelper().waitLoading("orders");
         app.getHelper().goTo(orderUrl);
         orderInProgressPage.releaseMoney("100");
         orderFinishedViewPage.closePopup();
