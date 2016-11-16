@@ -55,9 +55,9 @@ public class PayPalPage {
     public void confirmPayPal(String strUserEmail, String strPassword) {
 
         app.getHelper().waitElement("//div[@id='paypalLogo']");
-        app.getHelper().sleep(1);
+        //app.getHelper().sleep(1);
         app.getHelper().waitForJSandJQueryToLoad();
-        app.getHelper().sleep(1);
+        app.getHelper().sleep(5);
         String page = app.driver.getCurrentUrl().substring(95);
         System.out.println(page);
         if (page.equals("/checkout/review")) {
