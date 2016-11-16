@@ -18,9 +18,6 @@ dependencies {
 
 
 
-
-
-
 task testStandartCheckEdusson(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-standartChecksEdussonOnly.xml'
@@ -38,113 +35,135 @@ task testStandartCheckEdusson(type: Test) {
         systemProperty 'site', "${site}"
     }
 }
-
-
-task testStandartCheckPostDeploy(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-standartChecksPostDeploy.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
-testStandartCheckPostDeploy.doFirst {
+testStandartCheckEdusson.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
-}
 
-task testStandartCheckNotEasyBiddingSitesGateway(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-StandartCheckNotEasyBiddingSitesGateway.xml'
+    task testStandartCheckPostDeploy(type: Test) {
+        useTestNG {
+            suites 'src/test/resources/testng-standartChecksPostDeploy.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+        if (project.hasProperty('platform')) {
+            systemProperty 'platform', "${platform}"
+        }
+        if (project.hasProperty('site')) {
+            systemProperty 'site', "${site}"
+        }
     }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
+    testStandartCheckPostDeploy.doFirst {
+        jvmArgs "-javaagent:${configurations.agent.singleFile}"
     }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
-task testStandartCheckNotEasyBiddingSitesPayPal(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-StandartCheckNotEasyBiddingSitesPayPal.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
 
-task testStandartCheckOnlyEasyBiddingSites(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-StandartCheckOnlyEasyBiddingSites.xml'
+    task testStandartCheckNotEasyBiddingSitesGateway(type: Test) {
+        useTestNG {
+            suites 'src/test/resources/testng-StandartCheckNotEasyBiddingSitesGateway.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+        if (project.hasProperty('platform')) {
+            systemProperty 'platform', "${platform}"
+        }
+        if (project.hasProperty('site')) {
+            systemProperty 'site', "${site}"
+        }
     }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
+    testStandartCheckNotEasyBiddingSitesGateway.doFirst {
+        jvmArgs "-javaagent:${configurations.agent.singleFile}"
     }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
-task testAuthorization(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-UserAutorizationProduction.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
 
+    task testStandartCheckNotEasyBiddingSitesPayPal(type: Test) {
+        useTestNG {
+            suites 'src/test/resources/testng-StandartCheckNotEasyBiddingSitesPayPal.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+        if (project.hasProperty('platform')) {
+            systemProperty 'platform', "${platform}"
+        }
+        if (project.hasProperty('site')) {
+            systemProperty 'site', "${site}"
+        }
     }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
+
+    testStandartCheckNotEasyBiddingSitesGateway.doFirst {
+        jvmArgs "-javaagent:${configurations.agent.singleFile}"
     }
-}
-task testExample(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-exampleTests.xml'
+
+    task testStandartCheckOnlyEasyBiddingSites(type: Test) {
+        useTestNG {
+            suites 'src/test/resources/testng-StandartCheckOnlyEasyBiddingSites.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+        if (project.hasProperty('platform')) {
+            systemProperty 'platform', "${platform}"
+        }
+        if (project.hasProperty('site')) {
+            systemProperty 'site', "${site}"
+        }
     }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
+
+    testStandartCheckOnlyEasyBiddingSites.doFirst {
+        jvmArgs "-javaagent:${configurations.agent.singleFile}"
     }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
+
+    task testAuthorization(type: Test) {
+        useTestNG {
+            suites 'src/test/resources/testng-UserAutorizationProduction.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+        if (project.hasProperty('platform')) {
+            systemProperty 'platform', "${platform}"
+
+        }
+        if (project.hasProperty('site')) {
+            systemProperty 'site', "${site}"
+        }
     }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
+    testtestAuthorization.doFirst {
+        jvmArgs "-javaagent:${configurations.agent.singleFile}"
     }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
+
+    task testExample(type: Test) {
+        useTestNG {
+            suites 'src/test/resources/testng-exampleTests.xml'
+        }
+        if (project.hasProperty('browser')) {
+            systemProperty 'browser', "${browser}"
+        }
+        if (project.hasProperty('target')) {
+            systemProperty 'target', "${target}"
+        }
+        if (project.hasProperty('platform')) {
+            systemProperty 'platform', "${platform}"
+        }
+        if (project.hasProperty('site')) {
+            systemProperty 'site', "${site}"
+        }
+    }
+    testExample.doFirst {
+        jvmArgs "-javaagent:${configurations.agent.singleFile}"
     }
 }
