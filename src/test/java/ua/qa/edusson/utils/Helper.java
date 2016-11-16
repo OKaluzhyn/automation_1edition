@@ -30,9 +30,9 @@ public class Helper {
 
     public Helper(WebDriver driver) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "normal");
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,120, 1000).withMessage("Element was not found during 120 Sec");
+        this.wait = new WebDriverWait(driver,30, 1000).withMessage("Element was not found during 120 Sec");
     }
 
 
