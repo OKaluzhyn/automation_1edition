@@ -1,0 +1,35 @@
+{
+  "uid" : "7cbf0cf6ac340f73",
+  "name" : "standartCheck_CreditCard_Production_Edusson",
+  "title" : "Standart check credit card production edusson",
+  "time" : {
+    "start" : 1479301528616,
+    "stop" : 1479301688076,
+    "duration" : 159460
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "testId" : null,
+  "suite" : {
+    "uid" : "d87824643baf2133",
+    "name" : "Default Suite",
+    "title" : "Default suite"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Default Suite"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  } ],
+  "parameters" : [ ]
+}

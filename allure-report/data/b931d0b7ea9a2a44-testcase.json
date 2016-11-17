@@ -1,0 +1,35 @@
+{
+  "uid" : "b931d0b7ea9a2a44",
+  "name" : "postDeployStandartCheck5",
+  "title" : "Post deploy standart check 5",
+  "time" : {
+    "start" : 1479371167535,
+    "stop" : 1479371260113,
+    "duration" : 92578
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "testId" : null,
+  "suite" : {
+    "uid" : "d87824643baf2133",
+    "name" : "Default Suite",
+    "title" : "Default suite"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Default Suite"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  } ],
+  "parameters" : [ ]
+}

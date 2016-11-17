@@ -1,0 +1,35 @@
+{
+  "uid" : "de9d6e2860fe9c9f",
+  "name" : "login",
+  "title" : "Login",
+  "time" : {
+    "start" : 1479378718622,
+    "stop" : 1479378755673,
+    "duration" : 37051
+  },
+  "summary" : {
+    "attachments" : 0,
+    "steps" : 0
+  },
+  "failure" : null,
+  "description" : null,
+  "severity" : "NORMAL",
+  "status" : "PASSED",
+  "testId" : null,
+  "suite" : {
+    "uid" : "954bfe58e7e0c0f1",
+    "name" : "Suite1",
+    "title" : "Suite 1"
+  },
+  "steps" : [ ],
+  "attachments" : [ ],
+  "issues" : [ ],
+  "labels" : [ {
+    "name" : "suite-name",
+    "value" : "Suite1"
+  }, {
+    "name" : "suite-title",
+    "value" : null
+  } ],
+  "parameters" : [ ]
+}
