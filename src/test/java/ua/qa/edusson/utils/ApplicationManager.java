@@ -52,7 +52,7 @@ public class ApplicationManager {
             DesiredCapabilities capabilities = new DesiredCapabilities();
             capabilities.setBrowserName(browser);
             capabilities.setPlatform(Platform.fromString(System.getProperty("platform", "win7")));
-            capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "eager");
+            capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "normal");
             driver = new RemoteWebDriver(new URL(properties.getProperty("selenium.server")), capabilities);
             ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
 
