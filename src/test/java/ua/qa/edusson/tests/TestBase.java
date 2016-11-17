@@ -2,8 +2,8 @@ package ua.qa.edusson.tests;
 
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Listeners;
 import ua.qa.edusson.utils.ApplicationManager;
 
@@ -18,14 +18,14 @@ public class TestBase {
             = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
 
-    @BeforeMethod
+    @BeforeSuite
     public void setUp(ITestContext context) throws Exception {
         app.init();
         context.setAttribute("app", app);
 
     }
 
-    @AfterMethod
+    @AfterSuite
     public void tearDown() {
         app.stop();
     }

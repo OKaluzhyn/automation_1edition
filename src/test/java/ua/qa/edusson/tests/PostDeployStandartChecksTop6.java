@@ -1,7 +1,5 @@
 package ua.qa.edusson.tests;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 /**
@@ -13,17 +11,6 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     StandartCheckEdussonProductionTests edusson = new StandartCheckEdussonProductionTests();
     StandartCheckNotEasyBiddingSitesEdussonGatewayTests notEasyBiddingGateway = new StandartCheckNotEasyBiddingSitesEdussonGatewayTests();
     StandartCheckNotEasyBiddingSitesPayPalTests notEasyBiddingPayPal = new StandartCheckNotEasyBiddingSitesPayPalTests();
-
-    @BeforeClass
-
-    public void setUp() throws Exception {
-        app.init();
-    }
-
-    @AfterClass
-    public void tearDown() {
-        app.stop();
-    }
 
 
     @Test

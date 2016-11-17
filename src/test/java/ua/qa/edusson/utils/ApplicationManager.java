@@ -25,7 +25,7 @@ public class ApplicationManager {
     private final Properties properties;
     private String browser;
     private Helper helper;
-    private LocalFileDetector fileDetector;
+
 
     public ApplicationManager(String browser) {
 

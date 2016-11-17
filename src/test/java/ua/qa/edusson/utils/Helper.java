@@ -66,9 +66,7 @@ public class Helper {
         return revision;
     }
 
-    public void setRevision(File revision) {
-        this.revision = revision;
-    }
+
 
     File revision = new File("src/test/resources/testFile.pdf");
 
