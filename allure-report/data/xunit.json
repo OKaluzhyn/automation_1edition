@@ -1,11 +1,107 @@
 {
   "time" : {
     "start" : 1479301528616,
-    "stop" : 1479378886512,
-    "duration" : 77357896
+    "stop" : 1479386342825,
+    "duration" : 84814209
   },
   "testSuites" : [ {
-    "uid" : "d87824643baf2133",
+    "uid" : "b71ecdfd267ea3b3",
+    "name" : "Suite1",
+    "title" : "Suite 1",
+    "time" : {
+      "start" : 1479378718622,
+      "stop" : 1479386342825,
+      "duration" : 7624203
+    },
+    "statistic" : {
+      "total" : 7,
+      "passed" : 3,
+      "pending" : 0,
+      "canceled" : 0,
+      "failed" : 0,
+      "broken" : 4
+    },
+    "description" : null,
+    "testCases" : [ {
+      "uid" : "8933a65405e930ec",
+      "name" : "customerAuthorization",
+      "title" : "Customer authorization",
+      "time" : {
+        "start" : 1479386204313,
+        "stop" : 1479386210119,
+        "duration" : 5806
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "53ddb6d38ae811c7",
+      "name" : "loginAsDeactivateUser",
+      "title" : "Login as deactivate user",
+      "time" : {
+        "start" : 1479386210262,
+        "stop" : 1479386241923,
+        "duration" : 31661
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "56d040fd07062ed3",
+      "name" : "loginWithEmptyEmail",
+      "title" : "Login with empty email",
+      "time" : {
+        "start" : 1479386241924,
+        "stop" : 1479386276163,
+        "duration" : 34239
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "16288e4a834f9ee3",
+      "name" : "loginWithWrongPassword",
+      "title" : "Login with wrong password",
+      "time" : {
+        "start" : 1479386276163,
+        "stop" : 1479386311083,
+        "duration" : 34920
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "b4c028459e2c7203",
+      "name" : "writerAuthorization",
+      "title" : "Writer authorization",
+      "time" : {
+        "start" : 1479386311084,
+        "stop" : 1479386342825,
+        "duration" : 31741
+      },
+      "severity" : "NORMAL",
+      "status" : "BROKEN"
+    }, {
+      "uid" : "7cb28f791a6dd476",
+      "name" : "login",
+      "title" : "Login",
+      "time" : {
+        "start" : 1479378718622,
+        "stop" : 1479378755673,
+        "duration" : 37051
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    }, {
+      "uid" : "c5df5c4378ddda7e",
+      "name" : "paypal",
+      "title" : "Paypal",
+      "time" : {
+        "start" : 1479378755841,
+        "stop" : 1479378886512,
+        "duration" : 130671
+      },
+      "severity" : "NORMAL",
+      "status" : "PASSED"
+    } ]
+  }, {
+    "uid" : "d21e93c09fe9c08c",
     "name" : "Default Suite",
     "title" : "Default suite",
     "time" : {
@@ -23,7 +119,7 @@
     },
     "description" : null,
     "testCases" : [ {
-      "uid" : "85269e07e2d6062d",
+      "uid" : "802b354e6b406bb",
       "name" : "paypal",
       "title" : "Paypal",
       "time" : {
@@ -34,7 +130,7 @@
       "severity" : "NORMAL",
       "status" : "BROKEN"
     }, {
-      "uid" : "7cbf0cf6ac340f73",
+      "uid" : "65dc2870a5337ef3",
       "name" : "standartCheck_CreditCard_Production_Edusson",
       "title" : "Standart check credit card production edusson",
       "time" : {
@@ -45,7 +141,7 @@
       "severity" : "NORMAL",
       "status" : "PASSED"
     }, {
-      "uid" : "9b94693300c24d8c",
+      "uid" : "4dc32fa225d4b95d",
       "name" : "paypal",
       "title" : "Paypal",
       "time" : {
@@ -56,7 +152,7 @@
       "severity" : "NORMAL",
       "status" : "BROKEN"
     }, {
-      "uid" : "9dc8864e1b4fcc14",
+      "uid" : "7018bf4e34b57228",
       "name" : "postDeployStandartCheck1",
       "title" : "Post deploy standart check 1",
       "time" : {
@@ -67,7 +163,7 @@
       "severity" : "NORMAL",
       "status" : "PASSED"
     }, {
-      "uid" : "41eb02afb2b35c59",
+      "uid" : "199afee99df220d6",
       "name" : "postDeployStandartCheck2",
       "title" : "Post deploy standart check 2",
       "time" : {
@@ -78,7 +174,7 @@
       "severity" : "NORMAL",
       "status" : "PASSED"
     }, {
-      "uid" : "1eb59cca3c4262d",
+      "uid" : "52d3b04212e51f45",
       "name" : "postDeployStandartCheck3",
       "title" : "Post deploy standart check 3",
       "time" : {
@@ -89,7 +185,7 @@
       "severity" : "NORMAL",
       "status" : "PASSED"
     }, {
-      "uid" : "4c08a87744a94e83",
+      "uid" : "6c5461e3c6bd318b",
       "name" : "postDeployStandartCheck4",
       "title" : "Post deploy standart check 4",
       "time" : {
@@ -100,7 +196,7 @@
       "severity" : "NORMAL",
       "status" : "PASSED"
     }, {
-      "uid" : "b931d0b7ea9a2a44",
+      "uid" : "873c3bdb599812e5",
       "name" : "postDeployStandartCheck5",
       "title" : "Post deploy standart check 5",
       "time" : {
@@ -111,7 +207,7 @@
       "severity" : "NORMAL",
       "status" : "PASSED"
     }, {
-      "uid" : "b079581694bf4fec",
+      "uid" : "2aa8fa038bb9e9cb",
       "name" : "postDeployStandartCheck6",
       "title" : "Post deploy standart check 6",
       "time" : {
@@ -122,7 +218,7 @@
       "severity" : "NORMAL",
       "status" : "PASSED"
     }, {
-      "uid" : "b22aa6dc648ad403",
+      "uid" : "99ab83c684f57abb",
       "name" : "paypal",
       "title" : "Paypal",
       "time" : {
@@ -132,47 +228,6 @@
       },
       "severity" : "NORMAL",
       "status" : "BROKEN"
-    } ]
-  }, {
-    "uid" : "954bfe58e7e0c0f1",
-    "name" : "Suite1",
-    "title" : "Suite 1",
-    "time" : {
-      "start" : 1479378718622,
-      "stop" : 1479378886512,
-      "duration" : 167890
-    },
-    "statistic" : {
-      "total" : 2,
-      "passed" : 2,
-      "pending" : 0,
-      "canceled" : 0,
-      "failed" : 0,
-      "broken" : 0
-    },
-    "description" : null,
-    "testCases" : [ {
-      "uid" : "de9d6e2860fe9c9f",
-      "name" : "login",
-      "title" : "Login",
-      "time" : {
-        "start" : 1479378718622,
-        "stop" : 1479378755673,
-        "duration" : 37051
-      },
-      "severity" : "NORMAL",
-      "status" : "PASSED"
-    }, {
-      "uid" : "6a8dc0626f4d2779",
-      "name" : "paypal",
-      "title" : "Paypal",
-      "time" : {
-        "start" : 1479378755841,
-        "stop" : 1479378886512,
-        "duration" : 130671
-      },
-      "severity" : "NORMAL",
-      "status" : "PASSED"
     } ]
   } ]
 }
