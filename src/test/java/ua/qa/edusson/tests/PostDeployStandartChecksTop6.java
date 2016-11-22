@@ -13,18 +13,18 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     StandartCheckNotEasyBiddingSitesPayPalTests notEasyBiddingPayPal = new StandartCheckNotEasyBiddingSitesPayPalTests();
 
 
-    @Test
+    @Test (enabled = false)
     public void postDeployStandartCheck1() throws Exception {
         edusson.standartCheck_CreditCard_Production_Edusson();
     }
 
-    @Test
+    @Test (enabled = false)
     public void postDeployStandartCheck2() {
         app.driver.get("http://edubirdie.com/");
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
     }
 
-    @Test
+    @Test (enabled = false)
     public void postDeployStandartCheck3() {
         app.driver.get("http://papersowl.com/");
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
@@ -47,7 +47,7 @@ public class PostDeployStandartChecksTop6 extends TestBase {
 
     }
 
-    @Test
+    @Test //(enabled = false)
     public void postDeployStandartCheck6() {
         app.driver.get("http://essayvikings.com/");
         notEasyBiddingPayPal.standartCheck_PayPal_Production_Not_EasyBidding();
