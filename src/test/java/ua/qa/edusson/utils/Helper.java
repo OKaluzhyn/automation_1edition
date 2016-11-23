@@ -11,9 +11,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.awt.*;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.io.File;
 import java.util.List;
 import java.util.Random;
@@ -139,34 +136,34 @@ public class Helper {
             return false;
         }
     }
-
-    public void setClipboardData(String path) {
-        StringSelection stringSelection = new StringSelection(path);
-        Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-    }
-
-    public void attachFile() {
-        setClipboardData(this.getRevision().getAbsolutePath());
-        try {
-            Robot robot = new Robot();
-            robot.delay(1000);
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.delay(300);
-            robot.keyPress(KeyEvent.VK_V);
-            robot.delay(300);
-            robot.keyRelease(KeyEvent.VK_V);
-            robot.delay(300);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.delay(300);
-            robot.keyPress(KeyEvent.VK_ENTER);
-            robot.delay(300);
-            robot.keyRelease(KeyEvent.VK_ENTER);
-            robot.delay(300);
-        } catch (AWTException e) {
-            e.printStackTrace();
+    /*
+        public void setClipboardData(String path) {
+            StringSelection stringSelection = new StringSelection(path);
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
         }
-    }
 
+       public void attachFile() {
+            setClipboardData(this.getRevision().getAbsolutePath());
+            try {
+                Robot robot = new Robot();
+                robot.delay(1000);
+                robot.keyPress(KeyEvent.VK_CONTROL);
+                robot.delay(300);
+                robot.keyPress(KeyEvent.VK_V);
+                robot.delay(300);
+                robot.keyRelease(KeyEvent.VK_V);
+                robot.delay(300);
+                robot.keyRelease(KeyEvent.VK_CONTROL);
+                robot.delay(300);
+                robot.keyPress(KeyEvent.VK_ENTER);
+                robot.delay(300);
+                robot.keyRelease(KeyEvent.VK_ENTER);
+                robot.delay(300);
+            } catch (AWTException e) {
+                e.printStackTrace();
+            }
+        }
+    */
     public void unhide(WebElement element) {
         String script = "arguments[0].style.opacity=1;"
                 + "arguments[0].style['transform']='translate(0px, 0px) scale(1)';"
@@ -179,7 +176,7 @@ public class Helper {
         ((JavascriptExecutor) driver).executeScript(script, element);
     }
 
-    public void attachFile2(By locator, String file) {
+    public void attachFile(By locator, String file) {
         WebElement input = driver.findElement(locator);
         unhide(input);
         input.sendKeys(file);

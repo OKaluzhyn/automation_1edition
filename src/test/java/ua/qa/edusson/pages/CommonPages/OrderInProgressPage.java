@@ -24,7 +24,7 @@ public class OrderInProgressPage  {
 	public void uploadRevision(){
 		WebElement work_results = app.getHelper().cyclicElementSearchByXpath(workResults);
 		work_results.click();
-		app.getHelper().attachFile2(By.xpath(inputRevision), app.getHelper().getRevision().getAbsolutePath());
+		app.getHelper().attachFile(By.xpath(inputRevision), app.getHelper().getRevision().getAbsolutePath());
 		app.getHelper().waitElement("//a[@class='file-name-link']");
 		String fileName = app.getHelper().cyclicElementSearchByXpath("//a[@class='file-name-link']").getText();
 		System.out.println(fileName);

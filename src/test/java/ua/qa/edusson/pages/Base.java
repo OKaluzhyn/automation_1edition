@@ -75,7 +75,7 @@ public class Base extends TestBase {
         //orderCreateCustomerPage.proceedToBidding();
     }
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void uploadTest3() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
@@ -84,9 +84,30 @@ public class Base extends TestBase {
         app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get("http://edusson.com/order/view/169636#order-tabs3");
-        attachFile(app.driver, By.xpath("//input[@type='file']"), app.getHelper().getRevision().getAbsolutePath());
+        attachFile(app.driver, By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
         app.getHelper().sleep(10);
     }
+
+    @Test//(enabled = false)
+    public void customerUploadingTest() {
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
+        OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
+
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        //app.getHelper().sleep(1);
+        myOrdersCustomerPage.makeNewOrder();
+        orderCreateCustomerPage.clickNext1();
+        app.getHelper().sleep(1);
+        orderCreateCustomerPage.clickNext2();
+        app.getHelper().sleep(1);
+        attachFile(app.driver, By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+        app.getHelper().sleep(2);
+        orderCreateCustomerPage.proceedToBidding();
+        app.getHelper().waitLoading("order#redirect_url=");
+    }
+
+
 
     @Test(enabled = false)
     public void payPal() {
@@ -104,7 +125,7 @@ public class Base extends TestBase {
         Helper.sleep(10);
     }
 
-    @Test
+    @Test (enabled = false)
     public void login() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         HeaderMenu header = new HeaderMenu();
@@ -119,7 +140,7 @@ public class Base extends TestBase {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().waitLoading("orders");
     }
-    @Test
+    @Test (enabled = false)
     public void paypal(){
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();

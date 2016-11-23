@@ -1,5 +1,6 @@
 package ua.qa.edusson.pages.CustomerPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import ua.qa.edusson.utils.Helper;
 
@@ -109,7 +110,8 @@ public class OrderCreateCustomerPage {
         Helper.sleep(1);
         this.orderDescription(strDescription);
         Helper.sleep(1);
-        //app.getHelper().attachFile2(By.xpath(uploadFiles), app.getHelper().getRevision().getAbsolutePath());
+        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+        Helper.sleep(1);
         this.proceedToBidding();
     }
 
