@@ -15,6 +15,8 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
+import static ua.qa.edusson.tests.TestBase.app;
+
 
 public class Helper {
 
@@ -183,6 +185,11 @@ public class Helper {
     }
 //app.getHelper().wait.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\"; && jQuery.active == 0"));
 
+    public void clearBrowserCache() {
+        app.driver.manage().deleteAllCookies();
+        app.driver.navigate().refresh();
+        app.driver.navigate().to("file:///c:/tmp/ClearCacheChrome.html");
+    }
 }
 
 

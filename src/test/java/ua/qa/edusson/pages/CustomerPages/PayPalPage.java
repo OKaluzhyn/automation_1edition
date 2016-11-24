@@ -70,7 +70,7 @@ public class PayPalPage {
                 app.getHelper().waitElement("//div[@id='paypalLogo']");
                 Helper.sleep(1);
                 this.clickContinue();
-            } else {
+            } else if (!app.getHelper().isElementPresent(email2)) {
                 this.logInToPayPalMain(strUserEmail, strPassword);
             }
         } else {

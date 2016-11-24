@@ -111,7 +111,7 @@ public class OrderCreateCustomerPage {
         this.orderDescription(strDescription);
         Helper.sleep(1);
         app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-        Helper.sleep(1);
+        Helper.sleep(5);
         this.proceedToBidding();
     }
 

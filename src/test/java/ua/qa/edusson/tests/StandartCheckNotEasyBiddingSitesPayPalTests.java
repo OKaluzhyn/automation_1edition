@@ -159,7 +159,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
 
        */ assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
-        System.out.println("TEST PASSED");
+        System.out.println("TEST PASSED" + " " + siteUrl);
     }
 }
 

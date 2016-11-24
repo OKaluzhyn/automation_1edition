@@ -119,7 +119,8 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         */assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
-        System.out.println("TEST PASSED");
+
+        System.out.println("TEST PASSED" + " " + siteUrl);
     }
 }
 

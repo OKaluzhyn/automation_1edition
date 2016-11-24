@@ -46,6 +46,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     public void standartCheck_PAyPal_Production_Edusson() {
 
         //app.getHelper().goToEdusson();
+        String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
@@ -98,7 +99,8 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
-        System.out.println("TEST PASSED");
+
+        System.out.println("TEST PASSED" + " " + siteUrl);
 
     }
 
@@ -107,6 +109,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
 
     public void standartCheck_CreditCard_Production_Edusson() throws Exception {
         // app.getHelper().goToEdusson();
+        String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
@@ -148,7 +151,8 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
-        System.out.println("TEST PASSED");
+
+        System.out.println("TEST PASSED" + " " + siteUrl);
 
     }
 
