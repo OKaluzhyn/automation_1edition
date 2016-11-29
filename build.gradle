@@ -158,7 +158,7 @@ testAuthorization.doFirst {
 
 task testExample(type: Test) {
     useTestNG {
-        suites 'testng-standart-check.xml'
+        suites 'src/test/resources/testng-standart-check.xml'
     }
     if (project.hasProperty('browser')) {
         systemProperty 'browser', "${browser}"
