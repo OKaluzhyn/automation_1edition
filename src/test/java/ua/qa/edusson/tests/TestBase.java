@@ -32,6 +32,7 @@ public class TestBase {
 
     @AfterSuite
     public void tearDown() {
+        app.getHelper().clearBrowserCache();
         app.stop();
     }
 }

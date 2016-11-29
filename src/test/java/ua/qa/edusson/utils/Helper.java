@@ -187,8 +187,7 @@ public class Helper {
 
     public void clearBrowserCache() {
         app.driver.manage().deleteAllCookies();
-       // app.driver.navigate().refresh();
-       // app.driver.navigate().to("file:///c:/tmp/ClearCacheChrome.html");
+
     }
 }
 
