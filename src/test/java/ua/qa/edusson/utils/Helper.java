@@ -31,9 +31,8 @@ public class Helper {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "normal");
         this.driver = driver;
-        this.wait = new WebDriverWait(driver,120, 1000).withMessage("Element was not found during 120 Sec");
+        this.wait = new WebDriverWait(driver, 120, 1000).withMessage("Element was not found during 120 Sec");
     }
-
 
 
     public boolean waitForJSandJQueryToLoad() {
@@ -43,22 +42,19 @@ public class Helper {
         // wait for jQuery to load
         ExpectedCondition<Boolean> jQueryLoad = driver -> {
             try {
-                return ((Long)((JavascriptExecutor)getDriver()).executeScript("return jQuery.active") == 0);
-            }
-            catch (Exception e) {
+                return ((Long) ((JavascriptExecutor) getDriver()).executeScript("return jQuery.active") == 0);
+            } catch (Exception e) {
                 // no jQuery present
                 return true;
             }
         };
 
         // wait for Javascript to load
-        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor)getDriver()).executeScript("return document.readyState")
+        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor) getDriver()).executeScript("return document.readyState")
                 .toString().equals("complete");
 
         return wait.until(jQueryLoad) && wait.until(jsLoad);
     }
-
-
 
 
     public File getRevision() {
@@ -66,12 +62,12 @@ public class Helper {
     }
 
 
-
     File revision = new File("src/test/resources/testFile.pdf");
 
-    public void goTo(String url){
+    public void goTo(String url) {
         driver.get(url);
     }
+
     public void goToEdusson() {
         driver.get("http://edusson.com/");
     }
@@ -83,8 +79,6 @@ public class Helper {
     public void goToStudyfaq() {
         driver.get("http://studyfaq.com/");
     }
-
-
 
 
     public WebElement cyclicElementSearchByXpath(String target) {
@@ -100,11 +94,15 @@ public class Helper {
         return driver.findElement(By.xpath(target));
     }
 
+    public void waitElementNotVisible(String locator){
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
+    }
 
     public void waitElement(String locator) {
-       wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
 
     }
+
     public void waitLoading(String patrUrl) {
         wait.until(ExpectedConditions.urlContains(patrUrl));
 
@@ -138,6 +136,7 @@ public class Helper {
             return false;
         }
     }
+
     /*
         public void setClipboardData(String path) {
             StringSelection stringSelection = new StringSelection(path);

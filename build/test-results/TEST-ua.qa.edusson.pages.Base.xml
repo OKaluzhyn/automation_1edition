@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.pages.Base" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-11-17T10:31:58" hostname="WIN-JER1VU06OO2" time="167.919">
+<testsuite name="ua.qa.edusson.pages.Base" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-11-29T15:47:44" hostname="WIN-JER1VU06OO2" time="22.54">
   <properties/>
-  <testcase name="login" classname="ua.qa.edusson.pages.Base" time="37.074"/>
-  <testcase name="paypal" classname="ua.qa.edusson.pages.Base" time="130.67"/>
-  <system-out><![CDATA[/checkout/login
-/checkout/review
-]]></system-out>
+  <testcase name="login" classname="ua.qa.edusson.pages.Base" time="22.54"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

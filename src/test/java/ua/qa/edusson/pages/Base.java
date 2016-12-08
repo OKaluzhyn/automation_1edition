@@ -4,10 +4,7 @@ import org.openqa.selenium.*;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
-import ua.qa.edusson.pages.CustomerPages.MyOrdersCustomerPage;
-import ua.qa.edusson.pages.CustomerPages.OrderCreateCustomerPage;
-import ua.qa.edusson.pages.CustomerPages.OrderPayCustomerPage;
-import ua.qa.edusson.pages.CustomerPages.PayPalPage;
+import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.tests.TestBase;
@@ -75,7 +72,7 @@ public class Base extends TestBase {
         //orderCreateCustomerPage.proceedToBidding();
     }
 
-    @Test//(enabled = false)
+    @Test(enabled = false)
     public void uploadTest3() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
@@ -88,7 +85,7 @@ public class Base extends TestBase {
         app.getHelper().sleep(10);
     }
 
-    @Test//(enabled = false)
+    @Test(enabled = false)
     public void customerUploadingTest() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
@@ -125,13 +122,13 @@ public class Base extends TestBase {
         Helper.sleep(10);
     }
 
-    @Test (enabled = false)
+    @Test //(enabled = false)
     public void login() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         HeaderMenu header = new HeaderMenu();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().waitLoading("orders");
-        header.userLogOut();
+       /* header.userLogOut();
         userAuthorizationPage.userLogin(Config.customer2, Config.password);
         header.userLogOut();
         app.driver.get("http://edubirdie.com/");
@@ -139,8 +136,9 @@ public class Base extends TestBase {
         app.driver.get("http://edusson.com/");
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().waitLoading("orders");
+        */
     }
-    @Test (enabled = false)
+    @Test //(enabled = false)
     public void paypal(){
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
@@ -149,6 +147,7 @@ public class Base extends TestBase {
         MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
         OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
         PayPalPage payPalPage = new PayPalPage();
+        OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
 
 
         app.driver.get("http://customwriting.com/");
@@ -158,6 +157,29 @@ public class Base extends TestBase {
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        app.getHelper().waitLoading("thankyou");
+        app.driver.get("http://essays.studymoose.com/");
+
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        myOrdersCustomerPage.makeNewOrder();
+        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        app.getHelper().waitLoading("/order/pay/");
+        orderPayCustomerPage.confirmPay();
+        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        app.getHelper().waitLoading("thankyou");
+        app.driver.get("http://paperial.com/");
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        myOrdersCustomerPage.makeNewOrder();
+        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        app.getHelper().waitLoading("/order/pay/");
+        orderPayCustomerPage.confirmPay();
+        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
         app.driver.get("http://customwriting.com/customer/orders");
         myOrdersCustomerPage.makeNewOrder();
@@ -165,7 +187,11 @@ public class Base extends TestBase {
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
     }
+    }
 
-}
+
+

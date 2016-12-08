@@ -35,7 +35,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
-
+    OrderPayThankYouCustomerPage  orderPayThankYouCustomerPage = new  OrderPayThankYouCustomerPage();
 
     @Test
     // PayPall
@@ -136,6 +136,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
         orderPayCustomerPage.choosePayPal();
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
         app.driver.get(writerUrl);
         orderInProgressPage.uploadRevision();

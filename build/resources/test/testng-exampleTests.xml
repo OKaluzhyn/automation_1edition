@@ -2,9 +2,12 @@
 
 <suite name="Suite1" verbose="1" >
     <test name="EdussonTests" >
+        <parameter name="site" value="http://edubirdie.com"/>
+        <parameter name ="browser" value="firefox"/>
         <classes>
 
             <class name="ua.qa.edusson.pages.Base" />
+
 
         </classes>
     </test>

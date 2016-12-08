@@ -1,6 +1,5 @@
 package ua.qa.edusson.tests;
 
-import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
@@ -36,7 +35,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
 
-@Parameters("site")
+
     @Test
     //  Edusson Gateway
     // 20%+80%

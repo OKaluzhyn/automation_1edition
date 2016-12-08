@@ -13,6 +13,7 @@ public class OrderPayCustomerPage  {
 	 //order pay for easy bidding
 	public static String reserveMoney = "//button[text()='Reserve money']";
 
+
      public void choosePayPal(){
     	 WebElement pay_pal_button = app.getHelper().cyclicElementSearchByXpath(payPalButton);
     	 pay_pal_button.click();

@@ -17,21 +17,6 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     public void postDeployStandartCheck1() throws Exception {
         edusson.standartCheck_CreditCard_Production_Edusson();
     }
-
-    @Test //(enabled = false)
-    public void postDeployStandartCheck2() {
-        app.driver.get("http://edubirdie.com/");
-        notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
-    }
-
-    @Test
-    // (enabled = false)
-    public void postDeployStandartCheck3() {
-        app.driver.get("http://papersowl.com/");
-        notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
-
-    }
-
     @Test
     public void postDeployStandartCheck4() {
         app.driver.get("http://essays.studymoose.com/");
@@ -39,12 +24,22 @@ public class PostDeployStandartChecksTop6 extends TestBase {
         easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
 
     }
-
-
+    @Test //(enabled = false)
+    public void postDeployStandartCheck2() {
+        app.driver.get("http://edubirdie.com/");
+        notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
+    }
     @Test
     public void postDeployStandartCheck5() {
         app.driver.get("http://customwriting.com/ ");
         easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
+
+    }
+    @Test
+    // (enabled = false)
+    public void postDeployStandartCheck3() {
+        app.driver.get("http://papersowl.com/");
+        notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
 
     }
 
