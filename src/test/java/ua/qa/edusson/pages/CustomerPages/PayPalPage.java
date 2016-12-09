@@ -80,14 +80,17 @@ public class PayPalPage {
         this.setUserPassword(strPassword);
         Helper.sleep(1);
         this.clickLogBut();
-        app.getHelper().waitElementNotVisible("//p[@class='loader']");
+        Helper.sleep(1);
+
         app.getHelper().waitForJSandJQueryToLoad();
         app.driver.switchTo().defaultContent();
-        Helper.sleep(5);
-        String page2 = app.driver.getCurrentUrl();
-        System.out.println(page2 + "  " + "2");
+        app.getHelper().waitElementNotVisible("//p[@class='loader']");
+        app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
+        app.getHelper().waitLoading2("/checkout/login");
+        //String page2 = app.driver.getCurrentUrl();
+        //System.out.println(page2 + "  " + "2");
         if (app.driver.getCurrentUrl().substring(95).equals("/checkout/review")) {
-            app.getHelper().waitElementNotVisible("//p[@class='loader']");
+            //app.getHelper().waitElementNotVisible("//p[@class='loader']");
             app.getHelper().waitElement(continueButton);
             this.clickContinue();
         } else {
@@ -108,8 +111,9 @@ public class PayPalPage {
             this.clickConfirm();
         }
         app.getHelper().waitForJSandJQueryToLoad();
-        app.getHelper().waitElementNotVisible("//p[@class='loader']");
+        app.getHelper().waitElementNotVisible("//*[text()='loading']");
         app.getHelper().sleep(1);
+       // app.getHelper().waitElement(confirmButton);
         this.clickConfirm();
 
     }

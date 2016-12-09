@@ -124,19 +124,25 @@ public class Base extends TestBase {
 
     @Test //(enabled = false)
     public void login() {
+        app.driver.get("http://essayvikings.com/");
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         HeaderMenu header = new HeaderMenu();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().waitLoading("orders");
-       /* header.userLogOut();
-        userAuthorizationPage.userLogin(Config.customer2, Config.password);
         header.userLogOut();
+        Helper.sleep(3);
         app.driver.get("http://edubirdie.com/");
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        app.getHelper().waitLoading("orders");
+        header.userLogOut();
+        Helper.sleep(3);
         app.driver.get("http://edusson.com/");
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().waitLoading("orders");
-        */
+        header.userLogOut();
+        Helper.sleep(3);
+
+
     }
     @Test //(enabled = false)
     public void paypal(){

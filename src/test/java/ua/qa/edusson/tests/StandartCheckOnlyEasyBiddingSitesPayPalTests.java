@@ -6,10 +6,7 @@ import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
 import ua.qa.edusson.pages.CommonPages.OrderInProgressPage;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
-import ua.qa.edusson.pages.CustomerPages.MyOrdersCustomerPage;
-import ua.qa.edusson.pages.CustomerPages.OrderCreateCustomerPage;
-import ua.qa.edusson.pages.CustomerPages.OrderPayCustomerPage;
-import ua.qa.edusson.pages.CustomerPages.PayPalPage;
+import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.utils.Config;
@@ -40,6 +37,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
     HeaderMenu headerMenu = new HeaderMenu();
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
+    OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
 
 
     @Test
@@ -89,6 +87,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
         Helper.sleep(1);
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
         app.getHelper().goToEdusson();
         if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink())) {

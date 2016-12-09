@@ -38,6 +38,7 @@ public class OrderCreateCustomerPage {
     // requested writer
     public static String writerName = "//p[@class='writer_name']";
 
+    public static String vasBestWriter = "//label[@data-atest='atest_order_create_elem_vas_1']";
 
     // select type
     public void selectTypeOfPaper() {
@@ -141,23 +142,18 @@ public class OrderCreateCustomerPage {
         this.selectTypeOfPaper();
         this.setTopic(strTopic);
         this.orderDescription(strDescription);
-
+        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+        Helper.sleep(5);
         this.proceedToBidding();
     }
 
-    public void createOrderForOtherSites(String strTopic, String strDescription) {
+    public void createOrderForStudyfaqWithVasChooseBestWriter(String strTopic, String strDescription) {
         this.selectTypeOfPaper();
         this.setTopic(strTopic);
-        this.selectSubject();
-        this.clickNext1();
-        this.setnumOfCitation();
-        this.selectformatOfCitation();
-        Helper.sleep(1);
-        this.clickNext2();
-        Helper.sleep(1);
         this.orderDescription(strDescription);
-        Helper.sleep(1);
-        this.clickNext3();
+        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+        Helper.sleep(5);
+        this.choseBestWriter();
         this.proceedToBidding();
     }
 
@@ -171,5 +167,25 @@ public class OrderCreateCustomerPage {
         return app.getHelper().cyclicElementSearchByXpath(writerName).getText();
 
     }
+
+    public void createOrderWithVasChooseBestWriter(String strTopic, String strDescription) {
+        this.setTopic(strTopic);
+        this.clickNext1();
+        Helper.sleep(1);
+        this.clickNext2();
+        Helper.sleep(1);
+        this.orderDescription(strDescription);
+        Helper.sleep(1);
+        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+        Helper.sleep(5);
+        this.choseBestWriter();
+        this.proceedToBidding();
+    }
+
+    private void choseBestWriter() {
+        WebElement checkBoxVasBestWriter = app.getHelper().cyclicElementSearchByXpath(vasBestWriter);
+        checkBoxVasBestWriter.click();
+    }
 }
+
 

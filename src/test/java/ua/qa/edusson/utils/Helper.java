@@ -15,6 +15,7 @@ import java.io.File;
 import java.util.List;
 import java.util.Random;
 
+import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
 import static ua.qa.edusson.tests.TestBase.app;
 
 
@@ -104,7 +105,12 @@ public class Helper {
     }
 
     public void waitLoading(String patrUrl) {
-        wait.until(ExpectedConditions.urlContains(patrUrl));
+        wait.until(urlContains(patrUrl));
+
+    }
+
+    public void waitLoading2(String patrUrl) {
+        wait.until(ExpectedConditions.not(urlContains(patrUrl)));
 
     }
 

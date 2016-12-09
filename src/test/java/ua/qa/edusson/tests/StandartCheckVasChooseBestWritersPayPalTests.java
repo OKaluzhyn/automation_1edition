@@ -1,5 +1,6 @@
 package ua.qa.edusson.tests;
 
+
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
@@ -9,56 +10,53 @@ import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.utils.Config;
+import ua.qa.edusson.utils.Helper;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
+public class StandartCheckVasChooseBestWritersPayPalTests extends TestBase {
 
     String siteUrl;
     String orderId;
     String writerUrl;
     String customerUrl;
+
     String customerReleasedPercent;
     String writerReleasedPercent;
-
 
     UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
     MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
     OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
-    OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
     OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
-    HeaderMenu headerMenu = new HeaderMenu();
     MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
     OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
     PayPalPage payPalPage = new PayPalPage();
+    HeaderMenu headerMenu = new HeaderMenu();
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
-    CreditCardPayment creditCardPayment = new CreditCardPayment();
-    OrderPayThankYouCustomerPage  orderPayThankYouCustomerPage = new  OrderPayThankYouCustomerPage();
+    OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
 
 
     @Test
     // PayPall
     // 100%
 
-
-    public void standartCheck_PayPal_Production_Not_EasyBidding() {
+    public void standartCheck_Vas_ChooseBestWriter_Production() {
 
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         if (siteUrl.equals("http://studyfaq.com/")) {
-            orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
+            orderCreateCustomerPage.createOrderForStudyfaqWithVasChooseBestWriter("test for webdriver", "test");
         } else {
-            orderCreateCustomerPage.createOrder("test for webdriver", "test");
+            orderCreateCustomerPage.createOrderWithVasChooseBestWriter("test for webdriver", "test");
         }
-        app.getHelper().waitLoading("order#redirect_url=");
-        app.driver.navigate().refresh();
-        app.getHelper().sleep(5);
-        customerUrl = app.driver.getCurrentUrl();
-
-        if (siteUrl.equals("http://eduzaurus.com/")) {
+        app.getHelper().waitLoading("/order/pay/");
+        if (siteUrl.equals("http://edusson.com/")) {
+            orderId = app.driver.getCurrentUrl().substring(29);
+            System.out.println(orderId);
+        } else if (siteUrl.equals("http://eduzaurus.com/")) {
             orderId = app.driver.getCurrentUrl().substring(32);
             System.out.println(orderId);
         } else if (siteUrl.equals("http://paperdon.com/")) {
@@ -115,54 +113,49 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
         }
 
         writerUrl = "http://edusson.com/order/view/" + orderId;
-
-       /* if (app.getHelper().isElementPresent("//a[@data-atest='atest_login_elem_popup_open']")) {
-            userAuthorizationPage.userLogin(Config.writer1, Config.password);
-            app.getHelper().sleep(2);
-            myOrdersWriterPage.closePopup();
-            app.driver.get(writerUrl);
-        } else {
-            app.driver.get(writerUrl);
-        }*/
-        app.getHelper().goToEdusson();
-        userAuthorizationPage.userLogin(Config.writer1, Config.password);
-        app.getHelper().sleep(2);
-        myOrdersWriterPage.closePopup();
-        app.driver.get(writerUrl);
-        app.getHelper().sleep(2);
-        System.out.println(app.driver.getCurrentUrl());
-        orderBiddingWriterPage.createBid("6");
-        app.getHelper().goTo(customerUrl);
-        orderBiddingCustomerPage.bid1();
-        orderPayCustomerPage.choosePayPal();
+        customerUrl = siteUrl + "order/view/" + orderId;
+        System.out.println("writerUrl" + "-" + writerUrl + " ; " +
+                "customerUrl" + "-" + customerUrl);
+        Helper.sleep(1);
         orderPayCustomerPage.confirmPay();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        //orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+
+        if (app.getHelper().isElementPresent("//div[text()='Need help with payment?']")) {
+            System.out.println("Payment didn't go through");
+            app.stop();
+        }
         app.getHelper().waitLoading("thankyou");
+        headerMenu.userLogOut();
+        app.getHelper().goToEdusson();
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
+        Helper.sleep(2);
+        myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);
+        Helper.sleep(2);
+        orderBiddingWriterPage.easyBiddingApplyprice();
+        Helper.sleep(2);
         orderInProgressPage.uploadRevision();
-        app.getHelper().sleep(2);
+        Helper.sleep(2);
+        headerMenu.userLogOut();
+        app.driver.get(siteUrl);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        Helper.sleep(1);
         app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("100");
+        orderFinishedViewPage.closePopup();
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
+        headerMenu.userLogOut();
+        app.getHelper().goToEdusson();
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
+        Helper.sleep(2);
+        myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-       /* app.driver.get(customerUrl);
-        orderInProgressPage.releaseMoney("80");
-        customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-
-        assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
-        app.driver.get(writerUrl);
-        writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-
-        assertEquals(customerReleasedPercent, writerReleasedPercent);
-
-       */ assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
         System.out.println("TEST PASSED" + " " + siteUrl);
     }
 }
-
 

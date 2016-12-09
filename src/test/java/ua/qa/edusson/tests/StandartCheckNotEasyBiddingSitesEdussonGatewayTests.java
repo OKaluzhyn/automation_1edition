@@ -34,7 +34,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
-
+    OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
 
     @Test
     //  Edusson Gateway
@@ -99,6 +99,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         orderPayCustomerPage.clickReserveButton();
         creditCardPayment.setAllFields();
         orderPayCustomerPage.confirmPay();
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
         app.driver.get(writerUrl);
         app.getHelper().sleep(2);
@@ -110,16 +111,8 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-        /*app.driver.get(customerUrl);
-        orderInProgressPage.releaseMoney("50");
-        customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-        assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
-        app.driver.get(writerUrl);
-        writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-        assertEquals(customerReleasedPercent, writerReleasedPercent);
-        */assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
-
         System.out.println("TEST PASSED" + " " + siteUrl);
     }
 }

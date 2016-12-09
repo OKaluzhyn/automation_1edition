@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1481294543458" stop="1481294958591">
+    <name>Default Suite</name>
+    <test-cases>
+        <test-case start="1481294543500" stop="0" status="passed">
+            <name>standartCheck_Vas_ChooseBestWriter_Production</name>
+            <labels/>
+        </test-case>
+    </test-cases>
+    <labels/>
+</ns2:test-suite>

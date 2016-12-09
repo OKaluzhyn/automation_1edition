@@ -37,6 +37,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
+    OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
 
 
     @Test (enabled = false)
@@ -65,6 +66,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderBiddingCustomerPage.bid1();
         orderPayCustomerPage.clickReserveButton();
         payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
@@ -129,6 +131,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderPayCustomerPage.chooseCardPay();
         orderPayCustomerPage.clickReserveButton();
         creditCardPayment.setAllFields();
+        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);

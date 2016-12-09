@@ -11,18 +11,11 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     StandartCheckEdussonProductionTests edusson = new StandartCheckEdussonProductionTests();
     StandartCheckNotEasyBiddingSitesEdussonGatewayTests notEasyBiddingGateway = new StandartCheckNotEasyBiddingSitesEdussonGatewayTests();
     StandartCheckNotEasyBiddingSitesPayPalTests notEasyBiddingPayPal = new StandartCheckNotEasyBiddingSitesPayPalTests();
-
+    StandartCheckVasChooseBestWritersPayPalTests withVasChooseBestWritersPayPalTests = new StandartCheckVasChooseBestWritersPayPalTests();
 
     @Test //(enabled = false)
     public void postDeployStandartCheck1() throws Exception {
         edusson.standartCheck_CreditCard_Production_Edusson();
-    }
-    @Test
-    public void postDeployStandartCheck4() {
-        app.driver.get("http://essays.studymoose.com/");
-
-        easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
-
     }
     @Test //(enabled = false)
     public void postDeployStandartCheck2() {
@@ -30,23 +23,28 @@ public class PostDeployStandartChecksTop6 extends TestBase {
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
     }
     @Test
-    public void postDeployStandartCheck5() {
-        app.driver.get("http://customwriting.com/ ");
-        easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
-
-    }
-    @Test
     // (enabled = false)
     public void postDeployStandartCheck3() {
         app.driver.get("http://papersowl.com/");
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
+    }
+    @Test
+    public void postDeployStandartCheck4() {
+        app.driver.get("http://essays.studymoose.com/");
 
+        easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
+    }
+
+    @Test
+    public void postDeployStandartCheck5() {
+        app.driver.get("http://customwriting.com/ ");
+        easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
     }
 
     @Test //(enabled = false)
     public void postDeployStandartCheck6() {
         app.driver.get("http://essayvikings.com/");
-        notEasyBiddingPayPal.standartCheck_PayPal_Production_Not_EasyBidding();
+        withVasChooseBestWritersPayPalTests.standartCheck_Vas_ChooseBestWriter_Production();
 
     }
 
