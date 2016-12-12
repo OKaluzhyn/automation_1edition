@@ -128,6 +128,7 @@ public class Base extends TestBase {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         HeaderMenu header = new HeaderMenu();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
+
         app.getHelper().waitLoading("orders");
         header.userLogOut();
         Helper.sleep(3);

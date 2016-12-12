@@ -10,16 +10,17 @@ public class HeaderMenu {
 
 
     public void userLogOut() {
-        String site = app.driver.getCurrentUrl();
-       // System.out.println(site);
+        String site = app.driver.getCurrentUrl().substring(7,17);
+        System.out.println(site);
         boolean found = false;
 
         String[] sitesWithDropHeaderMenu = {
-                "http://essayvikings.com/", "http://eduzaurus.com/", "http://studarea.com/", "http://essaybison.com/",
-                "http://samedaypapers.com/", "http://studyfaq.com/", "http://australianwritings.com.au/", "http://papercp.com/"};
+                "essayvikings.com/", "eduzaurus.com/", "studarea.com/", "essaybison.com/",
+                "samedaypapers.com/", "studyfaq.com/", "australianwritings.com.au/", "papercp.com/"};
         for (String i : sitesWithDropHeaderMenu) {
-           // System.out.println(i);
-            if (i.startsWith(site)) {
+            System.out.println((i).substring(0,10));
+
+            if (i.substring(0,10).equals(site)) {
                 found = true;
                 break;
             }
