@@ -81,7 +81,7 @@ public class StandartCheckVasChooseBestWritersPayPalTests extends TestBase {
             orderId = app.driver.getCurrentUrl().substring(35);
             System.out.println(orderId);
         } else if (siteUrl.equals("http://essayvikings.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(35);
+            orderId = app.driver.getCurrentUrl().substring(34);
             System.out.println(orderId);
         } else if (siteUrl.equals("http://studyfaq.com/")) {
             orderId = app.driver.getCurrentUrl().substring(31);
