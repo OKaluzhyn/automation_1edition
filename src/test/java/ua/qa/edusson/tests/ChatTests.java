@@ -80,6 +80,7 @@ public class ChatTests extends TestBase {
         headerMenu.userLogOut();
         ww.switchToParent();
         headerMenu.userLogOut();
+        Helper.sleep(1);
         System.out.println("TEST PASSED");
 
     }

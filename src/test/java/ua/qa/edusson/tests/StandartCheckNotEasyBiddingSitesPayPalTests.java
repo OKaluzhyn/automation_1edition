@@ -144,6 +144,7 @@ public class StandartCheckNotEasyBiddingSitesPayPalTests extends TestBase {
         app.getHelper().sleep(2);
         app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("100");
+        orderFinishedViewPage.closePopup();
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
