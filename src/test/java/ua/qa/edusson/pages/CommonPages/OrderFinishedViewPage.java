@@ -35,6 +35,7 @@ public class OrderFinishedViewPage  {
         } }
 	
 	public void closePopup(){
+		app.getHelper().waitElement(closeRateWriterPopup);
 		WebElement close_pop_up = app.getHelper().cyclicElementSearchByXpath(closeRateWriterPopup);
 		close_pop_up.click();
 	}

@@ -56,6 +56,7 @@ public class PayPalPage {
     public void confirmPayPal(String strUserEmail, String strPassword) {
 
         app.getHelper().waitElementNotVisible("//p[@class='loader']");
+        app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
         app.getHelper().waitForJSandJQueryToLoad();
         app.getHelper().sleep(2);
         String page = app.driver.getCurrentUrl().substring(95);
@@ -69,6 +70,9 @@ public class PayPalPage {
         } else {
             this.confirmPayPal_2(strUserEmail, strPassword);
         }
+        app.getHelper().waitElementNotVisible("//p[@class='loader']");
+        app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
+       // app.getHelper().waitForJSandJQueryToLoad();
     }
 
 

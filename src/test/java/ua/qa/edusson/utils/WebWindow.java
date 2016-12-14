@@ -114,7 +114,7 @@ public class WebWindow extends TestBase{
         }
     }
 
-    protected void SwitchFromSecondTabToFirst() {
+    public void SwitchFromSecondTabToFirst() {
         try {
             driver.switchTo().window(handleHost);
             driver.switchTo().activeElement();
@@ -122,7 +122,7 @@ public class WebWindow extends TestBase{
             System.err.println("Couldn't get back to first page");
         }
     }
-    protected void SwitchFromFirstPageToSecond() {
+    public void SwitchFromFirstPageToSecond() {
         try {
             for (String handle: driver.getWindowHandles()) {
                 if (handle != handleHost) {

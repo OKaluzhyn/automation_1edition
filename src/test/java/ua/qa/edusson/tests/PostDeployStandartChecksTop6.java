@@ -12,22 +12,31 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     StandartCheckNotEasyBiddingSitesEdussonGatewayTests notEasyBiddingGateway = new StandartCheckNotEasyBiddingSitesEdussonGatewayTests();
     StandartCheckNotEasyBiddingSitesPayPalTests notEasyBiddingPayPal = new StandartCheckNotEasyBiddingSitesPayPalTests();
     StandartCheckVasChooseBestWritersPayPalTests withVasChooseBestWritersPayPalTests = new StandartCheckVasChooseBestWritersPayPalTests();
+    ChatTests chat = new ChatTests();
 
     @Test //(enabled = false)
-    public void postDeployStandartCheck1() throws Exception {
+    public void postDeployStandartCheck1() {
         edusson.standartCheck_CreditCard_Production_Edusson();
     }
+
+    @Test
+    public void testChat() {
+        chat.chatTesting();
+    }
+
     @Test //(enabled = false)
     public void postDeployStandartCheck2() {
         app.driver.get("http://edubirdie.com/");
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
     }
+
     @Test
     // (enabled = false)
     public void postDeployStandartCheck3() {
         app.driver.get("http://papersowl.com/");
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
     }
+
     @Test
     public void postDeployStandartCheck4() {
         app.driver.get("http://essays.studymoose.com/");

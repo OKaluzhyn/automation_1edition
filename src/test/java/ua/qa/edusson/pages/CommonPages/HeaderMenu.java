@@ -11,14 +11,14 @@ public class HeaderMenu {
 
     public void userLogOut() {
         String site = app.driver.getCurrentUrl().substring(7,17);
-        System.out.println(site);
+       // System.out.println(site);
         boolean found = false;
 
         String[] sitesWithDropHeaderMenu = {
                 "essayvikings.com/", "eduzaurus.com/", "studarea.com/", "essaybison.com/",
                 "samedaypapers.com/", "studyfaq.com/", "australianwritings.com.au/", "papercp.com/"};
         for (String i : sitesWithDropHeaderMenu) {
-            System.out.println((i).substring(0,10));
+          //  System.out.println((i).substring(0,10));
 
             if (i.substring(0,10).equals(site)) {
                 found = true;

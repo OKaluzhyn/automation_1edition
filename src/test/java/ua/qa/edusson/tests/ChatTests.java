@@ -3,10 +3,14 @@ package ua.qa.edusson.tests;
 import com.sun.jmx.snmp.Timestamp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.testng.Assert;
 import org.testng.annotations.Test;
+import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
 import ua.qa.edusson.utils.Config;
+import ua.qa.edusson.utils.Helper;
+import ua.qa.edusson.utils.WebWindow;
 
 import java.text.SimpleDateFormat;
 
@@ -21,6 +25,7 @@ public class ChatTests extends TestBase {
 
 
     public void openChat() {
+        app.getHelper().waitElement("//p[text()=' Chat']");
         app.getHelper().cyclicElementSearchByXpath("//p[text()=' Chat']").click();
     }
 
@@ -40,41 +45,42 @@ public class ChatTests extends TestBase {
 
     @Test
     public void chatTesting() {
+
+        HeaderMenu headerMenu = new HeaderMenu();
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         OrderFinishedViewPage myOrdersWriterPage = new OrderFinishedViewPage();
-        /*  app.driver.get("http://edubirdie.com/");
-        userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.driver.get("http://edubirdie.com/order/view/202761");
+        //open edubirdie as customer
+        app.driver.get("http://edubirdie.com/");
+        userAuthorizationPage.userLogin(Config.customer2, Config.password);
+        app.driver.get("http://edubirdie.com/order/view/203585");
+        //open edusson as writer
+        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        userAuthorizationPage.userLogin(Config.writer2, Config.password);
+        Helper.sleep(1);
+        myOrdersWriterPage.closePopup();
+        app.driver.get("http://edusson.com/order/view/203585");
+        //return to the customer tab
+        ww.switchToParent();
+        //customer send a message
         openChat();
         chooseDialog();
         sendMessage();
-        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
-       */
-        userAuthorizationPage.userLogin(Config.writer1, Config.password);
-
-        myOrdersWriterPage.closePopup();
-        //app.driver.get("http://edusson.com/order/view/202761");
+        //return to the writer tab
+        ww.switchToWindow();
+        //writer read a message
         openChat();
+        Helper.sleep(1);
         chooseDialog();
-        //app.getHelper().cyclicElementSearchByXpath("//p[text()='customer-77965']").click();
-        //app.getHelper().waitElement("//div[@class='dialog-text']");
-        dialog = "//*[@id='mCSB_3_container']/div[4]/div[2]/text()";
-       /* List<WebElement> messages = app.driver.findElements(By.xpath(dialog));
-        System.out.println(messages.size());
-        for(int i=0;i<=messages.size();i++)
-        {
-            String str = messages.get(i).getAttribute("id")+" - "+messages.get(i).getText();
-            System.out.println(str);
-
-        }
-              //  .listIterator(messages.size() - 1);
-        //String mess = messages.get(messages.size() - 1).getAttribute("value");
-       */ String mess = app.driver.findElement(By.xpath(dialog)).getText();
-        //.getAttribute("value");
-        // System.out.println(dialog);
-        System.out.println(mess);
-        //writerMessage = mess;
-        //Assert.assertEquals(clientMessage, writerMessage);
+        Helper.sleep(1);
+        dialog = "//div[contains(@class, 'interlocutor-message')][last()]/div[2]";
+        writerMessage = app.driver.findElement(By.xpath(dialog)).getText();
+        System.out.println(writerMessage);
+        //compare messages
+        Assert.assertEquals(clientMessage, writerMessage);
+        headerMenu.userLogOut();
+        ww.switchToParent();
+        headerMenu.userLogOut();
+        System.out.println("TEST PASSED");
 
     }
 

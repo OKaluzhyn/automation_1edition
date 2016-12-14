@@ -108,6 +108,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("100");
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
+        headerMenu.userLogOut();
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);

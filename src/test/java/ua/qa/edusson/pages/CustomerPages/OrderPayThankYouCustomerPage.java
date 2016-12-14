@@ -9,9 +9,10 @@ public class OrderPayThankYouCustomerPage  {
 
 	public static String orderLink = "//a[@data-atest='atest_order_pay_elem_thankyou_page_order_link']";
 
-	public static String popUpFailPayPal = "//div[text()='Need help with payment?']";
+	public static String popUpFailPayPal = "//div[@id='popup_customer_payment_failed']";
 
-	public void stopTestBecouseFailedPayment(){
+	public void stopTestBecouseFailedPayment() {
+		app.getHelper().sleep(10);
 		if (app.getHelper().isElementPresent(popUpFailPayPal)){
 			System.out.println("Payment didn't go through");
 			app.stop();

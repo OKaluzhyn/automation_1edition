@@ -109,7 +109,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     @Test //(enabled = false)
     //CreditCard 100% release
 
-    public void standartCheck_CreditCard_Production_Edusson() throws Exception {
+    public void standartCheck_CreditCard_Production_Edusson() {
         // app.getHelper().goToEdusson();
         String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
