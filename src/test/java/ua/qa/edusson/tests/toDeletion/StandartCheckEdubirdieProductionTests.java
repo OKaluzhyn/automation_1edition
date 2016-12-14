@@ -74,7 +74,7 @@ public class StandartCheckEdubirdieProductionTests extends TestBase {
         orderPayCustomerPage.clickReserveButton();
         //app.driver.switchTo().frame(app.driver.findElement(By.name("injectedUl")));
         app.getHelper().sleep(1);
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
         //payPalPage.clickContinue();
         //app.getHelper().sleep(30);
         //payPalPage.confirmPayPal_2(Config.paypall_login, Config.paypall_pass);

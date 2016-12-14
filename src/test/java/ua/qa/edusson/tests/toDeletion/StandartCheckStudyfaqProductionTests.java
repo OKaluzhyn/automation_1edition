@@ -78,7 +78,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
         app.getHelper().sleep(2);
         orderPayCustomerPage.clickReserveButton();
         app.getHelper().sleep(1);
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
         app.getHelper().sleep(2);
         app.getHelper().goToEdusson();
         app.getHelper().sleep(1);

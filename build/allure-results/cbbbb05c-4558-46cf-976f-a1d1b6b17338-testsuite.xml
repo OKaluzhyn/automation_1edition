@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:test-suite xmlns:ns2="urn:model.allure.qatools.yandex.ru" start="1481717182215" stop="1481718632132">
+    <name>Default Suite</name>
+    <test-cases>
+        <test-case start="1481717182378" stop="1481717466813" status="passed">
+            <name>postDeployStandartCheck1</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1481717467072" stop="1481717686203" status="passed">
+            <name>postDeployStandartCheck2</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1481717686217" stop="1481717884065" status="passed">
+            <name>postDeployStandartCheck3</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1481717884080" stop="1481718089792" status="passed">
+            <name>postDeployStandartCheck4</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1481718089803" stop="1481718284196" status="passed">
+            <name>postDeployStandartCheck5</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1481718284198" stop="1481718553911" status="passed">
+            <name>postDeployStandartCheck6</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+        <test-case start="1481718553923" stop="1481718632112" status="passed">
+            <name>testChat</name>
+            <steps/>
+            <attachments/>
+            <labels/>
+        </test-case>
+    </test-cases>
+    <labels/>
+</ns2:test-suite>

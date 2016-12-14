@@ -53,11 +53,11 @@ public class PayPalPage {
     }
 
 
-    public void confirmPayPal(String strUserEmail, String strPassword) {
-
+    public void payPayPal(String strUserEmail, String strPassword) {
+        app.getHelper().waitForJSandJQueryToLoad();
         app.getHelper().waitElementNotVisible("//p[@class='loader']");
         app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
-        app.getHelper().waitForJSandJQueryToLoad();
+
         app.getHelper().sleep(2);
         String page = app.driver.getCurrentUrl().substring(95);
         System.out.println(page);
@@ -73,6 +73,7 @@ public class PayPalPage {
         app.getHelper().waitElementNotVisible("//p[@class='loader']");
         app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
        // app.getHelper().waitForJSandJQueryToLoad();
+
     }
 
 

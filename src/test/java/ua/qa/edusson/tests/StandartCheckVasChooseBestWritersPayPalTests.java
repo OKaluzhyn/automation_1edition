@@ -1,6 +1,7 @@
 package ua.qa.edusson.tests;
 
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
@@ -14,6 +15,7 @@ import ua.qa.edusson.utils.Helper;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.*;
 
 public class StandartCheckVasChooseBestWritersPayPalTests extends TestBase {
 
@@ -118,13 +120,12 @@ public class StandartCheckVasChooseBestWritersPayPalTests extends TestBase {
                 "customerUrl" + "-" + customerUrl);
         Helper.sleep(1);
         orderPayCustomerPage.confirmPay();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-        //orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
-
-        if (app.getHelper().isElementPresent("//div[text()='Need help with payment?']")) {
-            System.out.println("Payment didn't go through");
-            app.stop();
-        }
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl);
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
+        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         app.getHelper().goToEdusson();

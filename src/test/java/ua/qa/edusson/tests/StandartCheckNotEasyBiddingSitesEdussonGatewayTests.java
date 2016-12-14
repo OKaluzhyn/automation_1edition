@@ -99,7 +99,6 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         orderPayCustomerPage.clickReserveButton();
         creditCardPayment.setAllFields();
         orderPayCustomerPage.confirmPay();
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
         app.getHelper().waitLoading("thankyou");
         app.driver.get(writerUrl);
         app.getHelper().sleep(2);

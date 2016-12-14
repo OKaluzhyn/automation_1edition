@@ -14,7 +14,7 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     StandartCheckVasChooseBestWritersPayPalTests withVasChooseBestWritersPayPalTests = new StandartCheckVasChooseBestWritersPayPalTests();
     ChatTests chat = new ChatTests();
 
-    @Test //(enabled = false)
+    @Test//(enabled = false)
     public void postDeployStandartCheck1() {
         edusson.standartCheck_CreditCard_Production_Edusson();
     }
@@ -24,14 +24,14 @@ public class PostDeployStandartChecksTop6 extends TestBase {
         chat.chatTesting();
     }
 
-    @Test //(enabled = false)
+    @Test//(enabled = false)
     public void postDeployStandartCheck2() {
         app.driver.get("http://edubirdie.com/");
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
     }
 
     @Test
-    // (enabled = false)
+           // (enabled = false)
     public void postDeployStandartCheck3() {
         app.driver.get("http://papersowl.com/");
         notEasyBiddingGateway.standartCheck_CreditCard_Production_Not_EasyBidding();
@@ -40,7 +40,6 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     @Test
     public void postDeployStandartCheck4() {
         app.driver.get("http://essays.studymoose.com/");
-
         easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
     }
 

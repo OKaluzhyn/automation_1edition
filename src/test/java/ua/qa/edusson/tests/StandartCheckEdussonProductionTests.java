@@ -1,6 +1,7 @@
 package ua.qa.edusson.tests;
 
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
@@ -10,10 +11,12 @@ import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.utils.Config;
+import ua.qa.edusson.utils.Helper;
 
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.*;
 
 
 public class StandartCheckEdussonProductionTests extends TestBase {
@@ -65,8 +68,12 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         app.getHelper().goTo(orderUrl);
         orderBiddingCustomerPage.bid1();
         orderPayCustomerPage.clickReserveButton();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl);
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
+        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
@@ -131,7 +138,9 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderPayCustomerPage.chooseCardPay();
         orderPayCustomerPage.clickReserveButton();
         creditCardPayment.setAllFields();
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        orderPayCustomerPage.confirmPay();
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl);
         app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);

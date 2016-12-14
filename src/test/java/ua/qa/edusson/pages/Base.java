@@ -1,6 +1,7 @@
 package ua.qa.edusson.pages;
 
 import org.openqa.selenium.*;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
@@ -10,6 +11,10 @@ import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.tests.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
+
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.error;
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popPendingPayPal;
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popUpFailPayPal;
 
 public class Base extends TestBase {
     public String orderUrl;
@@ -116,7 +121,7 @@ public class Base extends TestBase {
         app.getHelper().waitLoading("orders");
         app.getHelper().goTo("http://edusson.com/order/pay/174899");
         orderPayCustomerPage.clickReserveButton();
-        payPalPage.confirmPayPal("edussonpay4@ukr.net", "123456789");
+        payPalPage.payPayPal("edussonpay4@ukr.net", "123456789");
        // payPalPage.logInToPayPalMain("edussonpay4@ukr.net", "123456789");
         app.getHelper().waitLoading("thankyou");
         Helper.sleep(10);
@@ -155,48 +160,70 @@ public class Base extends TestBase {
         OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
         PayPalPage payPalPage = new PayPalPage();
         OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
-
+        HeaderMenu headerMenu = new HeaderMenu();
 
         app.driver.get("http://customwriting.com/");
+        String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl);
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
+        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         app.getHelper().waitLoading("thankyou");
+        headerMenu.userLogOut();
+
         app.driver.get("http://essays.studymoose.com/");
-
+        String siteUrl1 = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl1);
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl1+ " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl1+ " Reason: Payment is being reviewed by PayPal");
+        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl1+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         app.getHelper().waitLoading("thankyou");
+        headerMenu.userLogOut();
+
         app.driver.get("http://paperial.com/");
+        String siteUrl2 = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl2);
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl2+ " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl2+ " Reason: Payment is being reviewed by PayPal");
+        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl2+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         app.getHelper().waitLoading("thankyou");
-        app.driver.get("http://customwriting.com/customer/orders");
+        headerMenu.userLogOut();
+
+        app.driver.get("http://customwriting.com/");
+        String siteUrl3 = app.driver.getCurrentUrl();
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder("test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl3);
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl3+ " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl3+ " Reason: Payment is being reviewed by PayPal");
+        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl3+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         app.getHelper().waitLoading("thankyou");
+        headerMenu.userLogOut();
     }
     }
 

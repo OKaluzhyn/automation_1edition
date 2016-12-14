@@ -1,6 +1,7 @@
 package ua.qa.edusson.tests;
 
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
@@ -16,6 +17,7 @@ import java.util.Objects;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.*;
 
 public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
 
@@ -44,7 +46,7 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
     // PayPall
     // 20%+80%
 
-    public void standartCheck_Only_EasyBidding_Production()  {
+    public void standartCheck_Only_EasyBidding_Production() {
 
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
@@ -82,12 +84,16 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
 
         writerUrl = "http://edusson.com/order/view/" + orderId;
         customerUrl = siteUrl + "order/view/" + orderId;
-        System.out.println( "writerUrl" + "-"+  writerUrl+";"+
-                "customerUrl" + "-"+  customerUrl);
+        System.out.println("writerUrl" + "-" + writerUrl + ";" +
+                "customerUrl" + "-" + customerUrl);
         Helper.sleep(1);
         orderPayCustomerPage.confirmPay();
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
-        orderPayThankYouCustomerPage.stopTestBecouseFailedPayment();
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+        Helper.sleep(1);
+        app.getHelper().waitLoading(siteUrl);
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
+        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         app.getHelper().waitLoading("thankyou");
         app.getHelper().goToEdusson();
         if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink())) {
@@ -115,7 +121,8 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-       */ assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+       */
+        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
         System.out.println("TEST PASSED" + " " + siteUrl);
     }

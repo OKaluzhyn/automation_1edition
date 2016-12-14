@@ -86,7 +86,7 @@ public class RequestWriterTests extends TestBase{
         app.getHelper().sleep(2);
         orderPayCustomerPage.clickReserveButton();
         app.getHelper().sleep(1);
-        payPalPage.confirmPayPal(Config.paypall_login, Config.paypall_pass);
+        payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
        // headerMenu.userLogOut();
         app.getHelper().sleep(1);
         //userAuthorizationPage.userLogin(Config.writer1, Config.password);
