@@ -73,8 +73,8 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         app.getHelper().waitLoading(siteUrl);
         Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
         Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
-        Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
-        app.getHelper().waitLoading("thankyou");
+        //Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
+       // app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();

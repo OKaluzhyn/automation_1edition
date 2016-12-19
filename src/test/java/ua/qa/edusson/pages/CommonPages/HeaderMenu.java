@@ -14,7 +14,7 @@ public class HeaderMenu {
         // System.out.println(site);
         boolean found = false;
 
-        String[] sitesWithDropHeaderMenu = {
+        String[] sitesWithDropHeaderMenu = {"customwriting.com/", "essays.studymoose.com/", "paperial.com/",
                 "essayvikings.com/", "eduzaurus.com/", "studarea.com/", "essaybison.com/",
                 "samedaypapers.com/", "studyfaq.com/", "australianwritings.com.au/", "papercp.com/"};
         for (String i : sitesWithDropHeaderMenu) {
