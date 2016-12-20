@@ -140,7 +140,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         creditCardPayment.setAllFields();
         orderPayCustomerPage.confirmPay();
         Helper.sleep(1);
-        app.getHelper().waitLoading(siteUrl);
+        //app.getHelper().waitLoading(siteUrl);
         app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
