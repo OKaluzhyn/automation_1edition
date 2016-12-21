@@ -59,6 +59,8 @@ public class PayPalPage {
         app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
 
         app.getHelper().sleep(2);
+        String pageBefore = app.driver.getCurrentUrl();
+        System.out.println(pageBefore);
         String page = app.driver.getCurrentUrl().substring(95);
         System.out.println(page);
         if (page.equals("/checkout/review")) {
@@ -119,7 +121,7 @@ public class PayPalPage {
         app.getHelper().waitElementNotVisible("//*[text()='loading']");
         app.getHelper().sleep(1);
        // app.getHelper().waitElement(confirmButton);
-        this.clickConfirm();
+       // this.clickConfirm();
 
     }
 
