@@ -2,7 +2,6 @@ package ua.qa.edusson.pages.CustomerPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import ua.qa.edusson.utils.Helper;
 
 import static ua.qa.edusson.tests.TestBase.app;
 
@@ -58,14 +57,14 @@ public class PayPalPage {
         app.getHelper().waitElementNotVisible("//p[@class='loader']");
         app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
 
-        app.getHelper().sleep(2);
+       // app.getHelper().sleep(2);
         String pageBefore = app.driver.getCurrentUrl();
         System.out.println(pageBefore);
         String page = app.driver.getCurrentUrl().substring(95);
         System.out.println(page);
         if (page.equals("/checkout/review")) {
             app.getHelper().waitElement(continueButton);
-            Helper.sleep(1);
+          //  Helper.sleep(1);
             this.clickContinue();
         } else if (page.equals("/checkout/login")) {
             this.logInToPayPalMain(strUserEmail, strPassword);
@@ -85,9 +84,9 @@ public class PayPalPage {
         app.getHelper().waitElement(email);
         this.setUserEmail(strUserEmail);
         this.setUserPassword(strPassword);
-        Helper.sleep(1);
+      //  Helper.sleep(1);
         this.clickLogBut();
-        Helper.sleep(1);
+       // Helper.sleep(1);
 
         app.getHelper().waitForJSandJQueryToLoad();
         app.driver.switchTo().defaultContent();
@@ -119,7 +118,7 @@ public class PayPalPage {
         }
         app.getHelper().waitForJSandJQueryToLoad();
         app.getHelper().waitElementNotVisible("//*[text()='loading']");
-        app.getHelper().sleep(1);
+       // app.getHelper().sleep(1);
        // app.getHelper().waitElement(confirmButton);
        // this.clickConfirm();
 
@@ -127,7 +126,7 @@ public class PayPalPage {
 
     public void setUserEmail_2(String strUserEmail) {
         WebElement e_mail = app.getHelper().cyclicElementSearchByXpath(email2);
-        Helper.sleep(1);
+      //  Helper.sleep(1);
         e_mail.clear();
         e_mail.sendKeys(strUserEmail);
 

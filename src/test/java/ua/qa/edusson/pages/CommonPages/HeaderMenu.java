@@ -27,10 +27,10 @@ public class HeaderMenu {
         }
         if (found) {
             app.getHelper().cyclicElementSearchByXpath(userMenu).click();
-            app.getHelper().waitElement(logOut2);
+           // app.getHelper().waitElement(logOut2);
             app.getHelper().cyclicElementSearchByXpath(logOut2).click();
         } else {
-            app.getHelper().waitElement(logOutMain);
+            //app.getHelper().waitElement(logOutMain);
             app.getHelper().cyclicElementSearchByXpath(logOutMain).click();
         }
 

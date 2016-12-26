@@ -30,9 +30,9 @@ public class Helper {
 
     public Helper(WebDriver driver) {
         DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "normal");
+        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 120, 1000).withMessage("Element was not found during 120 Sec");
+        this.wait = new WebDriverWait(driver, 60, 1000).withMessage("Element was not found during 60 Sec");
     }
 
 
@@ -83,19 +83,18 @@ public class Helper {
 
 
     public WebElement cyclicElementSearchByXpath(String target) {
-
-        for (int i = 0; i < 1000; i++) {
+        waitElement(target);
+        for (int i = 0; i < 100; i++) {
             if (driver.findElements(By.xpath(target)).size() > 0) {
                 break;
             }
-            sleep(1);
 
         }
 
         return driver.findElement(By.xpath(target));
     }
 
-    public void waitElementNotVisible(String locator){
+    public void waitElementNotVisible(String locator) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
     }
 
@@ -188,7 +187,6 @@ public class Helper {
         unhide(input);
         input.sendKeys(file);
     }
-//app.getHelper().wait.until(ExpectedConditions.jsReturnsValue("return document.readyState==\"complete\"; && jQuery.active == 0"));
 
     public void clearBrowserCache() {
         app.driver.manage().deleteAllCookies();

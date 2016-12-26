@@ -38,6 +38,7 @@ public class PostDeployStandartChecksTop6 extends TestBase {
     }
 
     @Test
+
     public void postDeployStandartCheck4() {
         app.driver.get("http://essays.studymoose.com/");
         easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
@@ -45,7 +46,7 @@ public class PostDeployStandartChecksTop6 extends TestBase {
 
     @Test
     public void postDeployStandartCheck5() {
-        app.driver.get("http://customwriting.com/ ");
+        app.driver.get("http://customwriting.com/");
         easyBiddingPayPal.standartCheck_Only_EasyBidding_Production();
     }
 

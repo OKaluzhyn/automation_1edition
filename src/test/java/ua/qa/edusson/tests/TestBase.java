@@ -2,9 +2,7 @@ package ua.qa.edusson.tests;
 
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.ITestContext;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
 import ua.qa.edusson.utils.ApplicationManager;
 
 
@@ -19,13 +17,23 @@ public class TestBase {
     public String handleHost;
 
 
+
+
     @BeforeSuite
     public void setUp(ITestContext context) throws Exception {
         app.init();
         context.setAttribute("app", app);
+
+
+    }
+    @Parameters("site")
+    @BeforeTest
+    public void chooseSite(@Optional ("http://edusson.com/") String siteName) throws Exception {
+        app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
 
     }
+
 
     @AfterSuite
     public void tearDown() {

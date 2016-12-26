@@ -1,0 +1,37 @@
+testFile.pdf
+!TEST PASSED http://edusson.com/
+1482767680078
+1482767680078
+TEST PASSED
+207520
+&http://edusson.com/order/view/207520
+testFile.pdf
+#TEST PASSED http://edubirdie.com/
+207521
+&http://edusson.com/order/view/207521
+testFile.pdf
+#TEST PASSED http://papersowl.com/
+	207522
+	kwriterUrl-http://edusson.com/order/view/207522;customerUrl-http://essays.studymoose.com/order/view/207522
+	phttps://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-857712120L8901225#/checkout/login
+	/checkout/login
+	testFile.pdf
+	+TEST PASSED http://essays.studymoose.com/
+	
+207526
+	
+gwriterUrl-http://edusson.com/order/view/207526;customerUrl-http://customwriting.com/order/view/207526
+	
+qhttps://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-29X82368BL064902U#/checkout/review
+	
+/checkout/review
+	
+testFile.pdf
+	
+'TEST PASSED http://customwriting.com/
+207528
+hwriterUrl-http://edusson.com/order/view/207528 ; customerUrl-http://essayvikings.com/order/view/207528
+qhttps://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8CL86256AF138223X#/checkout/review
+/checkout/review
+testFile.pdf
+&TEST PASSED http://essayvikings.com/

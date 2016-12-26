@@ -1,4 +1,4 @@
-package ua.qa.edusson.pages;
+package ua.qa.edusson.tests.toDeletion;
 
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;

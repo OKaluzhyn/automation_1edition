@@ -38,6 +38,8 @@ public class WebWindow extends TestBase{
         switchToWindow().get(url);
     }
 
+
+
     public String getWindowHandle() {
         return handle;
     }
@@ -106,7 +108,7 @@ public class WebWindow extends TestBase{
                 "document.getElementsByTagName('body')[0].appendChild(anchorTag);", id, url);
     }
 
-    protected void CreateNewTab() {
+    public void CreateNewTab() {
         try {
             WebWindow tab2 = new WebWindow(driver, "url"); // УurlФ - ссылка новой вкладки
         } catch (Exception e) {

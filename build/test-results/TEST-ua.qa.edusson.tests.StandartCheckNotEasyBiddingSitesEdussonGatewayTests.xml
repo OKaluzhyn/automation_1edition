@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ua.qa.edusson.tests.StandartCheckNotEasyBiddingSitesEdussonGatewayTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-12-26T15:54:54" hostname="WIN-JER1VU06OO2" time="260.736">
+  <properties/>
+  <testcase name="standartCheck_CreditCard_Production_Not_EasyBidding" classname="ua.qa.edusson.tests.StandartCheckNotEasyBiddingSitesEdussonGatewayTests" time="118.57"/>
+  <testcase name="standartCheck_CreditCard_Production_Not_EasyBidding" classname="ua.qa.edusson.tests.StandartCheckNotEasyBiddingSitesEdussonGatewayTests" time="138.023"/>
+  <system-out><![CDATA[207520
+http://edusson.com/order/view/207520
+testFile.pdf
+TEST PASSED http://edubirdie.com/
+207521
+http://edusson.com/order/view/207521
+testFile.pdf
+TEST PASSED http://papersowl.com/
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

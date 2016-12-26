@@ -136,7 +136,7 @@ public class Base extends TestBase {
         HeaderMenu header = new HeaderMenu();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
 
-        app.getHelper().waitLoading("ghjhgj");
+        app.getHelper().waitLoading("orders");
         header.userLogOut();
         Helper.sleep(3);
        /* app.driver.get("http://edubirdie.com/");

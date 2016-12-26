@@ -2,7 +2,6 @@ package ua.qa.edusson.pages.CustomerPages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import ua.qa.edusson.utils.Helper;
 
 import static ua.qa.edusson.tests.TestBase.app;
 
@@ -86,7 +85,7 @@ public class OrderCreateCustomerPage {
     // set paper description
     public void orderDescription(String strDescription) {
         WebElement paper_description = app.getHelper().cyclicElementSearchByXpath(paperInstruction);
-        Helper.sleep(1);
+       // Helper.sleep(1);
         paper_description.sendKeys(strDescription);
     }
 
@@ -100,19 +99,21 @@ public class OrderCreateCustomerPage {
 
 
     public void createOrder(String strTopic, String strDescription) {
-        this.selectTypeOfPaper();
+       // this.selectTypeOfPaper();
         this.setTopic(strTopic);
         this.selectSubject();
         this.clickNext1();
-        this.setnumOfCitation();
+       // this.setnumOfCitation();
         this.selectformatOfCitation();
-        Helper.sleep(1);
+       // Helper.sleep(1);
         this.clickNext2();
-        Helper.sleep(1);
+        //Helper.sleep(1);
         this.orderDescription(strDescription);
-        Helper.sleep(1);
+       // Helper.sleep(1);
         app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-        Helper.sleep(5);
+        //Helper.sleep(5);
+        app.getHelper().waitElement("//*[text()='testFile.pdf']");
+        app.getHelper().waitElement(startBiddingButton);
         this.proceedToBidding();
     }
 
@@ -143,7 +144,7 @@ public class OrderCreateCustomerPage {
         this.setTopic(strTopic);
         this.orderDescription(strDescription);
         app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-        Helper.sleep(5);
+       // Helper.sleep(5);
         this.proceedToBidding();
     }
 
@@ -152,7 +153,7 @@ public class OrderCreateCustomerPage {
         this.setTopic(strTopic);
         this.orderDescription(strDescription);
         app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-        Helper.sleep(5);
+      //  Helper.sleep(5);
         this.choseBestWriter();
         this.proceedToBidding();
     }
@@ -171,13 +172,13 @@ public class OrderCreateCustomerPage {
     public void createOrderWithVasChooseBestWriter(String strTopic, String strDescription) {
         this.setTopic(strTopic);
         this.clickNext1();
-        Helper.sleep(1);
+      //  Helper.sleep(1);
         this.clickNext2();
-        Helper.sleep(1);
+      //  Helper.sleep(1);
         this.orderDescription(strDescription);
-        Helper.sleep(1);
+     //   Helper.sleep(1);
         app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-        Helper.sleep(5);
+      //  Helper.sleep(5);
         this.choseBestWriter();
         this.proceedToBidding();
     }
