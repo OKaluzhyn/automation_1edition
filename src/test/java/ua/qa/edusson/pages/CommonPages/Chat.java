@@ -26,9 +26,7 @@ public class Chat {
     }
 
     public void sendMessage() {
-        //Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         long curTime = System.currentTimeMillis();
-        //clientMessage = curTime.to
         clientMessage = String.valueOf(curTime);
         System.out.println(clientMessage);
         app.getHelper().cyclicElementSearchByXpath("//div[@class='write-message']/textarea").sendKeys(clientMessage);
