@@ -47,11 +47,12 @@ public class UserAuthorizationPage {
 
     public void userLogin(String strUserName, String strPassword){
         this.LogClick();
-        if(app.getHelper().isElementPresent(change_user)){
-            this.changeUser(strUserName,strPassword);
-        }
-        else if(app.getHelper().isElementPresent(user_name_field)){
+        if(!app.getHelper().isElementPresent(change_user)){
             this.logIn(strUserName, strPassword);
+
+        }
+        else {
+            this.changeUser(strUserName,strPassword);
         }
 
 

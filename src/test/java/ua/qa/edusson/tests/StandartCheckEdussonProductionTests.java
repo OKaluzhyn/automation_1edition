@@ -53,7 +53,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().waitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
@@ -121,7 +121,7 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl,"test for webdriver", "test");
         app.getHelper().waitLoading("order#redirect_url=");
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();
@@ -139,9 +139,8 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         orderPayCustomerPage.clickReserveButton();
         creditCardPayment.setAllFields();
         orderPayCustomerPage.confirmPay();
-        Helper.sleep(1);
-        //app.getHelper().waitLoading(siteUrl);
-        app.getHelper().waitLoading("thankyou");
+        app.getHelper().waitLoading(siteUrl);
+       // app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();

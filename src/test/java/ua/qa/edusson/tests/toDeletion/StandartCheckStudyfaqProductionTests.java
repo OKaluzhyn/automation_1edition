@@ -18,6 +18,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
     public String orderUrl;
     public String orderId;
     public String writerUrl;
+    public String siteUrl;
 
     public String customerReleasedPercent;
     public String writerReleasedPercent;
@@ -42,6 +43,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
     // 20%+80%
 
     public void standartCheck_PAyPal_Production_Studyfaq() throws Exception {
+        siteUrl = app.driver.getCurrentUrl();
         app.getHelper().goToStudyfaq();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
@@ -49,7 +51,7 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
         myOrdersCustomerPage.makeNewOrder();
         // create order
         app.getHelper().sleep(1);
-        orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().sleep(1);
         assertTrue(app.driver.getCurrentUrl().contains("order#redirect_url="));
         app.getHelper().sleep(1);
@@ -122,14 +124,14 @@ public class StandartCheckStudyfaqProductionTests extends TestBase {
 
     public void standartCheck_CreditCard_Production_Studyfaq() throws Exception {
         app.getHelper().goToStudyfaq();
-
+        siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         //go to order form
         myOrdersCustomerPage.makeNewOrder();
         // create order
         app.getHelper().sleep(1);
-        orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         //assertTrue(app.driver.getCurrentUrl().contains("order#redirect_url="));
         app.getHelper().sleep(1);
         app.driver.navigate().refresh();

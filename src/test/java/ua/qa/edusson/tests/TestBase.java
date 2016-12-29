@@ -17,27 +17,22 @@ public class TestBase {
     public String handleHost;
 
 
-
-
     @BeforeSuite
     public void setUp(ITestContext context) throws Exception {
         app.init();
         context.setAttribute("app", app);
-
-
     }
+
     @Parameters("site")
     @BeforeTest
-    public void chooseSite(@Optional ("http://edusson.com/") String siteName) throws Exception {
+    public void chooseSite(@Optional("http://edubirdie.com/") String siteName) throws Exception {
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
-
     }
-
 
     @AfterSuite
     public void tearDown() {
-        app.getHelper().clearBrowserCache();
         app.stop();
     }
 }
+

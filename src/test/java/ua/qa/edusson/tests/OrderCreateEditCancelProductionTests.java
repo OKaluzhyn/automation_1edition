@@ -33,6 +33,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 		OrderBiddingWriterPage orderBiddingWriterPage = new OrderBiddingWriterPage();
 		OrderCancelViewPage orderCancelViewPage = new OrderCancelViewPage();
 		app.getHelper().goToEdusson();
+		String siteUrl = app.driver.getCurrentUrl();
 		// ��������� ��������
 		userAuthorizationPage.userLogin(Config.customer1, Config.password);
 		app.getHelper().sleep(1);
@@ -40,7 +41,7 @@ public class OrderCreateEditCancelProductionTests extends TestBase {
 	    myOrdersCustomerPage.makeNewOrder();
 		app.getHelper().sleep(1);
 		// create order
-		orderCreateCustomerPage.createOrder("test for webdriver", "test");
+		orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
 
 		app.getHelper().sleep(10);
 		// assert bidding page

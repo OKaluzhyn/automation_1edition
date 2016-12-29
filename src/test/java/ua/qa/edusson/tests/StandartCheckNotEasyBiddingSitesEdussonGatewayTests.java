@@ -34,64 +34,25 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
     OrderInProgressPage orderInProgressPage = new OrderInProgressPage();
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
-    OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
+
 
     @Test
-    //  Edusson Gateway
-    // 20%+80%
-
+    //  Edusson Gateway 100%
 
     public void standartCheck_CreditCard_Production_Not_EasyBidding() {
 
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        if (siteUrl.equals("http://studyfaq.com/")) {
-            orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
-        } else {
-            orderCreateCustomerPage.createOrder("test for webdriver", "test");
-        }
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().waitLoading("order#redirect_url=");
-        app.driver.navigate().refresh();
-        app.getHelper().sleep(5);
-        customerUrl = app.driver.getCurrentUrl();
-        if (siteUrl.equals("http://papersowl.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(32);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://studyfaq.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(31);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://edubirdie.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(32);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://ca.edubirdie.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(35);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://au.edubirdie.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(35);
-            System.out.println(orderId);
-        } else if (siteUrl.equals("http://uk.edubirdie.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(35);
-            System.out.println(orderId);
-        }
-
+        customerUrl = siteUrl + "/order/view/" + orderId;
+        orderId = app.getHelper().idNotEasyBidding(siteUrl);
         writerUrl = "http://edusson.com/order/view/" + orderId;
         app.getHelper().goToEdusson();
-
-      /*  if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink()) == true) {
-            userAuthorizationPage.userLogin(Config.writer1, Config.password);
-            app.getHelper().sleep(2);
-            myOrdersWriterPage.closePopup();
-            app.driver.get(writerUrl);
-        } else {
-            app.driver.get(writerUrl);
-        }*/
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
-        app.getHelper().sleep(2);
         myOrdersWriterPage.closePopup();
         app.driver.get(writerUrl);
-        app.getHelper().sleep(2);
-        System.out.println(app.driver.getCurrentUrl());
         orderBiddingWriterPage.createBid("6");
         app.getHelper().goTo(customerUrl);
         orderBiddingCustomerPage.bid1();
@@ -101,9 +62,7 @@ public class StandartCheckNotEasyBiddingSitesEdussonGatewayTests extends TestBas
         orderPayCustomerPage.confirmPay();
         app.getHelper().waitLoading("thankyou");
         app.driver.get(writerUrl);
-        app.getHelper().sleep(2);
         orderInProgressPage.uploadRevision();
-        app.getHelper().sleep(2);
         app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("100");
         orderFinishedViewPage.closePopup();

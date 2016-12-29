@@ -112,7 +112,6 @@ public class Base extends TestBase {
     }
 
 
-
     @Test(enabled = false)
     public void payPal() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
@@ -124,7 +123,7 @@ public class Base extends TestBase {
         app.getHelper().goTo("http://edusson.com/order/pay/174899");
         orderPayCustomerPage.clickReserveButton();
         payPalPage.payPayPal("edussonpay4@ukr.net", "123456789");
-       // payPalPage.logInToPayPalMain("edussonpay4@ukr.net", "123456789");
+        // payPalPage.logInToPayPalMain("edussonpay4@ukr.net", "123456789");
         app.getHelper().waitLoading("thankyou");
         Helper.sleep(10);
     }
@@ -152,8 +151,9 @@ public class Base extends TestBase {
 */
 
     }
-    @Test (enabled = false)
-    public void paypal(){
+
+    @Test(enabled = false)
+    public void paypal() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
         OrderCreateCustomerPage orderCreateCustomerPage = new OrderCreateCustomerPage();
@@ -168,15 +168,15 @@ public class Base extends TestBase {
         String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
         payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
         Helper.sleep(1);
         app.getHelper().waitLoading(siteUrl);
-        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
-        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
-       // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
+        // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         //app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
 
@@ -184,32 +184,32 @@ public class Base extends TestBase {
         String siteUrl1 = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
         payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
         Helper.sleep(1);
         app.getHelper().waitLoading(siteUrl1);
-        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl1+ " Reason: Payment didn't go through");
-        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl1+ " Reason: Payment is being reviewed by PayPal");
-       // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl1+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
-       // app.getHelper().waitLoading("thankyou");
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl1 + " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl1 + " Reason: Payment is being reviewed by PayPal");
+        // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl1+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
+        // app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
 
         app.driver.get("http://paperial.com/");
         String siteUrl2 = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
         payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
         Helper.sleep(1);
         app.getHelper().waitLoading(siteUrl2);
-        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl2+ " Reason: Payment didn't go through");
-        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl2+ " Reason: Payment is being reviewed by PayPal");
-       // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl2+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
-       // app.getHelper().waitLoading("thankyou");
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl2 + " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl2 + " Reason: Payment is being reviewed by PayPal");
+        // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl2+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
+        // app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
 
         app.driver.get("http://customwriting.com/");
@@ -217,19 +217,95 @@ public class Base extends TestBase {
         String siteUrl3 = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
         orderPayCustomerPage.confirmPay();
         payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
         Helper.sleep(1);
         app.getHelper().waitLoading(siteUrl3);
-        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl3+ " Reason: Payment didn't go through");
-        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl3+ " Reason: Payment is being reviewed by PayPal");
-       // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl3+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl3 + " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl3 + " Reason: Payment is being reviewed by PayPal");
+        // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl3+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
         //app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
     }
+
+    @Test
+    public void checkUrls() {
+        System.out.println(("http://edusson.com/" + "order/pay/12345").substring(29));
+        System.out.println(("http://customwriting.com/" + "order/pay/12345").substring(35));
+        System.out.println(("http://essays.studymoose.com/" + "order/pay/12345").substring(39));
+        System.out.println(("http://essayvikings.com/" + "order/pay/12345").substring(34));
+        System.out.println(("http://edubirdie.com/" + "order/pay/12345").substring(31));
+        System.out.println(("http://eduzaurus.com/" + "order/pay/12345").substring(32));
+        System.out.println(("http://paperdon.com/" + "order/pay/12345").substring(31));
+        System.out.println(("http://papersowl.com/" + "order/pay/12345").substring(32));
+        System.out.println(("http://studarea.com/" + "order/pay/12345").substring(31));
+        System.out.println(("http://essaybison.com/" + "order/pay/12345").substring(33));
+        System.out.println(("http://samedaypapers.com/" + "order/pay/12345").substring(35));
+        System.out.println(("http://paperell.com/" + "order/pay/12345").substring(30));
+        System.out.println(("http://essaytornado.com/" + "order/pay/12345").substring(34));
+        System.out.println(("http://studyfaq.com/" + "order/pay/12345").substring(30));
+        System.out.println(("http://ca.edubirdie.com/" + "order/pay/12345").substring(33));
+        System.out.println(("http://au.edubirdie.com/" + "order/pay/12345").substring(33));
+        System.out.println(("http://uk.edubirdie.com/" + "order/pay/12345").substring(35));
+        System.out.println(("http://gpaessay.com/" + "order/pay/12345").substring(31));
+        System.out.println(("http://australianwritings.com.au/" + "order/pay/12345").substring(42));
+        System.out.println(("http://papercp.com/" + "order/pay/12345").substring(28));
+        System.out.println(("http://typemyessays.com/" + "order/pay/12345").substring(33));
+        System.out.println(("http://typemyessays.com/" + "order/pay/12345").substring(34));
+        System.out.println(("http://paperial.com/" + "order/pay/12345").substring(30));
+        System.out.println(("http://essayontime.com.au/" + "order/pay/12345").substring(36));
+        System.out.println(("http://phdify.com/" + "order/pay/12345").substring(28));
+        System.out.println(("http://essays.blablawriting.com/" + "order/pay/12345").substring(36));
     }
+
+    public void checkSiteType() {
+        String siteType;
+        // System.out.println(site);
+        boolean found = false;
+
+        String[] sitesWithEasyBidding = {"customwriting.com/", "essays.studymoose.com/", "paperial.com/",
+                "phdfy.com/", "essayontime.com/", "essaylab.com/", "essayblablawriting.com/"
+        };
+
+        String[] sitesNotEasyBidding = {"http://edusson.com/", "http://essayvikings.com/", "http://edubirdie.com/",
+                "http://eduzaurus.com/", "http://paperdon.com/", "http://papersowl.com/", "http://studarea.com/",
+                "http://essaybison.com/", "http://samedaypapers.com/", "http://paperell.com/", "http://essaytornado.com/",
+                "http://studyfaq.com/", "http://ca.edubirdie.com/", "http://au.edubirdie.com/", "http://uk.edubirdie.com/",
+                "http://gpaessay.com/", "http://typemyessay.com/", "http://papercp.com/", "http://australianwritings.com.ua/"
+        };
+
+    }
+
+
+
+
+
+    @Test
+    public void checkSites(){
+        String site = app.driver.getCurrentUrl();
+        System.out.println(app.getHelper().isSiteEasybidding(site));
+        if (app.getHelper().isSiteEasybidding(site).equals("easy")){
+            UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+            HeaderMenu header = new HeaderMenu();
+            userAuthorizationPage.userLogin(Config.customer1, Config.password);
+            app.getHelper().waitLoading("orders");
+            header.userLogOut();
+            Helper.sleep(3);
+        }else {
+            System.out.println("site is not easy");
+        }
+
+    }
+
+
+
+}
+
+
+
+
 
 
 

@@ -57,9 +57,6 @@ public class ApplicationManager {
             ((RemoteWebDriver) driver).setFileDetector(new LocalFileDetector());
 
         }
-        // driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
-        // driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
-        // driver.manage().timeouts().setScriptTimeout(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
         helper = new Helper(driver);
     }

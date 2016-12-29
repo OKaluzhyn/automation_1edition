@@ -59,6 +59,7 @@ public class OrderCreateCustomerPage {
 
     // click next button1
     public void clickNext1() {
+        app.getHelper().waitElement(nextButton1);
         WebElement next_button_1 = app.getHelper().cyclicElementSearchByXpath(nextButton1);
         next_button_1.click();
     }
@@ -78,6 +79,7 @@ public class OrderCreateCustomerPage {
 
     // click next button2
     public void clickNext2() {
+        app.getHelper().waitElement(nextButton2);
         WebElement next_button_2 = app.getHelper().cyclicElementSearchByXpath(nextButton2);
         next_button_2.click();
     }
@@ -85,36 +87,60 @@ public class OrderCreateCustomerPage {
     // set paper description
     public void orderDescription(String strDescription) {
         WebElement paper_description = app.getHelper().cyclicElementSearchByXpath(paperInstruction);
-       // Helper.sleep(1);
         paper_description.sendKeys(strDescription);
     }
 
 
     // click start bidding button
     public void proceedToBidding() {
-        //Helper.sleep(10);
+        app.getHelper().waitElement(startBiddingButton);
         WebElement bidding_button = app.getHelper().cyclicElementSearchByXpath(startBiddingButton);
         bidding_button.click();
     }
 
 
-    public void createOrder(String strTopic, String strDescription) {
-       // this.selectTypeOfPaper();
-        this.setTopic(strTopic);
-        this.selectSubject();
-        this.clickNext1();
-       // this.setnumOfCitation();
-        this.selectformatOfCitation();
-       // Helper.sleep(1);
-        this.clickNext2();
-        //Helper.sleep(1);
-        this.orderDescription(strDescription);
-       // Helper.sleep(1);
-        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-        //Helper.sleep(5);
-        app.getHelper().waitElement("//*[text()='testFile.pdf']");
-        app.getHelper().waitElement(startBiddingButton);
-        this.proceedToBidding();
+    public void createOrder(String siteUrl, String strTopic, String strDescription) {
+        if (!siteUrl.equals("http://studyfaq.com/")) {
+            this.setTopic(strTopic);
+            this.clickNext1();
+            this.selectformatOfCitation();
+            this.clickNext2();
+            this.orderDescription(strDescription);
+            app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+            app.getHelper().waitElement("//*[text()='testFile.pdf']");
+            app.getHelper().waitElement(startBiddingButton);
+            this.proceedToBidding();
+        } else {
+            this.selectTypeOfPaper();
+            this.setTopic(strTopic);
+            this.orderDescription(strDescription);
+            app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+            this.proceedToBidding();
+        }
+    }
+    public void createOrderWithVasChooseBestWriter(String siteUrl, String strTopic, String strDescription) {
+        if (!siteUrl.equals("http://studyfaq.com/")) {
+            this.setTopic(strTopic);
+            this.clickNext1();
+            this.selectformatOfCitation();
+            this.clickNext2();
+            this.orderDescription(strDescription);
+            app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+            this.choseBestWriter();
+            this.proceedToBidding();
+        } else {
+            this.selectTypeOfPaper();
+            this.setTopic(strTopic);
+            this.orderDescription(strDescription);
+            app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+            this.choseBestWriter();
+            this.proceedToBidding();
+        }
+    }
+
+    private void choseBestWriter() {
+        WebElement checkBoxVasBestWriter = app.getHelper().cyclicElementSearchByXpath(vasBestWriter);
+        checkBoxVasBestWriter.click();
     }
 
     public void saveChanges() {
@@ -136,57 +162,18 @@ public class OrderCreateCustomerPage {
     public void editOrder(String strNewTopic) {
         this.setTopic(strNewTopic);
         this.saveChanges();
-
-    }
-
-    public void createOrderForStudyfaq(String strTopic, String strDescription) {
-        this.selectTypeOfPaper();
-        this.setTopic(strTopic);
-        this.orderDescription(strDescription);
-        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-       // Helper.sleep(5);
-        this.proceedToBidding();
-    }
-
-    public void createOrderForStudyfaqWithVasChooseBestWriter(String strTopic, String strDescription) {
-        this.selectTypeOfPaper();
-        this.setTopic(strTopic);
-        this.orderDescription(strDescription);
-        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-      //  Helper.sleep(5);
-        this.choseBestWriter();
-        this.proceedToBidding();
     }
 
     private void clickNext3() {
         WebElement next_button_3 = app.getHelper().cyclicElementSearchByXpath(nextButton3);
         next_button_3.click();
-
     }
 
     public String requestedWriter() {
         return app.getHelper().cyclicElementSearchByXpath(writerName).getText();
-
     }
 
-    public void createOrderWithVasChooseBestWriter(String strTopic, String strDescription) {
-        this.setTopic(strTopic);
-        this.clickNext1();
-      //  Helper.sleep(1);
-        this.clickNext2();
-      //  Helper.sleep(1);
-        this.orderDescription(strDescription);
-     //   Helper.sleep(1);
-        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-      //  Helper.sleep(5);
-        this.choseBestWriter();
-        this.proceedToBidding();
-    }
 
-    private void choseBestWriter() {
-        WebElement checkBoxVasBestWriter = app.getHelper().cyclicElementSearchByXpath(vasBestWriter);
-        checkBoxVasBestWriter.click();
-    }
 }
 
 

@@ -22,12 +22,13 @@ public class OrderInProgressPage  {
 	public static String payWriterPercent = "//span[@data-atest='atest_order_view_writer_in_progress_elem_paid_progress']";//������� ���������� �����
 	
 	public void uploadRevision(){
+		app.getHelper().waitElement(workResults);
 		WebElement work_results = app.getHelper().cyclicElementSearchByXpath(workResults);
 		work_results.click();
 		app.getHelper().attachFile(By.xpath(inputRevision), app.getHelper().getRevision().getAbsolutePath());
 		app.getHelper().waitElement("//a[@class='file-name-link']");
 		String fileName = app.getHelper().cyclicElementSearchByXpath("//a[@class='file-name-link']").getText();
-		System.out.println(fileName);
+		//System.out.println(fileName);
 		Assert.assertEquals(fileName, "testFile.pdf");
 		
 	}

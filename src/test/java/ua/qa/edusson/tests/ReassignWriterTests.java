@@ -40,11 +40,12 @@ public class ReassignWriterTests extends TestBase {
 
     @Test
     public void standartReassign_Production_Edusson() throws Exception {
+        String siteUrl = app.driver.getCurrentUrl();
         app.getHelper().goToEdusson();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrder("test order for reassign", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test order for reassign", "test");
         app.getHelper().sleep(1);
         app.driver.navigate().refresh();
         String orderUrl = app.driver.getCurrentUrl();

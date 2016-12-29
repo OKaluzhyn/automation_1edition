@@ -41,11 +41,12 @@ public class StandartCheckEdubirdieProductionTests extends TestBase {
     public void standartCheck_PAyPal_Production_Edubirdie() throws Exception {
 
         app.driver.get("http://edubirdie.com/");
+        String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         myOrdersCustomerPage.makeNewOrder();
         app.getHelper().sleep(1);
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         //assertTrue(app.driver.getCurrentUrl().contains("order#redirect_url="));
         app.getHelper().sleep(1);
         app.driver.navigate().refresh();
@@ -110,11 +111,12 @@ public class StandartCheckEdubirdieProductionTests extends TestBase {
 
     public void standartCheck_CreditCard_Production_Edubirdie() throws Exception {
         app.driver.get("http://edubirdie.com/");
+        String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().sleep(1);
         myOrdersCustomerPage.makeNewOrder();
         app.getHelper().sleep(1);
-        orderCreateCustomerPage.createOrder("test for webdriver", "test");
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().sleep(1);
         app.driver.navigate().refresh();
         orderUrl = app.driver.getCurrentUrl();

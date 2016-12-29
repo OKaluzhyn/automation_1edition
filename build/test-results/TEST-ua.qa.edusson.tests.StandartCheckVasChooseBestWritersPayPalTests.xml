@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-12-26T16:05:00" hostname="WIN-JER1VU06OO2" time="229.483">
+<testsuite name="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-12-28T16:58:33" hostname="WIN-JER1VU06OO2" time="327.629">
   <properties/>
-  <testcase name="standartCheck_Vas_ChooseBestWriter_Production" classname="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" time="229.483"/>
-  <system-out><![CDATA[207528
-writerUrl-http://edusson.com/order/view/207528 ; customerUrl-http://essayvikings.com/order/view/207528
-https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-8CL86256AF138223X#/checkout/review
+  <testcase name="standartCheck_Vas_ChooseBestWriter_Production" classname="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" time="327.629"/>
+  <system-out><![CDATA[207955
+https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-74960890AW4132642#/checkout/review
 /checkout/review
-testFile.pdf
 TEST PASSED http://essayvikings.com/
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

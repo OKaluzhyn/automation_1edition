@@ -13,11 +13,10 @@ import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
 
-import java.util.Objects;
-
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.*;
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popPendingPayPal;
+import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popUpFailPayPal;
 
 public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
 
@@ -47,66 +46,28 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
     // 20%+80%
 
     public void standartCheck_Only_EasyBidding_Production() {
-
         siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-        if (siteUrl.equals("http://studyfaq.com/")) {
-            orderCreateCustomerPage.createOrderForStudyfaq("test for webdriver", "test");
-        } else {
-            orderCreateCustomerPage.createOrder("test for webdriver", "test");
-        }
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
         app.getHelper().waitLoading("/order/pay/");
-
-
-        if (Objects.equals(siteUrl, "http://paperial.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(30);
-            System.out.println(orderId);
-        } else if (Objects.equals(siteUrl, "http://essayontime.com.au/")) {
-            orderId = app.driver.getCurrentUrl().substring(36);
-            System.out.println(orderId);
-        } else if (Objects.equals(siteUrl, "http://phdify.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(28);
-            System.out.println(orderId);
-        } else if (Objects.equals(siteUrl, "http://customwriting.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(35);
-            System.out.println(orderId);
-        } else if (Objects.equals(siteUrl, "http://typemyessays.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(34);
-            System.out.println(orderId);
-        } else if (Objects.equals(siteUrl, "http://essays.studymoose.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(39);
-            System.out.println(orderId);
-        } else if (Objects.equals(siteUrl, "http://essays.blablawriting.com/")) {
-            orderId = app.driver.getCurrentUrl().substring(36);
-            System.out.println(orderId);
-        }
-
+        orderId = app.getHelper().idEasyBidding(siteUrl);
         writerUrl = "http://edusson.com/order/view/" + orderId;
         customerUrl = siteUrl + "order/view/" + orderId;
-        System.out.println("writerUrl" + "-" + writerUrl + ";" +
-                "customerUrl" + "-" + customerUrl);
-        Helper.sleep(1);
         orderPayCustomerPage.confirmPay();
         payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
         Helper.sleep(1);
         app.getHelper().waitLoading(siteUrl);
-        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
-        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
-       // Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
-        //app.getHelper().waitLoading("thankyou");
+        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
+        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
         app.getHelper().goToEdusson();
         if (app.getHelper().isElementPresent(userAuthorizationPage.getloginLink())) {
             userAuthorizationPage.userLogin(Config.writer1, Config.password);
-            Helper.sleep(2);
             myOrdersWriterPage.closePopup();
         }
         app.driver.get(writerUrl);
-        Helper.sleep(2);
         orderBiddingWriterPage.easyBiddingApplyprice();
-        Helper.sleep(2);
         orderInProgressPage.uploadRevision();
-        Helper.sleep(2);
         app.driver.get(customerUrl);
         orderInProgressPage.releaseMoney("100");
         orderFinishedViewPage.closePopup();
@@ -114,14 +75,6 @@ public class StandartCheckOnlyEasyBiddingSitesPayPalTests extends TestBase {
         app.driver.get(writerUrl);
         writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
         assertEquals(customerReleasedPercent, writerReleasedPercent);
-       /* app.driver.get(customerUrl);
-        orderInProgressPage.releaseMoney("80");
-        customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-        assertTrue(orderFinishedViewPage.checkCustomerPageFinishedText());
-        app.driver.get(writerUrl);
-        writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-        assertEquals(customerReleasedPercent, writerReleasedPercent);
-       */
         assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
         System.out.println("TEST PASSED" + " " + siteUrl);

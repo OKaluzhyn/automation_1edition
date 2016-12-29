@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
@@ -23,40 +21,16 @@ public class Helper {
 
     protected WebDriver driver;
     public final Wait<WebDriver> wait;
+    public String id;
 
     public WebDriver getDriver() {
         return driver;
     }
 
     public Helper(WebDriver driver) {
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.PAGE_LOAD_STRATEGY, "none");
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, 60, 1000).withMessage("Element was not found during 60 Sec");
+        this.wait = new WebDriverWait(driver, 120, 500).withMessage("Element was not found during 60 Sec");
     }
-
-
-    public boolean waitForJSandJQueryToLoad() {
-
-        WebDriverWait wait = new WebDriverWait(driver, 30);
-
-        // wait for jQuery to load
-        ExpectedCondition<Boolean> jQueryLoad = driver -> {
-            try {
-                return ((Long) ((JavascriptExecutor) getDriver()).executeScript("return jQuery.active") == 0);
-            } catch (Exception e) {
-                // no jQuery present
-                return true;
-            }
-        };
-
-        // wait for Javascript to load
-        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor) getDriver()).executeScript("return document.readyState")
-                .toString().equals("complete");
-
-        return wait.until(jQueryLoad) && wait.until(jsLoad);
-    }
-
 
     public File getRevision() {
         return revision;
@@ -84,7 +58,7 @@ public class Helper {
 
     public WebElement cyclicElementSearchByXpath(String target) {
         waitElement(target);
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 50; i++) {
             if (driver.findElements(By.xpath(target)).size() > 0) {
                 break;
             }
@@ -123,7 +97,7 @@ public class Helper {
     }
 
     public WebElement randomChoiceFromDropdown(String xpath) {
-
+        waitElement(xpath);
         List<WebElement> listOfElements = driver.findElements(By.xpath(xpath));
         // select a random one
         Random random = new Random();
@@ -142,34 +116,26 @@ public class Helper {
         }
     }
 
-    /*
-        public void setClipboardData(String path) {
-            StringSelection stringSelection = new StringSelection(path);
-            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
-        }
 
-       public void attachFile() {
-            setClipboardData(this.getRevision().getAbsolutePath());
+    public boolean waitForJSandJQueryToLoad() {
+        WebDriverWait wait = new WebDriverWait(driver, 10);
+        // wait for jQuery to load
+        ExpectedCondition<Boolean> jQueryLoad = driver -> {
             try {
-                Robot robot = new Robot();
-                robot.delay(1000);
-                robot.keyPress(KeyEvent.VK_CONTROL);
-                robot.delay(300);
-                robot.keyPress(KeyEvent.VK_V);
-                robot.delay(300);
-                robot.keyRelease(KeyEvent.VK_V);
-                robot.delay(300);
-                robot.keyRelease(KeyEvent.VK_CONTROL);
-                robot.delay(300);
-                robot.keyPress(KeyEvent.VK_ENTER);
-                robot.delay(300);
-                robot.keyRelease(KeyEvent.VK_ENTER);
-                robot.delay(300);
-            } catch (AWTException e) {
-                e.printStackTrace();
+                return ((Long) ((JavascriptExecutor) getDriver()).executeScript("id = jQuery.active") == 0);
+            } catch (Exception e) {
+                // no jQuery present
+                return true;
             }
-        }
-    */
+        };
+        // wait for Javascript to load
+        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor) getDriver()).executeScript("id = document.readyState")
+                .toString().equals("complete");
+
+        return wait.until(jQueryLoad) && wait.until(jsLoad);
+    }
+
+
     public void unhide(WebElement element) {
         String script = "arguments[0].style.opacity=1;"
                 + "arguments[0].style['transform']='translate(0px, 0px) scale(1)';"
@@ -178,7 +144,7 @@ public class Helper {
                 + "arguments[0].style['msTransform']='translate(0px, 0px) scale(1)';"
                 + "arguments[0].style['OTransform']='translate(0px, 0px) scale(1)';"
                 + "arguments[0].style['visibility']='visible';"
-                + "return true;";
+                + "id = true;";
         ((JavascriptExecutor) driver).executeScript(script, element);
     }
 
@@ -188,11 +154,141 @@ public class Helper {
         input.sendKeys(file);
     }
 
-    public void clearBrowserCache() {
-        app.driver.manage().deleteAllCookies();
 
+    public static String isSiteEasybidding(String site) {
+        String type = null;
+        String[] sitesWithEasyBidding = {"http://customwriting.com/", "http://essays.studymoose.com/", "http://paperial.com/",
+                "http://phdfy.com/", "http://essayontime.com/", "http://essaylab.com/", "http://essayblablawriting.com/"};
+        for (String i : sitesWithEasyBidding) {
+            if (i.equals(site)) {
+                type = "easy";
+                break;
+            } else {
+                type = "notEasy";
+            }
+        }
+        return type;
     }
+
+
+    public static boolean hasSiteCardPay(String site) {
+        boolean type = false;
+        String[] sitesWithCardPay = {"http://edusson.com/", "http://edubirdie.com/", "http://papersowl.com/",
+                "http://studyfaq.com/"};
+        for (String i : sitesWithCardPay) {
+            if (i.equals(site)) {
+                type = true;
+                break;
+            } else {
+                type = false;
+            }
+        }
+        return type;
+    }
+
+    public String idEasyBidding(String siteUrl) {
+
+        if (siteUrl.equals("http://edusson.com/")) {
+            id = app.driver.getCurrentUrl().substring(29);
+        } else if (siteUrl.equals("http://customwriting.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("http://essays.studymoose.com/")) {
+            id = app.driver.getCurrentUrl().substring(39);
+        } else if (siteUrl.equals("http://essayvikings.com/")) {
+            id = app.driver.getCurrentUrl().substring(34);
+        } else if (siteUrl.equals("http://edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("http://eduzaurus.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("http://paperdon.com/")) {
+            id = app.driver.getCurrentUrl().substring(30);
+        } else if (siteUrl.equals("http://papersowl.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("http://studarea.com/")) {
+            id = app.driver.getCurrentUrl().substring(30);
+        } else if (siteUrl.equals("http://essaybison.com/")) {
+            id = app.driver.getCurrentUrl().substring(32);
+        } else if (siteUrl.equals("http://samedaypapers.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("http://paperell.com/")) {
+            id = app.driver.getCurrentUrl().substring(30);
+        } else if (siteUrl.equals("http://essaytornado.com/")) {
+            id = app.driver.getCurrentUrl().substring(34);
+        } else if (siteUrl.equals("http://studyfaq.com/")) {
+            id = app.driver.getCurrentUrl().substring(30);
+        } else if (siteUrl.equals("http://ca.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(34);
+        } else if (siteUrl.equals("http://au.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(34);
+        } else if (siteUrl.equals("http://uk.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(34);
+        } else if (siteUrl.equals("http://gpaessay.com/")) {
+            id = app.driver.getCurrentUrl().substring(30);
+        } else if (siteUrl.equals("http://australianwritings.com.au/")) {
+            id = app.driver.getCurrentUrl().substring(43);
+        } else if (siteUrl.equals("http://papercp.com/")) {
+            id = app.driver.getCurrentUrl().substring(29);
+        } else if (siteUrl.equals("http://typemyessays.com/")) {
+            id = app.driver.getCurrentUrl().substring(34);
+        } else if (siteUrl.equals("http://paperial.com/")) {
+            id = app.driver.getCurrentUrl().substring(30);
+        } else if (siteUrl.equals("http://essayontime.com.au/")) {
+            id = app.driver.getCurrentUrl().substring(36);
+        } else if (siteUrl.equals("http://phdify.com/")) {
+            id = app.driver.getCurrentUrl().substring(28);
+        } else if (siteUrl.equals("http://essays.blablawriting.com/")) {
+            id = app.driver.getCurrentUrl().substring(42);
+        }
+        return id;
+    }
+
+
+    public String idNotEasyBidding(String siteUrl) {
+        if (siteUrl.equals("http://edusson.com/")) {
+            id = app.driver.getCurrentUrl().substring(50);
+        } else if (siteUrl.equals("http://edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("http://papersowl.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("http://studyfaq.com/")) {
+            id = app.driver.getCurrentUrl().substring(51);
+        } else if (siteUrl.equals("http://eduzaurus.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("http://paperdon.com/")) {
+            id = app.driver.getCurrentUrl().substring(51);
+        } else if (siteUrl.equals("http://studarea.com/")) {
+            id = app.driver.getCurrentUrl().substring(51);
+        } else if (siteUrl.equals("http://essaybison.com/")) {
+            id = app.driver.getCurrentUrl().substring(53);
+        } else if (siteUrl.equals("http://samedaypapers.com/")) {
+            id = app.driver.getCurrentUrl().substring(56);
+        } else if (siteUrl.equals("http://paperell.com/")) {
+            id = app.driver.getCurrentUrl().substring(51);
+        } else if (siteUrl.equals("http://essaytornado.com/")) {
+            id = app.driver.getCurrentUrl().substring(55);
+        } else if (siteUrl.equals("http://essayvikings.com/")) {
+            id = app.driver.getCurrentUrl().substring(55);
+        } else if (siteUrl.equals("http://ca.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(55);
+        } else if (siteUrl.equals("http://au.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(55);
+        } else if (siteUrl.equals("http://uk.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(55);
+        } else if (siteUrl.equals("http://gpaessay.com/")) {
+            id = app.driver.getCurrentUrl().substring(51);
+        } else if (siteUrl.equals("http://australianwritings.com.au/")) {
+            id = app.driver.getCurrentUrl().substring(64);
+        } else if (siteUrl.equals("http://papercp.com/")) {
+            id = app.driver.getCurrentUrl().substring(50);
+        } else if (siteUrl.equals("http://typemyessays.com/")) {
+            id = app.driver.getCurrentUrl().substring(54);
+        }
+        return id;
+    }
+
+
 }
+
 
 
 

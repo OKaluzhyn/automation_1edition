@@ -14,13 +14,15 @@ public class OrderBiddingWriterPage  {
 	public static String applyButton = "//input[@data-atest='atest_order_view_writer_bidding_form_submit']";
 	public static String removeButton = "//button[@data-atest='atest_order_view_writer_bidding_elem_remove_btn']";
 	public static String changeButton = "//button[@data-atest='atest_order_view_writer_bidding_elem_change_btn']";
-	
+	public static String viewOrderButton = "//button[text()='View order']";
+	public static String wonBidPopUp = "//div[@class='modal-content']/div[contains(text(),' Your bid has won!')]";
 	//public static String bidAmount = "//input[@data-atest='atest_order_view_writer_bidding_form_bid_value']";
 	
 	//easy bidding
 	public static String easyBiddingapplyButton = "//input[@value='Apply for this order']";
 	
 	public void easyBiddingApplyprice(){
+		app.getHelper().waitElement(easyBiddingapplyButton);
 		WebElement easy_bidding_apply_button = app.getHelper().cyclicElementSearchByXpath(easyBiddingapplyButton);
 		easy_bidding_apply_button.click();
 	}
@@ -50,6 +52,11 @@ public class OrderBiddingWriterPage  {
 	WebElement change_button = app.getHelper().cyclicElementSearchByXpath(changeButton);
 	change_button.click();
 }
-	
-	
+
+
+    public void goToOrder() {
+    	app.getHelper().waitElement(wonBidPopUp);
+    	WebElement view_order_button = app.getHelper().cyclicElementSearchByXpath(viewOrderButton);
+		view_order_button.click();
+    }
 }

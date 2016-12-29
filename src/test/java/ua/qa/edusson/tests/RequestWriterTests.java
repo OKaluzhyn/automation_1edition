@@ -45,6 +45,7 @@ public class RequestWriterTests extends TestBase{
 
     @Test
 	public  void requestWriter(){
+        String siteUrl = app.driver.getCurrentUrl();
         app.getHelper().goToEdusson();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
         app.getHelper().sleep(1);
@@ -58,7 +59,7 @@ public class RequestWriterTests extends TestBase{
 		writerProfile.clickCreateOrder();
         assertEquals(app.driver.getCurrentUrl(), "http://edubirdie.com/order?requested_writer=1");
         //assertEquals(writer, orderCreateCustomerPage.requestedWriter());
-		orderCreateCustomerPage.createOrder("test for webdriver - writer request", "test");
+		orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver - writer request", "test");
         app.getHelper().sleep(1);
 		app.driver.navigate().refresh();
 

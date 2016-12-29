@@ -34,8 +34,8 @@ public class OrderPayCustomerPage  {
 		reserve_button.click();
 	}
 	
-	public void confirmPay()
-	{
+	public void confirmPay(){
+		//app.getHelper().waitLoading("pay");
 		if(app.getHelper().isElementPresent(makeDepositButton)){
 			this.clickReserveButton();
 		}

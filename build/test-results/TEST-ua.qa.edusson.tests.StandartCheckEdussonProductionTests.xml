@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.tests.StandartCheckEdussonProductionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-12-26T15:51:47" hostname="WIN-JER1VU06OO2" time="139.451">
+<testsuite name="ua.qa.edusson.tests.StandartCheckEdussonProductionTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-12-28T16:32:23" hostname="WIN-JER1VU06OO2" time="403.923">
   <properties/>
-  <testcase name="standartCheck_CreditCard_Production_Edusson" classname="ua.qa.edusson.tests.StandartCheckEdussonProductionTests" time="139.451"/>
-  <system-out><![CDATA[testFile.pdf
-TEST PASSED http://edusson.com/
+  <testcase name="standartCheck_CreditCard_Production_Edusson" classname="ua.qa.edusson.tests.StandartCheckEdussonProductionTests" time="403.923"/>
+  <system-out><![CDATA[TEST PASSED http://edusson.com/
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
