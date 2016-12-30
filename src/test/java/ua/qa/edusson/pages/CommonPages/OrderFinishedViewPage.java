@@ -9,7 +9,7 @@ public class OrderFinishedViewPage  {
 	
 		public static String finishedTextWriterPage = "//span[@data-atest='atest_order_view_writer_finished_elem_notify']";
 		public static String finishedCustomerPage = "//span[@data-atest='atest_order_view_finished_elem_notify']";
-		public static String closeRateWriterPopup = "//div[@class='modal-content js_popup_content']//a[@aria-label='Close']";
+		public static String closePopup = "//div[@class='modal-content js_popup_content']//a[@aria-label='Close']";
 
 		
 		
@@ -35,8 +35,8 @@ public class OrderFinishedViewPage  {
         } }
 	
 	public void closePopup(){
-		app.getHelper().waitElement(closeRateWriterPopup);
-		WebElement close_pop_up = app.getHelper().cyclicElementSearchByXpath(closeRateWriterPopup);
+		app.getHelper().waitElement(closePopup);
+		WebElement close_pop_up = app.getHelper().cyclicElementSearchByXpath(closePopup);
 		close_pop_up.click();
 	}
 	}

@@ -43,13 +43,11 @@ public class StandartCheckEdussonProductionTests extends TestBase {
     OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
 
 
-    @Test (enabled = false)
+    @Test //(enabled = false)
     // PayPall
     // 10%+90%
 
     public void standartCheck_PAyPal_Production_Edusson() {
-
-        //app.getHelper().goToEdusson();
         String siteUrl = app.driver.getCurrentUrl();
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
@@ -73,8 +71,6 @@ public class StandartCheckEdussonProductionTests extends TestBase {
         app.getHelper().waitLoading(siteUrl);
         Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl+ " Reason: Payment didn't go through");
         Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl+ " Reason: Payment is being reviewed by PayPal");
-        //Assert.assertFalse(app.getHelper().isElementPresent(error), "Test Failed " + siteUrl+ " Reason: "+ orderPayThankYouCustomerPage.getErrorText());
-       // app.getHelper().waitLoading("thankyou");
         headerMenu.userLogOut();
         userAuthorizationPage.userLogin(Config.writer1, Config.password);
         myOrdersWriterPage.closePopup();

@@ -1,6 +1,7 @@
-package ua.qa.edusson.tests;
+package ua.qa.edusson.tests.toDeletion;
 
 import org.testng.annotations.Test;
+import ua.qa.edusson.tests.*;
 
 /**
  * Created by tester on 15.11.2016.
