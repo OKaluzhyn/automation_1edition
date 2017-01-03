@@ -1,0 +1,28 @@
+209063
+!TEST PASSED http://edusson.com/
+1483454974073
+1483454974073
+TEST PASSED
+209066
+#TEST PASSED http://edubirdie.com/
+209068
+phttps://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-4AD726705R6178936#/checkout/login
+/checkout/login
+&http://edusson.com/order/view/209068
++TEST PASSED http://essays.studymoose.com/
+	209069
+	qhttps://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-3VS5301374199220T#/checkout/review
+	/checkout/review
+	&TEST PASSED http://essayvikings.com/
+
+209070
+
+qhttps://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-03K361190J5566016#/checkout/review
+
+/checkout/review
+
+&http://edusson.com/order/view/209070
+
+'TEST PASSED http://customwriting.com/
+209071
+#TEST PASSED http://papersowl.com/

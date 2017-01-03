@@ -74,7 +74,23 @@ public class StandartCheckVasChooseBestWritersPayPalTests extends TestBase {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         Helper.sleep(1);
         app.getHelper().goTo(customerUrl);
-        orderInProgressPage.releaseMoney("100");
+        orderInProgressPage.releaseMoney("30");
+        customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
+        headerMenu.userLogOut();
+        if (!app.driver.getCurrentUrl().equals("http://edusson.com/")) {
+            app.getHelper().goToEdusson();
+        }
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
+        myOrdersWriterPage.closePopup();
+        app.driver.get(writerUrl);
+        writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
+        assertEquals(customerReleasedPercent, writerReleasedPercent);
+        headerMenu.userLogOut();
+        app.driver.get(siteUrl);
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        Helper.sleep(1);
+        app.getHelper().goTo(customerUrl);
+        orderInProgressPage.releaseMoney("70");
         orderFinishedViewPage.closePopup();
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         headerMenu.userLogOut();

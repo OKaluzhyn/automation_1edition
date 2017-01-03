@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ua.qa.edusson.tests.standartCheck.StandartCheckPayPalTests" tests="2" skipped="0" failures="0" errors="0" timestamp="2017-01-03T14:51:31" hostname="WIN-JER1VU06OO2" time="331.705">
+  <properties/>
+  <testcase name="standartCheck_PayPal" classname="ua.qa.edusson.tests.standartCheck.StandartCheckPayPalTests" time="119.706"/>
+  <testcase name="standartCheck_PayPal" classname="ua.qa.edusson.tests.standartCheck.StandartCheckPayPalTests" time="97.669"/>
+  <system-out><![CDATA[209068
+https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-4AD726705R6178936#/checkout/login
+/checkout/login
+http://edusson.com/order/view/209068
+TEST PASSED http://essays.studymoose.com/
+209070
+https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-03K361190J5566016#/checkout/review
+/checkout/review
+http://edusson.com/order/view/209070
+TEST PASSED http://customwriting.com/
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
