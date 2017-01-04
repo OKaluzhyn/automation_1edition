@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-01-03T14:53:34" hostname="WIN-JER1VU06OO2" time="106.305">
+<testsuite name="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-01-04T09:14:41" hostname="WIN-JER1VU06OO2" time="463.402">
   <properties/>
-  <testcase name="standartCheck_Vas_ChooseBestWriter_Production" classname="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" time="106.305"/>
-  <system-out><![CDATA[209069
-https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-3VS5301374199220T#/checkout/review
-/checkout/review
+  <testcase name="standartCheck_Vas_ChooseBestWriter_Production" classname="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" time="463.402"/>
+  <system-out><![CDATA[209414
+https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_express-checkout&token=EC-7CK70428FB6808011#/checkout/login
+/checkout/login
 TEST PASSED http://essayvikings.com/
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

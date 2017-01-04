@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-01-03T14:46:55" hostname="WIN-JER1VU06OO2" time="702.71">
+<testsuite name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-01-04T09:05:09" hostname="WIN-JER1VU06OO2" time="2011.988">
   <properties/>
-  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="133.261"/>
-  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="102.885"/>
-  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="91.446"/>
-  <system-out><![CDATA[209063
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="418.885"/>
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="229.004"/>
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="245.464"/>
+  <system-out><![CDATA[209412
 TEST PASSED http://edusson.com/
-209066
+209416
 TEST PASSED http://edubirdie.com/
-209071
+209423
 TEST PASSED http://papersowl.com/
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

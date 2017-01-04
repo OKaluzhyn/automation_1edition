@@ -46,7 +46,6 @@ public class StandartCheckCreditCardTests extends TestBase {
     PayPalPage payPalPage = new PayPalPage();
 
 
-
     @Test
     // работает со всеми сайтами
     public void standartCheck_CardPay() {
@@ -109,6 +108,8 @@ public class StandartCheckCreditCardTests extends TestBase {
             writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
             assertEquals(customerReleasedPercent, writerReleasedPercent);
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+            headerMenu.userLogOut();
+            ww.close();
             headerMenu.userLogOut();
             System.out.println("TEST PASSED" + " " + siteUrl);
         } else {

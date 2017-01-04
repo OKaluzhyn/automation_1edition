@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.tests.ChatTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-01-03T14:49:14" hostname="WIN-JER1VU06OO2" time="30.032">
+<testsuite name="ua.qa.edusson.tests.ChatTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-01-04T09:12:32" hostname="WIN-JER1VU06OO2" time="115.808">
   <properties/>
-  <testcase name="chatTesting" classname="ua.qa.edusson.tests.ChatTests" time="30.032"/>
-  <system-out><![CDATA[1483454974073
-1483454974073
+  <testcase name="chatTesting" classname="ua.qa.edusson.tests.ChatTests" time="115.808"/>
+  <system-out><![CDATA[1483521233332
+1483521233332
 TEST PASSED
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>

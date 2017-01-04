@@ -103,17 +103,19 @@ public class StandartCheckPayPalTests extends TestBase {
             orderInProgressPage.releaseMoney("100");
             orderFinishedViewPage.closePopup();
             customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
+            headerMenu.userLogOut();
             ww.switchToWindow();
             app.driver.navigate().refresh();
             writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
             assertEquals(customerReleasedPercent, writerReleasedPercent);
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             headerMenu.userLogOut();
-            System.out.println("TEST PASSED" + " " + siteUrl);
+            ww.close();
         } else {
             StandartCheckEdussonProductionTests edusson = new StandartCheckEdussonProductionTests();
             edusson.standartCheck_PAyPal_Production_Edusson();
         }
+        System.out.println("TEST PASSED" + " " + siteUrl);
     }
 
 }

@@ -86,6 +86,7 @@ public class OrderCreateCustomerPage {
 
     // set paper description
     public void orderDescription(String strDescription) {
+        app.getHelper().waitElement(paperInstruction);
         WebElement paper_description = app.getHelper().cyclicElementSearchByXpath(paperInstruction);
         paper_description.sendKeys(strDescription);
     }
