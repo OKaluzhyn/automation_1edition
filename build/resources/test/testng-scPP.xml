@@ -2,10 +2,10 @@
 
 <suite name="StandartCheck" verbose="1">
 
-    <test name="CreditCard">
+    <test name="PayPal">
 
         <classes>
-            <class name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests"/>
+            <class name="ua.qa.edusson.tests.standartCheck.StandartCheckPayPalTests"/>
         </classes>
     </test>
 

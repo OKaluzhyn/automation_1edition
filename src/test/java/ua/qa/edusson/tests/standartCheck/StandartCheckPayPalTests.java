@@ -110,7 +110,6 @@ public class StandartCheckPayPalTests extends TestBase {
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             headerMenu.userLogOut();
             ww.close();
-            orderFinishedViewPage.closePopup();
             headerMenu.userLogOut();
         } else {
             StandartCheckEdussonProductionTests edusson = new StandartCheckEdussonProductionTests();
