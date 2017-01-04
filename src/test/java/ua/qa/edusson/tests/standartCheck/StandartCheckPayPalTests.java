@@ -103,7 +103,6 @@ public class StandartCheckPayPalTests extends TestBase {
             orderInProgressPage.releaseMoney("100");
             orderFinishedViewPage.closePopup();
             customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-            headerMenu.userLogOut();
             ww.switchToWindow();
             app.driver.navigate().refresh();
             writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
@@ -111,6 +110,7 @@ public class StandartCheckPayPalTests extends TestBase {
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             headerMenu.userLogOut();
             ww.close();
+            headerMenu.userLogOut();
         } else {
             StandartCheckEdussonProductionTests edusson = new StandartCheckEdussonProductionTests();
             edusson.standartCheck_PAyPal_Production_Edusson();
