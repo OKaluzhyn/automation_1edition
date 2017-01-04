@@ -15,6 +15,7 @@ dependencies {
     agent 'org.aspectj:aspectjweaver:1.8.0'
     compile 'ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4'
 }
+
 task testSCPP(type: Test) {
     useTestNG {
         suites 'src/test/resources/testng-scPP.xml'
@@ -32,7 +33,7 @@ task testSCPP(type: Test) {
         systemProperty 'site', "${site}"
     }
 }
-testtestSCPP.doFirst {
+testSCPP.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 
 }
