@@ -110,6 +110,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             headerMenu.userLogOut();
             ww.close();
+            orderFinishedViewPage.closePopup();
             headerMenu.userLogOut();
             System.out.println("TEST PASSED" + " " + siteUrl);
         } else {
