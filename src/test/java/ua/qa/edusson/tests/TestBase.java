@@ -25,7 +25,7 @@ public class TestBase {
 
     @Parameters("site")
     @BeforeTest
-    public void chooseSite(@Optional("http://edusson.com/") String siteName) throws Exception {
+    public void chooseSite(@Optional("http://essayvikings.com/") String siteName) throws Exception {
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
     }
