@@ -29,6 +29,9 @@ public class TestBase {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
+        if(app.driver.getWindowHandles().size() > 1){
+            app.driver.close();
+        }
     }
 
     @AfterSuite

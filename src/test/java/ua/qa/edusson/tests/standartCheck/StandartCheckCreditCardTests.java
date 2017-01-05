@@ -111,7 +111,9 @@ public class StandartCheckCreditCardTests extends TestBase {
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             headerMenu.userLogOut();
             ww.close();
-            headerMenu.userLogOut();
+            if (!siteUrl.equals("http://edusson.com/")) {
+                headerMenu.userLogOut();
+            }
             System.out.println("TEST PASSED" + " " + siteUrl);
         } else {
             System.out.println("There is not CardPay on site " + siteUrl);
