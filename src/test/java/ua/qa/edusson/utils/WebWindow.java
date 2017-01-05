@@ -34,6 +34,7 @@ public class WebWindow extends TestBase{
         parentHandle = parent.getWindowHandle();
         name = createUniqueName();
         handle = createWindow(url);
+       app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
         switchToWindow().get(url);
     }
