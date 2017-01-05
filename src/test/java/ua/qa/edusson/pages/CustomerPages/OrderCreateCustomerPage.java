@@ -59,7 +59,7 @@ public class OrderCreateCustomerPage {
 
     // click next button1
     public void clickNext1() {
-        app.getHelper().waitElement(nextButton1);
+        //app.getHelper().waitElement(nextButton1);
         WebElement next_button_1 = app.getHelper().cyclicElementSearchByXpath(nextButton1);
         next_button_1.click();
     }
@@ -79,14 +79,14 @@ public class OrderCreateCustomerPage {
 
     // click next button2
     public void clickNext2() {
-        app.getHelper().waitElement(nextButton2);
+        //app.getHelper().waitElement(nextButton2);
         WebElement next_button_2 = app.getHelper().cyclicElementSearchByXpath(nextButton2);
         next_button_2.click();
     }
 
     // set paper description
     public void orderDescription(String strDescription) {
-        app.getHelper().waitElement(paperInstruction);
+        //app.getHelper().waitElement(paperInstruction);
         WebElement paper_description = app.getHelper().cyclicElementSearchByXpath(paperInstruction);
         paper_description.sendKeys(strDescription);
     }
@@ -94,7 +94,7 @@ public class OrderCreateCustomerPage {
 
     // click start bidding button
     public void proceedToBidding() {
-        app.getHelper().waitElement(startBiddingButton);
+        //app.getHelper().waitElement(startBiddingButton);
         WebElement bidding_button = app.getHelper().cyclicElementSearchByXpath(startBiddingButton);
         bidding_button.click();
     }
@@ -108,8 +108,8 @@ public class OrderCreateCustomerPage {
             this.clickNext2();
             this.orderDescription(strDescription);
             app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-            app.getHelper().waitElement("//*[text()='testFile.pdf']");
-            app.getHelper().waitElement(startBiddingButton);
+            //app.getHelper().waitElement("//*[text()='testFile.pdf']");
+            //app.getHelper().waitElement(startBiddingButton);
             this.proceedToBidding();
         } else {
             this.selectTypeOfPaper();

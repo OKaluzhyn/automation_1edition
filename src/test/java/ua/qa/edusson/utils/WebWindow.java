@@ -1,6 +1,5 @@
 package ua.qa.edusson.utils;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
@@ -34,7 +33,10 @@ public class WebWindow extends TestBase{
         parentHandle = parent.getWindowHandle();
         name = createUniqueName();
         handle = createWindow(url);
-       app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
+        app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
+        if (!(driver.getWindowHandles().size() > 1)){
+            handle = createWindow(url);
+        }
         //Switch to that window and load the url to wait
         switchToWindow().get(url);
     }
@@ -81,7 +83,8 @@ public class WebWindow extends TestBase{
                         injectAnchorTag(name, url)
                 );
         //Click on the anchor element
-        driver.findElement(By.id(name)).click();
+        app.getHelper().searchById(name).click();
+        //driver.findElement(By.id(name)).click();
         handle = getNewHandle(oldHandles);
         return handle;
     }

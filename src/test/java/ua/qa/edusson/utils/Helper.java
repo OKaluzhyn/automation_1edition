@@ -68,6 +68,18 @@ public class Helper {
         return driver.findElement(By.xpath(target));
     }
 
+    public WebElement searchById(String target) {
+        //waitElement(target);
+        for (int i = 0; i < 50; i++) {
+            if (driver.findElements(By.id(target)).size() > 0) {
+                break;
+            }
+
+        }
+
+        return driver.findElement(By.id(target));
+    }
+
     public void waitElementNotVisible(String locator) {
         wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(locator)));
     }

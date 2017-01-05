@@ -8,10 +8,7 @@ import ua.qa.edusson.utils.Helper;
 import static ua.qa.edusson.tests.tools.TestBase.app;
 
 public class UserAuthorizationPage {
-
-
     //XPath
-
     public static String login_link = "//*[@data-atest='atest_login_elem_popup_open']";
     public static String user_name_field = "//input[@data-atest='atest_login_form_email']";
     public static String continue_button = "//button[@data-atest='atest_login_form_submit']";
@@ -34,34 +31,29 @@ public class UserAuthorizationPage {
     private String login = "//*[@data-atest='atest_login_elem_popup_open']";
 
     public String getloginLink() {
-
         return this.login;
     }
 
 
     public void LogClick() {
-        app.getHelper().waitElement(login_link);
+        //app.getHelper().waitElement(login_link);
         WebElement openAuthorizationPopUp = app.getHelper().cyclicElementSearchByXpath(login_link);
         openAuthorizationPopUp.click();
     }
 
-    public void userLogin(String strUserName, String strPassword){
+    public void userLogin(String strUserName, String strPassword) {
         this.LogClick();
-        if(!app.getHelper().isElementPresent(change_user)){
+        if (!app.getHelper().isElementPresent(change_user)) {
             this.logIn(strUserName, strPassword);
-
-        }
-        else {
-            this.changeUser(strUserName,strPassword);
+        } else {
+            this.changeUser(strUserName, strPassword);
         }
 
 
     }
 
     public void logIn(String strUserName, String strPassword) {
-
-        //this.LogClick();
-        app.getHelper().waitElement(user_name_field);
+        //app.getHelper().waitElement(user_name_field);
         this.setUserName(strUserName);
         this.continueClick();
         this.setPassword(strPassword);
@@ -69,23 +61,22 @@ public class UserAuthorizationPage {
     }
 
     public void changeUser(String strUserName, String strPassword) {
-       // this.LogClick();
-        app.getHelper().waitElement(change_user);
+        // app.getHelper().waitElement(change_user);
         this.changeUserClick();
-        app.getHelper().waitElement(user_name_field);
+        // app.getHelper().waitElement(user_name_field);
         this.setUserName(strUserName);
-        app.getHelper().waitElement(submit_button_after_change_user);
+        // app.getHelper().waitElement(submit_button_after_change_user);
         this.submitClickAfterChangeUser();
-        app.getHelper().waitElement(user_password_field);
+        // app.getHelper().waitElement(user_password_field);
         this.setPassword(strPassword);
-        app.getHelper().waitElement(login_button2);
+        // app.getHelper().waitElement(login_button2);
         this.clickLoginButton2();
     }
 
 
     public void setUserName(String strUserName) {
         WebElement userEmail = app.getHelper().cyclicElementSearchByXpath(user_name_field);
-        userEmail.click();
+        // userEmail.click();
         userEmail.sendKeys(strUserName);
     }
 
@@ -97,7 +88,7 @@ public class UserAuthorizationPage {
 
     public void setPassword(String strPassword) {
         WebElement userPassword = app.getHelper().cyclicElementSearchByXpath(user_password_field);
-        userPassword.click();
+        // userPassword.click();
         userPassword.sendKeys(strPassword);
     }
 
@@ -123,7 +114,6 @@ public class UserAuthorizationPage {
 
     public void submitClickAfterChangeUser() {
         WebElement submitButton2 = app.getHelper().cyclicElementSearchByXpath(submit_button_after_change_user);
-
         submitButton2.click();
     }
 
