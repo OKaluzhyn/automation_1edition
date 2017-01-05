@@ -7,7 +7,7 @@ import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
 import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
-import ua.qa.edusson.tests.TestBase;
+import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 
 import static org.testng.Assert.assertEquals;

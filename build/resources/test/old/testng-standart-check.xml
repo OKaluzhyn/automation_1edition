@@ -4,7 +4,7 @@
     <test name="EdussonTest">
 
         <classes>
-            <class name="ua.qa.edusson.tests.StandartCheckEdussonProductionTests"/>
+            <class name="ua.qa.edusson.tests.toDeletion.StandartCheckEdussonProductionTests"/>
         </classes>
     </test>
 
@@ -12,7 +12,7 @@
     <test name="EdubirdieTest">
         <parameter name="site" value="http://edubirdie.com"/>
         <classes>
-            <class name="ua.qa.edusson.tests.StandartCheckNotEasyBiddingSitesEdussonGatewayTests"/>
+            <class name="ua.qa.edusson.tests.toDeletion.StandartCheckNotEasyBiddingSitesEdussonGatewayTests"/>
         </classes>
 
     </test>
@@ -21,7 +21,7 @@
     <test name="PapersowlTest">
         <parameter name="site" value="http://papersowl.com"/>
         <classes>
-            <class name="ua.qa.edusson.tests.StandartCheckNotEasyBiddingSitesEdussonGatewayTests"/>
+            <class name="ua.qa.edusson.tests.toDeletion.StandartCheckNotEasyBiddingSitesEdussonGatewayTests"/>
         </classes>
 
     </test>
@@ -29,7 +29,7 @@
     <test name="StudymooseTest">
         <parameter name="site" value="http://essays.studymoose.com"/>
         <classes>
-            <class name="ua.qa.edusson.tests.StandartCheckOnlyEasyBiddingSitesPayPalTests"/>
+            <class name="ua.qa.edusson.tests.toDeletion.StandartCheckOnlyEasyBiddingSitesPayPalTests"/>
         </classes>
 
     </test>
@@ -37,14 +37,14 @@
     <test name="CustomwritingTest">
         <parameter name="site" value="http://customwriting.com/"/>
         <classes>
-            <class name="ua.qa.edusson.tests.StandartCheckOnlyEasyBiddingSitesPayPalTests"/>
+            <class name="ua.qa.edusson.tests.toDeletion.StandartCheckOnlyEasyBiddingSitesPayPalTests"/>
         </classes>
 
     </test>
     <test name="essayvikingsTest">
         <parameter name="site" value="http://essayvikings.com/"/>
         <classes>
-            <class name="ua.qa.edusson.tests.StandartCheckOnlyEasyBiddingSitesPayPalTests"/>
+            <class name="ua.qa.edusson.tests.toDeletion.StandartCheckOnlyEasyBiddingSitesPayPalTests"/>
         </classes>
 
     </test>

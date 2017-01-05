@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 
 public class OrderInProgressPage  {

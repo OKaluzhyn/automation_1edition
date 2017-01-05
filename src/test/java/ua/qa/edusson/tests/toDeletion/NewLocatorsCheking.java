@@ -3,7 +3,7 @@ package ua.qa.edusson.tests.toDeletion;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-import ua.qa.edusson.tests.TestBase;
+import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
 

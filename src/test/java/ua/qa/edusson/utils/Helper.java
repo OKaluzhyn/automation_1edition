@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Random;
 
 import static org.openqa.selenium.support.ui.ExpectedConditions.urlContains;
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 
 public class Helper {

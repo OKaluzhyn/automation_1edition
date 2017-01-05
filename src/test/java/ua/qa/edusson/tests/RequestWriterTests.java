@@ -13,12 +13,13 @@ import ua.qa.edusson.pages.CustomerPages.PayPalPage;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.pages.WriterPages.WriterProfile;
+import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class RequestWriterTests extends TestBase{
+public class RequestWriterTests extends TestBase {
 
     public String writerProfileUrl = "http://edubirdie.com/writer/public/31122";
     public String customerReleasedPercent;

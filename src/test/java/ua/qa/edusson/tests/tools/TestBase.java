@@ -1,4 +1,4 @@
-package ua.qa.edusson.tests;
+package ua.qa.edusson.tests.tools;
 
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.ITestContext;
@@ -18,14 +18,15 @@ public class TestBase {
 
 
     @BeforeSuite
-    public void setUp(ITestContext context) throws Exception {
+    public void setUp() throws Exception {
         app.init();
-        context.setAttribute("app", app);
+
     }
 
     @Parameters("site")
     @BeforeTest
-    public void chooseSite(@Optional("http://studyfaq.com/") String siteName) throws Exception {
+    public void chooseSite(@Optional("http://customwriting.com/") String siteName, ITestContext context ) throws Exception {
+        context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
     }

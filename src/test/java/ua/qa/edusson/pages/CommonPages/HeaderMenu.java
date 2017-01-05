@@ -1,6 +1,6 @@
 package ua.qa.edusson.pages.CommonPages;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 public class HeaderMenu {
 
@@ -12,7 +12,7 @@ public class HeaderMenu {
 
     public void userLogOut() {
         String site = app.driver.getCurrentUrl().substring(7, 17);
-        System.out.println(site);
+        //System.out.println(site);
         if (site.equals("studyfaq.c")) {
             app.getHelper().cyclicElementSearchByXpath(userMenuStudyFaq).click();
             app.getHelper().cyclicElementSearchByXpath(logOut2).click();

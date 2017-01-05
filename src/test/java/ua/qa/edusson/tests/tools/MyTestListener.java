@@ -1,4 +1,4 @@
-package ua.qa.edusson.tests;
+package ua.qa.edusson.tests.tools;
 
 import org.testng.ITestContext;
 import org.testng.ITestListener;
@@ -6,10 +6,8 @@ import org.testng.ITestResult;
 import ru.yandex.qatools.allure.annotations.Attachment;
 import ua.qa.edusson.utils.ApplicationManager;
 
-/**
- * Created by tester on 16.11.2016.
- */
 public class MyTestListener implements ITestListener {
+
     @Override
     public void onTestStart(ITestResult result) {
 
@@ -25,6 +23,7 @@ public class MyTestListener implements ITestListener {
         ApplicationManager app = (ApplicationManager)result.getTestContext().getAttribute("app");
         saveScreenshot(app.takeScreenshot());
     }
+
 
     @Attachment(value = "Page screenshot", type = "img/png")
     public byte[] saveScreenshot(byte[] screenShot) {

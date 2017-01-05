@@ -1,4 +1,4 @@
-package ua.qa.edusson.tests;
+package ua.qa.edusson.tests.standartCheck;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -6,6 +6,7 @@ import ua.qa.edusson.pages.CommonPages.Chat;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
+import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
 import ua.qa.edusson.utils.WebWindow;

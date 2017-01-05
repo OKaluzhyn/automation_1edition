@@ -1,6 +1,6 @@
 package ua.qa.edusson.pages.CommonPages;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 public class OrderCancelViewPage {
 

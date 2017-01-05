@@ -10,7 +10,7 @@ import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
 import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
-import ua.qa.edusson.tests.TestBase;
+import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.WebWindow;
 
@@ -56,7 +56,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
             app.getHelper().waitLoading("order#redirect_url=");
             orderId = app.getHelper().idNotEasyBidding(siteUrl);
-            System.out.println(orderId);
+            System.out.println("Order ID = " + orderId);
             customerUrl = siteUrl + "order/view/" + orderId;
             writerUrl = "http://edusson.com/order/view/" + orderId;
             WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
@@ -83,7 +83,8 @@ public class StandartCheckCreditCardTests extends TestBase {
             Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
             ww.switchToWindow();
             if (siteUrl.equals("http://edusson.com/")) {
-                orderFinishedViewPage.closePopup();
+                app.driver.navigate().refresh();
+                //orderFinishedViewPage.closePopup();
                 asWriter(writerUrl);
             } else {
                 orderBiddingWriterPage.goToOrder();

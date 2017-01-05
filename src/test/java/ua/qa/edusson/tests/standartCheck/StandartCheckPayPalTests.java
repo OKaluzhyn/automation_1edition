@@ -10,8 +10,8 @@ import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
 import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
-import ua.qa.edusson.tests.StandartCheckEdussonProductionTests;
-import ua.qa.edusson.tests.TestBase;
+import ua.qa.edusson.tests.toDeletion.StandartCheckEdussonProductionTests;
+import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
 import ua.qa.edusson.utils.WebWindow;
@@ -65,7 +65,7 @@ public class StandartCheckPayPalTests extends TestBase {
                 orderId = app.getHelper().idEasyBidding(siteUrl);
                 writerUrl = "http://edusson.com/order/view/" + orderId;
                 customerUrl = siteUrl + "order/view/" + orderId;
-                System.out.println(orderId);
+                System.out.println("Order ID = " + orderId);
                 orderPayCustomerPage.confirmPay();
                 payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
                 Helper.sleep(1);
@@ -73,7 +73,7 @@ public class StandartCheckPayPalTests extends TestBase {
                 Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
                 Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
                 ww.switchToWindow();
-                System.out.println(writerUrl);
+                //System.out.println(writerUrl);
                 app.getHelper().goTo(writerUrl);
                 orderBiddingWriterPage.easyBiddingApplyprice();
             } else {
@@ -81,9 +81,9 @@ public class StandartCheckPayPalTests extends TestBase {
                 orderId = app.getHelper().idNotEasyBidding(siteUrl);
                 writerUrl = "http://edusson.com/order/view/" + orderId;
                 customerUrl = siteUrl + "order/view/" + orderId;
-                System.out.println(orderId);
+                System.out.println("Order ID = " + orderId);
                 ww.switchToWindow();
-                System.out.println(writerUrl);
+                //System.out.println(writerUrl);
                 app.getHelper().goTo(writerUrl);
                 orderBiddingWriterPage.createBid("6");
                 ww.switchToParent();

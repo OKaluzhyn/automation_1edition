@@ -3,6 +3,7 @@ package ua.qa.edusson.tests;
 
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
+import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 
 import static org.testng.Assert.assertEquals;

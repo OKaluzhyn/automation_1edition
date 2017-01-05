@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import ua.qa.edusson.utils.Config;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 public class CreditCardPayment {
 	

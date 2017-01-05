@@ -2,8 +2,22 @@
 
 <suite name="StandartCheck" verbose="1">
 
-    <test name="CreditCard">
+    <test name="CreditCard1">
+        <parameter name="site" value="http://edusson.com"/>
+        <classes>
+            <class name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests"/>
+        </classes>
+    </test>
 
+    <test name="CreditCard2">
+        <parameter name="site" value="http://edubirdie.com"/>
+        <classes>
+            <class name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests"/>
+        </classes>
+    </test>
+
+    <test name="CreditCard3">
+        <parameter name="site" value="http://eduzaurus.com"/>
         <classes>
             <class name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests"/>
         </classes>

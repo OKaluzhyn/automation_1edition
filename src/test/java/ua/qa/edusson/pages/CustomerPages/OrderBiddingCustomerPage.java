@@ -4,7 +4,7 @@ import org.openqa.selenium.WebElement;
 
 import ua.qa.edusson.utils.Helper;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 
 public class OrderBiddingCustomerPage {

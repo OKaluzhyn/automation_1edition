@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-01-04T15:28:00" hostname="WIN-JER1VU06OO2" time="245.999">
+<testsuite name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-01-05T12:47:58" hostname="WIN-JER1VU06OO2" time="396.87">
   <properties/>
-  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="245.999"/>
-  <system-out><![CDATA[209506
-TEST PASSED http://studyfaq.com/
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="184.028"/>
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="195.119"/>
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="0.201"/>
+  <system-out><![CDATA[Order ID = 209874
+TEST PASSED http://edusson.com/
+Order ID = 209876
+TEST PASSED http://edubirdie.com/
+There is not CardPay on site http://eduzaurus.com/
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

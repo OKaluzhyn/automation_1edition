@@ -10,10 +10,10 @@ configurations {
 
 
 dependencies {
-    compile 'org.testng:testng:6.9.10'
-    compile 'org.seleniumhq.selenium:selenium-java:2.53.1'
-    agent 'org.aspectj:aspectjweaver:1.8.0'
-    compile 'ru.yandex.qatools.allure:allure-testng-adaptor:1.4.0.RC4'
+    compile 'org.testng:testng:6.9.+'
+    compile 'org.seleniumhq.selenium:selenium-java:2.53.+'
+    agent 'org.aspectj:aspectjweaver:1.8.+'
+    compile 'ru.yandex.qatools.allure:allure-testng-adaptor:1.4.+'
 }
 
 task testSCCard(type: Test) {
@@ -79,51 +79,6 @@ testPostDeploy.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
 
-
-task testStandartCheckPostDeploy(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-standartChecksPostDeploy.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
-testStandartCheckPostDeploy.doFirst {
-    jvmArgs "-javaagent:${configurations.agent.singleFile}"
-}
-
-
-task testAuthorization(type: Test) {
-    useTestNG {
-        suites 'src/test/resources/testng-UserAutorizationProduction.xml'
-    }
-    if (project.hasProperty('browser')) {
-        systemProperty 'browser', "${browser}"
-    }
-    if (project.hasProperty('target')) {
-        systemProperty 'target', "${target}"
-    }
-    if (project.hasProperty('platform')) {
-        systemProperty 'platform', "${platform}"
-
-    }
-    if (project.hasProperty('site')) {
-        systemProperty 'site', "${site}"
-    }
-}
-
-testAuthorization.doFirst {
-    jvmArgs "-javaagent:${configurations.agent.singleFile}"
-}
 
 task testExample(type: Test) {
     useTestNG {

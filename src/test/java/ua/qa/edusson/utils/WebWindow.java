@@ -4,7 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
-import ua.qa.edusson.tests.TestBase;
+import ua.qa.edusson.tests.tools.TestBase;
 
 import java.util.Set;
 

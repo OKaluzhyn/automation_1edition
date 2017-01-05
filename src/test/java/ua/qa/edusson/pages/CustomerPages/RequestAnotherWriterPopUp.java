@@ -1,6 +1,6 @@
 package ua.qa.edusson.pages.CustomerPages;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 /**
  * Created by tester on 27.09.2016.

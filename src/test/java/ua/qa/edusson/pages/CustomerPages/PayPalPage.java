@@ -3,7 +3,7 @@ package ua.qa.edusson.pages.CustomerPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 
 public class PayPalPage {
@@ -49,9 +49,9 @@ public class PayPalPage {
         app.getHelper().waitElementNotVisible("//p[@class='loader']");
         app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
         String pageBefore = app.driver.getCurrentUrl();
-        System.out.println(pageBefore);
+        //System.out.println(pageBefore);
         String page = app.driver.getCurrentUrl().substring(95);
-        System.out.println(page);
+       // System.out.println(page);
         if (page.equals("/checkout/review")) {
             app.getHelper().waitElement(continueButton);
             this.clickContinue();

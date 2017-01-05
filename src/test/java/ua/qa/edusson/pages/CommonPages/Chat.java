@@ -3,7 +3,7 @@ package ua.qa.edusson.pages.CommonPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-import static ua.qa.edusson.tests.TestBase.app;
+import static ua.qa.edusson.tests.tools.TestBase.app;
 
 public class Chat {
 
