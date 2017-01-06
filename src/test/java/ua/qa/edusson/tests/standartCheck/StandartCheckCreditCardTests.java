@@ -43,7 +43,7 @@ public class StandartCheckCreditCardTests extends TestBase {
     OrderFinishedViewPage orderFinishedViewPage = new OrderFinishedViewPage();
     CreditCardPayment creditCardPayment = new CreditCardPayment();
     OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
-    PayPalPage payPalPage = new PayPalPage();
+
 
 
     @Test
@@ -61,7 +61,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             writerUrl = "http://edusson.com/order/view/" + orderId;
             WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
             if (siteUrl.equals("http://edusson.com/")) {
-                asWriter(writerUrl);
+                app.getHelper().asWriter(writerUrl);
             } else {
                 userAuthorizationPage.userLogin(Config.writer1, Config.password);
                 myOrdersWriterPage.closePopup();
@@ -70,7 +70,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             orderBiddingWriterPage.createBid("6");
             ww.switchToParent();
             if (siteUrl.equals("http://edusson.com/")) {
-                this.asCustomer(customerUrl);
+                app.getHelper().asCustomer(customerUrl);
                 app.getHelper().goTo(customerUrl);
             }
             orderBiddingCustomerPage.bid1();
@@ -85,14 +85,14 @@ public class StandartCheckCreditCardTests extends TestBase {
             if (siteUrl.equals("http://edusson.com/")) {
                 app.driver.navigate().refresh();
                 //orderFinishedViewPage.closePopup();
-                asWriter(writerUrl);
+                app.getHelper().asWriter(writerUrl);
             } else {
                 orderBiddingWriterPage.goToOrder();
             }
             orderInProgressPage.uploadRevision();
             ww.switchToParent();
             if (siteUrl.equals("http://edusson.com/")) {
-                asCustomer(customerUrl);
+                app.getHelper().asCustomer(customerUrl);
                 app.getHelper().goTo(customerUrl);
             } else {
                 orderPayThankYouCustomerPage.goToOrder();
@@ -102,7 +102,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
             ww.switchToWindow();
             if (siteUrl.equals("http://edusson.com/")) {
-                asWriter(writerUrl);
+                app.getHelper().asWriter(writerUrl);
             } else {
                 app.driver.navigate().refresh();
             }
@@ -120,19 +120,6 @@ public class StandartCheckCreditCardTests extends TestBase {
         }
     }
 
-
-    public void asWriter(String orderUrl) {
-        headerMenu.userLogOut();
-        userAuthorizationPage.userLogin(Config.writer1, Config.password);
-        myOrdersWriterPage.closePopup();
-        app.getHelper().goTo(orderUrl);
-    }
-
-    public void asCustomer(String orderUrl) {
-        headerMenu.userLogOut();
-        userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        app.getHelper().goTo(orderUrl);
-    }
 
 }
 

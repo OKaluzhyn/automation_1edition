@@ -33,7 +33,9 @@ public class TestBase {
 
     @AfterTest
     public void closeUnusedTabs() {
-        if (app.driver.getWindowHandles().size() > 1) {
+        int handlesCount = app.driver.getWindowHandles().size();
+        System.out.println(handlesCount);
+        if (handlesCount > 1) {
             app.driver.close();
         }
     }

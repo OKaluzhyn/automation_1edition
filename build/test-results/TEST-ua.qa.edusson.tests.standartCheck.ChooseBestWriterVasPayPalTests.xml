@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ua.qa.edusson.tests.standartCheck.ChooseBestWriterVasPayPalTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-01-06T14:11:25" hostname="WIN-JER1VU06OO2" time="199.795">
+  <properties/>
+  <testcase name="standartCheck_PayPal" classname="ua.qa.edusson.tests.standartCheck.ChooseBestWriterVasPayPalTests" time="199.795"/>
+  <system-out><![CDATA[http://essayvikings.com/order/pay/210325
+Order ID = 210325
+TEST PASSED http://essayvikings.com/
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

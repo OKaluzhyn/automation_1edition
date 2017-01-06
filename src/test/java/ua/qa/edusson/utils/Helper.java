@@ -8,6 +8,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import ua.qa.edusson.pages.CommonPages.HeaderMenu;
+import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
+import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 
 import java.io.File;
 import java.util.List;
@@ -18,6 +21,10 @@ import static ua.qa.edusson.tests.tools.TestBase.app;
 
 
 public class Helper {
+    UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+    HeaderMenu headerMenu = new HeaderMenu();
+    MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
+
 
     protected WebDriver driver;
     public final Wait<WebDriver> wait;
@@ -298,7 +305,18 @@ public class Helper {
         return id;
     }
 
+    public void asWriter(String orderUrl) {
+        headerMenu.userLogOut();
+        userAuthorizationPage.userLogin(Config.writer1, Config.password);
+        myOrdersWriterPage.closePopup();
+        app.getHelper().goTo(orderUrl);
+    }
 
+    public void asCustomer(String orderUrl) {
+        headerMenu.userLogOut();
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        app.getHelper().goTo(orderUrl);
+    }
 }
 
 
