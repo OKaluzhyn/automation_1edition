@@ -20,29 +20,30 @@ public class TestBase {
     @BeforeSuite
     public void setUp() throws Exception {
         app.init();
-
+    }
+    @AfterSuite
+    public void tearDown () {
+        app.stop();
     }
 
     @Parameters("site")
-    @BeforeTest
-    public void chooseSite(@Optional("http://customwriting.com/") String siteName, ITestContext context) throws Exception {
+    @BeforeMethod
+    public void chooseSite(@Optional("http://essayvikings.com/") String siteName, ITestContext context) throws Exception {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
+        closeUnusedTabs();
     }
 
-    @AfterTest
+
     public void closeUnusedTabs() {
         int handlesCount = app.driver.getWindowHandles().size();
         System.out.println(handlesCount);
         if (handlesCount > 1) {
             app.driver.close();
         }
-    }
 
-    @AfterSuite
-    public void tearDown() {
-        app.stop();
+
     }
 }
 
