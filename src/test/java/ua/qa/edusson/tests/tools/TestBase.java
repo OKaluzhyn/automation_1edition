@@ -25,11 +25,15 @@ public class TestBase {
 
     @Parameters("site")
     @BeforeTest
-    public void chooseSite(@Optional("http://customwriting.com/") String siteName, ITestContext context ) throws Exception {
+    public void chooseSite(@Optional("http://customwriting.com/") String siteName, ITestContext context) throws Exception {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
-        if(app.driver.getWindowHandles().size() > 1){
+    }
+
+    @AfterTest
+    public void closeUnusedTabs() {
+        if (app.driver.getWindowHandles().size() > 1) {
             app.driver.close();
         }
     }

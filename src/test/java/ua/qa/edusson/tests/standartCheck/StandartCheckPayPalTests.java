@@ -50,7 +50,7 @@ public class StandartCheckPayPalTests extends TestBase {
 
     @Test
     //работает со всеми сайтами
-    public void standartCheck_PayPal() {
+    public void standartCheck_PayPal()  {
         siteUrl = app.driver.getCurrentUrl();
         if (!siteUrl.equals("http://edusson.com/")) {
             userAuthorizationPage.userLogin(Config.customer1, Config.password);

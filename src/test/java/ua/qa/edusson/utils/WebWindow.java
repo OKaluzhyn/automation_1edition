@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by tester on 12.12.2016.
  */
-public class WebWindow extends TestBase{
+public class WebWindow extends TestBase {
     /**
      * Creates and Handles a New window  *
      */
@@ -28,20 +28,52 @@ public class WebWindow extends TestBase{
      * @param url   Initial url to load
      * @return new WebWindow
      */
-    public WebWindow(WebDriver parent, String url) {
-        this.driver = parent;
-        parentHandle = parent.getWindowHandle();
-        name = createUniqueName();
-        handle = createWindow(url);
-        app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
-        if (!(driver.getWindowHandles().size() > 1)){
+    public WebWindow(WebDriver parent, String url)  {
+
+            this.driver = parent;
+            parentHandle = parent.getWindowHandle();
+            name = createUniqueName();
+        try {
             handle = createWindow(url);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        //Switch to that window and load the url to wait
-        switchToWindow().get(url);
+        app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
+            //Switch to that window and load the url to wait
+            switchToWindow().get(url);
+
     }
 
-
+    private String createWindow(String url)throws Exception {
+        try {
+            //Record old handles
+            Set<String> oldHandles = driver.getWindowHandles();
+            parentHandle = driver.getWindowHandle();
+            //Inject an anchor element
+            ((JavascriptExecutor) driver).
+                    executeScript(
+                            injectAnchorTag(name, url)
+                    );
+            //Click on the anchor element
+            app.getHelper().searchById(name).click();
+            //driver.findElement(By.id(name)).click();
+            handle = getNewHandle(oldHandles);
+            return handle;
+        } catch (Exception e) {
+            Set<String> oldHandles = driver.getWindowHandles();
+            parentHandle = driver.getWindowHandle();
+            //Inject an anchor element
+            ((JavascriptExecutor) driver).
+                    executeScript(
+                            injectAnchorTag(name, url)
+                    );
+            //Click on the anchor element
+            app.getHelper().searchById(name).click();
+            //driver.findElement(By.id(name)).click();
+            handle = getNewHandle(oldHandles);
+            return handle;
+        }
+    }
 
 
     public String getWindowHandle() {
@@ -73,21 +105,6 @@ public class WebWindow extends TestBase{
         return driver.switchTo().window(parentHandle);
     }
 
-    private String createWindow(String url) {
-        //Record old handles
-        Set<String> oldHandles = driver.getWindowHandles();
-        parentHandle = driver.getWindowHandle();
-        //Inject an anchor element
-        ((JavascriptExecutor) driver).
-                executeScript(
-                        injectAnchorTag(name, url)
-                );
-        //Click on the anchor element
-        app.getHelper().searchById(name).click();
-        //driver.findElement(By.id(name)).click();
-        handle = getNewHandle(oldHandles);
-        return handle;
-    }
 
     private String getNewHandle(Set<String> oldHandles) {
         Set<String> newHandles = driver.getWindowHandles();
@@ -129,9 +146,10 @@ public class WebWindow extends TestBase{
             System.err.println("Couldn't get back to first page");
         }
     }
+
     public void SwitchFromFirstPageToSecond() {
         try {
-            for (String handle: driver.getWindowHandles()) {
+            for (String handle : driver.getWindowHandles()) {
                 if (handle != handleHost) {
                     driver.switchTo().window(handle);
                     driver.switchTo().activeElement();
