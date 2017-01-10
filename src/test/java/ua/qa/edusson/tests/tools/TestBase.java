@@ -29,7 +29,7 @@ public class TestBase {
 
     @Parameters("site")
     @BeforeTest
-    public void chooseSite(@Optional("http://edusson.com/") String siteName, ITestContext context) throws Exception {
+    public void chooseSite(@Optional("http://essays.studymoose.com/") String siteName, ITestContext context) throws Exception {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window

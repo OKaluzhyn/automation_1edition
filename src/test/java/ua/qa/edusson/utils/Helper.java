@@ -176,7 +176,9 @@ public class Helper {
 
     public static String isSiteEasybidding(String site) {
         String type = null;
-        String[] sitesWithEasyBidding = {"http://customwriting.com/", "http://essays.studymoose.com/", "http://paperial.com/",
+        String[] sitesWithEasyBidding = {"http://customwriting.com/",
+                //"http://essays.studymoose.com/",
+                "http://paperial.com/",
                 "http://phdfy.com/", "http://essayontime.com/", "http://essaylab.com/", "http://essayblablawriting.com/"};
         for (String i : sitesWithEasyBidding) {
             if (i.equals(site)) {
@@ -301,6 +303,8 @@ public class Helper {
             id = app.driver.getCurrentUrl().substring(50);
         } else if (siteUrl.equals("http://typemyessays.com/")) {
             id = app.driver.getCurrentUrl().substring(54);
+        } else if (siteUrl.equals("http://essays.studymoose.com/")){
+            id = app.driver.getCurrentUrl().substring(60);
         }
         return id;
     }

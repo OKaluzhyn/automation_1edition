@@ -6,7 +6,7 @@ public class HeaderMenu {
 
     public static String logOutMain = "//a[@href='/logout']/span";
     public static String logOut2 = "//a[text()='Log out']";
-    public static String userMenu = "//div[@class='block__user_controllers']";
+    public static String userMenu = "//div[@class='user_logged js_user_logged']";
     public static String userMenuStudyFaq =  "//span[@class='menu_title']";
 
 
