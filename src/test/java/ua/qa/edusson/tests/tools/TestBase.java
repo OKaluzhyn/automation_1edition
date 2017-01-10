@@ -21,8 +21,9 @@ public class TestBase {
     public void setUp() throws Exception {
         app.init();
     }
+
     @AfterSuite
-    public void tearDown () {
+    public void tearDown() {
         app.stop();
     }
 
@@ -32,17 +33,19 @@ public class TestBase {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
-        //closeUnusedTabs();
+        closeUnusedTabs();
     }
 
     public void closeUnusedTabs() {
-        int handlesCount = app.driver.getWindowHandles().size();
-        System.out.println(handlesCount);
-        if (handlesCount > 1) {
-            app.driver.close();
+        try {
+            int handlesCount = app.driver.getWindowHandles().size();
+            System.out.println(handlesCount);
+            if (handlesCount > 1) {
+                app.driver.close();
+            }
+        } catch (Exception e) {
         }
-
-
     }
 }
+
 
