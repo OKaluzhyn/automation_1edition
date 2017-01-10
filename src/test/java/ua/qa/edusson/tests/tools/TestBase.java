@@ -32,7 +32,7 @@ public class TestBase {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
-        closeUnusedTabs();
+        //closeUnusedTabs();
     }
 
     public void closeUnusedTabs() {
