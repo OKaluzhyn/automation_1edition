@@ -138,16 +138,7 @@ public class StandartCheckPayPalTests extends TestBase {
         app.getHelper().sleep(5);
     }
 
-    @Test
-    public void pp() {
-        standartCheck_PayPal();
-    }
-
-    @Test
-    public void pp2() {
-        standartCheck_PayPal();
-    }
-}
+   }
 
 
 
