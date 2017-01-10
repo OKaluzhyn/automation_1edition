@@ -28,13 +28,12 @@ public class TestBase {
 
     @Parameters("site")
     @BeforeMethod
-    public void chooseSite(@Optional("http://essayvikings.com/") String siteName, ITestContext context) throws Exception {
+    public void chooseSite(@Optional("http://customwriting.com/") String siteName, ITestContext context) throws Exception {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
         closeUnusedTabs();
     }
-
 
     public void closeUnusedTabs() {
         int handlesCount = app.driver.getWindowHandles().size();

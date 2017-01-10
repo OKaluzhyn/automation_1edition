@@ -10,7 +10,6 @@ import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
 import ua.qa.edusson.pages.CustomerPages.*;
 import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
-import ua.qa.edusson.tests.toDeletion.StandartCheckEdussonProductionTests;
 import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
@@ -50,74 +49,92 @@ public class StandartCheckPayPalTests extends TestBase {
 
     @Test
     //работает со всеми сайтами
-    public void standartCheck_PayPal()  {
+    public void standartCheck_PayPal() {
         siteUrl = app.driver.getCurrentUrl();
-        if (!siteUrl.equals("http://edusson.com/")) {
-            userAuthorizationPage.userLogin(Config.customer1, Config.password);
-            myOrdersCustomerPage.makeNewOrder();
-            orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
-            WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        myOrdersCustomerPage.makeNewOrder();
+        orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
+        if (!app.getHelper().isSiteEasybidding(siteUrl).equals("easy")) {
+            app.getHelper().waitLoading("order#redirect_url=");
+            orderId = app.getHelper().idNotEasyBidding(siteUrl);
+            writerUrl = "http://edusson.com/order/view/" + orderId;
+            customerUrl = siteUrl + "order/view/" + orderId;
+            System.out.println("Order ID = " + orderId);
+        }
+        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        if (siteUrl.equals("http://edusson.com/")) {
+            app.getHelper().asWriter(writerUrl);
+        } else {
             userAuthorizationPage.userLogin(Config.writer1, Config.password);
             myOrdersWriterPage.closePopup();
+        }
+        if (app.getHelper().isSiteEasybidding(siteUrl).equals("easy")) {
             ww.switchToParent();
-            if (app.getHelper().isSiteEasybidding(siteUrl).equals("easy")) {
-                app.getHelper().waitLoading("/order/pay/");
-                orderId = app.getHelper().idEasyBidding(siteUrl);
-                writerUrl = "http://edusson.com/order/view/" + orderId;
-                customerUrl = siteUrl + "order/view/" + orderId;
-                System.out.println("Order ID = " + orderId);
-                orderPayCustomerPage.confirmPay();
-                payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
-                Helper.sleep(1);
-                app.getHelper().waitLoading(siteUrl);
-                Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
-                Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
-                ww.switchToWindow();
-                //System.out.println(writerUrl);
-                app.getHelper().goTo(writerUrl);
-                orderBiddingWriterPage.easyBiddingApplyprice();
+            app.getHelper().waitLoading("/order/pay/");
+            orderId = app.getHelper().idEasyBidding(siteUrl);
+            writerUrl = "http://edusson.com/order/view/" + orderId;
+            customerUrl = siteUrl + "order/view/" + orderId;
+            System.out.println("Order ID = " + orderId);
+            orderPayCustomerPage.confirmPay();
+            payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+            Helper.sleep(1);
+            app.getHelper().waitLoading(siteUrl);
+            Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
+            Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
+            ww.switchToWindow();
+            //System.out.println(writerUrl);
+            app.getHelper().goTo(writerUrl);
+            orderBiddingWriterPage.easyBiddingApplyprice();
+        } else {
+            app.getHelper().goTo(writerUrl);
+            orderBiddingWriterPage.createBid("6");
+            ww.switchToParent();
+            if (siteUrl.equals("http://edusson.com/")) {
+                app.getHelper().asCustomer(customerUrl);
+                app.getHelper().goTo(customerUrl);
+            }
+            orderBiddingCustomerPage.bid1();
+            orderPayCustomerPage.choosePayPal();
+            orderPayCustomerPage.confirmPay();
+            payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+            app.getHelper().waitLoading(siteUrl);
+            Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
+            Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
+            ww.switchToWindow();
+            if (siteUrl.equals("http://edusson.com/")) {
+                app.driver.navigate().refresh();
+                app.getHelper().asWriter(writerUrl);
             } else {
-                app.getHelper().waitLoading("order#redirect_url=");
-                orderId = app.getHelper().idNotEasyBidding(siteUrl);
-                writerUrl = "http://edusson.com/order/view/" + orderId;
-                customerUrl = siteUrl + "order/view/" + orderId;
-                System.out.println("Order ID = " + orderId);
-                ww.switchToWindow();
-                //System.out.println(writerUrl);
-                app.getHelper().goTo(writerUrl);
-                orderBiddingWriterPage.createBid("6");
-                ww.switchToParent();
-                orderBiddingCustomerPage.bid1();
-                orderPayCustomerPage.choosePayPal();
-                orderPayCustomerPage.confirmPay();
-                payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
-                app.getHelper().waitLoading(siteUrl);
-                Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
-                Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
-                ww.switchToWindow();
                 orderBiddingWriterPage.goToOrder();
             }
             orderInProgressPage.uploadRevision();
             ww.switchToParent();
-            orderPayThankYouCustomerPage.goToOrder();
+            if (siteUrl.equals("http://edusson.com/")) {
+                app.getHelper().asCustomer(customerUrl);
+                app.getHelper().goTo(customerUrl);
+            } else {
+                orderPayThankYouCustomerPage.goToOrder();
+            }
             orderInProgressPage.releaseMoney("100");
             orderFinishedViewPage.closePopup();
             customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
             ww.switchToWindow();
-            app.driver.navigate().refresh();
+            if (siteUrl.equals("http://edusson.com/")) {
+                app.getHelper().asWriter(writerUrl);
+            } else {
+                app.driver.navigate().refresh();
+            }
             writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
             assertEquals(customerReleasedPercent, writerReleasedPercent);
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             headerMenu.userLogOut();
             ww.close();
-            headerMenu.userLogOut();
-        } else {
-            StandartCheckEdussonProductionTests edusson = new StandartCheckEdussonProductionTests();
-            edusson.standartCheck_PAyPal_Production_Edusson();
+            if (!siteUrl.equals("http://edusson.com/")) {
+                headerMenu.userLogOut();
+            }
+            System.out.println("TEST PASSED" + " " + siteUrl);
         }
-        System.out.println("TEST PASSED" + " " + siteUrl);
     }
-
 }
 
 

@@ -317,6 +317,12 @@ public class Helper {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().goTo(orderUrl);
     }
+
+    public boolean isUserLogged() {
+        cyclicElementSearchByXpath("//a[@class='user-name']");
+        return true;
+    }
+
 }
 
 
