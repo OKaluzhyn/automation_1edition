@@ -82,7 +82,7 @@ public class StandartCheckPayPalTests extends TestBase {
             Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
             Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
             ww.switchToWindow();
-            //System.out.println(writerUrl);
+            System.out.println(writerUrl);
             app.getHelper().goTo(writerUrl);
             orderBiddingWriterPage.easyBiddingApplyprice();
         } else {
@@ -107,33 +107,45 @@ public class StandartCheckPayPalTests extends TestBase {
             } else {
                 orderBiddingWriterPage.goToOrder();
             }
-            orderInProgressPage.uploadRevision();
-            ww.switchToParent();
-            if (siteUrl.equals("http://edusson.com/")) {
-                app.getHelper().asCustomer(customerUrl);
-                app.getHelper().goTo(customerUrl);
-            } else {
-                orderPayThankYouCustomerPage.goToOrder();
-            }
-            orderInProgressPage.releaseMoney("100");
-            orderFinishedViewPage.closePopup();
-            customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-            ww.switchToWindow();
-            if (siteUrl.equals("http://edusson.com/")) {
-                app.getHelper().asWriter(writerUrl);
-            } else {
-                app.driver.navigate().refresh();
-            }
-            writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-            assertEquals(customerReleasedPercent, writerReleasedPercent);
-            assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
-            headerMenu.userLogOut();
-            ww.close();
-            if (!siteUrl.equals("http://edusson.com/")) {
-                headerMenu.userLogOut();
-            }
-            System.out.println("TEST PASSED" + " " + siteUrl);
         }
+        orderInProgressPage.uploadRevision();
+        ww.switchToParent();
+        if (siteUrl.equals("http://edusson.com/")) {
+            app.getHelper().asCustomer(customerUrl);
+            app.getHelper().goTo(customerUrl);
+        } else {
+            orderPayThankYouCustomerPage.goToOrder();
+        }
+        orderInProgressPage.releaseMoney("100");
+        orderFinishedViewPage.closePopup();
+        customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
+        ww.switchToWindow();
+        if (siteUrl.equals("http://edusson.com/")) {
+            app.getHelper().asWriter(writerUrl);
+        } else {
+            app.driver.navigate().refresh();
+        }
+        writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
+        assertEquals(customerReleasedPercent, writerReleasedPercent);
+        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+        headerMenu.userLogOut();
+        ww.close();
+        if (!siteUrl.equals("http://edusson.com/")) {
+            headerMenu.userLogOut();
+        }
+        //app.driver.navigate().refresh();
+        System.out.println("TEST PASSED" + " " + siteUrl);
+        app.getHelper().sleep(5);
+    }
+
+    @Test
+    public void pp() {
+        standartCheck_PayPal();
+    }
+
+    @Test
+    public void pp2() {
+        standartCheck_PayPal();
     }
 }
 

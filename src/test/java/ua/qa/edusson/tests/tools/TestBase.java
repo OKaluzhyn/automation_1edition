@@ -28,15 +28,16 @@ public class TestBase {
     }
 
     @Parameters("site")
-    @BeforeMethod
-    public void chooseSite(@Optional("http://edubirdie.com/") String siteName, ITestContext context) throws Exception {
+    @BeforeTest
+    public void chooseSite(@Optional("http://edusson.com/") String siteName, ITestContext context) throws Exception {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
-        closeUnusedTabs();
+        //closeUnusedTabs();
     }
 
-    public void closeUnusedTabs() {
+    @AfterTest
+    public void closeUnusedTabs() throws Exception{
         try {
             int handlesCount = app.driver.getWindowHandles().size();
             System.out.println(handlesCount);
@@ -44,6 +45,7 @@ public class TestBase {
                 app.driver.close();
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
