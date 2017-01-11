@@ -82,7 +82,7 @@ public class OrderCreateCustomerPage {
         //app.getHelper().waitElement(nextButton2);
         WebElement next_button_2 = app.getHelper().cyclicElementSearchByXpath(nextButton2);
         next_button_2.click();
-        next_button_2.click();
+
     }
 
     // set paper description
@@ -105,6 +105,7 @@ public class OrderCreateCustomerPage {
         if (!siteUrl.equals("http://studyfaq.com/")) {
             this.setTopic(strTopic);
             this.clickNext1();
+            this.setnumOfCitation();
             this.selectformatOfCitation();
             this.clickNext2();
             this.orderDescription(strDescription);
