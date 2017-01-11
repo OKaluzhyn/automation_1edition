@@ -79,8 +79,9 @@ public class OrderCreateCustomerPage {
 
     // click next button2
     public void clickNext2() {
-        app.getHelper().waitElement(nextButton2);
+        //app.getHelper().waitElement(nextButton2);
         WebElement next_button_2 = app.getHelper().cyclicElementSearchByXpath(nextButton2);
+        next_button_2.click();
         next_button_2.click();
     }
 

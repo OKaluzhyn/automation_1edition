@@ -14,6 +14,7 @@ import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
+import ua.qa.edusson.utils.WebWindow;
 
 import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popPendingPayPal;
 import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popUpFailPayPal;
@@ -128,7 +129,7 @@ public class Base extends TestBase {
         Helper.sleep(10);
     }
 
-    @Test //(enabled = false)
+    @Test(enabled = false)
     public void login() {
         //app.driver.get("http://essayvikings.com/");
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
@@ -230,7 +231,7 @@ public class Base extends TestBase {
         headerMenu.userLogOut();
     }
 
-    @Test
+    @Test(enabled = false)
     public void checkUrls() {
         System.out.println(("http://edusson.com/" + "order/pay/12345").substring(29));
         System.out.println(("http://customwriting.com/" + "order/pay/12345").substring(35));
@@ -279,27 +280,40 @@ public class Base extends TestBase {
     }
 
 
-
-
-
-    @Test
-    public void checkSites(){
+    @Test(enabled = false)
+    public void checkSites() {
         String site = app.driver.getCurrentUrl();
         System.out.println(app.getHelper().isSiteEasybidding(site));
-        if (app.getHelper().isSiteEasybidding(site).equals("easy")){
+        if (app.getHelper().isSiteEasybidding(site).equals("easy")) {
             UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
             HeaderMenu header = new HeaderMenu();
             userAuthorizationPage.userLogin(Config.customer1, Config.password);
             app.getHelper().waitLoading("orders");
             header.userLogOut();
             Helper.sleep(3);
-        }else {
+        } else {
             System.out.println("site is not easy");
         }
 
     }
 
+    @Test
+    public void st1() {
+        app.getHelper().goToEdubirdie();
+        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        ww.switchToParent();
+        System.out.println("Test 1 passed");
 
+    }
+
+
+    @Test
+    public void st2() {
+        app.getHelper().goToEdubirdie();
+        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        ww.switchToParent();
+        System.out.println("Test 2 passed");
+    }
 
 }
 

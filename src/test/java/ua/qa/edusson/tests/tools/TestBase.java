@@ -4,6 +4,7 @@ import org.openqa.selenium.remote.BrowserType;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
 import ua.qa.edusson.utils.ApplicationManager;
+import ua.qa.edusson.utils.WebWindow;
 
 
 /**
@@ -14,7 +15,7 @@ public class TestBase {
 
     public static final ApplicationManager app
             = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
-    public String handleHost;
+    public static String handleHost;
 
 
     @BeforeSuite
@@ -28,26 +29,24 @@ public class TestBase {
     }
 
     @Parameters("site")
-    @BeforeTest
-    public void chooseSite(@Optional("http://essays.studymoose.com/") String siteName, ITestContext context) throws Exception {
+    @BeforeMethod
+    public void chooseSite(@Optional("http://edubirdie.com/") String siteName, ITestContext context) {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
-        //closeUnusedTabs();
     }
 
-    @AfterTest
-    public void closeUnusedTabs() throws Exception{
+    @AfterMethod
+    public void closeUnused() throws Exception {
         try {
-            int handlesCount = app.driver.getWindowHandles().size();
-            System.out.println(handlesCount);
-            if (handlesCount > 1) {
-                app.driver.close();
-            }
+            WebWindow.closeUnusedTabs();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
+
 }
 
 

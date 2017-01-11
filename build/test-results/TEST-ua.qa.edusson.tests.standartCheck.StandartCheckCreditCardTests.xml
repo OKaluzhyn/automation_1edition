@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-01-06T14:02:55" hostname="WIN-JER1VU06OO2" time="1475.294">
+<testsuite name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" tests="3" skipped="0" failures="0" errors="0" timestamp="2017-01-11T14:39:25" hostname="WIN-JER1VU06OO2" time="225.704">
   <properties/>
-  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="373.413"/>
-  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="200.379"/>
-  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="185.615"/>
-  <system-out><![CDATA[Order ID = 210323
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="135.868"/>
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="82.299"/>
+  <testcase name="standartCheck_CardPay" classname="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests" time="0.021"/>
+  <system-out><![CDATA[Order ID = 212242
 TEST PASSED http://edusson.com/
-Order ID = 210326
+Order ID = 212244
 TEST PASSED http://edubirdie.com/
-Order ID = 210331
-TEST PASSED http://papersowl.com/
+There is not CardPay on site http://eduzaurus.com/
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

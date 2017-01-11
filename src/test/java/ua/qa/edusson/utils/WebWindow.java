@@ -16,10 +16,10 @@ public class WebWindow extends TestBase {
      */
 
 
-    private WebDriver driver = app.driver;
-    private String handle;
+    private static WebDriver driver = app.driver;
+    private static String handle;
     private String name;
-    private String parentHandle;
+    private static String parentHandle;
     private static int instanceCount = 0;
 
     /*
@@ -28,23 +28,24 @@ public class WebWindow extends TestBase {
      * @param url   Initial url to load
      * @return new WebWindow
      */
-    public WebWindow(WebDriver parent, String url)  {
+    public WebWindow(WebDriver parent, String url) {
 
-            this.driver = parent;
-            parentHandle = parent.getWindowHandle();
-            name = createUniqueName();
+        this.driver = parent;
+        parentHandle = parent.getWindowHandle();
+        name = createUniqueName();
         try {
             handle = createWindow(url);
         } catch (Exception e) {
             e.printStackTrace();
         }
         app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
-            //Switch to that window and load the url to wait
-            switchToWindow().get(url);
+        //Switch to that window and load the url to wait
+        switchToWindow().get(url);
 
     }
 
-    private String createWindow(String url)throws Exception {
+
+    private String createWindow(String url) throws Exception {
         try {
             //Record old handles
             Set<String> oldHandles = driver.getWindowHandles();
@@ -84,7 +85,7 @@ public class WebWindow extends TestBase {
         return parentHandle;
     }
 
-    public void close() {
+    public static void close() {
         switchToWindow().close();
         handle = "";
         //Switch back to the parent window
@@ -95,12 +96,12 @@ public class WebWindow extends TestBase {
         return "a_Web_Window_" + instanceCount++;
     }
 
-    public WebDriver switchToWindow() {
+    public static WebDriver switchToWindow() {
         checkForClosed();
         return driver.switchTo().window(handle);
     }
 
-    public WebDriver switchToParent() {
+    public static WebDriver switchToParent() {
         checkForClosed();
         return driver.switchTo().window(parentHandle);
     }
@@ -115,7 +116,7 @@ public class WebWindow extends TestBase {
         return null;
     }
 
-    private void checkForClosed() {
+    private static void checkForClosed() {
         if (handle == null || handle.equals(""))
             throw new WebDriverException("Web Window closed or not initialized");
     }
@@ -157,6 +158,21 @@ public class WebWindow extends TestBase {
             }
         } catch (Exception e) {
             System.err.println("Couldn't get to second page");
+        }
+    }
+
+
+    public static void closeUnusedTabs() {
+        System.out.println("After test");
+        int handlesCount = app.driver.getWindowHandles().size();
+        System.out.println(handlesCount);
+        if (handlesCount > 1) {
+            try {
+                close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println(app.driver.getWindowHandles().size());
         }
     }
 }
