@@ -315,6 +315,18 @@ public class Base extends TestBase {
         System.out.println("Test 2 passed");
     }
 
+    @Test
+    public void st3() {
+        String siteUrl = app.driver.getCurrentUrl();
+        OrderCreateCustomerPage p = new OrderCreateCustomerPage();
+        MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        myOrdersCustomerPage.makeNewOrder();
+                p.createOrder(siteUrl, "", "");
+
+    }
 }
 
 
