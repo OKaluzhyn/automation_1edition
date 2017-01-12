@@ -42,6 +42,7 @@ public class UserAuthorizationPage {
     }
 
     public void userLogin(String strUserName, String strPassword) {
+        checkUserLogged();
         this.LogClick();
         if (!app.getHelper().isElementPresent(change_user)) {
             this.logIn(strUserName, strPassword);
@@ -49,7 +50,14 @@ public class UserAuthorizationPage {
             this.changeUser(strUserName, strPassword);
         }
 
+    }
 
+    public void checkUserLogged(){
+        if(app.getHelper().isUserLogged() == true){
+            System.out.println("user already logged");
+            HeaderMenu header = new HeaderMenu();
+            header.userLogOut();
+        }
     }
 
     public void logIn(String strUserName, String strPassword) {

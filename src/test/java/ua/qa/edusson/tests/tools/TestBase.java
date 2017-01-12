@@ -3,7 +3,6 @@ package ua.qa.edusson.tests.tools;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.ITestContext;
 import org.testng.annotations.*;
-import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.utils.ApplicationManager;
 import ua.qa.edusson.utils.WebWindow;
 
@@ -35,27 +34,17 @@ public class TestBase {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         handleHost = app.driver.getWindowHandle(); //handle first Window
-        if(app.getHelper().isUserLogged() == true){
-            System.out.println("user already logged");
-            HeaderMenu header = new HeaderMenu();
-            header.userLogOut();
-        }
+
     }
 
     @AfterMethod
     public void closeUnused() throws Exception {
-        if(app.getHelper().isUserLogged() == true){
-            System.out.println("user already logged");
-            HeaderMenu header = new HeaderMenu();
-            header.userLogOut();
-        }
         try {
             WebWindow.closeUnusedTabs();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
 
 
 }
