@@ -105,7 +105,7 @@ public class OrderCreateCustomerPage {
         if (!siteUrl.equals("http://studyfaq.com/")) {
             this.setTopic(strTopic);
             this.clickNext1();
-            //this.setnumOfCitation();
+            this.setnumOfCitation();
             //this.selectformatOfCitation();
             this.clickNext2();
             this.orderDescription(strDescription);
