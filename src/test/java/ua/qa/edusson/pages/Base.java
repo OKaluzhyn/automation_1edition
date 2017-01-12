@@ -297,7 +297,7 @@ public class Base extends TestBase {
 
     }
 
-    @Test
+    @Test (enabled = false)
     public void st1() {
         app.getHelper().goToEdubirdie();
         WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
@@ -307,7 +307,7 @@ public class Base extends TestBase {
     }
 
 
-    @Test
+    @Test(enabled = false)
     public void st2() {
         app.getHelper().goToEdubirdie();
         WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
@@ -325,6 +325,18 @@ public class Base extends TestBase {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
                 p.createOrder(siteUrl, "", "");
+
+    }
+    @Test
+    public void st4() {
+        String siteUrl = app.driver.getCurrentUrl();
+        OrderCreateCustomerPage p = new OrderCreateCustomerPage();
+        MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        myOrdersCustomerPage.makeNewOrder();
+        p.createOrder(siteUrl, "", "");
 
     }
 }

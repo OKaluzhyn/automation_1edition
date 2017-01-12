@@ -303,7 +303,7 @@ public class Helper {
             id = app.driver.getCurrentUrl().substring(50);
         } else if (siteUrl.equals("http://typemyessays.com/")) {
             id = app.driver.getCurrentUrl().substring(54);
-        } else if (siteUrl.equals("http://essays.studymoose.com/")){
+        } else if (siteUrl.equals("http://essays.studymoose.com/")) {
             id = app.driver.getCurrentUrl().substring(60);
         }
         return id;
@@ -323,10 +323,12 @@ public class Helper {
     }
 
     public boolean isUserLogged() {
-        cyclicElementSearchByXpath("//a[@class='user-name']");
-        return true;
+        if (isElementPresent("//a[@class='user-name']")) {
+            return true;
+        } else {
+            return false;
+        }
     }
-
 }
 
 
