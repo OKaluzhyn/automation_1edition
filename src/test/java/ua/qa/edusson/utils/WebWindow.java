@@ -37,6 +37,7 @@ public class WebWindow extends TestBase {
             handle = createWindow(url);
         } catch (Exception e) {
             e.printStackTrace();
+            handle = createWindow(url);
         }
         app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
@@ -45,35 +46,20 @@ public class WebWindow extends TestBase {
     }
 
 
-    private String createWindow(String url) throws Exception {
-        try {
-            //Record old handles
-            Set<String> oldHandles = driver.getWindowHandles();
-            parentHandle = driver.getWindowHandle();
-            //Inject an anchor element
-            ((JavascriptExecutor) driver).
-                    executeScript(
-                            injectAnchorTag(name, url)
-                    );
-            //Click on the anchor element
-            app.getHelper().searchById(name).click();
-            //driver.findElement(By.id(name)).click();
-            handle = getNewHandle(oldHandles);
-            return handle;
-        } catch (Exception e) {
-            Set<String> oldHandles = driver.getWindowHandles();
-            parentHandle = driver.getWindowHandle();
-            //Inject an anchor element
-            ((JavascriptExecutor) driver).
-                    executeScript(
-                            injectAnchorTag(name, url)
-                    );
-            //Click on the anchor element
-            app.getHelper().searchById(name).click();
-            //driver.findElement(By.id(name)).click();
-            handle = getNewHandle(oldHandles);
-            return handle;
-        }
+    private String createWindow(String url) {
+        //Record old handles
+        Set<String> oldHandles = driver.getWindowHandles();
+        parentHandle = driver.getWindowHandle();
+        //Inject an anchor element
+        ((JavascriptExecutor) driver).
+                executeScript(
+                        injectAnchorTag(name, url)
+                );
+        //Click on the anchor element
+        app.getHelper().searchById(name).click();
+        //driver.findElement(By.id(name)).click();
+        handle = getNewHandle(oldHandles);
+        return handle;
     }
 
 
