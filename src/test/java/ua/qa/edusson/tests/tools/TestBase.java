@@ -44,6 +44,11 @@ public class TestBase {
 
     @AfterMethod
     public void closeUnused() throws Exception {
+        if(app.getHelper().isUserLogged() == true){
+            System.out.println("user already logged");
+            HeaderMenu header = new HeaderMenu();
+            header.userLogOut();
+        }
         try {
             WebWindow.closeUnusedTabs();
         } catch (Exception e) {

@@ -105,8 +105,8 @@ public class OrderCreateCustomerPage {
         if (!siteUrl.equals("http://studyfaq.com/")) {
             this.setTopic(strTopic);
             this.clickNext1();
+            this.selectformatOfCitation();
             this.setnumOfCitation();
-            //this.selectformatOfCitation();
             this.clickNext2();
             this.orderDescription(strDescription);
             app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
