@@ -1,8 +1,6 @@
 package ua.qa.edusson.utils;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.*;
 import ua.qa.edusson.tests.tools.TestBase;
 
 import java.util.Set;
@@ -49,8 +47,13 @@ public class WebWindow extends TestBase {
             ((JavascriptExecutor) driver).
                     executeScript(injectAnchorTag(name, url));
             //Click on the anchor element
-            app.getHelper().searchById(name).click();
-            //driver.findElement(By.id(name)).click();
+            try {
+                app.getHelper().searchById(name).click();
+            } catch (NoSuchElementException e){
+                e.printStackTrace();
+                driver.findElement(By.id(name)).click();
+            }
+
             handle = getNewHandle(oldHandles);
             return handle;
         } while (instanceCount > 0);
