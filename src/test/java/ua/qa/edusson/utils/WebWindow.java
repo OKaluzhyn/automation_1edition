@@ -50,7 +50,7 @@ public class WebWindow extends TestBase {
             try {
                 app.getHelper().searchById(name).click();
             } catch (NoSuchElementException e){
-                e.printStackTrace();
+                System.out.println("Impossible to open a new tab");
                 driver.findElement(By.id(name)).click();
             }
 
