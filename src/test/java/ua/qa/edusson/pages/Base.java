@@ -315,7 +315,7 @@ public class Base extends TestBase {
         System.out.println("Test 2 passed");
     }
 
-    @Test
+    @Test (enabled = false)
     public void st3() {
         String siteUrl = app.driver.getCurrentUrl();
         OrderCreateCustomerPage p = new OrderCreateCustomerPage();
@@ -327,7 +327,7 @@ public class Base extends TestBase {
                 p.createOrder(siteUrl, "", "");
 
     }
-    @Test
+    @Test (enabled = false)
     public void st4() {
         String siteUrl = app.driver.getCurrentUrl();
         OrderCreateCustomerPage p = new OrderCreateCustomerPage();
