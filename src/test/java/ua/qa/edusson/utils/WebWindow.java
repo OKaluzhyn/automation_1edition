@@ -29,14 +29,11 @@ public class WebWindow extends TestBase {
      * @return new WebWindow
      */
     public WebWindow(WebDriver parent, String url) {
-        do {
-            this.driver = parent;
-            parentHandle = parent.getWindowHandle();
-            name = createUniqueName();
-            handle = createWindow(url);
-        }
-        while (handle.equals(url));
-        app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
+        this.driver = parent;
+        parentHandle = parent.getWindowHandle();
+        name = createUniqueName();
+        handle = createWindow(url);
+        //app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
         switchToWindow().get(url);
 
@@ -44,12 +41,11 @@ public class WebWindow extends TestBase {
 
 
     private String createWindow(String url) {
-        //Record old handles
         do {
+            //Record old handles
             Set<String> oldHandles = driver.getWindowHandles();
             parentHandle = driver.getWindowHandle();
             //Inject an anchor element
-
             ((JavascriptExecutor) driver).
                     executeScript(injectAnchorTag(name, url));
             //Click on the anchor element
@@ -57,7 +53,7 @@ public class WebWindow extends TestBase {
             //driver.findElement(By.id(name)).click();
             handle = getNewHandle(oldHandles);
             return handle;
-        } while (instanceCount != 0);
+        } while (instanceCount > 0);
     }
 
 
