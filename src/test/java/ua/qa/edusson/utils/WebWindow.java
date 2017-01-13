@@ -33,11 +33,11 @@ public class WebWindow extends TestBase {
         this.driver = parent;
         parentHandle = parent.getWindowHandle();
         name = createUniqueName();
-        handle = createWindow(url);
-
-        if (handle == null || handle.equals("")){
+        do {
             handle = createWindow(url);
         }
+        while (handle.equals(url));
+
 
         app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
@@ -51,10 +51,8 @@ public class WebWindow extends TestBase {
         Set<String> oldHandles = driver.getWindowHandles();
         parentHandle = driver.getWindowHandle();
         //Inject an anchor element
-        ((JavascriptExecutor) driver).
-                executeScript(
-                        injectAnchorTag(name, url)
-                );
+        Object script = ((JavascriptExecutor) driver).
+                executeScript(injectAnchorTag(name, url));
         //Click on the anchor element
         app.getHelper().searchById(name).click();
         //driver.findElement(By.id(name)).click();
