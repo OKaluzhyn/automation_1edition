@@ -1,6 +1,7 @@
 package ua.qa.edusson.pages.CustomerPages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import static ua.qa.edusson.tests.tools.TestBase.app;
@@ -119,5 +120,11 @@ public class PayPalPage {
     public void clickConfirm() {
         WebElement confirm_button = app.getHelper().cyclicElementSearchByXpath(confirmButton);
         confirm_button.click();
+    }
+
+    public static void checkForError() {
+        if (app.driver.getCurrentUrl().contains("/checkout/genericError"))
+            throw new WebDriverException("sandbox.paypal aren't able to process the payment at this time");
+
     }
 }
