@@ -26,7 +26,7 @@ public class WebWindow extends TestBase {
      * @param url   Initial url to load
      * @return new WebWindow
      */
-    public WebWindow(WebDriver parent, String url) throws Exception {
+    public WebWindow(WebDriver parent, String url)  {
         this.driver = parent;
         parentHandle = parent.getWindowHandle();
         name = createUniqueName();
@@ -44,7 +44,7 @@ public class WebWindow extends TestBase {
     }
 
 
-    private String createWindow(String url) throws Exception{
+    private String createWindow(String url) {
         do {
             //Record old handles
             Set<String> oldHandles = driver.getWindowHandles();

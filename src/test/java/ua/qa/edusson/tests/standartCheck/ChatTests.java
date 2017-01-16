@@ -32,12 +32,8 @@ public class ChatTests extends TestBase {
         app.driver.get(customerOrderUrl);
 
         //open edusson as writer
-        WebWindow ww = null;
-        try {
-            ww = new WebWindow(app.driver, "http://edusson.com/");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+
         userAuthorizationPage.userLogin(Config.writer2, Config.password);
         Helper.sleep(1);
         myOrdersWriterPage.closePopup();

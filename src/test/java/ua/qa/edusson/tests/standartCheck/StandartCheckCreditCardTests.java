@@ -45,7 +45,6 @@ public class StandartCheckCreditCardTests extends TestBase {
     OrderPayThankYouCustomerPage orderPayThankYouCustomerPage = new OrderPayThankYouCustomerPage();
 
 
-
     @Test
     // работает со всеми сайтами
     public void standartCheck_CardPay() {
@@ -59,12 +58,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             System.out.println("Order ID = " + orderId);
             customerUrl = siteUrl + "order/view/" + orderId;
             writerUrl = "http://edusson.com/order/view/" + orderId;
-            WebWindow ww = null;
-            try {
-                ww = new WebWindow(app.driver, "http://edusson.com/");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
             if (siteUrl.equals("http://edusson.com/")) {
                 app.getHelper().asWriter(writerUrl);
             } else {
