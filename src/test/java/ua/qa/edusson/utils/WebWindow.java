@@ -54,7 +54,6 @@ public class WebWindow extends TestBase {
                 System.out.println("Impossible to open a new tab");
                 driver.findElement(By.name(name)).click();
             }
-
             handle = getNewHandle(oldHandles);
             return handle;
         } while (instanceCount > 0);
@@ -103,6 +102,7 @@ public class WebWindow extends TestBase {
     private static void checkForClosed() {
         if (handle == null || handle.equals(""))
             throw new WebDriverException("Web Window closed or not initialized");
+        
     }
 
     private String injectAnchorTag(String id, String url) {
