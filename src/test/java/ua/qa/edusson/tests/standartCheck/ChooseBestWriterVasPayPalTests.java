@@ -67,7 +67,12 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
         app.getHelper().waitLoading(siteUrl);
         Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
         Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
-        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        WebWindow ww = null;
+        try {
+            ww = new WebWindow(app.driver, "http://edusson.com/");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (siteUrl.equals("http://edusson.com/")) {
             app.getHelper().asWriter(writerUrl);
         } else {

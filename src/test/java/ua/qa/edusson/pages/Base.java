@@ -300,7 +300,12 @@ public class Base extends TestBase {
     @Test (enabled = false)
     public void st1() {
         app.getHelper().goToEdubirdie();
-        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        WebWindow ww = null;
+        try {
+            ww = new WebWindow(app.driver, "http://edusson.com/");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ww.switchToParent();
         System.out.println("Test 1 passed");
 
@@ -310,7 +315,12 @@ public class Base extends TestBase {
     @Test(enabled = false)
     public void st2() {
         app.getHelper().goToEdubirdie();
-        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        WebWindow ww = null;
+        try {
+            ww = new WebWindow(app.driver, "http://edusson.com/");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ww.switchToParent();
         System.out.println("Test 2 passed");
     }

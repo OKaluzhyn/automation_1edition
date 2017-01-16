@@ -26,20 +26,25 @@ public class WebWindow extends TestBase {
      * @param url   Initial url to load
      * @return new WebWindow
      */
-    public WebWindow(WebDriver parent, String url) {
+    public WebWindow(WebDriver parent, String url) throws Exception {
         this.driver = parent;
         parentHandle = parent.getWindowHandle();
         name = createUniqueName();
         System.out.println(name);
-        handle = createWindow(url);
+        do {
+            handle = createWindow(url);
+        }
+            while (handle == null || handle.equals(""));
+        System.out.println(handle);
         //app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
         switchToWindow().get(url);
+        System.out.println(url);
 
     }
 
 
-    private String createWindow(String url) {
+    private String createWindow(String url) throws Exception{
         do {
             //Record old handles
             Set<String> oldHandles = driver.getWindowHandles();
@@ -50,7 +55,7 @@ public class WebWindow extends TestBase {
             //Click on the anchor element
             try {
                 app.getHelper().searchById(name).click();
-            } catch (NoSuchElementException e){
+            } catch (Exception e){
                 System.out.println("Impossible to open a new tab");
                 driver.findElement(By.name(name)).click();
             }
@@ -80,7 +85,7 @@ public class WebWindow extends TestBase {
     }
 
     public static WebDriver switchToWindow() {
-        checkForClosed();
+        //checkForClosed();
         return driver.switchTo().window(handle);
     }
 

@@ -61,7 +61,12 @@ public class StandartCheckPayPalTests extends TestBase {
             customerUrl = siteUrl + "order/view/" + orderId;
             System.out.println("Order ID = " + orderId);
         }
-        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        WebWindow ww = null;
+        try {
+            ww = new WebWindow(app.driver, "http://edusson.com/");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (siteUrl.equals("http://edusson.com/")) {
             app.getHelper().asWriter(writerUrl);
         } else {

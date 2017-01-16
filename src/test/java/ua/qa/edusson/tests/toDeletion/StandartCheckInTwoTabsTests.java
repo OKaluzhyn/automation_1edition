@@ -61,7 +61,12 @@ public class StandartCheckInTwoTabsTests extends TestBase {
             System.out.println(orderId);
             customerUrl = siteUrl + "order/view/" + orderId;
             writerUrl = "http://edusson.com/order/view/" + orderId;
-            WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+            WebWindow ww = null;
+            try {
+                ww = new WebWindow(app.driver, "http://edusson.com/");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             if (siteUrl.equals("http://edusson.com/")) {
                 asWriter(writerUrl);
             } else {
@@ -126,7 +131,12 @@ public class StandartCheckInTwoTabsTests extends TestBase {
             userAuthorizationPage.userLogin(Config.customer1, Config.password);
             myOrdersCustomerPage.makeNewOrder();
             orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
-            WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+            WebWindow ww = null;
+            try {
+                ww = new WebWindow(app.driver, "http://edusson.com/");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             userAuthorizationPage.userLogin(Config.writer1, Config.password);
             myOrdersWriterPage.closePopup();
             ww.switchToParent();
