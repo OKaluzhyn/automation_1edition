@@ -44,18 +44,18 @@ public class WebWindow extends TestBase {
 
 
     private String createWindow(String url) {
-        do {//Record old handles
-            Set<String> oldHandles = driver.getWindowHandles();
-            parentHandle = driver.getWindowHandle();
-            //Inject an anchor element
-            ((JavascriptExecutor) driver).
-                    executeScript(injectAnchorTag(name, url));
-            //Click on the anchor element
-            app.getHelper().searchById(name).click();
-            handle = getNewHandle(oldHandles);
-            return handle;
-        } while (!(handle == null) || !(handle.equals("")));
-    }
+        //Record old handles
+        Set<String> oldHandles = driver.getWindowHandles();
+        parentHandle = driver.getWindowHandle();
+        //Inject an anchor element
+        ((JavascriptExecutor) driver).
+                executeScript(injectAnchorTag(name, url));
+        //Click on the anchor element
+        app.getHelper().sleep(1);
+        app.getHelper().searchById(name).click();
+        handle = getNewHandle(oldHandles);
+        return handle;
+           }
 
 
     public String getWindowHandle() {
@@ -106,7 +106,10 @@ public class WebWindow extends TestBase {
     private void checkForClosedAndTryCreate(String url) {
         if (handle == null || handle.equals("")) {
             System.out.println("Try again to create a new Web Window ");
-            handle = createWindow(url);
+            do {
+                handle = createWindow(url);
+            } while(!(handle == null) || !(handle.equals(""))); 
+               System.out.println(handle);
         }
     }
 
