@@ -108,7 +108,7 @@ public class WebWindow extends TestBase {
             System.out.println("Try again to create a new Web Window ");
             do {
                 handle = createWindow(url);
-            } while(!(handle == null) || !(handle.equals(""))); 
+            } while(handle != null);
                System.out.println(handle);
         }
     }
