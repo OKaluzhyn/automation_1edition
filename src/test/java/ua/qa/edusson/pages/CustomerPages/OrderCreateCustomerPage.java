@@ -127,6 +127,8 @@ public class OrderCreateCustomerPage {
             this.setTopic(strTopic);
             this.clickNext1();
             this.selectformatOfCitation();
+            this.setnumOfCitation();
+            app.getHelper().sleep(1);
             this.clickNext2();
             this.orderDescription(strDescription);
             app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());

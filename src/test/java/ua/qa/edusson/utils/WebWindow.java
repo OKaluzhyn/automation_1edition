@@ -18,7 +18,7 @@ public class WebWindow extends TestBase {
     private static String handle;
     private String name;
     private static String parentHandle;
-    private static int instanceCount = 0;
+    private static int instanceCount = 1;
 
     /*
      * Creates a new window for given web driver
