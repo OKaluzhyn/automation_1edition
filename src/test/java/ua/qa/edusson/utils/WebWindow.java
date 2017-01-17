@@ -32,10 +32,10 @@ public class WebWindow extends TestBase {
         name = createUniqueName();
         System.out.println(name);
         handle = createWindow(url);
-        System.out.println(handle);
+        //System.out.println(handle);
         //try again
         checkForClosedAndTryCreate(url);
-        app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
+        //app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
         switchToWindow().get(url);
         System.out.println(url);
@@ -51,11 +51,10 @@ public class WebWindow extends TestBase {
         ((JavascriptExecutor) driver).
                 executeScript(injectAnchorTag(name, url));
         //Click on the anchor element
-        app.getHelper().sleep(1);
         app.getHelper().searchById(name).click();
         handle = getNewHandle(oldHandles);
         return handle;
-           }
+    }
 
 
     public String getWindowHandle() {
@@ -106,12 +105,17 @@ public class WebWindow extends TestBase {
     private void checkForClosedAndTryCreate(String url) {
         if (handle == null || handle.equals("")) {
             System.out.println("Try again to create a new Web Window ");
-            do {
+            for (int i = 0; i < 50; i++) {
                 handle = createWindow(url);
-            } while(handle != null);
-               System.out.println(handle);
+                if (handle != null) {
+                    break;
+                }
+                System.out.println(handle);
+            }
         }
     }
+
+
 
     private String injectAnchorTag(String id, String url) {
         return String.format("var anchorTag = document.createElement('a'); " +
