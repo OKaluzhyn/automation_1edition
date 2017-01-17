@@ -2,7 +2,12 @@
 
 <suite name="StandartCheck" verbose="1">
 
-   
+    <test name="edussonTest">
+    <parameter name="site" value="http://edusson.com/"/>
+    <classes>
+        <class name="ua.qa.edusson.tests.standartCheck.StandartCheckCreditCardTests"/>
+    </classes>
+    </test>
 
     <test name="ChatTest">
         <parameter name="site" value="http://edubirdie.com"/>
