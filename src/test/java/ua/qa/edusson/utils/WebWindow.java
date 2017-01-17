@@ -31,12 +31,9 @@ public class WebWindow extends TestBase {
         parentHandle = parent.getWindowHandle();
         name = createUniqueName();
         System.out.println(name);
-
-            handle = createWindow(url);
-
-
+        handle = createWindow(url);
         System.out.println(handle);
-        //app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
+        app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
         switchToWindow().get(url);
         System.out.println(url);
@@ -45,7 +42,6 @@ public class WebWindow extends TestBase {
 
 
     private String createWindow(String url) {
-
         do {//Record old handles
             Set<String> oldHandles = driver.getWindowHandles();
             parentHandle = driver.getWindowHandle();
@@ -84,7 +80,7 @@ public class WebWindow extends TestBase {
     }
 
     public static WebDriver switchToWindow() {
-        //checkForClosed();
+        checkForClosed();
         return driver.switchTo().window(handle);
     }
 
