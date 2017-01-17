@@ -33,6 +33,8 @@ public class WebWindow extends TestBase {
         System.out.println(name);
         handle = createWindow(url);
         System.out.println(handle);
+        //try again
+        checkForClosedAndTryCreate(url);
         app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
         //Switch to that window and load the url to wait
         switchToWindow().get(url);
@@ -49,14 +51,10 @@ public class WebWindow extends TestBase {
             ((JavascriptExecutor) driver).
                     executeScript(injectAnchorTag(name, url));
             //Click on the anchor element
-            try {
-                app.getHelper().searchById(name).click();
-            } catch (Exception e) {
-                System.out.println("Impossible to open a new tab");
-            }
+            app.getHelper().searchById(name).click();
             handle = getNewHandle(oldHandles);
             return handle;
-        } while (handle == null || handle.equals(""));
+        } while (!(handle == null) || !(handle.equals("")));
     }
 
 
@@ -103,6 +101,13 @@ public class WebWindow extends TestBase {
         if (handle == null || handle.equals(""))
             throw new WebDriverException("Web Window closed or not initialized");
 
+    }
+
+    private void checkForClosedAndTryCreate(String url) {
+        if (handle == null || handle.equals("")) {
+            System.out.println("Try again to create a new Web Window ");
+            handle = createWindow(url);
+        }
     }
 
     private String injectAnchorTag(String id, String url) {
