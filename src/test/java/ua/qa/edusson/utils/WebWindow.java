@@ -44,15 +44,20 @@ public class WebWindow extends TestBase {
 
 
     private String createWindow(String url) {
-        //Record old handles
-        Set<String> oldHandles = driver.getWindowHandles();
-        parentHandle = driver.getWindowHandle();
-        //Inject an anchor element
-        ((JavascriptExecutor) driver).
-                executeScript(injectAnchorTag(name, url));
-        //Click on the anchor element
-        app.getHelper().searchById(name).click();
-        handle = getNewHandle(oldHandles);
+        try {
+            //Record old handles
+            Set<String> oldHandles = driver.getWindowHandles();
+            parentHandle = driver.getWindowHandle();
+            //Inject an anchor element
+            ((JavascriptExecutor) driver).
+                    executeScript(injectAnchorTag(name, url));
+            //Click on the anchor element
+            app.getHelper().searchById(name).click();
+            handle = getNewHandle(oldHandles);
+
+        } catch (Exception ex){
+            System.out.println("Web Window was not initialized");
+        }
         return handle;
     }
 
