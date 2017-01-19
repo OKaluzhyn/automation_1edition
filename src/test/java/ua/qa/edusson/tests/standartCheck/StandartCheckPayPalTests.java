@@ -99,6 +99,7 @@ public class StandartCheckPayPalTests extends TestBase {
             orderPayCustomerPage.choosePayPal();
             orderPayCustomerPage.confirmPay();
             payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
+            payPalPage.checkForError();
             app.getHelper().waitLoading(siteUrl);
             Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
             Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");

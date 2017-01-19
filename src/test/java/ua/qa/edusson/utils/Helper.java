@@ -177,7 +177,7 @@ public class Helper {
     public static String isSiteEasybidding(String site) {
         String type = null;
         String[] sitesWithEasyBidding = {"http://customwriting.com/",
-                //"http://essays.studymoose.com/",
+                "http://essays.studymoose.com/",
                 "http://paperial.com/",
                 "http://phdfy.com/", "http://essayontime.com/", "http://essaylab.com/", "http://essayblablawriting.com/"};
         for (String i : sitesWithEasyBidding) {
