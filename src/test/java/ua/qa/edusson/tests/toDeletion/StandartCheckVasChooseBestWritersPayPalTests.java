@@ -1,4 +1,4 @@
-package ua.qa.edusson.tests;
+package ua.qa.edusson.tests.toDeletion;
 
 
 import org.testng.Assert;

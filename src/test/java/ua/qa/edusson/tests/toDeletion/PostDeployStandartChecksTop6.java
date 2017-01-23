@@ -1,7 +1,6 @@
 package ua.qa.edusson.tests.toDeletion;
 
 import org.testng.annotations.Test;
-import ua.qa.edusson.tests.*;
 import ua.qa.edusson.tests.standartCheck.ChatTests;
 import ua.qa.edusson.tests.tools.TestBase;
 

@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import ru.yandex.qatools.allure.annotations.Attachment;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
 import ua.qa.edusson.pages.CustomerPages.*;
@@ -15,6 +16,12 @@ import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
 import ua.qa.edusson.utils.WebWindow;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popPendingPayPal;
 import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popUpFailPayPal;
@@ -312,7 +319,7 @@ public class Base extends TestBase {
     }
 
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void st2() {
         app.getHelper().goToEdubirdie();
         WebWindow ww = null;
@@ -323,6 +330,7 @@ public class Base extends TestBase {
         }
         ww.switchToParent();
         System.out.println("Test 2 passed");
+        saveImageAttach("Image attach");
     }
 
     @Test (enabled = false)
@@ -348,6 +356,22 @@ public class Base extends TestBase {
         myOrdersCustomerPage.makeNewOrder();
         p.createOrder(siteUrl, "", "");
 
+    }
+
+    @Attachment(value = "{0}", type = "image/png")
+    public static byte[] saveImageAttach(String attachName) {
+        try {
+            URL defaultImage = Base.class.getResource("/allure.png");
+            File imageFile = new File(defaultImage.toURI());
+            return toByteArray(imageFile);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return new byte[0];
+    }
+
+    private static byte[] toByteArray(File file) throws IOException {
+        return Files.readAllBytes(Paths.get(file.getPath()));
     }
 }
 
