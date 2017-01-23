@@ -47,7 +47,7 @@
     <test name="Essayvikings" >
         <parameter name="site" value="http://essayvikings.com/"/>
         <classes>
-            <class name="ua.qa.edusson.tests.StandartCheckVasChooseBestWritersPayPalTests" />
+            <class name="ua.qa.edusson.tests.toDeletion.StandartCheckVasChooseBestWritersPayPalTests" />
         </classes>
     </test>
 

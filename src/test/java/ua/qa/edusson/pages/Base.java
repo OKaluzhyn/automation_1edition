@@ -361,7 +361,7 @@ public class Base extends TestBase {
     @Attachment(value = "{0}", type = "image/png")
     public static byte[] saveImageAttach(String attachName) {
         try {
-            URL defaultImage = Base.class.getResource("/allure.png");
+            URL defaultImage = Base.class.getResource("/images.png");
             File imageFile = new File(defaultImage.toURI());
             return toByteArray(imageFile);
         } catch (Exception e) {
