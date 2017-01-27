@@ -57,7 +57,7 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
         app.getHelper().waitLoading("/order/pay/");
         System.out.println(app.driver.getCurrentUrl());
         orderId = app.getHelper().idEasyBidding(siteUrl);
-        writerUrl = "http://edusson.com/order/view/" + orderId;
+        writerUrl = "https://edusson.com/order/view/" + orderId;
         customerUrl = siteUrl + "order/view/" + orderId;
         System.out.println("Order ID = " + orderId);
         orderPayCustomerPage.choosePayPal();
@@ -68,9 +68,9 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
         app.getHelper().waitLoading(siteUrl);
         Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
         Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
-        WebWindow ww  = new WebWindow(app.driver, "http://edusson.com/");
+        WebWindow ww  = new WebWindow(app.driver, "https://edusson.com/");
 
-        if (siteUrl.equals("http://edusson.com/")) {
+        if (siteUrl.equals("https://edusson.com/")) {
             app.getHelper().asWriter(writerUrl);
         } else {
             userAuthorizationPage.userLogin(Config.writer1, Config.password);
@@ -80,7 +80,7 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
         orderBiddingWriterPage.easyBiddingApplyprice();
         orderInProgressPage.uploadRevision();
         ww.switchToParent();
-        if (siteUrl.equals("http://edusson.com/")) {
+        if (siteUrl.equals("https://edusson.com/")) {
             app.getHelper().asCustomer(customerUrl);
             app.getHelper().goTo(customerUrl);
         }
@@ -89,7 +89,7 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
         orderFinishedViewPage.closePopup();
         customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
         ww.switchToWindow();
-        if (siteUrl.equals("http://edusson.com/")) {
+        if (siteUrl.equals("https://edusson.com/")) {
             app.getHelper().asWriter(writerUrl);
         } else {
             app.driver.navigate().refresh();

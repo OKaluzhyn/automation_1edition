@@ -11,8 +11,8 @@ public class Chat {
 
     public static String clientMessage;
     public static String writerMessage;
-    public static String writerOrderUrl  = "http://edusson.com/order/view/203585" ;
-    public static String customerOrderUrl  = "http://edubirdie.com/order/view/203585";
+    public static String writerOrderUrl  = "https://edusson.com/order/view/203585" ;
+    public static String customerOrderUrl  = "https://edubirdie.com/order/view/203585";
     public static String dialog = "//div[contains(@class, 'interlocutor-message')][last()]/div[2]";
 
     public void openChat() {

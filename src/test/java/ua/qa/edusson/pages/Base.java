@@ -359,9 +359,10 @@ public class Base extends TestBase {
     }
 
     @Attachment(value = "{0}", type = "image/png")
-    public static byte[] saveImageAttach(String attachName) {
+    public static byte[] saveImageAttach(String attachPath) {
         try {
             URL defaultImage = Base.class.getResource("/images.png");
+            //URL defaultImage = attachPath;
             File imageFile = new File(defaultImage.toURI());
             return toByteArray(imageFile);
         } catch (Exception e) {

@@ -32,7 +32,7 @@ public class ChatTests extends TestBase {
         app.driver.get(customerOrderUrl);
 
         //open edusson as writer
-        WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
+        WebWindow ww = new WebWindow(app.driver, "https://edusson.com/");
 
         userAuthorizationPage.userLogin(Config.writer2, Config.password);
         Helper.sleep(1);
@@ -44,6 +44,7 @@ public class ChatTests extends TestBase {
         chat.openChat();
         chat.chooseDialog();
         chat.sendMessage();
+        System.out.println(chat.clientMessage);
         //return to the writer tab
         ww.switchToWindow();
         //writer read a message

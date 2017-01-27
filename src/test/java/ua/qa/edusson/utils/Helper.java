@@ -51,15 +51,15 @@ public class Helper {
     }
 
     public void goToEdusson() {
-        driver.get("http://edusson.com/");
+        driver.get("https://edusson.com/");
     }
 
     public void goToEdubirdie() {
-        driver.get("http://edubirdie.com");
+        driver.get("https://edubirdie.com");
     }
 
     public void goToStudyfaq() {
-        driver.get("http://studyfaq.com/");
+        driver.get("https://studyfaq.com/");
     }
 
 
@@ -176,10 +176,10 @@ public class Helper {
 
     public static String isSiteEasybidding(String site) {
         String type = null;
-        String[] sitesWithEasyBidding = {"http://customwriting.com/",
-                "http://essays.studymoose.com/",
-                "http://paperial.com/",
-                "http://phdfy.com/", "http://essayontime.com/", "http://essaylab.com/", "http://essayblablawriting.com/"};
+        String[] sitesWithEasyBidding = {"https://customwriting.com/",
+                "https://essays.studymoose.com/",
+                "https://paperial.com/",
+                "https://phdfy.com/", "https://essayontime.com/", "https://essaylab.com/", "https://essayblablawriting.com/"};
         for (String i : sitesWithEasyBidding) {
             if (i.equals(site)) {
                 type = "easy";
@@ -194,8 +194,8 @@ public class Helper {
 
     public static boolean hasSiteCardPay(String site) {
         boolean type = false;
-        String[] sitesWithCardPay = {"http://edusson.com/", "http://edubirdie.com/", "http://papersowl.com/",
-                "http://studyfaq.com/"};
+        String[] sitesWithCardPay = {"https://edusson.com/", "https://edubirdie.com/", "https://papersowl.com/",
+                "https://studyfaq.com/"};
         for (String i : sitesWithCardPay) {
             if (i.equals(site)) {
                 type = true;
@@ -209,102 +209,102 @@ public class Helper {
 
     public String idEasyBidding(String siteUrl) {
 
-        if (siteUrl.equals("http://edusson.com/")) {
-            id = app.driver.getCurrentUrl().substring(29);
-        } else if (siteUrl.equals("http://customwriting.com/")) {
-            id = app.driver.getCurrentUrl().substring(35);
-        } else if (siteUrl.equals("http://essays.studymoose.com/")) {
-            id = app.driver.getCurrentUrl().substring(39);
-        } else if (siteUrl.equals("http://essayvikings.com/")) {
-            id = app.driver.getCurrentUrl().substring(34);
-        } else if (siteUrl.equals("http://edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(31);
-        } else if (siteUrl.equals("http://eduzaurus.com/")) {
-            id = app.driver.getCurrentUrl().substring(31);
-        } else if (siteUrl.equals("http://paperdon.com/")) {
+        if (siteUrl.equals("https://edusson.com/")) {
             id = app.driver.getCurrentUrl().substring(30);
-        } else if (siteUrl.equals("http://papersowl.com/")) {
-            id = app.driver.getCurrentUrl().substring(31);
-        } else if (siteUrl.equals("http://studarea.com/")) {
-            id = app.driver.getCurrentUrl().substring(30);
-        } else if (siteUrl.equals("http://essaybison.com/")) {
-            id = app.driver.getCurrentUrl().substring(32);
-        } else if (siteUrl.equals("http://samedaypapers.com/")) {
-            id = app.driver.getCurrentUrl().substring(35);
-        } else if (siteUrl.equals("http://paperell.com/")) {
-            id = app.driver.getCurrentUrl().substring(30);
-        } else if (siteUrl.equals("http://essaytornado.com/")) {
-            id = app.driver.getCurrentUrl().substring(34);
-        } else if (siteUrl.equals("http://studyfaq.com/")) {
-            id = app.driver.getCurrentUrl().substring(30);
-        } else if (siteUrl.equals("http://ca.edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(34);
-        } else if (siteUrl.equals("http://au.edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(34);
-        } else if (siteUrl.equals("http://uk.edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(34);
-        } else if (siteUrl.equals("http://gpaessay.com/")) {
-            id = app.driver.getCurrentUrl().substring(30);
-        } else if (siteUrl.equals("http://australianwritings.com.au/")) {
-            id = app.driver.getCurrentUrl().substring(43);
-        } else if (siteUrl.equals("http://papercp.com/")) {
-            id = app.driver.getCurrentUrl().substring(29);
-        } else if (siteUrl.equals("http://typemyessays.com/")) {
-            id = app.driver.getCurrentUrl().substring(34);
-        } else if (siteUrl.equals("http://paperial.com/")) {
-            id = app.driver.getCurrentUrl().substring(30);
-        } else if (siteUrl.equals("http://essayontime.com.au/")) {
+        } else if (siteUrl.equals("https://customwriting.com/")) {
             id = app.driver.getCurrentUrl().substring(36);
-        } else if (siteUrl.equals("http://phdify.com/")) {
-            id = app.driver.getCurrentUrl().substring(28);
-        } else if (siteUrl.equals("http://essays.blablawriting.com/")) {
-            id = app.driver.getCurrentUrl().substring(42);
+        } else if (siteUrl.equals("https://essays.studymoose.com/")) {
+            id = app.driver.getCurrentUrl().substring(40);
+        } else if (siteUrl.equals("https://essayvikings.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("https://edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(32);
+        } else if (siteUrl.equals("https://eduzaurus.com/")) {
+            id = app.driver.getCurrentUrl().substring(32);
+        } else if (siteUrl.equals("https://paperdon.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("https://papersowl.com/")) {
+            id = app.driver.getCurrentUrl().substring(32);
+        } else if (siteUrl.equals("https://studarea.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("https://essaybison.com/")) {
+            id = app.driver.getCurrentUrl().substring(33);
+        } else if (siteUrl.equals("https://samedaypapers.com/")) {
+            id = app.driver.getCurrentUrl().substring(36);
+        } else if (siteUrl.equals("https://paperell.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("https://essaytornado.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("https://studyfaq.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("https://ca.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("https://au.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("https://uk.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("https://gpaessay.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("https://australianwritings.com.au/")) {
+            id = app.driver.getCurrentUrl().substring(44);
+        } else if (siteUrl.equals("https://papercp.com/")) {
+            id = app.driver.getCurrentUrl().substring(30);
+        } else if (siteUrl.equals("https://typemyessays.com/")) {
+            id = app.driver.getCurrentUrl().substring(35);
+        } else if (siteUrl.equals("https://paperial.com/")) {
+            id = app.driver.getCurrentUrl().substring(31);
+        } else if (siteUrl.equals("https://essayontime.com.au/")) {
+            id = app.driver.getCurrentUrl().substring(37);
+        } else if (siteUrl.equals("https://phdify.com/")) {
+            id = app.driver.getCurrentUrl().substring(29);
+        } else if (siteUrl.equals("https://essays.blablawriting.com/")) {
+            id = app.driver.getCurrentUrl().substring(43);
         }
         return id;
     }
 
 
     public String idNotEasyBidding(String siteUrl) {
-        if (siteUrl.equals("http://edusson.com/")) {
-            id = app.driver.getCurrentUrl().substring(50);
-        } else if (siteUrl.equals("http://edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(52);
-        } else if (siteUrl.equals("http://papersowl.com/")) {
-            id = app.driver.getCurrentUrl().substring(52);
-        } else if (siteUrl.equals("http://studyfaq.com/")) {
+        if (siteUrl.equals("https://edusson.com/")) {
             id = app.driver.getCurrentUrl().substring(51);
-        } else if (siteUrl.equals("http://eduzaurus.com/")) {
-            id = app.driver.getCurrentUrl().substring(52);
-        } else if (siteUrl.equals("http://paperdon.com/")) {
-            id = app.driver.getCurrentUrl().substring(51);
-        } else if (siteUrl.equals("http://studarea.com/")) {
-            id = app.driver.getCurrentUrl().substring(51);
-        } else if (siteUrl.equals("http://essaybison.com/")) {
+        } else if (siteUrl.equals("https://edubirdie.com/")) {
             id = app.driver.getCurrentUrl().substring(53);
-        } else if (siteUrl.equals("http://samedaypapers.com/")) {
-            id = app.driver.getCurrentUrl().substring(56);
-        } else if (siteUrl.equals("http://paperell.com/")) {
-            id = app.driver.getCurrentUrl().substring(51);
-        } else if (siteUrl.equals("http://essaytornado.com/")) {
-            id = app.driver.getCurrentUrl().substring(55);
-        } else if (siteUrl.equals("http://essayvikings.com/")) {
-            id = app.driver.getCurrentUrl().substring(55);
-        } else if (siteUrl.equals("http://ca.edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(55);
-        } else if (siteUrl.equals("http://au.edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(55);
-        } else if (siteUrl.equals("http://uk.edubirdie.com/")) {
-            id = app.driver.getCurrentUrl().substring(55);
-        } else if (siteUrl.equals("http://gpaessay.com/")) {
-            id = app.driver.getCurrentUrl().substring(51);
-        } else if (siteUrl.equals("http://australianwritings.com.au/")) {
-            id = app.driver.getCurrentUrl().substring(64);
-        } else if (siteUrl.equals("http://papercp.com/")) {
-            id = app.driver.getCurrentUrl().substring(50);
-        } else if (siteUrl.equals("http://typemyessays.com/")) {
+        } else if (siteUrl.equals("https://papersowl.com/")) {
+            id = app.driver.getCurrentUrl().substring(53);
+        } else if (siteUrl.equals("https://studyfaq.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("https://eduzaurus.com/")) {
+            id = app.driver.getCurrentUrl().substring(53);
+        } else if (siteUrl.equals("https://paperdon.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("https://studarea.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("https://essaybison.com/")) {
             id = app.driver.getCurrentUrl().substring(54);
-        } else if (siteUrl.equals("http://essays.studymoose.com/")) {
-            id = app.driver.getCurrentUrl().substring(60);
+        } else if (siteUrl.equals("https://samedaypapers.com/")) {
+            id = app.driver.getCurrentUrl().substring(57);
+        } else if (siteUrl.equals("https://paperell.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("https://essaytornado.com/")) {
+            id = app.driver.getCurrentUrl().substring(56);
+        } else if (siteUrl.equals("https://essayvikings.com/")) {
+            id = app.driver.getCurrentUrl().substring(56);
+        } else if (siteUrl.equals("https://ca.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(56);
+        } else if (siteUrl.equals("https://au.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(56);
+        } else if (siteUrl.equals("https://uk.edubirdie.com/")) {
+            id = app.driver.getCurrentUrl().substring(56);
+        } else if (siteUrl.equals("https://gpaessay.com/")) {
+            id = app.driver.getCurrentUrl().substring(52);
+        } else if (siteUrl.equals("https://australianwritings.com.au/")) {
+            id = app.driver.getCurrentUrl().substring(65);
+        } else if (siteUrl.equals("https://papercp.com/")) {
+            id = app.driver.getCurrentUrl().substring(51);
+        } else if (siteUrl.equals("https://typemyessays.com/")) {
+            id = app.driver.getCurrentUrl().substring(55);
+        } else if (siteUrl.equals("https://essays.studymoose.com/")) {
+            id = app.driver.getCurrentUrl().substring(61);
         }
         return id;
     }

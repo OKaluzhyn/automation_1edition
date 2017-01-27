@@ -57,9 +57,9 @@ public class StandartCheckCreditCardTests extends TestBase {
             orderId = app.getHelper().idNotEasyBidding(siteUrl);
             System.out.println("Order ID = " + orderId);
             customerUrl = siteUrl + "order/view/" + orderId;
-            writerUrl = "http://edusson.com/order/view/" + orderId;
+            writerUrl = "https://edusson.com/order/view/" + orderId;
             WebWindow ww = new WebWindow(app.driver, "http://edusson.com/");
-            if (siteUrl.equals("http://edusson.com/")) {
+            if (siteUrl.equals("https://edusson.com/")) {
                 app.getHelper().asWriter(writerUrl);
             } else {
                 userAuthorizationPage.userLogin(Config.writer1, Config.password);
@@ -68,7 +68,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             }
             orderBiddingWriterPage.createBid("6");
             ww.switchToParent();
-            if (siteUrl.equals("http://edusson.com/")) {
+            if (siteUrl.equals("https://edusson.com/")) {
                 app.getHelper().asCustomer(customerUrl);
                 app.getHelper().goTo(customerUrl);
             }
@@ -81,7 +81,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
             Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
             ww.switchToWindow();
-            if (siteUrl.equals("http://edusson.com/")) {
+            if (siteUrl.equals("https://edusson.com/")) {
                 app.driver.navigate().refresh();
                 //orderFinishedViewPage.closePopup();
                 app.getHelper().asWriter(writerUrl);
@@ -90,7 +90,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             }
             orderInProgressPage.uploadRevision();
             ww.switchToParent();
-            if (siteUrl.equals("http://edusson.com/")) {
+            if (siteUrl.equals("https://edusson.com/")) {
                 app.getHelper().asCustomer(customerUrl);
                 app.getHelper().goTo(customerUrl);
             } else {
@@ -100,7 +100,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             orderFinishedViewPage.closePopup();
             customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
             ww.switchToWindow();
-            if (siteUrl.equals("http://edusson.com/")) {
+            if (siteUrl.equals("https://edusson.com/")) {
                 app.getHelper().asWriter(writerUrl);
             } else {
                 app.driver.navigate().refresh();
@@ -110,7 +110,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
             headerMenu.userLogOut();
             ww.close();
-            if (!siteUrl.equals("http://edusson.com/")) {
+            if (!siteUrl.equals("https://edusson.com/")) {
                 headerMenu.userLogOut();
             }
             System.out.println("TEST PASSED" + " " + siteUrl);

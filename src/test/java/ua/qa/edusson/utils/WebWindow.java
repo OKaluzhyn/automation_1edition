@@ -55,7 +55,7 @@ public class WebWindow extends TestBase {
             app.getHelper().searchById(name).click();
             handle = getNewHandle(oldHandles);
 
-        } catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println("Web Window was not initialized");
         }
         return handle;
@@ -121,7 +121,6 @@ public class WebWindow extends TestBase {
     }
 
 
-
     private String injectAnchorTag(String id, String url) {
         return String.format("var anchorTag = document.createElement('a'); " +
                 "anchorTag.appendChild(document.createTextNode('nwh'));" +
@@ -165,16 +164,17 @@ public class WebWindow extends TestBase {
 
     public static void closeUnusedTabs() {
         System.out.println("After test");
-        int handlesCount = app.driver.getWindowHandles().size();
-        System.out.println(handlesCount);
-        if (handlesCount > 1) {
-            try {
-                close();
-            } catch (Exception e) {
-                e.printStackTrace();
+            int handlesCount = app.driver.getWindowHandles().size();
+            System.out.println(handlesCount);
+        while (app.driver.getWindowHandles().size() > 1);{
+            if (handlesCount > 1) {
+                try {
+                    close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println(app.driver.getWindowHandles().size());
             }
-            System.out.println(app.driver.getWindowHandles().size());
         }
     }
 }
-
