@@ -11,7 +11,7 @@ public class HeaderMenu {
 
 
     public void userLogOut() {
-        String site = app.driver.getCurrentUrl().substring(7, 17);
+        String site = app.driver.getCurrentUrl().substring(8, 18);
         //System.out.println(site);
         if (site.equals("studyfaq.c")) {
             app.getHelper().cyclicElementSearchByXpath(userMenuStudyFaq).click();
