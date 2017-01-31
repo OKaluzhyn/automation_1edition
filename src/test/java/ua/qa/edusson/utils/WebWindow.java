@@ -110,7 +110,7 @@ public class WebWindow extends TestBase {
     private void checkForClosedAndTryCreate(String url) {
         if (handle == null || handle.equals("")) {
             System.out.println("Try again to create a new Web Window ");
-            for (int i = 0; i < 50; i++) {
+            for (int i = 0; i < 5; i++) {
                 handle = createWindow(url);
                 if (handle != null) {
                     break;
@@ -164,17 +164,20 @@ public class WebWindow extends TestBase {
 
     public static void closeUnusedTabs() {
         System.out.println("After test");
-            int handlesCount = app.driver.getWindowHandles().size();
-            System.out.println(handlesCount);
-        while (app.driver.getWindowHandles().size() > 1);{
-            if (handlesCount > 1) {
-                try {
+        int handlesCount = app.driver.getWindowHandles().size();
+        System.out.println(handlesCount);
+
+        if (handlesCount > 1) {
+            try {
+                while (app.driver.getWindowHandles().size() > 1) ;
+                {
                     close();
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-                System.out.println(app.driver.getWindowHandles().size());
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            System.out.println(app.driver.getWindowHandles().size());
         }
     }
 }
+

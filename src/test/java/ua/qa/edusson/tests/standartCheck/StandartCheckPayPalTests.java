@@ -71,7 +71,7 @@ public class StandartCheckPayPalTests extends TestBase {
         }
         if (app.getHelper().isSiteEasybidding(siteUrl).equals("easy")) {
             ww.switchToParent();
-            app.getHelper().waitLoading("/order/pay/");
+           // app.getHelper().waitLoading("/order/pay/");
             orderId = app.getHelper().idEasyBidding(siteUrl);
             writerUrl = "https://edusson.com/order/view/" + orderId;
             customerUrl = siteUrl + "order/view/" + orderId;
@@ -138,7 +138,7 @@ public class StandartCheckPayPalTests extends TestBase {
         }
         //app.driver.navigate().refresh();
         System.out.println("TEST PASSED" + " " + siteUrl);
-        app.getHelper().sleep(5);
+        //app.getHelper().sleep(5);
     }
 
    }
