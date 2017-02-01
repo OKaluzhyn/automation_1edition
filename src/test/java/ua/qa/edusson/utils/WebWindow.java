@@ -30,14 +30,11 @@ public class WebWindow extends TestBase {
         this.driver = parent;
         parentHandle = parent.getWindowHandle();
         name = createUniqueName();
-        System.out.println(name);
+        //System.out.println(name);
         handle = createWindow(url);
-        //System.out.println(handle);
         //try again
         checkForClosedAndTryCreate(url);
-        //app.getHelper().wait.until((WebDriver driver) -> driver.getWindowHandles().size() > 1);
-        //Switch to that window and load the url to wait
-        switchToWindow().get(url);
+        switchToWindow();
         System.out.println(url);
 
     }
@@ -61,14 +58,6 @@ public class WebWindow extends TestBase {
         return handle;
     }
 
-
-    public String getWindowHandle() {
-        return handle;
-    }
-
-    public String getParentHandle() {
-        return parentHandle;
-    }
 
     public static void close() {
         switchToWindow().close();
@@ -131,53 +120,34 @@ public class WebWindow extends TestBase {
                 "document.getElementsByTagName('body')[0].appendChild(anchorTag);", id, url);
     }
 
-    public void CreateNewTab() {
-        try {
-            WebWindow tab2 = new WebWindow(driver, "url"); // УurlФ - ссылка новой вкладки
-        } catch (Exception e) {
-            System.err.println("Couldn't load second page");
-        }
-    }
-
-    public void SwitchFromSecondTabToFirst() {
-        try {
-            driver.switchTo().window(handleHost);
-            driver.switchTo().activeElement();
-        } catch (Exception e) {
-            System.err.println("Couldn't get back to first page");
-        }
-    }
-
-    public void SwitchFromFirstPageToSecond() {
-        try {
-            for (String handle : driver.getWindowHandles()) {
-                if (handle != handleHost) {
-                    driver.switchTo().window(handle);
-                    driver.switchTo().activeElement();
-                } // смотрим все вкладки (а их две всего); если ≥-та€ вкладка не равна первой handleHost (инициализированой в пункте (а), тогда переключаемс€ на нее).
-            }
-        } catch (Exception e) {
-            System.err.println("Couldn't get to second page");
-        }
-    }
-
-
     public static void closeUnusedTabs() {
-        System.out.println("After test");
-        int handlesCount = app.driver.getWindowHandles().size();
-        System.out.println(handlesCount);
-
-        if (handlesCount > 1) {
-            try {
-                while (app.driver.getWindowHandles().size() > 1) ;
-                {
-                    close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            System.out.println(app.driver.getWindowHandles().size());
+        if (app.driver.getWindowHandles().size() > 1) {
+            close();
         }
+
+
+           /*
+            do {
+            //найти способ пройтись циклом по всем открытым окнам кроме главного и закрыть их
+                driver.switchTo().window(handle).close();
+                System.out.println(app.driver.getWindowHandles().size() + " - handlesCount after close unused tabs");
+            }
+            while (app.driver.getWindowHandles().size() != 1);
+
+         int handlesCount = app.driver.getWindowHandles().size();
+        System.out.println(handlesCount + " - handlesCount after test");
+        for(int i=0; i < handlesCount; i++ ){
+            close();
+            if (i==1){
+                break;
+            }
+            System.out.println(app.driver.getWindowHandles().size() + " - handlesCount after close unused tabs");
+        }*/
     }
+
 }
+
+
+
+
 

@@ -132,10 +132,11 @@ public class StandartCheckPayPalTests extends TestBase {
         assertEquals(customerReleasedPercent, writerReleasedPercent);
         assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
         headerMenu.userLogOut();
-        ww.close();
+        ww.switchToParent();
         if (!siteUrl.equals("https://edusson.com/")) {
             headerMenu.userLogOut();
         }
+        ww.close();
         //app.driver.navigate().refresh();
         System.out.println("TEST PASSED" + " " + siteUrl);
         //app.getHelper().sleep(5);

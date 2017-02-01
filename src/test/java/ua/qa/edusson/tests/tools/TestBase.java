@@ -33,19 +33,17 @@ public class TestBase {
     public void chooseSite(@Optional("https://essays.studymoose.com/") String siteName, ITestContext context) {
         context.setAttribute("app", app);
         app.driver.get(siteName);
+        System.out.println(app.driver.getWindowHandles().size() + " - handlesCount before test");
+        WebWindow.closeUnusedTabs();
         handleHost = app.driver.getWindowHandle(); //handle first Window
     }
 
     @AfterMethod
-    public void closeUnused() throws Exception {
-        try {
-            WebWindow.closeUnusedTabs();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void closeUnused() {
+        System.out.println(app.driver.getWindowHandles().size() + " - handlesCount after test");
+        WebWindow.closeUnusedTabs();
+        System.out.println(app.driver.getWindowHandles().size() + " - handlesCount after close unused tabs");
     }
-
-
 }
 
 

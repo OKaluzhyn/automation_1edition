@@ -319,7 +319,7 @@ public class Base extends TestBase {
     }
 
 
-    @Test//(enabled = false)
+    @Test(enabled = false)
     public void st2() {
         app.getHelper().goToEdubirdie();
         WebWindow ww = null;
@@ -373,6 +373,14 @@ public class Base extends TestBase {
 
     private static byte[] toByteArray(File file) throws IOException {
         return Files.readAllBytes(Paths.get(file.getPath()));
+    }
+
+    @Test //(enabled = false)
+    public void st6() {
+        WebWindow ww  = new WebWindow(app.driver, "https://edusson.com/");
+        WebWindow ww2  = new WebWindow(app.driver, "https://edusson.com/");
+       // WebWindow ww3  = new WebWindow(app.driver, "https://edusson.com/");
+
     }
 }
 
