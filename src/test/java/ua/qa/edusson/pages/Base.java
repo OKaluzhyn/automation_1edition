@@ -304,7 +304,7 @@ public class Base extends TestBase {
 
     }
 
-    @Test (enabled = false)
+    @Test(enabled = false)
     public void st1() {
         app.getHelper().goToEdubirdie();
         WebWindow ww = null;
@@ -333,7 +333,7 @@ public class Base extends TestBase {
         saveImageAttach("Image attach");
     }
 
-    @Test (enabled = false)
+    @Test(enabled = false)
     public void st3() {
         String siteUrl = app.driver.getCurrentUrl();
         OrderCreateCustomerPage p = new OrderCreateCustomerPage();
@@ -342,10 +342,11 @@ public class Base extends TestBase {
 
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
-                p.createOrder(siteUrl, "", "");
+        p.createOrder(siteUrl, "", "");
 
     }
-    @Test (enabled = false)
+
+    @Test(enabled = false)
     public void st4() {
         String siteUrl = app.driver.getCurrentUrl();
         OrderCreateCustomerPage p = new OrderCreateCustomerPage();
@@ -375,15 +376,23 @@ public class Base extends TestBase {
         return Files.readAllBytes(Paths.get(file.getPath()));
     }
 
-    @Test //(enabled = false)
+    @Test (enabled = false)
     public void st6() {
-        WebWindow ww  = new WebWindow(app.driver, "https://edusson.com/");
-        WebWindow ww2  = new WebWindow(app.driver, "https://edusson.com/");
-       // WebWindow ww3  = new WebWindow(app.driver, "https://edusson.com/");
+        WebWindow ww = new WebWindow(app.driver, "https://edusson.com/");
+        WebWindow ww2 = new WebWindow(app.driver, "https://edusson.com/");
+        // WebWindow ww3  = new WebWindow(app.driver, "https://edusson.com/");
 
     }
-}
 
+    @Test //(enabled = false)
+    public void st7() {
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        HeaderMenu headerMenu = new HeaderMenu();
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        app.getHelper().waitLoading("orders");
+        headerMenu.userLogOut();
+    }
+}
 
 
 

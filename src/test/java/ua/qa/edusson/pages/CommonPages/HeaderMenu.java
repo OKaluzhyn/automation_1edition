@@ -19,11 +19,11 @@ public class HeaderMenu {
         } else {
             boolean found = false;
 
-            String[] sitesWithDropHeaderMenu = {"customwriting.com/", "paperial.com/",
+            String[] sitesWithDropHeaderMenu = {"edusson.com/", "customwriting.com/", "paperial.com/",
                     "essayvikings.com/", "eduzaurus.com/", "studarea.com/", "essaybison.com/",
                     "samedaypapers.com/", "australianwritings.com.au/", "papercp.com/"};
             for (String i : sitesWithDropHeaderMenu) {
-                //  System.out.println((i).substring(0,10));
+                  //System.out.println((i).substring(0,10));
 
                 if (i.substring(0, 10).equals(site)) {
                     found = true;
