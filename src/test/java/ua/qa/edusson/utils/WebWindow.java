@@ -33,7 +33,7 @@ public class WebWindow extends TestBase {
         //System.out.println(name);
         handle = createWindow(url);
         //try again
-        //checkForClosedAndTryCreate(url);
+        checkForClosedAndTryCreate(url);
         switchToWindow();
         System.out.println(url);
 
