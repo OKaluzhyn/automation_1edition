@@ -77,6 +77,7 @@ public class StandartCheckPayPalTests extends TestBase {
             customerUrl = siteUrl + "order/view/" + orderId;
             System.out.println("Order ID = " + orderId);
             orderPayCustomerPage.confirmPay();
+            app.getHelper().waitLoading("sandbox");
             payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
             Helper.sleep(1);
             payPalPage.checkForError();
