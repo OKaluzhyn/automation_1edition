@@ -120,7 +120,7 @@ public class WebWindow extends TestBase {
     }
 
     public static void closeUnusedTabs() {
-        if (app.driver.getWindowHandles().size() >= 2) {
+        if (app.driver.getWindowHandles().size() > 1) {
             close();
         }
 
