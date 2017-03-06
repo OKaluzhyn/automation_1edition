@@ -71,7 +71,7 @@ public class WebWindow extends TestBase {
     }
 
     public static WebDriver switchToWindow() {
-        checkForClosed();
+        //checkForClosed();
         return driver.switchTo().window(handle);
     }
 
@@ -96,9 +96,9 @@ public class WebWindow extends TestBase {
     }
 
     private void checkForClosedAndTryCreate(String url) {
-        if (app.driver.getWindowHandles().size() == 1) {
+        if (app.driver.getWindowHandles().size() < 2) {
             System.out.println("Try again to create a new Web Window ");
-            for (int i = 0; i < 5; i++) {
+            for (int i = 0; i < 2; i++) {
                 handle = createWindow(url);
                 if (handle != null) {
                     break;

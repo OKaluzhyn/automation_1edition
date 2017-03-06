@@ -303,10 +303,15 @@ public class Base extends TestBase {
 
     }
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void st1() {
         app.getHelper().goToEdubirdie();
         WebWindow ww = null;
+        try {
+            ww = new WebWindow(app.driver, "http://edusson.com/");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         try {
             ww = new WebWindow(app.driver, "http://edusson.com/");
         } catch (Exception e) {
@@ -318,7 +323,7 @@ public class Base extends TestBase {
     }
 
 
-    @Test(enabled = false)
+    @Test//(enabled = false)
     public void st2() {
         app.getHelper().goToEdubirdie();
         WebWindow ww = null;
@@ -383,7 +388,7 @@ public class Base extends TestBase {
 
     }
 
-    @Test //(enabled = false)
+    @Test (enabled = false)
     public void st7() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         HeaderMenu headerMenu = new HeaderMenu();
@@ -391,7 +396,7 @@ public class Base extends TestBase {
         app.getHelper().waitLoading("orders");
         headerMenu.userLogOut();
     }
-    @Test //(enabled = false)
+    @Test (enabled = false)
     public void yoda() {
         app.driver.get("http://contentyoda.com");
         app.getHelper().cyclicElementSearchByXpath("//div[@class='dropdown header_pop header_pop_enter_drop log']/button").click();
