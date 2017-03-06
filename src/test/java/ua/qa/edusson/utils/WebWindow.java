@@ -96,7 +96,7 @@ public class WebWindow extends TestBase {
     }
 
     private void checkForClosedAndTryCreate(String url) {
-        if (handle == null || handle.equals("")) {
+        if (app.driver.getWindowHandles().size() > 1) {
             System.out.println("Try again to create a new Web Window ");
             for (int i = 0; i < 5; i++) {
                 handle = createWindow(url);
