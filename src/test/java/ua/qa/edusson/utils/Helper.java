@@ -93,7 +93,6 @@ public class Helper {
 
     public void waitElement(String locator) {
         wait.until(ExpectedConditions.elementToBeClickable(By.xpath(locator)));
-
     }
 
     public void waitLoading(String patrUrl) {

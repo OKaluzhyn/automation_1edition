@@ -1,7 +1,6 @@
 package ua.qa.edusson.tests.standartCheck;
 
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
 import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
@@ -16,8 +15,6 @@ import ua.qa.edusson.utils.WebWindow;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popPendingPayPal;
-import static ua.qa.edusson.pages.CustomerPages.OrderPayThankYouCustomerPage.popUpFailPayPal;
 
 
 public class StandartCheckCreditCardTests extends TestBase {
@@ -78,8 +75,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             creditCardPayment.setAllFields();
             orderPayCustomerPage.confirmPay();
             app.getHelper().waitLoading(siteUrl);
-            Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
-            Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
+
             ww.switchToWindow();
             if (siteUrl.equals("https://edusson.com/")) {
                 app.driver.navigate().refresh();

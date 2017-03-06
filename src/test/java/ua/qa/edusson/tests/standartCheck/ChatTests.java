@@ -30,10 +30,8 @@ public class ChatTests extends TestBase {
         app.getHelper().goToEdubirdie();
         userAuthorizationPage.userLogin(Config.customer2, Config.password);
         app.driver.get(customerOrderUrl);
-
         //open edusson as writer
         WebWindow ww = new WebWindow(app.driver, "https://edusson.com/");
-
         userAuthorizationPage.userLogin(Config.writer2, Config.password);
         Helper.sleep(1);
         myOrdersWriterPage.closePopup();

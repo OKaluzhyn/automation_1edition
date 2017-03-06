@@ -51,7 +51,6 @@ public class Base extends TestBase {
         WebElement input = driver.findElement(locator);
         unhide(driver, input);
         input.sendKeys(file);
-
     }
 
 
@@ -391,6 +390,25 @@ public class Base extends TestBase {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         app.getHelper().waitLoading("orders");
         headerMenu.userLogOut();
+    }
+    @Test //(enabled = false)
+    public void yoda() {
+        app.driver.get("http://contentyoda.com");
+        app.getHelper().cyclicElementSearchByXpath("//div[@class='dropdown header_pop header_pop_enter_drop log']/button").click();
+        app.getHelper().cyclicElementSearchByXpath("//input[@name='user_login']").sendKeys("kli_kli2008@mail.ru");
+        app.getHelper().cyclicElementSearchByXpath("//input[@name='user_pass']").sendKeys("Olaneg152");
+        app.getHelper().cyclicElementSearchByXpath("//span[@class='popup_enter_button']").click();
+        app.getHelper().waitLoading("/newtask");
+       // app.getHelper().cyclicElementSearchByXpath("//input[@type='text']").sendKeys("title");
+       // app.getHelper().cyclicElementSearchByXpath("//textarea").sendKeys("Мой текст больше 10 символов");
+       // app.getHelper().cyclicElementSearchByXpath("//button[text()='Go']").click();
+       // app.getHelper().waitLoading("task_id");
+        app.getHelper().cyclicElementSearchByXpath("//button[@onclick='uploadFromFile()']").click();
+        attachFile(app.driver, By.xpath("//input[@type='file']"), "C:\\Users\\tester\\resources\\..txt.txt");
+        app.getHelper().cyclicElementSearchByXpath("//button[//button[@id='send_button']").click();
+        app.getHelper().sleep(10);
+
+
     }
 }
 

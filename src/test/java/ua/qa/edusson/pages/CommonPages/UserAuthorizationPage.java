@@ -9,7 +9,7 @@ import static ua.qa.edusson.tests.tools.TestBase.app;
 
 public class UserAuthorizationPage {
     //XPath
-    public static String login_link = "//*[@data-atest='atest_login_elem_popup_open']";
+    private static String login_link = "//*[@data-atest='atest_login_elem_popup_open']";
     public static String user_name_field = "//input[@data-atest='atest_login_form_email']";
     public static String continue_button = "//button[@data-atest='atest_login_form_submit']";
     public static String user_password_field = "//input[@data-atest='atest_login_form_password']";
