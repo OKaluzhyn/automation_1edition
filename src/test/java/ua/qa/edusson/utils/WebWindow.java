@@ -93,7 +93,6 @@ public class WebWindow extends TestBase {
     private static void checkForClosed() {
         if (handle == null || handle.equals(""))
             throw new WebDriverException("Web Window closed or not initialized");
-
     }
 
     private void checkForClosedAndTryCreate(String url) {

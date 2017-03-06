@@ -405,7 +405,7 @@ public class Base extends TestBase {
        // app.getHelper().waitLoading("task_id");
         app.getHelper().cyclicElementSearchByXpath("//button[@onclick='uploadFromFile()']").click();
         attachFile(app.driver, By.xpath("//input[@type='file']"), "C:\\Users\\tester\\resources\\..txt.txt");
-        app.getHelper().cyclicElementSearchByXpath("//button[//button[@id='send_button']").click();
+        app.getHelper().cyclicElementSearchByXpath("//button[@id='send_button']").click();
         app.getHelper().sleep(10);
 
 
