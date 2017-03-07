@@ -19,6 +19,7 @@ public class OrderPayCustomerPage  {
     	 pay_pal_button.click();
 	
 }
+
 	public void chooseCardPay(){
 		WebElement credit_card_button = app.getHelper().cyclicElementSearchByXpath(creditCardButton);
 		credit_card_button.click();
@@ -35,7 +36,6 @@ public class OrderPayCustomerPage  {
 	}
 	
 	public void confirmPay(){
-		//app.getHelper().waitLoading("pay");
 		if(app.getHelper().isElementPresent(makeDepositButton)){
 			this.clickReserveButton();
 		}
