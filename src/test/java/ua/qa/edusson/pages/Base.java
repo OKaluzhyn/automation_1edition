@@ -380,7 +380,7 @@ public class Base extends TestBase {
         return Files.readAllBytes(Paths.get(file.getPath()));
     }
 
-    @Test (enabled = false)
+    @Test(enabled = false)
     public void st6() {
         WebWindow ww = new WebWindow(app.driver, "https://edusson.com/");
         WebWindow ww2 = new WebWindow(app.driver, "https://edusson.com/");
@@ -388,7 +388,7 @@ public class Base extends TestBase {
 
     }
 
-    @Test (enabled = false)
+    @Test(enabled = false)
     public void st7() {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
         HeaderMenu headerMenu = new HeaderMenu();
@@ -396,7 +396,8 @@ public class Base extends TestBase {
         app.getHelper().waitLoading("orders");
         headerMenu.userLogOut();
     }
-    @Test (enabled = false)
+
+    @Test//(enabled = false)
     public void yoda() {
         app.driver.get("http://contentyoda.com");
         app.getHelper().cyclicElementSearchByXpath("//div[@class='dropdown header_pop header_pop_enter_drop log']/button").click();
@@ -404,16 +405,30 @@ public class Base extends TestBase {
         app.getHelper().cyclicElementSearchByXpath("//input[@name='user_pass']").sendKeys("Olaneg152");
         app.getHelper().cyclicElementSearchByXpath("//span[@class='popup_enter_button']").click();
         app.getHelper().waitLoading("/newtask");
-       // app.getHelper().cyclicElementSearchByXpath("//input[@type='text']").sendKeys("title");
-       // app.getHelper().cyclicElementSearchByXpath("//textarea").sendKeys("Мой текст больше 10 символов");
-       // app.getHelper().cyclicElementSearchByXpath("//button[text()='Go']").click();
-       // app.getHelper().waitLoading("task_id");
-        app.getHelper().cyclicElementSearchByXpath("//button[@onclick='uploadFromFile()']").click();
-        attachFile(app.driver, By.xpath("//input[@type='file']"), "C:\\Users\\tester\\resources\\..txt.txt");
-        app.getHelper().cyclicElementSearchByXpath("//button[@id='send_button']").click();
+
+        //app.getHelper().cyclicElementSearchByXpath("//input[@type='text']").sendKeys("title");
+        //app.getHelper().cyclicElementSearchByXpath("//textarea").sendKeys("Мой текст больше 10 символов");
+        //app.getHelper().cyclicElementSearchByXpath("//button[text()='Go']").click();
+        //app.getHelper().waitLoading("task_id");
+        app.driver.get("http://contentyoda.com/newtask?task_id=171916");
+        app.getHelper().cyclicElementSearchByXpath("//a[@id='get_13']").click();
+        WebElement el1 = app.getHelper().cyclicElementSearchByXpath("//a[@id='get_13']/div");
+        removingToolTip(el1);
+        app.getHelper().cyclicElementSearchByXpath("//a[@id='get_3']").click();
+        WebElement el2 = app.getHelper().cyclicElementSearchByXpath("//a[@id='get_3']/div");
+        removingToolTip(el2);
+        app.getHelper().cyclicElementSearchByXpath("//a[@id='get_6']").click();
+        //app.getHelper().cyclicElementSearchByXpath("//button[@onclick='uploadFromFile()']").click();
+        //attachFile(app.driver, By.xpath("//input[@type='file']"), "C:\\Users\\tester\\resources\\..txt.txt");
+        //app.getHelper().cyclicElementSearchByXpath("//button[@id='send_button']").click();
+
         app.getHelper().sleep(10);
 
+    }
 
+    public void removingToolTip(WebElement el) {
+        String script = "arguments[0].remove()";
+        ((JavascriptExecutor) app.driver).executeScript(script, el);
     }
 }
 

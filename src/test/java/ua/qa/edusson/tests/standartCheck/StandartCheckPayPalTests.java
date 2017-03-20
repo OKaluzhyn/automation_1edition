@@ -93,6 +93,7 @@ public class StandartCheckPayPalTests extends TestBase {
             orderBiddingWriterPage.createBid("6");
             ww.switchToParent();
             if (siteUrl.equals("https://edusson.com/")) {
+                orderBiddingCustomerPage.closePopUp();
                 app.getHelper().asCustomer(customerUrl);
                 app.getHelper().goTo(customerUrl);
             }
