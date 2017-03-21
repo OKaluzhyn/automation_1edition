@@ -13,8 +13,7 @@ public class HeaderMenu {
 
     public void userLogOut() {
         String site = app.driver.getCurrentUrl().substring(8, 18);
-        //System.out.println(site);
-        if (site.equals("studyfaq.c")) {
+       if (site.equals("studyfaq.c")) {
             app.getHelper().cyclicElementSearchByXpath(userMenuStudyFaq).click();
             app.getHelper().cyclicElementSearchByXpath(logOut2).click();
         } else {
@@ -24,8 +23,6 @@ public class HeaderMenu {
                     "essayvikings.com/", "eduzaurus.com/", "studarea.com/", "essaybison.com/",
                     "samedaypapers.com/", "australianwritings.com.au/", "papercp.com/"};
             for (String i : sitesWithDropHeaderMenu) {
-                //System.out.println((i).substring(0,10));
-
                 if (i.substring(0, 10).equals(site)) {
                     found = true;
                     break;

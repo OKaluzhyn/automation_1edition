@@ -29,6 +29,7 @@ public class Helper {
     protected WebDriver driver;
     public final Wait<WebDriver> wait;
     public String id;
+    public String closeBut = "//a[@aria-label='Close']";
 
     public WebDriver getDriver() {
         return driver;
@@ -328,6 +329,21 @@ public class Helper {
             return false;
         }
     }
+
+    public void closePopUp() {
+        this.cyclicElementSearchByXpath(closeBut).click();
+    }
+
+    public void removeElement(WebElement el) {
+        String script = "arguments[0].remove()";
+        ((JavascriptExecutor) app.driver).executeScript(script, el);
+    }
+    public void remooveExitPopUp(String xpath) {
+        WebElement p = driver.findElement(By.xpath(xpath));
+        unhide(p);
+        removeElement(p);
+
+            }
 }
 
 

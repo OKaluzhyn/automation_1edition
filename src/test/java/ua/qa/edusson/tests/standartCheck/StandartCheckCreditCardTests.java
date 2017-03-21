@@ -51,7 +51,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             myOrdersCustomerPage.makeNewOrder();
             orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
             app.getHelper().waitLoading("order#redirect_url=");
-
+            app.getHelper().remooveExitPopUp(orderBiddingCustomerPage.seopopup());
             orderId = app.getHelper().idNotEasyBidding(siteUrl);
             System.out.println("Order ID = " + orderId);
             customerUrl = siteUrl + "order/view/" + orderId;
@@ -66,8 +66,8 @@ public class StandartCheckCreditCardTests extends TestBase {
             }
             orderBiddingWriterPage.createBid("6");
             ww.switchToParent();
+            //orderBiddingCustomerPage.closePopUp();
             if (siteUrl.equals("https://edusson.com/")) {
-                orderBiddingCustomerPage.closePopUp();
                 app.getHelper().asCustomer(customerUrl);
                 app.getHelper().goTo(customerUrl);
             }
@@ -77,11 +77,9 @@ public class StandartCheckCreditCardTests extends TestBase {
             creditCardPayment.setAllFields();
             orderPayCustomerPage.confirmPay();
             app.getHelper().waitLoading(siteUrl);
-
             ww.switchToWindow();
             if (siteUrl.equals("https://edusson.com/")) {
                 app.driver.navigate().refresh();
-                //orderFinishedViewPage.closePopup();
                 app.getHelper().asWriter(writerUrl);
             } else {
                 orderBiddingWriterPage.goToOrder();

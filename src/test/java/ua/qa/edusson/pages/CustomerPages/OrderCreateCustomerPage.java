@@ -106,7 +106,7 @@ public class OrderCreateCustomerPage {
             this.setTopic(strTopic);
             this.clickNext1();
             this.selectformatOfCitation();
-            this.setnumOfCitation();
+            //this.setnumOfCitation();
             app.getHelper().sleep(1);
             this.clickNext2();
             this.orderDescription(strDescription);
@@ -127,7 +127,7 @@ public class OrderCreateCustomerPage {
             this.setTopic(strTopic);
             this.clickNext1();
             this.selectformatOfCitation();
-            this.setnumOfCitation();
+            //this.setnumOfCitation();
             app.getHelper().sleep(1);
             this.clickNext2();
             this.orderDescription(strDescription);

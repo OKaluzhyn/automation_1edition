@@ -35,6 +35,27 @@ public class Base extends TestBase {
     public String writerReleasedPercent;
 
 
+    @Test//(enabled = false)
+    public void st4() {
+        String siteUrl = app.driver.getCurrentUrl();
+        OrderCreateCustomerPage p = new OrderCreateCustomerPage();
+        MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
+        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+        OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
+        HeaderMenu headerMenu = new HeaderMenu();
+        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        myOrdersCustomerPage.makeNewOrder();
+        p.createOrder(siteUrl, "", "");
+        app.getHelper().waitLoading("order#redirect_url=");
+        app.getHelper().sleep(1);
+        WebElement el1 = app.driver.findElement(By.xpath("//div[@id='popup_exit_bidding']"));
+        unhide(app.driver, el1);
+        removingToolTip(el1);
+        //orderBiddingCustomerPage.closePopUp();
+        headerMenu.userLogOut();
+
+    }
+
     public void unhide(WebDriver driver, WebElement element) {
         String script = "arguments[0].style.opacity=1;"
                 + "arguments[0].style['transform']='translate(0px, 0px) scale(1)';"
@@ -350,18 +371,6 @@ public class Base extends TestBase {
 
     }
 
-    @Test(enabled = false)
-    public void st4() {
-        String siteUrl = app.driver.getCurrentUrl();
-        OrderCreateCustomerPage p = new OrderCreateCustomerPage();
-        MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
-        UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-
-        userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        myOrdersCustomerPage.makeNewOrder();
-        p.createOrder(siteUrl, "", "");
-
-    }
 
     @Attachment(value = "{0}", type = "image/png")
     public static byte[] saveImageAttach(String attachPath) {

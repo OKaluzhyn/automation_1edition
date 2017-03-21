@@ -52,7 +52,7 @@ public class PayPalPage {
         String pageBefore = app.driver.getCurrentUrl();
         //System.out.println(pageBefore);
         String page = app.driver.getCurrentUrl().substring(95);
-       // System.out.println(page);
+        // System.out.println(page);
         if (page.equals("/checkout/review")) {
             app.getHelper().waitElement(continueButton);
             this.clickContinue();
@@ -124,7 +124,8 @@ public class PayPalPage {
 
     public static void checkForError() {
         if (app.driver.getCurrentUrl().contains("/checkout/genericError"))
-            throw new WebDriverException("sandbox.paypal aren't able to process the payment at this time");
-
+            throw new WebDriverException("sandbox.paypal is n't able to process the payment at this time");
+        if (app.getHelper().isElementPresent("//*[text(), 'We are unable to validate your information. Please try again.']"))
+            throw new WebDriverException("sandbox.paypal is n't able to validate your information. Please try again.");
     }
 }
