@@ -72,11 +72,12 @@ public class StandartCheckPayPalTests extends TestBase {
         }
         if (app.getHelper().isSiteEasybidding(siteUrl).equals("easy")) {
             ww.switchToParent();
-            app.getHelper().remooveExitPopUp(orderPayCustomerPage.exitPopUp());
+
             orderId = app.getHelper().idEasyBidding(siteUrl);
             writerUrl = "https://edusson.com/order/view/" + orderId;
             customerUrl = siteUrl + "order/view/" + orderId;
             System.out.println("Order ID = " + orderId);
+            app.getHelper().remooveExitPopUp(orderPayCustomerPage.exitPopUp());
             orderPayCustomerPage.confirmPay();
             app.getHelper().waitLoading("sandbox");
             payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
