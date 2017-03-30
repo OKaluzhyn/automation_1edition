@@ -23,9 +23,17 @@ public class CreditCardPayment {
     public static String inputCVV = "//input[@id='payment_form_credit_card_cvv']";
     public static String inputNameOnCard = "//input[@id='payment_form_credit_card_card_printed_name']";
     public static String buttonPay = "//input[@type = 'submit']";
+    private String cardNumber;
 
 
-    public void setAllFields() {
+    public void setAllFields(String siteUrl) {
+        if (siteUrl == "https://edusson.com/") {
+            cardNumber = Config.cardNumber_VISA_Edusson;
+        } else {
+            cardNumber = Config.cardNumber_other_sites;
+        }
+
+
         WebElement input_First_Name = app.getHelper().cyclicElementSearchByXpath(inputFirstName);
         WebElement input_Last_Name = app.getHelper().cyclicElementSearchByXpath(inputLastName);
         WebElement input_Email = app.getHelper().cyclicElementSearchByXpath(inputEmail);
@@ -59,7 +67,7 @@ public class CreditCardPayment {
         input_ZIP.sendKeys("0000");
         input_Phone.clear();
         input_Phone.sendKeys("1234567890");
-        input_CardNumber.sendKeys(Config.cardNumber_VISA_Edusson);
+        input_CardNumber.sendKeys(cardNumber);
         new Select(input_date).selectByValue("10");
         new Select(input_year).selectByValue("2020");
         input_CVV.sendKeys(Config.CVV);

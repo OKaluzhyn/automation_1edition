@@ -74,7 +74,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             orderBiddingCustomerPage.bid1();
             orderPayCustomerPage.chooseCardPay();
             orderPayCustomerPage.clickReserveButton();
-            creditCardPayment.setAllFields();
+            creditCardPayment.setAllFields(siteUrl);
             orderPayCustomerPage.confirmPay();
             app.getHelper().waitLoading(siteUrl);
             ww.switchToWindow();

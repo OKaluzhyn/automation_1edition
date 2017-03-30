@@ -10,10 +10,13 @@ public class MyBalanceCustomerPage {
     public static String loadMoneyButton = "//button[@data-popup-target='popup_replenish_balance']";
     //Pop up
     public static String refundButton = "btn-primary [2]";
-    public static String amountField = ".//*[@id='add_deposit_form_deposit_value']";
-    public static String load = ".//*[@id='add_deposit_form']/div[3]/button";
+    public static String amountField = "//input[@id='add_deposit_form_deposit_deposit_amount']";
+    public static String load = "//*[@id='popup_replenish_balance']//button";
     public static String payPal = "//label[@for='add_deposit_form_payment_system_payment_system_0']";
     public static String creditCard = "//label[@for='add_deposit_form_payment_system_payment_system_1']";
+    public static String balance = "//b[@class='balance']";
+    public static String balance_thankyou = "//div[@class='thanks-box']//*[text() = 'Transaction has been made successfully']";
+    public static String balanceLink = "//div[@class='thanks-box']//a[@href='/customer/balance']";
 
 
     //WebElement refund_Button = app.getHelper().cyclicElementSearchByXpath(refundButton);
@@ -59,8 +62,20 @@ public class MyBalanceCustomerPage {
     public void loadMoneyToBalanceCreditCard(String strAmount) {
         this.clickLloadbutMain();
         this.chooseCreditCardPay();
-        this.setValue("10");
+        this.setValue(strAmount);
         this.clickload();
 
+    }
+
+    public Double userBalance() {
+        Double b = Double.parseDouble(app.getHelper().cyclicElementSearchByXpath(balance).getText().substring(1));
+        return b;
+    }
+
+    public String thanksMessage(){
+        return balance_thankyou;
+    }
+    public void returnBalancePage(){
+        app.getHelper().cyclicElementSearchByXpath(balanceLink).click();
     }
 }
