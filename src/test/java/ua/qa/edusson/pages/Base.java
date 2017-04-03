@@ -30,28 +30,39 @@ public class Base extends TestBase {
     public String orderUrl;
     public String orderId;
     public String writerUrl;
-
     public String customerReleasedPercent;
     public String writerReleasedPercent;
 
+    @Test//(enabled = false)
+    public void registration() {
+        String[] sites = {//"https://customwriting.com/",
+                //"https://essays.studymoose.com/",
+               // "https://paperial.com/",
+               // "https://phdfy.com/",
+                // "https://essayontime.com/", "https://essaylab.com/", "https://essayblablawriting.com/",
+                "https://eduzaurus.com", "https://essaybison.com", "https://essaytornado.com", "https://essayvikings.com", "https://gpaessay.com",
+                "https://paperdon.com", "https://paperell.com", "https://papersowl.com",
+                "https://samedaypapers.com", "https://studarea.com", "https://studyfaq.com", "https://typemyessays.com"};
+        for (String i : sites) {
+            app.driver.get(i);
+            UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
+            userAuthorizationPage.customerRegistration("customer3@yopmail.com");
+            //app.getHelper().waitLoading("/orders");
+        }
+    }
 
     @Test//(enabled = false)
     public void st4() {
         String siteUrl = app.driver.getCurrentUrl();
-        OrderCreateCustomerPage p = new OrderCreateCustomerPage();
-        MyOrdersCustomerPage myOrdersCustomerPage = new MyOrdersCustomerPage();
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-        OrderBiddingCustomerPage orderBiddingCustomerPage = new OrderBiddingCustomerPage();
         HeaderMenu headerMenu = new HeaderMenu();
+        OrderPayCustomerPage orderPayCustomerPage = new OrderPayCustomerPage();
+
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        myOrdersCustomerPage.makeNewOrder();
-        p.createOrder(siteUrl, "", "");
-        app.getHelper().waitLoading("order#redirect_url=");
-        app.getHelper().sleep(1);
-        WebElement el1 = app.driver.findElement(By.xpath("//div[@id='popup_exit_bidding']"));
-        unhide(app.driver, el1);
-        removingToolTip(el1);
-        //orderBiddingCustomerPage.closePopUp();
+        app.getHelper().waitLoading("/orders");
+        app.driver.get("https://edubirdie.com/order/pay/299958");
+        orderPayCustomerPage.chooseCardPay();
+        orderPayCustomerPage.payOrder(siteUrl);
         headerMenu.userLogOut();
 
     }

@@ -26,9 +26,9 @@ public class LoadMoneyToCustomerBalanceTests extends TestBase {
     @Test
         public void loadMoney_PayPal() {
         siteUrl = app.driver.getCurrentUrl();
-        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer3, Config.password);
         headerMenu.goTOMyBalanceCustomerPage();
-        Double balanceBefore = myBalanceCustomerPage.userBalance();
+        Double balanceBefore = Math.rint(100.0 * myBalanceCustomerPage.userBalance()/ 100.0);
         System.out.println(balanceBefore + " Balance before");
         String loadedAmount = "1";
         myBalanceCustomerPage.loadMoneyToBalancePayPal(loadedAmount);
@@ -38,28 +38,32 @@ public class LoadMoneyToCustomerBalanceTests extends TestBase {
         app.getHelper().waitLoading(siteUrl);
         Assert.assertTrue(app.getHelper().isElementPresent(myBalanceCustomerPage.thanksMessage()));
         myBalanceCustomerPage.returnBalancePage();
-        Double balanceAfter = myBalanceCustomerPage.userBalance();
+        Double balanceAfter = Math.rint(100.0 *myBalanceCustomerPage.userBalance()/ 100.0);
         System.out.println(balanceAfter+" Balance after");
-        Assert.assertEquals((balanceAfter), balanceBefore+(Integer.valueOf(loadedAmount)));
+        Assert.assertEquals((balanceAfter), balanceBefore+Math.rint(100.0 *(Integer.valueOf(loadedAmount))/ 100.0));
+        headerMenu.userLogOut();
+        System.out.println("Test - Load money to user balance by Paypal - Passed");
     }
 
     @Test
     public void loadMoney_Card() {
         siteUrl = app.driver.getCurrentUrl();
-        userAuthorizationPage.userLogin(Config.customer1, Config.password);
+        userAuthorizationPage.userLogin(Config.customer3, Config.password);
         headerMenu.goTOMyBalanceCustomerPage();
-        Double balanceBefore = myBalanceCustomerPage.userBalance();
+        Double balanceBefore = Math.rint(100.0 *myBalanceCustomerPage.userBalance()/ 100.0);
         System.out.println(balanceBefore + " Balance before");
         String loadedAmount = "1";
         myBalanceCustomerPage.loadMoneyToBalanceCreditCard(loadedAmount);
-        app.getHelper().waitLoading("pay");
+        //app.getHelper().waitLoading("/pay");
         creditCardPayment.setAllFields(siteUrl);
         app.getHelper().waitLoading(siteUrl);
         Assert.assertTrue(app.getHelper().isElementPresent(myBalanceCustomerPage.thanksMessage()));
         myBalanceCustomerPage.returnBalancePage();
-        Double balanceAfter = myBalanceCustomerPage.userBalance();
+        Double balanceAfter = Math.rint(100.0 * myBalanceCustomerPage.userBalance()/ 100.0);
         System.out.println(balanceAfter + " Balance after");
-        Assert.assertEquals((balanceAfter), balanceBefore + (Integer.valueOf(loadedAmount)));
+        Assert.assertEquals((balanceAfter), balanceBefore + Math.rint(100.0 *(Integer.valueOf(loadedAmount))/ 100.0));
+        headerMenu.userLogOut();
+        System.out.println("Test - Load money to user balance by Card - Passed");
     }
 }
 

@@ -38,7 +38,7 @@ public class CreditCardPayment {
         WebElement input_Last_Name = app.getHelper().cyclicElementSearchByXpath(inputLastName);
         WebElement input_Email = app.getHelper().cyclicElementSearchByXpath(inputEmail);
         WebElement input_Country = app.getHelper().cyclicElementSearchByXpath(inputCountry);
-        WebElement input_State = app.getHelper().cyclicElementSearchByXpath(inputState);
+
         WebElement input_City = app.getHelper().cyclicElementSearchByXpath(inputCity);
         WebElement input_Adress = app.getHelper().cyclicElementSearchByXpath(inputAdress);
         WebElement input_ZIP = app.getHelper().cyclicElementSearchByXpath(inputZIP);
@@ -58,6 +58,7 @@ public class CreditCardPayment {
         input_Email.clear();
         input_Email.sendKeys("user@email.com");
         new Select(input_Country).selectByVisibleText("United States");
+        WebElement input_State = app.getHelper().cyclicElementSearchByXpath(inputState);
         new Select(input_State).selectByValue("37");
         input_City.clear();
         input_City.sendKeys("New York");

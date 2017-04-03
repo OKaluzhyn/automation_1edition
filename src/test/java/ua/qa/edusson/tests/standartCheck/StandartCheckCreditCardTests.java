@@ -73,10 +73,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             }
             orderBiddingCustomerPage.bid1();
             orderPayCustomerPage.chooseCardPay();
-            orderPayCustomerPage.clickReserveButton();
-            creditCardPayment.setAllFields(siteUrl);
-            orderPayCustomerPage.confirmPay();
-            app.getHelper().waitLoading(siteUrl);
+            orderPayCustomerPage.payOrder(siteUrl);
             ww.switchToWindow();
             if (siteUrl.equals("https://edusson.com/")) {
                 app.driver.navigate().refresh();

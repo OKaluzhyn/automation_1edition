@@ -191,7 +191,17 @@ public class UserAuthorizationPage {
         }
     }
 
-
+public void customerRegistration(String email){
+    this.LogClick();
+    if (!app.getHelper().isElementPresent(change_user)) {
+        this.setUserName(email);
+        this.continueClick();
+    } else {
+        this.changeUserClick();
+        this.setUserName(email);
+        this.submitClickAfterChangeUser();
+    }
+}
 }
 
 

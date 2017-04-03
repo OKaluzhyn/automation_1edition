@@ -37,7 +37,7 @@ public class OrderCreateCustomerPage {
     // requested writer
     public static String writerName = "//p[@class='writer_name']";
 
-    public static String vasBestWriter = "//label[@data-atest='atest_order_create_elem_vas_1']";
+    public static String vasBestWriter = "//input[@id='order_vas_co_1']";
 
     // select type
     public void selectTypeOfPaper() {
@@ -131,8 +131,9 @@ public class OrderCreateCustomerPage {
             app.getHelper().sleep(1);
             this.clickNext2();
             this.orderDescription(strDescription);
-            app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
             this.choseBestWriter();
+            app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+
             this.proceedToBidding();
         } else {
             this.selectTypeOfPaper();
@@ -145,7 +146,8 @@ public class OrderCreateCustomerPage {
     }
 
     private void choseBestWriter() {
-        WebElement checkBoxVasBestWriter = app.getHelper().cyclicElementSearchByXpath(vasBestWriter);
+        WebElement checkBoxVasBestWriter = app.getHelper().cyclicElementSearchByXpath(vas1);
+        //app.getHelper().unhide(checkBoxVasBestWriter);
         checkBoxVasBestWriter.click();
     }
 

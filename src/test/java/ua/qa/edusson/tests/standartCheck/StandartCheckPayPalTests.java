@@ -12,7 +12,6 @@ import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.pages.WriterPages.OrderBiddingWriterPage;
 import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
-import ua.qa.edusson.utils.Helper;
 import ua.qa.edusson.utils.WebWindow;
 
 import static org.testng.Assert.assertEquals;
@@ -77,13 +76,7 @@ public class StandartCheckPayPalTests extends TestBase {
             writerUrl = "https://edusson.com/order/view/" + orderId;
             customerUrl = siteUrl + "order/view/" + orderId;
             System.out.println("Order ID = " + orderId);
-            app.getHelper().remooveExitPopUp(orderPayCustomerPage.exitPopUp());
-            orderPayCustomerPage.confirmPay();
-            app.getHelper().waitLoading("sandbox");
-            payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
-            Helper.sleep(1);
-            payPalPage.checkForError();
-            app.getHelper().waitLoading(siteUrl);
+            orderPayCustomerPage.payOrder(siteUrl);
             Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
             Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
             ww.switchToWindow();
@@ -100,11 +93,7 @@ public class StandartCheckPayPalTests extends TestBase {
                 app.getHelper().goTo(customerUrl);
             }
             orderBiddingCustomerPage.bid1();
-            orderPayCustomerPage.choosePayPal();
-            orderPayCustomerPage.confirmPay();
-            payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
-            payPalPage.checkForError();
-            app.getHelper().waitLoading(siteUrl);
+            orderPayCustomerPage.payOrder(siteUrl);
             Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
             Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
             ww.switchToWindow();

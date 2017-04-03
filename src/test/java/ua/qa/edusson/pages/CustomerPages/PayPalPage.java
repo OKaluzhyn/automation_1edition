@@ -3,6 +3,7 @@ package ua.qa.edusson.pages.CustomerPages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import ua.qa.edusson.utils.Helper;
 
 import static ua.qa.edusson.tests.tools.TestBase.app;
 
@@ -51,6 +52,7 @@ public class PayPalPage {
         app.getHelper().waitElementNotVisible("//div[@ng-if='loading']");
         String pageBefore = app.driver.getCurrentUrl();
         //System.out.println(pageBefore);
+        Helper.sleep(1);
         String page = app.driver.getCurrentUrl().substring(95);
         // System.out.println(page);
         if (page.equals("/checkout/review")) {
