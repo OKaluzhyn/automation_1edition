@@ -48,6 +48,7 @@ public class LoadMoneyToCustomerBalanceTests extends TestBase {
     @Test
     public void loadMoney_Card() {
         siteUrl = app.driver.getCurrentUrl();
+        if (app.getHelper().hasSiteCardPay(siteUrl)) {
         userAuthorizationPage.userLogin(Config.customer3, Config.password);
         headerMenu.goTOMyBalanceCustomerPage();
         Double balanceBefore = Math.rint(100.0 *myBalanceCustomerPage.userBalance()/ 100.0);
@@ -64,6 +65,9 @@ public class LoadMoneyToCustomerBalanceTests extends TestBase {
         Assert.assertEquals((balanceAfter), balanceBefore + Math.rint(100.0 *(Integer.valueOf(loadedAmount))/ 100.0));
         headerMenu.userLogOut();
         System.out.println("Test - Load money to user balance by Card - Passed");
+        } else {
+            System.out.println("There is not CardPay on site " + siteUrl);
+        }
     }
 }
 

@@ -24,10 +24,10 @@ public class OrderPayCustomerPage {
     }
 
     public void choosePaymentSystem(String ps){
-        if (ps == "paypal"){
+        if (ps.equals("paypal")){
             app.getHelper().cyclicElementSearchByXpath(payPalButton).click();
         }
-        if (ps == "card"){
+        if (ps.equals("card")){
             app.getHelper().cyclicElementSearchByXpath(creditCardButton).click();
         }
 

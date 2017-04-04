@@ -101,3 +101,24 @@ task testExample(type: Test) {
 testExample.doFirst {
     jvmArgs "-javaagent:${configurations.agent.singleFile}"
 }
+
+task testPay(type: Test) {
+    useTestNG {
+        suites 'src/test/resources/testng-LoadBalance_&_OrderPay.xml'
+    }
+    if (project.hasProperty('browser')) {
+        systemProperty 'browser', "${browser}"
+    }
+    if (project.hasProperty('target')) {
+        systemProperty 'target', "${target}"
+    }
+    if (project.hasProperty('platform')) {
+        systemProperty 'platform', "${platform}"
+    }
+    if (project.hasProperty('site')) {
+        systemProperty 'site', "${site}"
+    }
+}
+testPay.doFirst {
+    jvmArgs "-javaagent:${configurations.agent.singleFile}"
+}

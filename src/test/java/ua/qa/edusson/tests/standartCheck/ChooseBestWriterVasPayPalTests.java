@@ -50,55 +50,57 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
 
     public void standartCheck_PayPal() {
         siteUrl = app.driver.getCurrentUrl();
-        userAuthorizationPage.userLogin(Config.customer1, Config.password);
-        myOrdersCustomerPage.makeNewOrder();
-        orderCreateCustomerPage.createOrderWithVasChooseBestWriter(siteUrl, "test for webdriver", "test");
-        app.getHelper().waitLoading("/order/pay/");
-        System.out.println(app.driver.getCurrentUrl());
-        orderId = app.getHelper().idEasyBidding(siteUrl);
-        writerUrl = "https://edusson.com/order/view/" + orderId;
-        customerUrl = siteUrl + "order/view/" + orderId;
-        System.out.println("Order ID = " + orderId);
-        orderPayCustomerPage.choosePayPal();
-        orderPayCustomerPage.payOrder(siteUrl);
-        Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
-        Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
-        WebWindow ww  = new WebWindow(app.driver, "https://edusson.com/");
+        if (app.getHelper().hasSiteVas_ChooseBestWriter(siteUrl)) {
+            userAuthorizationPage.userLogin(Config.customer1, Config.password);
+            myOrdersCustomerPage.makeNewOrder();
+            orderCreateCustomerPage.createOrderWithVasChooseBestWriter(siteUrl, "test for webdriver", "test");
+            app.getHelper().waitLoading("/order/pay/");
+            System.out.println(app.driver.getCurrentUrl());
+            orderId = app.getHelper().idEasyBidding(siteUrl);
+            writerUrl = "https://edusson.com/order/view/" + orderId;
+            customerUrl = siteUrl + "order/view/" + orderId;
+            System.out.println("Order ID = " + orderId);
+            orderPayCustomerPage.choosePayPal();
+            orderPayCustomerPage.payOrder(siteUrl);
+            Assert.assertFalse(app.getHelper().isElementPresent(popUpFailPayPal), "Test Failed " + siteUrl + " Reason: Payment didn't go through");
+            Assert.assertFalse(app.getHelper().isElementPresent(popPendingPayPal), "Test Failed " + siteUrl + " Reason: Payment is being reviewed by PayPal");
+            WebWindow ww = new WebWindow(app.driver, "https://edusson.com/");
 
-        if (siteUrl.equals("https://edusson.com/")) {
-            app.getHelper().asWriter(writerUrl);
-        } else {
-            userAuthorizationPage.userLogin(Config.writer1, Config.password);
-            myOrdersWriterPage.closePopup();
-            app.getHelper().goTo(writerUrl);
-        }
-        orderBiddingWriterPage.easyBiddingApplyprice();
-        orderInProgressPage.uploadRevision();
-        ww.switchToParent();
-        if (siteUrl.equals("https://edusson.com/")) {
-            app.getHelper().asCustomer(customerUrl);
+            if (siteUrl.equals("https://edusson.com/")) {
+                app.getHelper().asWriter(writerUrl);
+            } else {
+                userAuthorizationPage.userLogin(Config.writer1, Config.password);
+                myOrdersWriterPage.closePopup();
+                app.getHelper().goTo(writerUrl);
+            }
+            orderBiddingWriterPage.easyBiddingApplyprice();
+            orderInProgressPage.uploadRevision();
+            ww.switchToParent();
+            if (siteUrl.equals("https://edusson.com/")) {
+                app.getHelper().asCustomer(customerUrl);
+                app.getHelper().goTo(customerUrl);
+            }
             app.getHelper().goTo(customerUrl);
-        }
-        app.getHelper().goTo(customerUrl);
-        orderInProgressPage.releaseMoney("100");
-        orderFinishedViewPage.closePopup();
-        customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
-        ww.switchToWindow();
-        if (siteUrl.equals("https://edusson.com/")) {
-            app.getHelper().asWriter(writerUrl);
+            orderInProgressPage.releaseMoney("100");
+            orderFinishedViewPage.closePopup();
+            customerReleasedPercent = orderInProgressPage.checkReleasedMoneyCustomerPage();
+            ww.switchToWindow();
+            if (siteUrl.equals("https://edusson.com/")) {
+                app.getHelper().asWriter(writerUrl);
+            } else {
+                app.driver.navigate().refresh();
+            }
+            writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
+            assertEquals(customerReleasedPercent, writerReleasedPercent);
+            assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
+            headerMenu.userLogOut();
+            ww.close();
+            headerMenu.userLogOut();
+            System.out.println("TEST PASSED" + " " + siteUrl);
         } else {
-            app.driver.navigate().refresh();
+            System.out.println("There is not such vas on site " + siteUrl);
         }
-        writerReleasedPercent = orderInProgressPage.checkReleasedMoneyWriterPage();
-        assertEquals(customerReleasedPercent, writerReleasedPercent);
-        assertTrue(orderFinishedViewPage.checkWriterPageFinishedText());
-        headerMenu.userLogOut();
-        ww.close();
-        headerMenu.userLogOut();
-        System.out.println("TEST PASSED" + " " + siteUrl);
     }
-
-
 }
 
 

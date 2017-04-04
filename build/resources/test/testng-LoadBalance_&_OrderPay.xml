@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="StandartCheck" verbose="1">
+
+    <test name="Pay">
+
+        <classes>
+            <class name="ua.qa.edusson.tests.LoadMoneyToCustomerBalanceTests"/>
+            <class name="ua.qa.edusson.tests.LoadMoneyToCustomerBalanceTests"/>
+        </classes>
+    </test>
+
+</suite>

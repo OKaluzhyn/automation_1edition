@@ -206,6 +206,24 @@ public class Helper {
         }
         return type;
     }
+    public static boolean hasSiteVas_ChooseBestWriter(String site) {
+        boolean type = false;
+        String[] sitesWithVas = {"https://edusson.com/", "https://au.edusson.com/", "https://uk.edusson.com/", "https://ca.edusson.com/",
+                "https://us.edusson.com/", "https://edubirdie.com/", "https://au.edubirdie.com/", "https://uk.edubirdie.com/",
+                "https://ca.edubirdie.com/", "https://eduzaurus.com/", "https://essaybison.com/", "https://essaytornado.com/",
+                "https://papersowl.com/", "https://australianwritings.com.au/", "https://paperell.com/", "https://gpaessay.com/",
+                "https://paperdon.com/", "https://samedaypapers.com/", "https://studarea.com/", "https://typemyessays.com/"
+                };
+        for (String i : sitesWithVas) {
+            if (i.equals(site)) {
+                type = true;
+                break;
+            } else {
+                type = false;
+            }
+        }
+        return type;
+    }
 
     public String idEasyBidding(String siteUrl) {
 
