@@ -102,10 +102,10 @@ public class PayOrderTests extends TestBase {
         Double totalPrice = Math.rint(100.0 * (Double.parseDouble(orderPayCustomerPage.getOrderTotal())/ 100.0));
         Double depositAmount = Math.rint(100.0 * (Double.parseDouble(orderPayCustomerPage.getDepositAmount())/ 100.0));
         Assert.assertEquals(depositAmount, totalPrice - balance);
-        orderPayCustomerPage.chooseCardPay();
+        orderPayCustomerPage.choosePaymentSystem("card");
         orderPayCustomerPage.payOrder(siteUrl);
         Assert.assertTrue(app.getHelper().isElementPresent("//*[text()='Your order was paid!']"));
         headerMenu.userLogOut();
     }
-    
+
 }

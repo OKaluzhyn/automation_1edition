@@ -23,6 +23,16 @@ public class OrderPayCustomerPage {
         return "//div[@id='popup_exit_orderpay']";
     }
 
+    public void choosePaymentSystem(String ps){
+        if (ps == "paypal"){
+            app.getHelper().cyclicElementSearchByXpath(payPalButton).click();
+        }
+        if (ps == "card"){
+            app.getHelper().cyclicElementSearchByXpath(creditCardButton).click();
+        }
+
+    }
+
     public void choosePayPal() {
         app.getHelper().cyclicElementSearchByXpath(payPalButton).click();
     }
@@ -61,7 +71,7 @@ public class OrderPayCustomerPage {
         if (checkPayPal == true) {
             System.out.println("PayPal");
             confirmPay();
-            app.getHelper().waitLoading("/sandbox");
+            app.getHelper().waitLoading("sandbox");
             payPalPage.payPayPal(Config.paypall_login, Config.paypall_pass);
             Helper.sleep(1);
             payPalPage.checkForError();
