@@ -29,7 +29,7 @@ public class Helper {
     protected WebDriver driver;
     public final Wait<WebDriver> wait;
     public String id;
-    public String closeBut = "//a[@aria-label='Close']";
+    public String closeBut = "";
 
     public WebDriver getDriver() {
         return driver;
@@ -206,6 +206,7 @@ public class Helper {
         }
         return type;
     }
+
     public static boolean hasSiteVas_ChooseBestWriter(String site) {
         boolean type = false;
         String[] sitesWithVas = {"https://edusson.com/", "https://au.edusson.com/", "https://uk.edusson.com/", "https://ca.edusson.com/",
@@ -213,7 +214,7 @@ public class Helper {
                 "https://ca.edubirdie.com/", "https://eduzaurus.com/", "https://essaybison.com/", "https://essaytornado.com/",
                 "https://papersowl.com/", "https://australianwritings.com.au/", "https://paperell.com/", "https://gpaessay.com/",
                 "https://paperdon.com/", "https://samedaypapers.com/", "https://studarea.com/", "https://typemyessays.com/"
-                };
+        };
         for (String i : sitesWithVas) {
             if (i.equals(site)) {
                 type = true;
@@ -349,19 +350,31 @@ public class Helper {
     }
 
     public void closePopUp() {
-        this.cyclicElementSearchByXpath(closeBut).click();
+        if (isElementPresent(closeBut)) {
+            this.cyclicElementSearchByXpath(closeBut).click();
+        }
     }
 
     public void removeElement(WebElement el) {
         String script = "arguments[0].remove()";
         ((JavascriptExecutor) app.driver).executeScript(script, el);
     }
-    public void remooveExitPopUp(String xpath) {
-        WebElement p = driver.findElement(By.xpath(xpath));
-        unhide(p);
-        removeElement(p);
 
+    public void remooveExitPopUp(String xpath) {
+        try {
+            WebElement p = driver.findElement(By.xpath(xpath));
+            unhide(p);
+            removeElement(p);
+        } catch (Exception e) {
+            try {
+                WebElement div = driver.findElement(By.xpath("//*[@class='modal-backdrop fade in']"));
+                unhide(div);
+                removeElement(div);
+            } catch (Exception ex) {
+                System.out.println("Exit popup not found");
             }
+        }
+    }
 }
 
 

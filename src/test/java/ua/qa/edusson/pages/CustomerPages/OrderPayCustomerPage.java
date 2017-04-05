@@ -20,15 +20,15 @@ public class OrderPayCustomerPage {
     public static String reserveMoney = "//button[text()='Reserve money']";
 
     public String exitPopUp() {
-        return "//div[@id='popup_exit_orderpay']";
+        return "//div[@class='modal uk-modal fade modal-allow-user js_popup_all in']";
     }
 
-    public void choosePaymentSystem(String ps){
+    public void choosePaymentSystem(String ps) {
         app.getHelper().remooveExitPopUp(exitPopUp());
-        if (ps.equals("paypal")){
+        if (ps.equals("paypal")) {
             app.getHelper().cyclicElementSearchByXpath(payPalButton).click();
         }
-        if (ps.equals("card")){
+        if (ps.equals("card")) {
             app.getHelper().cyclicElementSearchByXpath(creditCardButton).click();
         }
 
@@ -53,6 +53,8 @@ public class OrderPayCustomerPage {
     }
 
     public void confirmPay() {
+        //app.getHelper().closePopUp();
+        app.getHelper().remooveExitPopUp(exitPopUp());
         if (app.getHelper().isElementPresent(makeDepositButton)) {
             this.clickReserveButton();
         } else if (app.getHelper().isElementPresent(reserveMoney)) {
@@ -65,10 +67,7 @@ public class OrderPayCustomerPage {
         app.getHelper().remooveExitPopUp(exitPopUp());
         WebElement pp = app.driver.findElement(By.xpath("//input[@id='payment_system_type_payment_system_0']"));
         app.getHelper().unhide(pp);
-        WebElement cc = app.driver.findElement(By.xpath("//input[@id='payment_system_type_payment_system_1']"));
-        app.getHelper().unhide(cc);
         Boolean checkPayPal = pp.isSelected();
-        Boolean checkCard = cc.isSelected();
         if (checkPayPal == true) {
             System.out.println("PayPal");
             confirmPay();
@@ -77,15 +76,20 @@ public class OrderPayCustomerPage {
             Helper.sleep(1);
             payPalPage.checkForError();
             app.getHelper().waitLoading(siteUrl);
-        } else if (checkCard == true) {
-            System.out.println("Card");
-            confirmPay();
-            app.getHelper().waitLoading("/pay/");
-            creditCardPayment.setAllFields(siteUrl);
-            app.getHelper().waitLoading(siteUrl);
+        }
+        if (app.getHelper().hasSiteCardPay(siteUrl)) {
+            WebElement cc = app.driver.findElement(By.xpath("//input[@id='payment_system_type_payment_system_1']"));
+            app.getHelper().unhide(cc);
+            Boolean checkCard = cc.isSelected();
+            if (checkCard == true) {
+                System.out.println("Card");
+                confirmPay();
+                app.getHelper().waitLoading("/pay/");
+                creditCardPayment.setAllFields(siteUrl);
+                app.getHelper().waitLoading(siteUrl);
+            }
         }
     }
-
 
     public String getOrderTotal() {
         String orderTotal = app.getHelper()
@@ -93,9 +97,9 @@ public class OrderPayCustomerPage {
         return orderTotal;
     }
 
-    public String getDepositAmount(){
-    String depositAmount = app.getHelper()
-            .cyclicElementSearchByXpath("//span[@data-atest='atest_order_pay_elem_deposit_amount']").getText().substring(1);
+    public String getDepositAmount() {
+        String depositAmount = app.getHelper()
+                .cyclicElementSearchByXpath("//span[@data-atest='atest_order_pay_elem_deposit_amount']").getText().substring(1);
         return depositAmount;
-}
+    }
 }
