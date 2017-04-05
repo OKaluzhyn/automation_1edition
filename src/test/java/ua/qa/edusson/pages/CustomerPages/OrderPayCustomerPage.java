@@ -24,6 +24,7 @@ public class OrderPayCustomerPage {
     }
 
     public void choosePaymentSystem(String ps){
+        app.getHelper().remooveExitPopUp(exitPopUp());
         if (ps.equals("paypal")){
             app.getHelper().cyclicElementSearchByXpath(payPalButton).click();
         }
