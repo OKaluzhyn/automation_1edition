@@ -29,7 +29,7 @@ public class Helper {
     protected WebDriver driver;
     public final Wait<WebDriver> wait;
     public String id;
-    public String closeBut = "";
+    public String closeBut = "//div[@class='modal uk-modal fade modal-allow-user js_popup_all in']//a[@aria-label='Close']";
 
     public WebDriver getDriver() {
         return driver;
@@ -350,34 +350,34 @@ public class Helper {
     }
 
     public void closePopUp() {
-        if (isElementPresent(closeBut)) {
-            this.cyclicElementSearchByXpath(closeBut).click();
-        }
+        this.cyclicElementSearchByXpath(closeBut).click();
     }
 
     public void removeElement(WebElement el) {
-        String script = "arguments[0].remove()";
-        ((JavascriptExecutor) app.driver).executeScript(script, el);
+        String script = "el.parentNode.removeChild(el)";
+        ((JavascriptExecutor) app.driver).executeScript(script);
     }
 
     public void remooveExitPopUp() {
         try {
-            WebElement p = driver.findElement(By.xpath("//*[@class='modal-backdrop fade in']"));
+            WebElement p = driver.findElement(By.xpath("//*[@class='modal uk-modal fade modal-allow-user js_popup_all in']"));
             unhide(p);
             removeElement(p);
+            System.out.println("Exit pop up was removed");
         } catch (Exception e) {
+            System.out.println("Exit pop up was not found for remooving");
             try {
-                WebElement div = driver.findElement(By.xpath("//*[@class='modal-backdrop fade in']"));
-                unhide(div);
-                removeElement(div);
-            } catch (Exception ex) {
-                System.out.println("Exit popup not found");
+                closePopUp();
+                System.out.println("Exit pop up was closed");
+            } catch (Exception exep) {
+                System.out.println("Exit popup couldn't be closed");
             }
         }
     }
-
-
 }
+
+
+
 
 
 

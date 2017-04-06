@@ -55,7 +55,7 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
             myOrdersCustomerPage.makeNewOrder();
             orderCreateCustomerPage.createOrderWithVasChooseBestWriter(siteUrl, "test for webdriver", "test");
             app.getHelper().waitLoading("/order/pay/");
-            System.out.println(app.driver.getCurrentUrl());
+            //System.out.println(app.driver.getCurrentUrl());
             orderId = app.getHelper().idEasyBidding(siteUrl);
             writerUrl = "https://edusson.com/order/view/" + orderId;
             customerUrl = siteUrl + "order/view/" + orderId;

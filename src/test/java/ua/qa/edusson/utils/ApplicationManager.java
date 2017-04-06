@@ -7,8 +7,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.*;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
@@ -34,7 +38,7 @@ public class ApplicationManager {
     }
 
 
-    public void init() throws IOException {
+    public void init() throws IOException, AWTException {
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
 
@@ -58,6 +62,8 @@ public class ApplicationManager {
 
         }
         driver.manage().window().maximize();
+        Robot bot = new Robot();
+        bot.mouseMove(0, 0);
         helper = new Helper(driver);
     }
 

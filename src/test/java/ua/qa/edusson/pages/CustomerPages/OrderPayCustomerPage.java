@@ -24,7 +24,7 @@ public class OrderPayCustomerPage {
     }
 
     public void choosePaymentSystem(String ps) {
-        app.getHelper().remooveExitPopUp();
+        //app.getHelper().remooveExitPopUp();
         if (ps.equals("paypal")) {
             app.getHelper().cyclicElementSearchByXpath(payPalButton).click();
         }
@@ -54,7 +54,7 @@ public class OrderPayCustomerPage {
 
     public void confirmPay() {
         //app.getHelper().closePopUp();
-        app.getHelper().remooveExitPopUp();
+        //app.getHelper().remooveExitPopUp();
         if (app.getHelper().isElementPresent(makeDepositButton)) {
             this.clickReserveButton();
         } else if (app.getHelper().isElementPresent(reserveMoney)) {
@@ -64,7 +64,7 @@ public class OrderPayCustomerPage {
 
 
     public void payOrder(String siteUrl) {
-        app.getHelper().remooveExitPopUp();
+        //app.getHelper().remooveExitPopUp();
         WebElement pp = app.driver.findElement(By.xpath("//input[@id='payment_system_type_payment_system_0']"));
         app.getHelper().unhide(pp);
         Boolean checkPayPal = pp.isSelected();
@@ -76,8 +76,7 @@ public class OrderPayCustomerPage {
             Helper.sleep(1);
             payPalPage.checkForError();
             app.getHelper().waitLoading(siteUrl);
-        }
-        if (app.getHelper().hasSiteCardPay(siteUrl)) {
+        }else if (app.getHelper().hasSiteCardPay(siteUrl)) {
             WebElement cc = app.driver.findElement(By.xpath("//input[@id='payment_system_type_payment_system_1']"));
             app.getHelper().unhide(cc);
             Boolean checkCard = cc.isSelected();
