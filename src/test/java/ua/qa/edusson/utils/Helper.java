@@ -360,9 +360,9 @@ public class Helper {
         ((JavascriptExecutor) app.driver).executeScript(script, el);
     }
 
-    public void remooveExitPopUp(String xpath) {
+    public void remooveExitPopUp() {
         try {
-            WebElement p = driver.findElement(By.xpath(xpath));
+            WebElement p = driver.findElement(By.xpath("//*[@class='modal-backdrop fade in']"));
             unhide(p);
             removeElement(p);
         } catch (Exception e) {
@@ -375,6 +375,8 @@ public class Helper {
             }
         }
     }
+
+
 }
 
 

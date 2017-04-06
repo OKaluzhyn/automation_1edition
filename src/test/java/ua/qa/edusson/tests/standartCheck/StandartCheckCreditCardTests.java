@@ -51,7 +51,7 @@ public class StandartCheckCreditCardTests extends TestBase {
             myOrdersCustomerPage.makeNewOrder();
             orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
             app.getHelper().waitLoading("order#redirect_url=");
-            app.getHelper().remooveExitPopUp(orderBiddingCustomerPage.seopopup());
+            app.getHelper().remooveExitPopUp();
             orderId = app.getHelper().idNotEasyBidding(siteUrl);
             System.out.println("Order ID = " + orderId);
             customerUrl = siteUrl + "order/view/" + orderId;

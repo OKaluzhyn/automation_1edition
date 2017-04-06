@@ -53,16 +53,16 @@ public class StandartCheckPayPalTests extends TestBase {
         userAuthorizationPage.userLogin(Config.customer1, Config.password);
         myOrdersCustomerPage.makeNewOrder();
         orderCreateCustomerPage.createOrder(siteUrl, "test for webdriver", "test");
+        app.getHelper().remooveExitPopUp();
         if (!app.getHelper().isSiteEasybidding(siteUrl).equals("easy")) {
             app.getHelper().waitLoading("order#redirect_url=");
-            app.getHelper().remooveExitPopUp(orderBiddingCustomerPage.seopopup());
+            app.getHelper().remooveExitPopUp();
             orderId = app.getHelper().idNotEasyBidding(siteUrl);
             writerUrl = "http://edusson.com/order/view/" + orderId;
             customerUrl = siteUrl + "order/view/" + orderId;
             System.out.println("Order ID = " + orderId);
         }
-        WebWindow ww  = new WebWindow(app.driver, "https://edusson.com/");
-
+        WebWindow ww = new WebWindow(app.driver, "https://edusson.com/");
         if (siteUrl.equals("http://edusson.com/")) {
             app.getHelper().asWriter(writerUrl);
         } else {
@@ -135,7 +135,7 @@ public class StandartCheckPayPalTests extends TestBase {
         //app.getHelper().sleep(5);
     }
 
-   }
+}
 
 
 
