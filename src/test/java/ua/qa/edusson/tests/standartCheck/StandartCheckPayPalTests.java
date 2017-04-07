@@ -103,6 +103,7 @@ public class StandartCheckPayPalTests extends TestBase {
                 orderBiddingWriterPage.goToOrder();
             }
         }
+        app.driver.navigate().refresh();
         orderInProgressPage.uploadRevision();
         ww.switchToParent();
         if (siteUrl.equals("https://edusson.com/")) {

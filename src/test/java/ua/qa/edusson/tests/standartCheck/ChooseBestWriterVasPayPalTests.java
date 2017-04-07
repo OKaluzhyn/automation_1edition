@@ -74,6 +74,7 @@ public class ChooseBestWriterVasPayPalTests extends TestBase {
                 app.getHelper().goTo(writerUrl);
             }
             orderBiddingWriterPage.easyBiddingApplyprice();
+            app.driver.navigate().refresh();
             orderInProgressPage.uploadRevision();
             ww.switchToParent();
             if (siteUrl.equals("https://edusson.com/")) {
