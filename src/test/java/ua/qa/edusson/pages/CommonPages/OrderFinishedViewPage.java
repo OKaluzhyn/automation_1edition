@@ -9,7 +9,7 @@ public class OrderFinishedViewPage  {
 	
 		public static String finishedTextWriterPage = "//span[@data-atest='atest_order_view_writer_finished_elem_notify']";
 		public static String finishedCustomerPage = "//span[@data-atest='atest_order_view_finished_elem_notify']";
-		public static String closePopup = "//div[@id='popup_order_rating_thankyou_default']//a[@aria-label='Close']";
+		public static String closePopup = "//div[@class='rate-popup-wrapper']//a[@aria-label='Close']";
 
 		
 		
