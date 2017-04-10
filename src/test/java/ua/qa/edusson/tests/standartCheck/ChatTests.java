@@ -4,8 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import ua.qa.edusson.pages.CommonPages.Chat;
 import ua.qa.edusson.pages.CommonPages.HeaderMenu;
-import ua.qa.edusson.pages.CommonPages.OrderFinishedViewPage;
 import ua.qa.edusson.pages.CommonPages.UserAuthorizationPage;
+import ua.qa.edusson.pages.WriterPages.MyOrdersWriterPage;
 import ua.qa.edusson.tests.tools.TestBase;
 import ua.qa.edusson.utils.Config;
 import ua.qa.edusson.utils.Helper;
@@ -25,7 +25,7 @@ public class ChatTests extends TestBase {
         Chat chat = new Chat();
         HeaderMenu headerMenu = new HeaderMenu();
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-        OrderFinishedViewPage myOrdersWriterPage = new OrderFinishedViewPage();
+        MyOrdersWriterPage myOrdersWriterPage = new MyOrdersWriterPage();
         //open edubirdie as customer
         app.getHelper().goToEdubirdie();
         userAuthorizationPage.userLogin(Config.customer2, Config.password);
