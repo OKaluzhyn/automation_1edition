@@ -11,6 +11,7 @@ public class Config {
 	public static String customer2 = ("customer2@yopmail.com");
 	public static String customer3 = ("customer3@yopmail.com");
 	//Writer's
+	public static String resume_writer1 = ("resumewriter@yopmail.com");
 	public static String writer1 = ("writer1@yopmail.com");
 	public static String writer2 = ("writer2@yopmail.com");
 	public static String writer3 = ("writer3@yopmail.com");

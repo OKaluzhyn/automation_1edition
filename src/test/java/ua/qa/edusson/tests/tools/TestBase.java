@@ -30,7 +30,7 @@ public class TestBase {
 
     @Parameters("site")
     @BeforeMethod
-    public void chooseSite(@Optional("https://edubirdie.com/") String siteName, ITestContext context) {
+    public void chooseSite(@Optional("https://my.craftresumes.com/") String siteName, ITestContext context) {
         context.setAttribute("app", app);
         app.driver.get(siteName);
         System.out.println(app.driver.getWindowHandles().size() + " - handlesCount before test");

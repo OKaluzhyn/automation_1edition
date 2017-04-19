@@ -34,11 +34,22 @@ public class Base extends TestBase {
     public String writerReleasedPercent;
 
     @Test//(enabled = false)
+    public void rozetka() {
+        app.driver.get("http://rozetka.com.ua/ua/mobile-phones/c80003/23777=114812,25316,50069,50074,93089;price=298-6000;producer=asus,htc,huawei,meizu,samsung/");
+        String elementID = app.driver.findElement(By.xpath("//input[@value='001']")).getAttribute("name").substring(15);
+        String elementLink = "//div[@id='image_item"+elementID+"']";
+        app.driver.findElement(By.xpath(elementLink)).click();
+        app.getHelper().sleep(5);
+
+    }
+
+
+    @Test//(enabled = false)
     public void registration() {
         String[] sites = {//"https://customwriting.com/",
                 //"https://essays.studymoose.com/",
-               // "https://paperial.com/",
-               // "https://phdfy.com/",
+                // "https://paperial.com/",
+                // "https://phdfy.com/",
                 // "https://essayontime.com/", "https://essaylab.com/", "https://essayblablawriting.com/",
                 "https://eduzaurus.com", "https://essaybison.com", "https://essaytornado.com", "https://essayvikings.com", "https://gpaessay.com",
                 "https://paperdon.com", "https://paperell.com", "https://papersowl.com",

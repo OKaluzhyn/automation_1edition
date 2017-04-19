@@ -133,7 +133,6 @@ public class OrderCreateCustomerPage {
             this.orderDescription(strDescription);
             this.choseBestWriter();
             app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
-
             this.proceedToBidding();
         } else {
             this.selectTypeOfPaper();
@@ -182,6 +181,18 @@ public class OrderCreateCustomerPage {
     }
 
 
+    public void createResumeOrder(String siteUrl) {
+        //app.getHelper().cyclicElementSearchByXpath("//a[text()='Order now']");
+        //app.getHelper().waitLoading("/order-resume");
+        app.getHelper().cyclicElementSearchByXpath("//label[@for='order_product_additionServices_7']").click();
+        app.getHelper().cyclicElementSearchByXpath("//label[@for='order_product_additionServices_9']").click();
+        clickNext1();
+        app.getHelper().cyclicElementSearchByXpath("//input[@id='order_product_firstName']").sendKeys("Test firstname");
+        app.getHelper().cyclicElementSearchByXpath("//input[@id='order_product_lastName']").sendKeys("Test lastname");
+        clickNext2();
+        app.getHelper().attachFile(By.xpath("//input[@class='dz-hidden-input']"), app.getHelper().getRevision().getAbsolutePath());
+        this.proceedToBidding();
+    }
 }
 
 

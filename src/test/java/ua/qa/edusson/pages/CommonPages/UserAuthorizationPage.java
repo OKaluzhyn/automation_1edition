@@ -28,7 +28,8 @@ public class UserAuthorizationPage {
 
     //public static String messageForDeactivateUser = "//div[@class='errorText']";
 
-    private String login = "//*[@data-atest='atest_login_elem_popup_open']";
+    private String login = "//a[@data-atest='atest_login_elem_popup_open']";
+    WebElement openAuthorizationPopUp;
 
     public String getloginLink() {
         return this.login;
@@ -37,7 +38,11 @@ public class UserAuthorizationPage {
 
     public void LogClick() {
         //app.getHelper().waitElement(login_link);
-        WebElement openAuthorizationPopUp = app.getHelper().cyclicElementSearchByXpath(login_link);
+        if (app.driver.getCurrentUrl().equals("https://my.craftresumes.com/")) {
+            openAuthorizationPopUp = app.getHelper().cyclicElementSearchByXpath(login);
+        } else {
+            openAuthorizationPopUp = app.getHelper().cyclicElementSearchByXpath(login_link);
+        }
         openAuthorizationPopUp.click();
     }
 
@@ -52,8 +57,8 @@ public class UserAuthorizationPage {
 
     }
 
-    public void checkUserLogged(){
-        if(app.getHelper().isUserLogged() == true){
+    public void checkUserLogged() {
+        if (app.getHelper().isUserLogged() == true) {
             System.out.println("user already logged");
             HeaderMenu header = new HeaderMenu();
             header.userLogOut();
@@ -191,17 +196,17 @@ public class UserAuthorizationPage {
         }
     }
 
-public void customerRegistration(String email){
-    this.LogClick();
-    if (!app.getHelper().isElementPresent(change_user)) {
-        this.setUserName(email);
-        this.continueClick();
-    } else {
-        this.changeUserClick();
-        this.setUserName(email);
-        this.submitClickAfterChangeUser();
+    public void customerRegistration(String email) {
+        this.LogClick();
+        if (!app.getHelper().isElementPresent(change_user)) {
+            this.setUserName(email);
+            this.continueClick();
+        } else {
+            this.changeUserClick();
+            this.setUserName(email);
+            this.submitClickAfterChangeUser();
+        }
     }
-}
 }
 
 

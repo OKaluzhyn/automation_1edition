@@ -27,7 +27,7 @@ public class UserAutorizationProductionTests extends TestBase {
     // success writer authorization
     public void writerAuthorization() throws Exception {
         UserAuthorizationPage userAuthorizationPage = new UserAuthorizationPage();
-        userAuthorizationPage.userLogin(Config.writer1, Config.password);
+        userAuthorizationPage.userLogin(Config.resume_writer1, Config.password);
         app.getHelper().sleep(2);
         assertEquals("My Orders. Current orders - Edusson.com", app.driver.getTitle());
 

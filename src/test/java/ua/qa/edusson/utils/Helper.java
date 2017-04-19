@@ -278,6 +278,8 @@ public class Helper {
             id = app.driver.getCurrentUrl().substring(29);
         } else if (siteUrl.equals("https://essays.blablawriting.com/")) {
             id = app.driver.getCurrentUrl().substring(43);
+        }else if (siteUrl.equals("https://my.craftresumes.com/")) {
+            id = app.driver.getCurrentUrl().substring(38);
         }
         return id;
     }

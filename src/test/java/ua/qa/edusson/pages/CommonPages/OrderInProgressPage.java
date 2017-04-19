@@ -76,4 +76,8 @@ public class OrderInProgressPage  {
 	}
 
 
+    public void approveProduct() {
+		app.getHelper().cyclicElementSearchByXpath("//input[@value='Approve Product']").click();
+		this.clickConfirmButton();
+    }
 }
